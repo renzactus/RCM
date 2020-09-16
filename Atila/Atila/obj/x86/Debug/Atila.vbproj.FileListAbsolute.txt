@@ -1,0 +1,10 @@
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.exe
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.pdb
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.xml
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Principal.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Resources.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Reservar.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.vbproj.GenerateResource.Cache
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.exe
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.xml
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.pdb
