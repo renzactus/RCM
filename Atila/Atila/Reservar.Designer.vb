@@ -22,37 +22,33 @@ Partial Class Reservar
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnAgregarDatos = New System.Windows.Forms.Button()
-        Me.txtCedula = New System.Windows.Forms.TextBox()
+        Me.botonAgregarDatos = New System.Windows.Forms.Button()
+        Me.cuadroCedula = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtNombre = New System.Windows.Forms.TextBox()
+        Me.cuadroNombre = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtDireccion = New System.Windows.Forms.TextBox()
+        Me.cuadroDireccion = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtTelefono1 = New System.Windows.Forms.TextBox()
+        Me.cuadroTelefonos = New System.Windows.Forms.TextBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
-        Me.txtTelefono2 = New System.Windows.Forms.TextBox()
-        Me.txtTelefono3 = New System.Windows.Forms.TextBox()
-        Me.btnRestarTelefonos = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'btnAgregarDatos
+        'botonAgregarDatos
         '
-        Me.btnAgregarDatos.Location = New System.Drawing.Point(76, 358)
-        Me.btnAgregarDatos.Name = "btnAgregarDatos"
-        Me.btnAgregarDatos.Size = New System.Drawing.Size(91, 23)
-        Me.btnAgregarDatos.TabIndex = 0
-        Me.btnAgregarDatos.Text = "Agregar Datos"
-        Me.btnAgregarDatos.UseVisualStyleBackColor = True
+        Me.botonAgregarDatos.Location = New System.Drawing.Point(191, 282)
+        Me.botonAgregarDatos.Name = "botonAgregarDatos"
+        Me.botonAgregarDatos.Size = New System.Drawing.Size(91, 23)
+        Me.botonAgregarDatos.TabIndex = 0
+        Me.botonAgregarDatos.Text = "Agregar Datos"
+        Me.botonAgregarDatos.UseVisualStyleBackColor = True
         '
-        'txtCedula
+        'cuadroCedula
         '
-        Me.txtCedula.Location = New System.Drawing.Point(103, 64)
-        Me.txtCedula.Name = "txtCedula"
-        Me.txtCedula.Size = New System.Drawing.Size(100, 20)
-        Me.txtCedula.TabIndex = 1
+        Me.cuadroCedula.Location = New System.Drawing.Point(103, 64)
+        Me.cuadroCedula.Name = "cuadroCedula"
+        Me.cuadroCedula.Size = New System.Drawing.Size(100, 20)
+        Me.cuadroCedula.TabIndex = 1
         '
         'Label1
         '
@@ -72,44 +68,44 @@ Partial Class Reservar
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "cuadroNombre"
         '
-        'txtNombre
+        'cuadroNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(103, 103)
-        Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(100, 20)
-        Me.txtNombre.TabIndex = 3
+        Me.cuadroNombre.Location = New System.Drawing.Point(103, 103)
+        Me.cuadroNombre.Name = "cuadroNombre"
+        Me.cuadroNombre.Size = New System.Drawing.Size(100, 20)
+        Me.cuadroNombre.TabIndex = 3
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(4, 242)
+        Me.Label4.Location = New System.Drawing.Point(12, 144)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(85, 13)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "cuadroDireccion"
         '
-        'txtDireccion
+        'cuadroDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(95, 239)
-        Me.txtDireccion.Name = "txtDireccion"
-        Me.txtDireccion.Size = New System.Drawing.Size(100, 20)
-        Me.txtDireccion.TabIndex = 7
+        Me.cuadroDireccion.Location = New System.Drawing.Point(103, 141)
+        Me.cuadroDireccion.Name = "cuadroDireccion"
+        Me.cuadroDireccion.Size = New System.Drawing.Size(100, 20)
+        Me.cuadroDireccion.TabIndex = 7
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 147)
+        Me.Label3.Location = New System.Drawing.Point(12, 183)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(87, 13)
         Me.Label3.TabIndex = 10
         Me.Label3.Text = "cuadroTelefonos"
         '
-        'txtTelefono1
+        'cuadroTelefonos
         '
-        Me.txtTelefono1.Location = New System.Drawing.Point(103, 144)
-        Me.txtTelefono1.Name = "txtTelefono1"
-        Me.txtTelefono1.Size = New System.Drawing.Size(100, 20)
-        Me.txtTelefono1.TabIndex = 9
+        Me.cuadroTelefonos.Location = New System.Drawing.Point(103, 180)
+        Me.cuadroTelefonos.Name = "cuadroTelefonos"
+        Me.cuadroTelefonos.Size = New System.Drawing.Size(100, 20)
+        Me.cuadroTelefonos.TabIndex = 9
         '
         'CheckBox1
         '
@@ -121,78 +117,35 @@ Partial Class Reservar
         Me.CheckBox1.Text = "Habilitar edicion"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
-        'btnAgregarTelefonos
-        '
-        Me.btnAgregarTelefonos.Location = New System.Drawing.Point(209, 144)
-        Me.btnAgregarTelefonos.Name = "btnAgregarTelefonos"
-        Me.btnAgregarTelefonos.Size = New System.Drawing.Size(26, 23)
-        Me.btnAgregarTelefonos.TabIndex = 12
-        Me.btnAgregarTelefonos.Text = "+"
-        Me.btnAgregarTelefonos.UseVisualStyleBackColor = True
-        '
-        'txtTelefono2
-        '
-        Me.txtTelefono2.Location = New System.Drawing.Point(103, 170)
-        Me.txtTelefono2.Name = "txtTelefono2"
-        Me.txtTelefono2.Size = New System.Drawing.Size(100, 20)
-        Me.txtTelefono2.TabIndex = 13
-        Me.txtTelefono2.Visible = False
-        '
-        'txtTelefono3
-        '
-        Me.txtTelefono3.Location = New System.Drawing.Point(103, 196)
-        Me.txtTelefono3.Name = "txtTelefono3"
-        Me.txtTelefono3.Size = New System.Drawing.Size(100, 20)
-        Me.txtTelefono3.TabIndex = 14
-        Me.txtTelefono3.Visible = False
-        '
-        'btnRestarTelefonos
-        '
-        Me.btnRestarTelefonos.Location = New System.Drawing.Point(241, 144)
-        Me.btnRestarTelefonos.Name = "btnRestarTelefonos"
-        Me.btnRestarTelefonos.Size = New System.Drawing.Size(26, 23)
-        Me.btnRestarTelefonos.TabIndex = 15
-        Me.btnRestarTelefonos.Text = "-"
-        Me.btnRestarTelefonos.UseVisualStyleBackColor = True
-        Me.btnRestarTelefonos.Visible = False
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(703, 478)
-        Me.Controls.Add(Me.btnRestarTelefonos)
-        Me.Controls.Add(Me.txtTelefono3)
-        Me.Controls.Add(Me.txtTelefono2)
-        Me.Controls.Add(Me.btnAgregarTelefonos)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.txtTelefono1)
+        Me.Controls.Add(Me.cuadroTelefonos)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.txtDireccion)
+        Me.Controls.Add(Me.cuadroDireccion)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.txtNombre)
+        Me.Controls.Add(Me.cuadroNombre)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtCedula)
-        Me.Controls.Add(Me.btnAgregarDatos)
+        Me.Controls.Add(Me.cuadroCedula)
+        Me.Controls.Add(Me.botonAgregarDatos)
         Me.Name = "Reservar"
         Me.Text = "Reservar"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents btnAgregarDatos As System.Windows.Forms.Button
-    Friend WithEvents txtCedula As System.Windows.Forms.TextBox
+    Friend WithEvents botonAgregarDatos As System.Windows.Forms.Button
+    Friend WithEvents cuadroCedula As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents txtNombre As System.Windows.Forms.TextBox
+    Friend WithEvents cuadroNombre As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents txtDireccion As System.Windows.Forms.TextBox
+    Friend WithEvents cuadroDireccion As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents txtTelefono1 As System.Windows.Forms.TextBox
+    Friend WithEvents cuadroTelefonos As System.Windows.Forms.TextBox
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents btnAgregarTelefonos As System.Windows.Forms.Button
-    Friend WithEvents txtTelefono2 As System.Windows.Forms.TextBox
-    Friend WithEvents txtTelefono3 As System.Windows.Forms.TextBox
-    Friend WithEvents btnRestarTelefonos As System.Windows.Forms.Button
 End Class
