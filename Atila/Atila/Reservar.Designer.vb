@@ -27,15 +27,13 @@ Partial Class Reservar
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblDireccion = New System.Windows.Forms.Label()
         Me.txtDireccion = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtTelefono1 = New System.Windows.Forms.TextBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
-        Me.txtTelefono3 = New System.Windows.Forms.TextBox()
-        Me.btnRestarTelefonos = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
@@ -79,18 +77,18 @@ Partial Class Reservar
         Me.txtNombre.Size = New System.Drawing.Size(100, 20)
         Me.txtNombre.TabIndex = 3
         '
-        'Label4
+        'lblDireccion
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(4, 242)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(85, 13)
-        Me.Label4.TabIndex = 8
-        Me.Label4.Text = "cuadroDireccion"
+        Me.lblDireccion.AutoSize = True
+        Me.lblDireccion.Location = New System.Drawing.Point(12, 184)
+        Me.lblDireccion.Name = "lblDireccion"
+        Me.lblDireccion.Size = New System.Drawing.Size(85, 13)
+        Me.lblDireccion.TabIndex = 8
+        Me.lblDireccion.Text = "cuadroDireccion"
         '
         'txtDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(95, 239)
+        Me.txtDireccion.Location = New System.Drawing.Point(103, 181)
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(100, 20)
         Me.txtDireccion.TabIndex = 7
@@ -138,37 +136,17 @@ Partial Class Reservar
         Me.txtTelefono2.TabIndex = 13
         Me.txtTelefono2.Visible = False
         '
-        'txtTelefono3
-        '
-        Me.txtTelefono3.Location = New System.Drawing.Point(103, 196)
-        Me.txtTelefono3.Name = "txtTelefono3"
-        Me.txtTelefono3.Size = New System.Drawing.Size(100, 20)
-        Me.txtTelefono3.TabIndex = 14
-        Me.txtTelefono3.Visible = False
-        '
-        'btnRestarTelefonos
-        '
-        Me.btnRestarTelefonos.Location = New System.Drawing.Point(241, 144)
-        Me.btnRestarTelefonos.Name = "btnRestarTelefonos"
-        Me.btnRestarTelefonos.Size = New System.Drawing.Size(26, 23)
-        Me.btnRestarTelefonos.TabIndex = 15
-        Me.btnRestarTelefonos.Text = "-"
-        Me.btnRestarTelefonos.UseVisualStyleBackColor = True
-        Me.btnRestarTelefonos.Visible = False
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(703, 478)
-        Me.Controls.Add(Me.btnRestarTelefonos)
-        Me.Controls.Add(Me.txtTelefono3)
         Me.Controls.Add(Me.txtTelefono2)
         Me.Controls.Add(Me.btnAgregarTelefonos)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtTelefono1)
-        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.lblDireccion)
         Me.Controls.Add(Me.txtDireccion)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtNombre)
@@ -186,13 +164,11 @@ Partial Class Reservar
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtNombre As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents lblDireccion As System.Windows.Forms.Label
     Friend WithEvents txtDireccion As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtTelefono1 As System.Windows.Forms.TextBox
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents btnAgregarTelefonos As System.Windows.Forms.Button
     Friend WithEvents txtTelefono2 As System.Windows.Forms.TextBox
-    Friend WithEvents txtTelefono3 As System.Windows.Forms.TextBox
-    Friend WithEvents btnRestarTelefonos As System.Windows.Forms.Button
 End Class
