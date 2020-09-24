@@ -2,8 +2,8 @@
     Dim booleanTelefonos As Boolean
     Dim mysql As New MySQL
     Dim telefonos As String
-    Private Sub Reservar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        mysql.Probarconexion()
+    Private Sub Reservar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR
+
     End Sub
 
     Private Sub botonAgregarDatos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarDatos.Click
@@ -12,8 +12,7 @@
         Else
             telefonos = txtTelefono1.Text
         End If
-        mysql.Consulta = "insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" & telefonos & "','" & txtDireccion.Text & "')"
-        mysql.Probarconexion()
+        mysql.consultaInsert = "insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" & telefonos & "','" & txtDireccion.Text & "')"
         mysql.InsertarDatos()
     End Sub
 
