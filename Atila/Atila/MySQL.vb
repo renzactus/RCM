@@ -1,12 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
+
 Public Class MySQL
-    Public respuesta As MySqlDataReader
-    Public DataSet As New DataSet
+
+    Public Data As New DataTable
     Public Consultado As Boolean
     Public Consulta, consultaInsert As String
     Public ComandoSql As New MySqlCommand
-    Public tabla As String
-    Dim MysqlConnString As String = "server=localhost;port=3307;database=Atila;user=root;password=root;"
+    Dim MysqlConnString As String = "server=localhost;database=atila1;user=root;password=root;" 'port=3307;
     Public Conexion As MySqlConnection = New MySqlConnection(MysqlConnString)
     Public Sub Probarconexion() 'PROBAR CONEXION CON LA BASE DE DATOS
         Try
@@ -29,30 +29,23 @@ Public Class MySQL
             MsgBox("La conexión no fue exitosa")
         End Try
     End Sub
-    Public Sub Consultar()
+    Sub Cons()
         Consultado = True
-        Dim DataAdapter As New MySqlDataAdapter
-        Dim cmd As New MySqlCommand(Consulta, Conexion)
+        Dim adapter As New MySqlDataAdapter
+        Dim commandbuild As New MySqlCommandBuilder
+        Data = New DataTable
         Try
-            DataAdapter = New MySqlDataAdapter(Consulta, Conexion)
-            DataSet.Clear()
-            DataAdapter.Fill(DataSet, tabla)
+            adapter = New MySqlDataAdapter(Consulta, Conexion)
+            commandbuild = New MySqlCommandBuilder(adapter)
+            adapter.Fill(Data)
+            'MsgBox(Data.Rows(0).Item("id_usuario"))
+            Conexion.Close()
+            Consulta = vbNull
         Catch ex As Exception
+            Conexion.Close()
             Consultado = False
-            MsgBox("Error de conexion", 48)
-
+            MsgBox("Error de conexion" & ex.ToString, 48)
         End Try
     End Sub
 
-    Public Sub Co()
-        Conexion.Open()
-
-        Dim Myadaptar As New MySqlDataAdapter
-        Dim command As New MySqlCommand("select motivo from reservas where fecha='2020-09-29' and fecha_cancelacion is null;")
-        command.Connection = Conexion
-        command.CommandText = Consulta
-        Myadaptar.SelectCommand = command
-
-
-    End Sub
 End Class

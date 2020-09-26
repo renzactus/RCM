@@ -26,6 +26,9 @@ Partial Class ListadeReservas
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.dgv = New System.Windows.Forms.DataGridView()
+        CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -60,17 +63,37 @@ Partial Class ListadeReservas
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 4
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(321, 142)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 5
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'dgv
+        '
+        Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv.Location = New System.Drawing.Point(448, 80)
+        Me.dgv.Name = "dgv"
+        Me.dgv.Size = New System.Drawing.Size(240, 150)
+        Me.dgv.TabIndex = 6
+        '
         'ListadeReservas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(725, 445)
+        Me.Controls.Add(Me.dgv)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Calendario)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Label1)
         Me.Name = "ListadeReservas"
         Me.Text = "ListadeReservas"
+        CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -79,4 +102,6 @@ Partial Class ListadeReservas
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Calendario As System.Windows.Forms.MonthCalendar
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents dgv As System.Windows.Forms.DataGridView
 End Class

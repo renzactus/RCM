@@ -44,13 +44,10 @@ Public Class Login
             MsgBox("Las credenciales no pueden estar vacias")
         Else
             mysql.Consulta = ("select sesiones.ID_USUARIO from sesiones inner join funcionarios_sesiones on sesiones.ID_USUARIO=funcionarios_sesiones.ID_USUARIO inner join funcionarios on funcionarios_sesiones.ID_FUNCIONARIOS=funcionarios.ID_FUNCIONARIOS where sesiones.contraseña= binary '" & txtContraseña.Text & "' And funcionarios.cedula=" & txtCedula.Text & ";")
-            mysql.tabla = "sesiones"
-            mysql.Consultar() 'ENVIAR CONSULTA
+            mysql.Cons() 'ENVIAR CONSULTA
             If mysql.Consultado = True Then 'SI SE CONSULTO SIN ERRORES
-                If mysql.DataSet.Tables("sesiones").Rows.Count() = 1 Then 'SI SE DEVOLVIO UNA FILA QUIERE DECIR QUE COINCIDE EL USUARIO
+                If mysql.Data.Rows.Count() = 1 Then 'SI SE DEVOLVIO UNA FILA QUIERE DECIR QUE COINCIDE EL USUARIO
                     MessageBox.Show("Bienvenido al Sistema", "Sistema")
-                    mysql.Conexion.Close()
-
                     Dim principal As New Principal
                     principal.Show()
                     Me.Close()
@@ -58,6 +55,8 @@ Public Class Login
                     MessageBox.Show("datos invalidos", "Sistema")
                 End If
             End If
+
+
         End If
     End Sub
 
