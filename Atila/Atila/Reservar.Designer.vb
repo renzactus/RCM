@@ -34,6 +34,8 @@ Partial Class Reservar
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
@@ -136,11 +138,22 @@ Partial Class Reservar
         Me.txtTelefono2.TabIndex = 13
         Me.txtTelefono2.Visible = False
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Atila.My.Resources.Resources.LOGO_RCM
+        Me.PictureBox1.Location = New System.Drawing.Point(606, 430)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 14
+        Me.PictureBox1.TabStop = False
+        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(703, 478)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.txtTelefono2)
         Me.Controls.Add(Me.btnAgregarTelefonos)
         Me.Controls.Add(Me.CheckBox1)
@@ -155,6 +168,7 @@ Partial Class Reservar
         Me.Controls.Add(Me.btnAgregarDatos)
         Me.Name = "Reservar"
         Me.Text = "Reservar"
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -171,4 +185,5 @@ Partial Class Reservar
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents btnAgregarTelefonos As System.Windows.Forms.Button
     Friend WithEvents txtTelefono2 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
 End Class

@@ -23,6 +23,7 @@ Public Class Login
         sumadeopacidad = 0.005 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO
         tmrCambiandoOpacidad.Enabled = True 'COMENZAMOS EL TIMER
     End Sub
+
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrCambiandoOpacidad.Tick
         If sumadeopacidad < 1 Then
             pibAnimacion.Image = CambiarOpacidad(imagen, sumadeopacidad)
@@ -49,9 +50,10 @@ Public Class Login
                 If mysql.DataSet.Tables("sesiones").Rows.Count() = 1 Then 'SI SE DEVOLVIO UNA FILA QUIERE DECIR QUE COINCIDE EL USUARIO
                     MessageBox.Show("Bienvenido al Sistema", "Sistema")
                     mysql.Conexion.Close()
-                    Me.Hide()
+
                     Dim principal As New Principal
                     principal.Show()
+                    Me.Close()
                 Else
                     MessageBox.Show("datos invalidos", "Sistema")
                 End If

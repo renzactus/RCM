@@ -27,16 +27,14 @@ Partial Class Login
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.txtCedula = New System.Windows.Forms.TextBox()
         Me.txtContraseña = New System.Windows.Forms.TextBox()
-        Me.panDatos = New System.Windows.Forms.Panel()
         Me.pibAnimacion = New System.Windows.Forms.PictureBox()
         Me.tmrCambiandoOpacidad = New System.Windows.Forms.Timer(Me.components)
-        Me.panDatos.SuspendLayout()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(59, 136)
+        Me.btnLogin.Location = New System.Drawing.Point(125, 182)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(99, 23)
         Me.btnLogin.TabIndex = 0
@@ -45,36 +43,25 @@ Partial Class Login
         '
         'txtCedula
         '
-        Me.txtCedula.Location = New System.Drawing.Point(24, 31)
+        Me.txtCedula.Location = New System.Drawing.Point(90, 77)
         Me.txtCedula.Name = "txtCedula"
         Me.txtCedula.Size = New System.Drawing.Size(100, 20)
         Me.txtCedula.TabIndex = 1
         '
         'txtContraseña
         '
-        Me.txtContraseña.Location = New System.Drawing.Point(24, 75)
+        Me.txtContraseña.Location = New System.Drawing.Point(90, 121)
         Me.txtContraseña.Name = "txtContraseña"
         Me.txtContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtContraseña.Size = New System.Drawing.Size(100, 20)
         Me.txtContraseña.TabIndex = 2
         '
-        'panDatos
-        '
-        Me.panDatos.Controls.Add(Me.pibAnimacion)
-        Me.panDatos.Controls.Add(Me.btnLogin)
-        Me.panDatos.Controls.Add(Me.txtContraseña)
-        Me.panDatos.Controls.Add(Me.txtCedula)
-        Me.panDatos.Location = New System.Drawing.Point(0, -1)
-        Me.panDatos.Name = "panDatos"
-        Me.panDatos.Size = New System.Drawing.Size(325, 373)
-        Me.panDatos.TabIndex = 3
-        '
         'pibAnimacion
         '
         Me.pibAnimacion.Image = CType(resources.GetObject("pibAnimacion.Image"), System.Drawing.Image)
-        Me.pibAnimacion.Location = New System.Drawing.Point(-3, -28)
+        Me.pibAnimacion.Location = New System.Drawing.Point(-6, -36)
         Me.pibAnimacion.Name = "pibAnimacion"
-        Me.pibAnimacion.Size = New System.Drawing.Size(325, 325)
+        Me.pibAnimacion.Size = New System.Drawing.Size(413, 476)
         Me.pibAnimacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pibAnimacion.TabIndex = 3
         Me.pibAnimacion.TabStop = False
@@ -87,22 +74,23 @@ Partial Class Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(315, 292)
-        Me.Controls.Add(Me.panDatos)
+        Me.ClientSize = New System.Drawing.Size(400, 400)
+        Me.Controls.Add(Me.pibAnimacion)
+        Me.Controls.Add(Me.txtContraseña)
+        Me.Controls.Add(Me.txtCedula)
+        Me.Controls.Add(Me.btnLogin)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
-        Me.panDatos.ResumeLayout(False)
-        Me.panDatos.PerformLayout()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnLogin As System.Windows.Forms.Button
     Friend WithEvents txtCedula As System.Windows.Forms.TextBox
     Friend WithEvents txtContraseña As System.Windows.Forms.TextBox
-    Friend WithEvents panDatos As System.Windows.Forms.Panel
     Friend WithEvents pibAnimacion As System.Windows.Forms.PictureBox
     Friend WithEvents tmrCambiandoOpacidad As System.Windows.Forms.Timer
 End Class

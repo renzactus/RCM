@@ -1,5 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class MySQL
+    Public respuesta As MySqlDataReader
     Public DataSet As New DataSet
     Public Consultado As Boolean
     Public Consulta, consultaInsert As String
@@ -31,14 +32,27 @@ Public Class MySQL
     Public Sub Consultar()
         Consultado = True
         Dim DataAdapter As New MySqlDataAdapter
+        Dim cmd As New MySqlCommand(Consulta, Conexion)
         Try
             DataAdapter = New MySqlDataAdapter(Consulta, Conexion)
             DataSet.Clear()
             DataAdapter.Fill(DataSet, tabla)
         Catch ex As Exception
             Consultado = False
-            MsgBox("Error de conexion")
+            MsgBox("Error de conexion", 48)
 
         End Try
+    End Sub
+
+    Public Sub Co()
+        Conexion.Open()
+
+        Dim Myadaptar As New MySqlDataAdapter
+        Dim command As New MySqlCommand("select motivo from reservas where fecha='2020-09-29' and fecha_cancelacion is null;")
+        command.Connection = Conexion
+        command.CommandText = Consulta
+        Myadaptar.SelectCommand = command
+
+
     End Sub
 End Class
