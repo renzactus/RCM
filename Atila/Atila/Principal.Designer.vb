@@ -31,7 +31,7 @@ Partial Class Principal
         '
         'btnRealizarunareserva
         '
-        Me.btnRealizarunareserva.Location = New System.Drawing.Point(332, 96)
+        Me.btnRealizarunareserva.Location = New System.Drawing.Point(333, 183)
         Me.btnRealizarunareserva.Name = "btnRealizarunareserva"
         Me.btnRealizarunareserva.Size = New System.Drawing.Size(196, 42)
         Me.btnRealizarunareserva.TabIndex = 0
@@ -59,7 +59,7 @@ Partial Class Principal
         '
         'btnListadereservas
         '
-        Me.btnListadereservas.Location = New System.Drawing.Point(332, 155)
+        Me.btnListadereservas.Location = New System.Drawing.Point(333, 242)
         Me.btnListadereservas.Name = "btnListadereservas"
         Me.btnListadereservas.Size = New System.Drawing.Size(196, 42)
         Me.btnListadereservas.TabIndex = 16
@@ -70,7 +70,7 @@ Partial Class Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(946, 480)
+        Me.ClientSize = New System.Drawing.Size(974, 535)
         Me.Controls.Add(Me.btnListadereservas)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Button2)
