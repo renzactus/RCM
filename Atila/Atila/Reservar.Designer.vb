@@ -35,12 +35,19 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
         '
-        Me.btnAgregarDatos.Location = New System.Drawing.Point(76, 358)
+        Me.btnAgregarDatos.Location = New System.Drawing.Point(247, 399)
         Me.btnAgregarDatos.Name = "btnAgregarDatos"
         Me.btnAgregarDatos.Size = New System.Drawing.Size(91, 23)
         Me.btnAgregarDatos.TabIndex = 0
@@ -49,7 +56,7 @@ Partial Class Reservar
         '
         'txtCedula
         '
-        Me.txtCedula.Location = New System.Drawing.Point(103, 64)
+        Me.txtCedula.Location = New System.Drawing.Point(109, 33)
         Me.txtCedula.Name = "txtCedula"
         Me.txtCedula.Size = New System.Drawing.Size(100, 20)
         Me.txtCedula.TabIndex = 1
@@ -57,7 +64,7 @@ Partial Class Reservar
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 67)
+        Me.Label1.Location = New System.Drawing.Point(18, 36)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(73, 13)
         Me.Label1.TabIndex = 2
@@ -66,7 +73,7 @@ Partial Class Reservar
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 106)
+        Me.Label2.Location = New System.Drawing.Point(18, 75)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(77, 13)
         Me.Label2.TabIndex = 4
@@ -74,7 +81,7 @@ Partial Class Reservar
         '
         'txtNombre
         '
-        Me.txtNombre.Location = New System.Drawing.Point(103, 103)
+        Me.txtNombre.Location = New System.Drawing.Point(109, 72)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(100, 20)
         Me.txtNombre.TabIndex = 3
@@ -82,7 +89,7 @@ Partial Class Reservar
         'lblDireccion
         '
         Me.lblDireccion.AutoSize = True
-        Me.lblDireccion.Location = New System.Drawing.Point(12, 184)
+        Me.lblDireccion.Location = New System.Drawing.Point(18, 153)
         Me.lblDireccion.Name = "lblDireccion"
         Me.lblDireccion.Size = New System.Drawing.Size(85, 13)
         Me.lblDireccion.TabIndex = 8
@@ -90,7 +97,7 @@ Partial Class Reservar
         '
         'txtDireccion
         '
-        Me.txtDireccion.Location = New System.Drawing.Point(103, 181)
+        Me.txtDireccion.Location = New System.Drawing.Point(109, 150)
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(100, 20)
         Me.txtDireccion.TabIndex = 7
@@ -98,7 +105,7 @@ Partial Class Reservar
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 147)
+        Me.Label3.Location = New System.Drawing.Point(18, 116)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(87, 13)
         Me.Label3.TabIndex = 10
@@ -106,7 +113,7 @@ Partial Class Reservar
         '
         'txtTelefono1
         '
-        Me.txtTelefono1.Location = New System.Drawing.Point(103, 144)
+        Me.txtTelefono1.Location = New System.Drawing.Point(109, 113)
         Me.txtTelefono1.Name = "txtTelefono1"
         Me.txtTelefono1.Size = New System.Drawing.Size(100, 20)
         Me.txtTelefono1.TabIndex = 9
@@ -114,7 +121,7 @@ Partial Class Reservar
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(288, 103)
+        Me.CheckBox1.Location = New System.Drawing.Point(144, 10)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(101, 17)
         Me.CheckBox1.TabIndex = 11
@@ -123,7 +130,7 @@ Partial Class Reservar
         '
         'btnAgregarTelefonos
         '
-        Me.btnAgregarTelefonos.Location = New System.Drawing.Point(209, 144)
+        Me.btnAgregarTelefonos.Location = New System.Drawing.Point(215, 113)
         Me.btnAgregarTelefonos.Name = "btnAgregarTelefonos"
         Me.btnAgregarTelefonos.Size = New System.Drawing.Size(26, 23)
         Me.btnAgregarTelefonos.TabIndex = 12
@@ -132,7 +139,7 @@ Partial Class Reservar
         '
         'txtTelefono2
         '
-        Me.txtTelefono2.Location = New System.Drawing.Point(103, 170)
+        Me.txtTelefono2.Location = New System.Drawing.Point(109, 139)
         Me.txtTelefono2.Name = "txtTelefono2"
         Me.txtTelefono2.Size = New System.Drawing.Size(100, 20)
         Me.txtTelefono2.TabIndex = 13
@@ -148,29 +155,71 @@ Partial Class Reservar
         Me.PictureBox1.TabIndex = 14
         Me.PictureBox1.TabStop = False
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.CheckBox1)
+        Me.Panel1.Controls.Add(Me.txtCedula)
+        Me.Panel1.Controls.Add(Me.txtTelefono2)
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.btnAgregarTelefonos)
+        Me.Panel1.Controls.Add(Me.txtNombre)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.txtDireccion)
+        Me.Panel1.Controls.Add(Me.txtTelefono1)
+        Me.Panel1.Controls.Add(Me.lblDireccion)
+        Me.Panel1.Location = New System.Drawing.Point(405, 125)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(267, 190)
+        Me.Panel1.TabIndex = 15
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.MonthCalendar1)
+        Me.Panel2.Location = New System.Drawing.Point(26, 52)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(277, 202)
+        Me.Panel2.TabIndex = 16
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(26, 12)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.TabIndex = 17
+        '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Location = New System.Drawing.Point(362, 52)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 20)
+        Me.DateTimePicker1.TabIndex = 18
+        '
+        'MonthCalendar1
+        '
+        Me.MonthCalendar1.Location = New System.Drawing.Point(9, 31)
+        Me.MonthCalendar1.Name = "MonthCalendar1"
+        Me.MonthCalendar1.TabIndex = 0
+        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(703, 478)
+        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.txtTelefono2)
-        Me.Controls.Add(Me.btnAgregarTelefonos)
-        Me.Controls.Add(Me.CheckBox1)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.txtTelefono1)
-        Me.Controls.Add(Me.lblDireccion)
-        Me.Controls.Add(Me.txtDireccion)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.txtNombre)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtCedula)
         Me.Controls.Add(Me.btnAgregarDatos)
+        Me.Controls.Add(Me.Panel1)
         Me.Name = "Reservar"
         Me.Text = "Reservar"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnAgregarDatos As System.Windows.Forms.Button
@@ -186,4 +235,9 @@ Partial Class Reservar
     Friend WithEvents btnAgregarTelefonos As System.Windows.Forms.Button
     Friend WithEvents txtTelefono2 As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents MonthCalendar1 As System.Windows.Forms.MonthCalendar
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
 End Class

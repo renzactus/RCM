@@ -18,4 +18,8 @@
         mysql.Cons()
         MsgBox(mysql.Data.Rows(0).Item("nombre"))
     End Sub
+
+    Private Sub dgv_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgv.CellContentClick
+
+    End Sub
 End Class

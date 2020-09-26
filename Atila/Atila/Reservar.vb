@@ -15,8 +15,7 @@
         mysql.consultaInsert = "insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" & telefonos & "','" & txtDireccion.Text & "')"
         mysql.InsertarDatos()
     End Sub
-
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarTelefonos.Click
+    Private Sub btnAgregarTelefonos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarTelefonos.Click
         'PARA PONER VISIBLE EL txtTelefonos2 Y MOVER DE LUGAR txtDireccion y lblDireccion
         If booleanTelefonos = False Then
             txtTelefono2.Visible = True

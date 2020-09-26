@@ -75,7 +75,7 @@ Partial Class ListadeReservas
         'dgv
         '
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv.Location = New System.Drawing.Point(448, 80)
+        Me.dgv.Location = New System.Drawing.Point(402, 80)
         Me.dgv.Name = "dgv"
         Me.dgv.Size = New System.Drawing.Size(240, 150)
         Me.dgv.TabIndex = 6
