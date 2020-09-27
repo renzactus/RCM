@@ -326,7 +326,7 @@ Partial Class Reservar
         Me.Controls.Add(Me.pnlReserva)
         Me.Controls.Add(Me.pnlCliente)
         Me.Name = "Reservar"
-        Me.Text = "Reservar"
+        Me.Text = " "
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlCliente.ResumeLayout(False)
         Me.pnlCliente.PerformLayout()
