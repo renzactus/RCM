@@ -4,7 +4,7 @@ Public Class MySQL
 
     Public Data As New DataTable
     Public Consultado As Boolean
-    Public Consulta, consultaInsert As String
+    Public Consulta As String
     Public ComandoSql As New MySqlCommand
     Dim MysqlConnString As String = "server=localhost;database=atila1;user=root;password=root;" 'port=3307;
     Public Conexion As MySqlConnection = New MySqlConnection(MysqlConnString)
@@ -19,17 +19,17 @@ Public Class MySQL
     End Sub
     Public Sub InsertarDatos() 'INSERTAR DATOS EN UNA TABLA DE LA BASE DE DATOS
         Try
-            ComandoSql = New MySqlCommand(consultaInsert)
+            ComandoSql = New MySqlCommand(Consulta)
             Conexion.Open()
             ComandoSql.Connection = Conexion
             ComandoSql.ExecuteNonQuery()
             Conexion.Close()
-            consultaInsert = vbNull
+            Consulta = vbNull
         Catch ex As Exception
             MsgBox("La conexión no fue exitosa")
         End Try
     End Sub
-    Sub Cons()
+    Sub Consultar()
         Consultado = True
         Dim adapter As New MySqlDataAdapter
         Dim commandbuild As New MySqlCommandBuilder

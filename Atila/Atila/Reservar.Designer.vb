@@ -36,24 +36,23 @@ Partial Class Reservar
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
-        Me.pnlFechaHora = New System.Windows.Forms.Panel()
-        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
-        Me.Siguiente = New System.Windows.Forms.Button()
-        Me.DomainUpDown1 = New System.Windows.Forms.DomainUpDown()
-        Me.DomainUpDown2 = New System.Windows.Forms.DomainUpDown()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.pnl = New System.Windows.Forms.Panel()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.DomainUpDown3 = New System.Windows.Forms.DomainUpDown()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.pnlReserva = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.chkServicio = New System.Windows.Forms.CheckBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.dudCantidadPersonas = New System.Windows.Forms.DomainUpDown()
+        Me.cboMotivo = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.dudHoraFinal = New System.Windows.Forms.DomainUpDown()
+        Me.dudHoraComienzo = New System.Windows.Forms.DomainUpDown()
+        Me.btnSiguiente = New System.Windows.Forms.Button()
+        Me.Calendario = New System.Windows.Forms.MonthCalendar()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlCliente.SuspendLayout()
-        Me.pnlFechaHora.SuspendLayout()
-        Me.pnl.SuspendLayout()
+        Me.pnlReserva.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
@@ -159,7 +158,7 @@ Partial Class Reservar
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.Atila.My.Resources.Resources.LOGO_RCM
-        Me.PictureBox1.Location = New System.Drawing.Point(674, 430)
+        Me.PictureBox1.Location = New System.Drawing.Point(646, 505)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -168,7 +167,6 @@ Partial Class Reservar
         '
         'pnlCliente
         '
-        Me.pnlCliente.Controls.Add(Me.pnl)
         Me.pnlCliente.Controls.Add(Me.CheckBox1)
         Me.pnlCliente.Controls.Add(Me.txtCedula)
         Me.pnlCliente.Controls.Add(Me.txtTelefono2)
@@ -181,63 +179,84 @@ Partial Class Reservar
         Me.pnlCliente.Controls.Add(Me.txtDireccion)
         Me.pnlCliente.Controls.Add(Me.txtTelefono1)
         Me.pnlCliente.Controls.Add(Me.lblDireccion)
-        Me.pnlCliente.Location = New System.Drawing.Point(26, 52)
+        Me.pnlCliente.Location = New System.Drawing.Point(47, 12)
         Me.pnlCliente.Name = "pnlCliente"
-        Me.pnlCliente.Size = New System.Drawing.Size(450, 354)
+        Me.pnlCliente.Size = New System.Drawing.Size(581, 543)
         Me.pnlCliente.TabIndex = 15
+        Me.pnlCliente.Visible = False
         '
-        'pnlFechaHora
+        'pnlReserva
         '
-        Me.pnlFechaHora.Controls.Add(Me.Label5)
-        Me.pnlFechaHora.Controls.Add(Me.Label4)
-        Me.pnlFechaHora.Controls.Add(Me.DomainUpDown2)
-        Me.pnlFechaHora.Controls.Add(Me.DomainUpDown1)
-        Me.pnlFechaHora.Controls.Add(Me.Siguiente)
-        Me.pnlFechaHora.Controls.Add(Me.MonthCalendar1)
-        Me.pnlFechaHora.Location = New System.Drawing.Point(26, 52)
-        Me.pnlFechaHora.Name = "pnlFechaHora"
-        Me.pnlFechaHora.Size = New System.Drawing.Size(450, 354)
-        Me.pnlFechaHora.TabIndex = 16
+        Me.pnlReserva.Controls.Add(Me.Label8)
+        Me.pnlReserva.Controls.Add(Me.chkServicio)
+        Me.pnlReserva.Controls.Add(Me.Label7)
+        Me.pnlReserva.Controls.Add(Me.Label6)
+        Me.pnlReserva.Controls.Add(Me.dudCantidadPersonas)
+        Me.pnlReserva.Controls.Add(Me.cboMotivo)
+        Me.pnlReserva.Controls.Add(Me.Label5)
+        Me.pnlReserva.Controls.Add(Me.Label4)
+        Me.pnlReserva.Controls.Add(Me.dudHoraFinal)
+        Me.pnlReserva.Controls.Add(Me.dudHoraComienzo)
+        Me.pnlReserva.Controls.Add(Me.btnSiguiente)
+        Me.pnlReserva.Controls.Add(Me.Calendario)
+        Me.pnlReserva.Location = New System.Drawing.Point(47, 12)
+        Me.pnlReserva.Name = "pnlReserva"
+        Me.pnlReserva.Size = New System.Drawing.Size(581, 543)
+        Me.pnlReserva.TabIndex = 16
         '
-        'MonthCalendar1
+        'Label8
         '
-        Me.MonthCalendar1.Location = New System.Drawing.Point(60, 23)
-        Me.MonthCalendar1.Name = "MonthCalendar1"
-        Me.MonthCalendar1.TabIndex = 0
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(85, 415)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(48, 13)
+        Me.Label8.TabIndex = 11
+        Me.Label8.Text = "Servicio:"
         '
-        'Siguiente
+        'chkServicio
         '
-        Me.Siguiente.Location = New System.Drawing.Point(298, 250)
-        Me.Siguiente.Name = "Siguiente"
-        Me.Siguiente.Size = New System.Drawing.Size(75, 22)
-        Me.Siguiente.TabIndex = 1
-        Me.Siguiente.Text = "Siguiente"
-        Me.Siguiente.UseVisualStyleBackColor = True
+        Me.chkServicio.AutoSize = True
+        Me.chkServicio.Location = New System.Drawing.Point(142, 414)
+        Me.chkServicio.Name = "chkServicio"
+        Me.chkServicio.Size = New System.Drawing.Size(15, 14)
+        Me.chkServicio.TabIndex = 10
+        Me.chkServicio.UseVisualStyleBackColor = True
         '
-        'DomainUpDown1
+        'Label7
         '
-        Me.DomainUpDown1.Location = New System.Drawing.Point(142, 226)
-        Me.DomainUpDown1.Name = "DomainUpDown1"
-        Me.DomainUpDown1.Size = New System.Drawing.Size(120, 20)
-        Me.DomainUpDown1.TabIndex = 2
-        Me.DomainUpDown1.Text = "0:00"
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(25, 371)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(111, 13)
+        Me.Label7.TabIndex = 9
+        Me.Label7.Text = "Cantidad de Personas"
         '
-        'DomainUpDown2
+        'Label6
         '
-        Me.DomainUpDown2.Location = New System.Drawing.Point(142, 270)
-        Me.DomainUpDown2.Name = "DomainUpDown2"
-        Me.DomainUpDown2.Size = New System.Drawing.Size(120, 20)
-        Me.DomainUpDown2.TabIndex = 3
-        Me.DomainUpDown2.Text = "23:59"
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(94, 324)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(39, 13)
+        Me.Label6.TabIndex = 8
+        Me.Label6.Text = "Motivo"
         '
-        'Label4
+        'dudCantidadPersonas
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(42, 230)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(94, 13)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Hora de Comienzo"
+        Me.dudCantidadPersonas.Location = New System.Drawing.Point(142, 367)
+        Me.dudCantidadPersonas.Name = "dudCantidadPersonas"
+        Me.dudCantidadPersonas.Size = New System.Drawing.Size(120, 20)
+        Me.dudCantidadPersonas.TabIndex = 7
+        Me.dudCantidadPersonas.Text = "0"
+        '
+        'cboMotivo
+        '
+        Me.cboMotivo.FormattingEnabled = True
+        Me.cboMotivo.Items.AddRange(New Object() {"Fiesta de 15", "Cumpleaño de niño", "Parrillada", "Graduación", "Otro"})
+        Me.cboMotivo.Location = New System.Drawing.Point(142, 321)
+        Me.cboMotivo.Name = "cboMotivo"
+        Me.cboMotivo.Size = New System.Drawing.Size(121, 21)
+        Me.cboMotivo.TabIndex = 6
+        Me.cboMotivo.Text = "Ingresar Motivo"
         '
         'Label5
         '
@@ -248,89 +267,71 @@ Partial Class Reservar
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Hora Final"
         '
-        'pnl
+        'Label4
         '
-        Me.pnl.Controls.Add(Me.Label8)
-        Me.pnl.Controls.Add(Me.CheckBox2)
-        Me.pnl.Controls.Add(Me.Label7)
-        Me.pnl.Controls.Add(Me.Label6)
-        Me.pnl.Controls.Add(Me.DomainUpDown3)
-        Me.pnl.Controls.Add(Me.ComboBox1)
-        Me.pnl.Location = New System.Drawing.Point(0, 0)
-        Me.pnl.Name = "pnl"
-        Me.pnl.Size = New System.Drawing.Size(450, 354)
-        Me.pnl.TabIndex = 14
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(42, 230)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(94, 13)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "Hora de Comienzo"
         '
-        'ComboBox1
+        'dudHoraFinal
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Fiesta de 15", "Cumpleaño de niño", "Parrillada", "Graduación", "Otro"})
-        Me.ComboBox1.Location = New System.Drawing.Point(187, 22)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.dudHoraFinal.Location = New System.Drawing.Point(142, 270)
+        Me.dudHoraFinal.Name = "dudHoraFinal"
+        Me.dudHoraFinal.Size = New System.Drawing.Size(120, 20)
+        Me.dudHoraFinal.TabIndex = 3
+        Me.dudHoraFinal.Text = "23:59"
         '
-        'DomainUpDown3
+        'dudHoraComienzo
         '
-        Me.DomainUpDown3.Location = New System.Drawing.Point(187, 68)
-        Me.DomainUpDown3.Name = "DomainUpDown3"
-        Me.DomainUpDown3.Size = New System.Drawing.Size(120, 20)
-        Me.DomainUpDown3.TabIndex = 1
-        Me.DomainUpDown3.Text = "DomainUpDown3"
+        Me.dudHoraComienzo.Location = New System.Drawing.Point(142, 226)
+        Me.dudHoraComienzo.Name = "dudHoraComienzo"
+        Me.dudHoraComienzo.Size = New System.Drawing.Size(120, 20)
+        Me.dudHoraComienzo.TabIndex = 2
+        Me.dudHoraComienzo.Text = "0:00"
         '
-        'Label6
+        'btnSiguiente
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(139, 25)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 13)
-        Me.Label6.TabIndex = 2
-        Me.Label6.Text = "Motivo"
+        Me.btnSiguiente.Location = New System.Drawing.Point(386, 442)
+        Me.btnSiguiente.Name = "btnSiguiente"
+        Me.btnSiguiente.Size = New System.Drawing.Size(75, 22)
+        Me.btnSiguiente.TabIndex = 1
+        Me.btnSiguiente.Text = "Siguiente"
+        Me.btnSiguiente.UseVisualStyleBackColor = True
         '
-        'Label7
+        'Calendario
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(70, 72)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(111, 13)
-        Me.Label7.TabIndex = 3
-        Me.Label7.Text = "Cantidad de Personas"
+        Me.Calendario.Location = New System.Drawing.Point(60, 23)
+        Me.Calendario.Name = "Calendario"
+        Me.Calendario.TabIndex = 0
         '
-        'CheckBox2
+        'Button1
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(194, 115)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox2.TabIndex = 4
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(130, 116)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(48, 13)
-        Me.Label8.TabIndex = 5
-        Me.Label8.Text = "Servicio:"
+        Me.Button1.Location = New System.Drawing.Point(646, 123)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 22)
+        Me.Button1.TabIndex = 12
+        Me.Button1.Text = "Siguiente"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(771, 478)
+        Me.ClientSize = New System.Drawing.Size(742, 556)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pnlReserva)
         Me.Controls.Add(Me.pnlCliente)
-        Me.Controls.Add(Me.pnlFechaHora)
         Me.Name = "Reservar"
         Me.Text = "Reservar"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlCliente.ResumeLayout(False)
         Me.pnlCliente.PerformLayout()
-        Me.pnlFechaHora.ResumeLayout(False)
-        Me.pnlFechaHora.PerformLayout()
-        Me.pnl.ResumeLayout(False)
-        Me.pnl.PerformLayout()
+        Me.pnlReserva.ResumeLayout(False)
+        Me.pnlReserva.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -348,18 +349,18 @@ Partial Class Reservar
     Friend WithEvents txtTelefono2 As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents pnlCliente As System.Windows.Forms.Panel
-    Friend WithEvents pnlFechaHora As System.Windows.Forms.Panel
-    Friend WithEvents MonthCalendar1 As System.Windows.Forms.MonthCalendar
+    Friend WithEvents pnlReserva As System.Windows.Forms.Panel
+    Friend WithEvents Calendario As System.Windows.Forms.MonthCalendar
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents DomainUpDown2 As System.Windows.Forms.DomainUpDown
-    Friend WithEvents DomainUpDown1 As System.Windows.Forms.DomainUpDown
-    Friend WithEvents Siguiente As System.Windows.Forms.Button
-    Friend WithEvents pnl As System.Windows.Forms.Panel
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents dudHoraFinal As System.Windows.Forms.DomainUpDown
+    Friend WithEvents dudHoraComienzo As System.Windows.Forms.DomainUpDown
+    Friend WithEvents btnSiguiente As System.Windows.Forms.Button
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents chkServicio As System.Windows.Forms.CheckBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents DomainUpDown3 As System.Windows.Forms.DomainUpDown
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
+    Friend WithEvents dudCantidadPersonas As System.Windows.Forms.DomainUpDown
+    Friend WithEvents cboMotivo As System.Windows.Forms.ComboBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class
