@@ -12,7 +12,8 @@
         Else
             telefonos = txtTelefono1.Text
         End If
-        mysql.Consulta = "insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" & telefonos & "','" & txtDireccion.Text & "')"
+        mysql.Consulta = "insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" &
+            telefonos & "','" & txtDireccion.Text & "')"
         mysql.InsertarDatos()
         mysql.Consulta = "insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE) values ('" &
             cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &

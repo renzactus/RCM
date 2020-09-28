@@ -6,7 +6,7 @@ Public Class MySQL
     Public Consultado As Boolean
     Public Consulta As String
     Public ComandoSql As New MySqlCommand
-    Dim MysqlConnString As String = "server=localhost;database=atila1;user=root;password=root;" 'port=3307;
+    Dim MysqlConnString As String = "server=localhost;port=3307;database=atila;user=root;password=root;" '
     Public Conexion As MySqlConnection = New MySqlConnection(MysqlConnString)
     Public Sub Probarconexion() 'PROBAR CONEXION CON LA BASE DE DATOS
         Try
