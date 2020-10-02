@@ -6,7 +6,7 @@ Public Class MySQL
     Public Consultado As Boolean
     Public Consulta As String
     Public ComandoSql As New MySqlCommand
-    Dim MysqlConnString As String = "server=localhost;port=3307;database=atila;user=root;password=root;" '
+    Dim MysqlConnString As String = "server=localhost;database=atila1;user=root;password=root;" 'port=3307;
     Public Conexion As MySqlConnection = New MySqlConnection(MysqlConnString)
     Public Sub Probarconexion() 'PROBAR CONEXION CON LA BASE DE DATOS
         Try
@@ -44,7 +44,7 @@ Public Class MySQL
         Catch ex As Exception
             Conexion.Close()
             Consultado = False
-            MsgBox("Error de conexion" & ex.ToString, 48)
+            MsgBox("Error al consultar o de conexion", 48)
         End Try
     End Sub
 
