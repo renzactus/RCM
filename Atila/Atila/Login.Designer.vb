@@ -26,71 +26,181 @@ Partial Class Login
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Login))
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.txtCedula = New System.Windows.Forms.TextBox()
-        Me.txtContraseña = New System.Windows.Forms.TextBox()
-        Me.pibAnimacion = New System.Windows.Forms.PictureBox()
         Me.tmrCambiandoOpacidad = New System.Windows.Forms.Timer(Me.components)
+        Me.pboLogoAtila = New System.Windows.Forms.PictureBox()
+        Me.pibAnimacion = New System.Windows.Forms.PictureBox()
+        Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
+        Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.LineShape2 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.txtContraseña = New System.Windows.Forms.TextBox()
+        Me.btnMinimizar = New System.Windows.Forms.Button()
+        Me.btnCerrar = New System.Windows.Forms.Button()
+        Me.chkRecordarSesion = New System.Windows.Forms.CheckBox()
+        CType(Me.pboLogoAtila, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(125, 182)
+        Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnLogin.Font = New System.Drawing.Font("Arial Narrow", 23.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogin.Location = New System.Drawing.Point(106, 350)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(99, 23)
+        Me.btnLogin.Size = New System.Drawing.Size(238, 51)
         Me.btnLogin.TabIndex = 0
-        Me.btnLogin.Text = "Iniciar Sesion"
+        Me.btnLogin.Text = "Iniciar Sesión"
         Me.btnLogin.UseVisualStyleBackColor = True
         '
         'txtCedula
         '
-        Me.txtCedula.Location = New System.Drawing.Point(90, 77)
+        Me.txtCedula.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.txtCedula.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtCedula.Font = New System.Drawing.Font("Arial Narrow", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCedula.ForeColor = System.Drawing.Color.LightGray
+        Me.txtCedula.Location = New System.Drawing.Point(80, 160)
+        Me.txtCedula.Multiline = True
         Me.txtCedula.Name = "txtCedula"
-        Me.txtCedula.Size = New System.Drawing.Size(100, 20)
+        Me.txtCedula.Size = New System.Drawing.Size(290, 45)
         Me.txtCedula.TabIndex = 1
-        '
-        'txtContraseña
-        '
-        Me.txtContraseña.Location = New System.Drawing.Point(90, 121)
-        Me.txtContraseña.Name = "txtContraseña"
-        Me.txtContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtContraseña.Size = New System.Drawing.Size(100, 20)
-        Me.txtContraseña.TabIndex = 2
-        '
-        'pibAnimacion
-        '
-        Me.pibAnimacion.Image = CType(resources.GetObject("pibAnimacion.Image"), System.Drawing.Image)
-        Me.pibAnimacion.Location = New System.Drawing.Point(-6, -36)
-        Me.pibAnimacion.Name = "pibAnimacion"
-        Me.pibAnimacion.Size = New System.Drawing.Size(413, 476)
-        Me.pibAnimacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pibAnimacion.TabIndex = 3
-        Me.pibAnimacion.TabStop = False
+        Me.txtCedula.Text = "Cédula"
         '
         'tmrCambiandoOpacidad
         '
         Me.tmrCambiandoOpacidad.Interval = 10
         '
+        'pboLogoAtila
+        '
+        Me.pboLogoAtila.Image = Global.Atila.My.Resources.Resources.LOGO_ATILA
+        Me.pboLogoAtila.Location = New System.Drawing.Point(145, 21)
+        Me.pboLogoAtila.Name = "pboLogoAtila"
+        Me.pboLogoAtila.Size = New System.Drawing.Size(160, 129)
+        Me.pboLogoAtila.TabIndex = 7
+        Me.pboLogoAtila.TabStop = False
+        '
+        'pibAnimacion
+        '
+        Me.pibAnimacion.Image = CType(resources.GetObject("pibAnimacion.Image"), System.Drawing.Image)
+        Me.pibAnimacion.Location = New System.Drawing.Point(-18, 398)
+        Me.pibAnimacion.Name = "pibAnimacion"
+        Me.pibAnimacion.Size = New System.Drawing.Size(468, 622)
+        Me.pibAnimacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pibAnimacion.TabIndex = 3
+        Me.pibAnimacion.TabStop = False
+        '
+        'ShapeContainer1
+        '
+        Me.ShapeContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
+        Me.ShapeContainer1.Name = "ShapeContainer1"
+        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape1, Me.LineShape2})
+        Me.ShapeContainer1.Size = New System.Drawing.Size(450, 460)
+        Me.ShapeContainer1.TabIndex = 8
+        Me.ShapeContainer1.TabStop = False
+        '
+        'LineShape1
+        '
+        Me.LineShape1.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.LineShape1.Name = "LineShape1"
+        Me.LineShape1.X1 = 80
+        Me.LineShape1.X2 = 369
+        Me.LineShape1.Y1 = 278
+        Me.LineShape1.Y2 = 278
+        '
+        'LineShape2
+        '
+        Me.LineShape2.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.LineShape2.Name = "LineShape2"
+        Me.LineShape2.X1 = 80
+        Me.LineShape2.X2 = 369
+        Me.LineShape2.Y1 = 207
+        Me.LineShape2.Y2 = 207
+        '
+        'txtContraseña
+        '
+        Me.txtContraseña.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtContraseña.Font = New System.Drawing.Font("Arial Narrow", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtContraseña.ForeColor = System.Drawing.Color.LightGray
+        Me.txtContraseña.Location = New System.Drawing.Point(80, 231)
+        Me.txtContraseña.Multiline = True
+        Me.txtContraseña.Name = "txtContraseña"
+        Me.txtContraseña.Size = New System.Drawing.Size(290, 45)
+        Me.txtContraseña.TabIndex = 9
+        Me.txtContraseña.Text = "Contraseña"
+        '
+        'btnMinimizar
+        '
+        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMinimizar.FlatAppearance.BorderSize = 0
+        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
+        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
+        Me.btnMinimizar.Location = New System.Drawing.Point(363, 0)
+        Me.btnMinimizar.Name = "btnMinimizar"
+        Me.btnMinimizar.Size = New System.Drawing.Size(45, 25)
+        Me.btnMinimizar.TabIndex = 21
+        Me.btnMinimizar.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCerrar.FlatAppearance.BorderSize = 0
+        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
+        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
+        Me.btnCerrar.Location = New System.Drawing.Point(405, 0)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(45, 25)
+        Me.btnCerrar.TabIndex = 20
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
+        'chkRecordarSesion
+        '
+        Me.chkRecordarSesion.AutoSize = True
+        Me.chkRecordarSesion.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkRecordarSesion.Location = New System.Drawing.Point(80, 298)
+        Me.chkRecordarSesion.Name = "chkRecordarSesion"
+        Me.chkRecordarSesion.Size = New System.Drawing.Size(107, 20)
+        Me.chkRecordarSesion.TabIndex = 22
+        Me.chkRecordarSesion.Text = "Recordar Sesión"
+        Me.chkRecordarSesion.UseVisualStyleBackColor = True
+        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 400)
-        Me.Controls.Add(Me.pibAnimacion)
+        Me.ClientSize = New System.Drawing.Size(450, 460)
+        Me.Controls.Add(Me.chkRecordarSesion)
+        Me.Controls.Add(Me.btnMinimizar)
+        Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.txtContraseña)
-        Me.Controls.Add(Me.txtCedula)
+        Me.Controls.Add(Me.pboLogoAtila)
         Me.Controls.Add(Me.btnLogin)
+        Me.Controls.Add(Me.pibAnimacion)
+        Me.Controls.Add(Me.txtCedula)
+        Me.Controls.Add(Me.ShapeContainer1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
+        CType(Me.pboLogoAtila, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents btnLogin As System.Windows.Forms.Button
     Friend WithEvents txtCedula As System.Windows.Forms.TextBox
-    Friend WithEvents txtContraseña As System.Windows.Forms.TextBox
     Friend WithEvents pibAnimacion As System.Windows.Forms.PictureBox
     Friend WithEvents tmrCambiandoOpacidad As System.Windows.Forms.Timer
+    Friend WithEvents pboLogoAtila As System.Windows.Forms.PictureBox
+    Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
+    Friend WithEvents LineShape2 As Microsoft.VisualBasic.PowerPacks.LineShape
+    Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.LineShape
+    Friend WithEvents txtContraseña As System.Windows.Forms.TextBox
+    Private WithEvents btnLogin As System.Windows.Forms.Button
+    Friend WithEvents btnMinimizar As System.Windows.Forms.Button
+    Friend WithEvents btnCerrar As System.Windows.Forms.Button
+    Friend WithEvents chkRecordarSesion As System.Windows.Forms.CheckBox
 End Class

@@ -157,7 +157,6 @@ Partial Class Reservar
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.Atila.My.Resources.Resources.LOGO_RCM
         Me.PictureBox1.Location = New System.Drawing.Point(646, 505)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(100, 50)

@@ -29,7 +29,7 @@ Public Class MySQL
             MsgBox("La conexión no fue exitosa")
         End Try
     End Sub
-    Sub Consultar()
+    Public Sub Consultar()
         Consultado = True
         Dim adapter As New MySqlDataAdapter
         Dim commandbuild As New MySqlCommandBuilder
