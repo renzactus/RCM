@@ -27,17 +27,20 @@ Partial Class Login
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.txtCedula = New System.Windows.Forms.TextBox()
         Me.tmrCambiandoOpacidad = New System.Windows.Forms.Timer(Me.components)
-        Me.pboLogoAtila = New System.Windows.Forms.PictureBox()
-        Me.pibAnimacion = New System.Windows.Forms.PictureBox()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape2 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.txtContraseña = New System.Windows.Forms.TextBox()
+        Me.chkRecordarSesion = New System.Windows.Forms.CheckBox()
+        Me.timerChequearMayusculaActivada = New System.Windows.Forms.Timer(Me.components)
         Me.btnMinimizar = New System.Windows.Forms.Button()
         Me.btnCerrar = New System.Windows.Forms.Button()
-        Me.chkRecordarSesion = New System.Windows.Forms.CheckBox()
+        Me.pboLogoAtila = New System.Windows.Forms.PictureBox()
+        Me.pibAnimacion = New System.Windows.Forms.PictureBox()
+        Me.pboMayusculas = New System.Windows.Forms.PictureBox()
         CType(Me.pboLogoAtila, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pboMayusculas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnLogin
@@ -67,25 +70,6 @@ Partial Class Login
         'tmrCambiandoOpacidad
         '
         Me.tmrCambiandoOpacidad.Interval = 10
-        '
-        'pboLogoAtila
-        '
-        Me.pboLogoAtila.Image = Global.Atila.My.Resources.Resources.LOGO_ATILA
-        Me.pboLogoAtila.Location = New System.Drawing.Point(145, 21)
-        Me.pboLogoAtila.Name = "pboLogoAtila"
-        Me.pboLogoAtila.Size = New System.Drawing.Size(160, 129)
-        Me.pboLogoAtila.TabIndex = 7
-        Me.pboLogoAtila.TabStop = False
-        '
-        'pibAnimacion
-        '
-        Me.pibAnimacion.Image = CType(resources.GetObject("pibAnimacion.Image"), System.Drawing.Image)
-        Me.pibAnimacion.Location = New System.Drawing.Point(-18, 398)
-        Me.pibAnimacion.Name = "pibAnimacion"
-        Me.pibAnimacion.Size = New System.Drawing.Size(468, 622)
-        Me.pibAnimacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pibAnimacion.TabIndex = 3
-        Me.pibAnimacion.TabStop = False
         '
         'ShapeContainer1
         '
@@ -128,12 +112,28 @@ Partial Class Login
         Me.txtContraseña.TabIndex = 9
         Me.txtContraseña.Text = "Contraseña"
         '
+        'chkRecordarSesion
+        '
+        Me.chkRecordarSesion.AutoSize = True
+        Me.chkRecordarSesion.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkRecordarSesion.Location = New System.Drawing.Point(80, 298)
+        Me.chkRecordarSesion.Name = "chkRecordarSesion"
+        Me.chkRecordarSesion.Size = New System.Drawing.Size(107, 20)
+        Me.chkRecordarSesion.TabIndex = 22
+        Me.chkRecordarSesion.Text = "Recordar Sesión"
+        Me.chkRecordarSesion.UseVisualStyleBackColor = True
+        '
+        'timerChequearMayusculaActivada
+        '
+        Me.timerChequearMayusculaActivada.Enabled = True
+        Me.timerChequearMayusculaActivada.Interval = 10
+        '
         'btnMinimizar
         '
         Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnMinimizar.FlatAppearance.BorderSize = 0
-        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
-        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
         Me.btnMinimizar.Location = New System.Drawing.Point(363, 0)
@@ -146,7 +146,7 @@ Partial Class Login
         '
         Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCerrar.FlatAppearance.BorderSize = 0
-        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
+        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
         Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
         Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
@@ -156,29 +156,47 @@ Partial Class Login
         Me.btnCerrar.TabIndex = 20
         Me.btnCerrar.UseVisualStyleBackColor = True
         '
-        'chkRecordarSesion
+        'pboLogoAtila
         '
-        Me.chkRecordarSesion.AutoSize = True
-        Me.chkRecordarSesion.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkRecordarSesion.Location = New System.Drawing.Point(80, 298)
-        Me.chkRecordarSesion.Name = "chkRecordarSesion"
-        Me.chkRecordarSesion.Size = New System.Drawing.Size(107, 20)
-        Me.chkRecordarSesion.TabIndex = 22
-        Me.chkRecordarSesion.Text = "Recordar Sesión"
-        Me.chkRecordarSesion.UseVisualStyleBackColor = True
+        Me.pboLogoAtila.Image = Global.Atila.My.Resources.Resources.LOGO_ATILA
+        Me.pboLogoAtila.Location = New System.Drawing.Point(145, 21)
+        Me.pboLogoAtila.Name = "pboLogoAtila"
+        Me.pboLogoAtila.Size = New System.Drawing.Size(160, 129)
+        Me.pboLogoAtila.TabIndex = 7
+        Me.pboLogoAtila.TabStop = False
+        '
+        'pibAnimacion
+        '
+        Me.pibAnimacion.Image = CType(resources.GetObject("pibAnimacion.Image"), System.Drawing.Image)
+        Me.pibAnimacion.Location = New System.Drawing.Point(-10, -5)
+        Me.pibAnimacion.Name = "pibAnimacion"
+        Me.pibAnimacion.Size = New System.Drawing.Size(460, 470)
+        Me.pibAnimacion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pibAnimacion.TabIndex = 3
+        Me.pibAnimacion.TabStop = False
+        '
+        'pboMayusculas
+        '
+        Me.pboMayusculas.Image = Global.Atila.My.Resources.Resources.Icono_Mayusculas
+        Me.pboMayusculas.Location = New System.Drawing.Point(329, 243)
+        Me.pboMayusculas.Name = "pboMayusculas"
+        Me.pboMayusculas.Size = New System.Drawing.Size(24, 24)
+        Me.pboMayusculas.TabIndex = 23
+        Me.pboMayusculas.TabStop = False
         '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(450, 460)
+        Me.Controls.Add(Me.pibAnimacion)
+        Me.Controls.Add(Me.pboMayusculas)
         Me.Controls.Add(Me.chkRecordarSesion)
         Me.Controls.Add(Me.btnMinimizar)
         Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.txtContraseña)
         Me.Controls.Add(Me.pboLogoAtila)
         Me.Controls.Add(Me.btnLogin)
-        Me.Controls.Add(Me.pibAnimacion)
         Me.Controls.Add(Me.txtCedula)
         Me.Controls.Add(Me.ShapeContainer1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -187,6 +205,7 @@ Partial Class Login
         Me.Text = "Login"
         CType(Me.pboLogoAtila, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pboMayusculas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -203,4 +222,6 @@ Partial Class Login
     Friend WithEvents btnMinimizar As System.Windows.Forms.Button
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
     Friend WithEvents chkRecordarSesion As System.Windows.Forms.CheckBox
+    Friend WithEvents timerChequearMayusculaActivada As System.Windows.Forms.Timer
+    Friend WithEvents pboMayusculas As System.Windows.Forms.PictureBox
 End Class

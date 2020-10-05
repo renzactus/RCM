@@ -141,6 +141,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -186,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Icono_Restaurar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Icono_Mayusculas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

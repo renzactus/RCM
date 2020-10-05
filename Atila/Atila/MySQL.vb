@@ -2,24 +2,14 @@
 
 Public Class MySQL
 
-    Public Data As New DataTable
+    Public Resultado As New DataTable
     Public Consultado As Boolean
-    Public Consulta As String
-    Public ComandoSql As New MySqlCommand
-    Dim MysqlConnString As String = "server=localhost;database=atila1;user=root;password=root;" 'port=3307;
-    Public Conexion As MySqlConnection = New MySqlConnection(MysqlConnString)
-    Public Sub Probarconexion() 'PROBAR CONEXION CON LA BASE DE DATOS
+    Dim Conexion As MySqlConnection
+    Public Sub InsertarDatos(ByVal Consulta As String, Optional ByVal StringdeConexion As String = "server=localhost;database=atila;user=admin;password=contraadmin;") 'INSERTAR DATOS EN UNA TABLA DE LA BASE DE DATOS
+        Dim ComandoSql As New MySqlCommand
+        Conexion = New MySqlConnection(StringdeConexion)
+        ComandoSql = New MySqlCommand(Consulta)
         Try
-            Conexion.Open()
-            MsgBox("la conexión fue exitosa")
-            Conexion.Close()
-        Catch ex As Exception
-            MsgBox("La conexión no fue exitosa")
-        End Try
-    End Sub
-    Public Sub InsertarDatos() 'INSERTAR DATOS EN UNA TABLA DE LA BASE DE DATOS
-        Try
-            ComandoSql = New MySqlCommand(Consulta)
             Conexion.Open()
             ComandoSql.Connection = Conexion
             ComandoSql.ExecuteNonQuery()
@@ -29,15 +19,16 @@ Public Class MySQL
             MsgBox("La conexión no fue exitosa")
         End Try
     End Sub
-    Public Sub Consultar()
-        Consultado = True
+    Sub Consultar(ByVal Consulta As String, Optional ByVal StringdeConexion As String = "server=localhost;database=atila;user=admin;password=contraadmin;")
         Dim adapter As New MySqlDataAdapter
         Dim commandbuild As New MySqlCommandBuilder
-        Data = New DataTable
+        Conexion = New MySqlConnection(StringdeConexion)
+        adapter = New MySqlDataAdapter(Consulta, Conexion)
+        Consultado = True
+        Resultado = New DataTable
         Try
-            adapter = New MySqlDataAdapter(Consulta, Conexion)
             commandbuild = New MySqlCommandBuilder(adapter)
-            adapter.Fill(Data)
+            adapter.Fill(Resultado)
             'MsgBox(Data.Rows(0).Item("id_usuario"))
             Conexion.Close()
             Consulta = vbNull

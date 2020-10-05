@@ -18,6 +18,7 @@ Public Class Login
         graphics__1.Dispose()
         Return bmp
     End Function
+
     Private Sub Login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR DE LA CLASE
         'Cambiando colores
         btnLogin.BackColor = Principal.colorsecundario
@@ -25,8 +26,17 @@ Public Class Login
         LineShape1.BorderColor = Color.FromArgb(105, 105, 105)
         LineShape2.BorderColor = Color.FromArgb(105, 105, 105)
         'Asignando otras cosas
+        If My.Settings.Recodar = True Then
+            txtCedula.Text = My.Settings.Cedula
+            txtContraseña.Text = My.Settings.Contraseña
+            chkRecordarSesion.Checked = My.Settings.Recodar
+            txtCedula.ForeColor = Color.FromArgb(105, 105, 105)
+            txtContraseña.ForeColor = Color.FromArgb(105, 105, 105)
+            txtContraseña.PasswordChar = "•"
+        End If
+        timerChequearMayusculaActivada.Enabled = True
         imagen = pibAnimacion.Image 'ASIGNAMOS A imagen LA IMAGEN QUE TRAE pibAnimacion POR DEFECTO
-        sumadeopacidad = 0.99 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO poner en 0.005
+        sumadeopacidad = 0.005 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO
         tmrCambiandoOpacidad.Enabled = True 'COMENZAMOS EL TIMER
     End Sub
 
@@ -45,21 +55,29 @@ Public Class Login
         End If
     End Sub
 
-
     Private Sub btnLogin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLogin.Click
         If txtCedula.Text = "" Or txtContraseña.Text = "" Or txtCedula.Text = "Cédula" Or txtContraseña.Text = "Contraseña" Then 'SI ESTAN VACIAS
             MsgBox("Las credenciales no pueden estar vacias")
         Else
-            mysql.Consulta = "select sesiones.ID_USUARIO,funcionarios.nombre from sesiones inner join funcionarios_sesiones on " &
+            'select sesiones.ID_USUARIO,funcionarios.nombre from sesiones inner join funcionarios_sesiones on sesiones.ID_USUARIO=funcionarios_sesiones.ID_USUARIO inner join funcionarios on funcionarios_sesiones.ID_FUNCIONARIOS=funcionarios.ID_FUNCIONARIOS where sesiones.contraseña= binary 'ana' And funcionarios.cedula=37161635;
+            mysql.Consultar("select sesiones.ID_USUARIO,funcionarios.nombre from sesiones inner join funcionarios_sesiones on " &
                 "sesiones.ID_USUARIO=funcionarios_sesiones.ID_USUARIO inner join funcionarios on " &
                 "funcionarios_sesiones.ID_FUNCIONARIOS=funcionarios.ID_FUNCIONARIOS where sesiones.contraseña= binary '" &
-                txtContraseña.Text & "' And funcionarios.cedula=" & txtCedula.Text & ";"
-            mysql.Consultar() 'ENVIAR CONSULTA
+                txtContraseña.Text & "' And funcionarios.cedula=" & txtCedula.Text & ";",
+                "server=localhost;database=atila;user=login;password=contralogin;") 'ENVIAR CONSULTA
             If mysql.Consultado = True Then 'SI SE CONSULTO SIN ERRORES
-                If mysql.Data.Rows.Count() = 1 Then 'SI SE DEVOLVIO UNA FILA QUIERE DECIR QUE COINCIDE EL USUARIO
-                    Principal.lblPerfil.Text = mysql.Data.Rows(0).Item("nombre")
+                If mysql.Resultado.Rows.Count() = 1 Then 'SI SE DEVOLVIO UNA FILA QUIERE DECIR QUE COINCIDE EL USUARIO
+                    If chkRecordarSesion.Checked = True Then 'Si el ChkRecordarSesion esta marcado tiene que almacenar los datos
+                        My.Settings.Cedula = txtCedula.Text
+                        My.Settings.Contraseña = txtContraseña.Text
+                        My.Settings.Recodar = True
+                        My.Settings.Save()
+                    End If
+
+                    Principal.lblPerfil.Text = mysql.Resultado.Rows(0).Item("nombre")
                     MessageBox.Show("Bienvenido al Sistema " & Principal.lblPerfil.Text, "Sistema")
                     Principal.Show()
+                    timerChequearMayusculaActivada.Enabled = False
                     Me.Hide()
                 Else
                     MessageBox.Show("datos invalidos", "Sistema")
@@ -110,5 +128,30 @@ Public Class Login
             txtContraseña.PasswordChar = ""
             txtContraseña.ForeColor = Color.LightGray
         End If
+    End Sub
+
+    Private Sub chkRecordarSesion_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkRecordarSesion.CheckedChanged
+        If chkRecordarSesion.Checked = False Then
+            My.Settings.Cedula = vbNull
+            My.Settings.Contraseña = vbNull
+            My.Settings.Recodar = False
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub timerChequearMayusculaActivada_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerChequearMayusculaActivada.Tick
+        If My.Computer.Keyboard.CapsLock Then
+            pboMayusculas.Visible = True
+        Else
+            pboMayusculas.Visible = False
+        End If
+    End Sub
+
+    Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
+        Me.Close()
+    End Sub
+
+    Private Sub btnMinimizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMinimizar.Click
+        Me.WindowState = FormWindowState.Minimized
     End Sub
 End Class

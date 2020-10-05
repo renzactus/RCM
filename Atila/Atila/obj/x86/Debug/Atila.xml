@@ -23,6 +23,10 @@ Atila
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Atila.My.Resources.Resources.Icono_Mayusculas">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Atila.My.Resources.Resources.Icono_Minimizar">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.

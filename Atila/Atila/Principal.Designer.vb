@@ -28,11 +28,11 @@ Partial Class Principal
         Me.btnListadereservas = New System.Windows.Forms.Button()
         Me.pnlArriba = New System.Windows.Forms.Panel()
         Me.lblPerfil = New System.Windows.Forms.Label()
-        Me.btnMaximizar = New System.Windows.Forms.Button()
-        Me.btnMinimizar = New System.Windows.Forms.Button()
-        Me.btnCerrar = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnRestaurar = New System.Windows.Forms.Button()
+        Me.btnMinimizar = New System.Windows.Forms.Button()
+        Me.btnCerrar = New System.Windows.Forms.Button()
+        Me.btnMaximizar = New System.Windows.Forms.Button()
         Me.pnlArriba.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -68,11 +68,11 @@ Partial Class Principal
         '
         'pnlArriba
         '
-        Me.pnlArriba.Controls.Add(Me.btnRestaurar)
         Me.pnlArriba.Controls.Add(Me.lblPerfil)
         Me.pnlArriba.Controls.Add(Me.btnMinimizar)
         Me.pnlArriba.Controls.Add(Me.btnCerrar)
         Me.pnlArriba.Controls.Add(Me.btnMaximizar)
+        Me.pnlArriba.Controls.Add(Me.btnRestaurar)
         Me.pnlArriba.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlArriba.Location = New System.Drawing.Point(0, 0)
         Me.pnlArriba.Name = "pnlArriba"
@@ -89,48 +89,6 @@ Partial Class Principal
         Me.lblPerfil.TabIndex = 21
         Me.lblPerfil.Text = "Nombre Apellido"
         '
-        'btnMaximizar
-        '
-        Me.btnMaximizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMaximizar.FlatAppearance.BorderSize = 0
-        Me.btnMaximizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
-        Me.btnMaximizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
-        Me.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMaximizar.Image = Global.Atila.My.Resources.Resources.Icono_Maximizar
-        Me.btnMaximizar.Location = New System.Drawing.Point(1213, 0)
-        Me.btnMaximizar.Name = "btnMaximizar"
-        Me.btnMaximizar.Size = New System.Drawing.Size(45, 25)
-        Me.btnMaximizar.TabIndex = 20
-        Me.btnMaximizar.UseVisualStyleBackColor = True
-        '
-        'btnMinimizar
-        '
-        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMinimizar.FlatAppearance.BorderSize = 0
-        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
-        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
-        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
-        Me.btnMinimizar.Location = New System.Drawing.Point(1171, 0)
-        Me.btnMinimizar.Name = "btnMinimizar"
-        Me.btnMinimizar.Size = New System.Drawing.Size(45, 25)
-        Me.btnMinimizar.TabIndex = 19
-        Me.btnMinimizar.UseVisualStyleBackColor = True
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCerrar.FlatAppearance.BorderSize = 0
-        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
-        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
-        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
-        Me.btnCerrar.Location = New System.Drawing.Point(1255, 0)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(45, 25)
-        Me.btnCerrar.TabIndex = 18
-        Me.btnCerrar.UseVisualStyleBackColor = True
-        '
         'PictureBox1
         '
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -145,8 +103,8 @@ Partial Class Principal
         '
         Me.btnRestaurar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRestaurar.FlatAppearance.BorderSize = 0
-        Me.btnRestaurar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver
-        Me.btnRestaurar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnRestaurar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnRestaurar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnRestaurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRestaurar.Image = Global.Atila.My.Resources.Resources.Icono_Restaurar
         Me.btnRestaurar.Location = New System.Drawing.Point(1213, 0)
@@ -155,6 +113,48 @@ Partial Class Principal
         Me.btnRestaurar.TabIndex = 22
         Me.btnRestaurar.UseVisualStyleBackColor = True
         Me.btnRestaurar.Visible = False
+        '
+        'btnMinimizar
+        '
+        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMinimizar.FlatAppearance.BorderSize = 0
+        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
+        Me.btnMinimizar.Location = New System.Drawing.Point(1171, 0)
+        Me.btnMinimizar.Name = "btnMinimizar"
+        Me.btnMinimizar.Size = New System.Drawing.Size(45, 25)
+        Me.btnMinimizar.TabIndex = 19
+        Me.btnMinimizar.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCerrar.FlatAppearance.BorderSize = 0
+        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
+        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
+        Me.btnCerrar.Location = New System.Drawing.Point(1255, 0)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(45, 25)
+        Me.btnCerrar.TabIndex = 18
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
+        'btnMaximizar
+        '
+        Me.btnMaximizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMaximizar.FlatAppearance.BorderSize = 0
+        Me.btnMaximizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnMaximizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMaximizar.Image = Global.Atila.My.Resources.Resources.Icono_Maximizar
+        Me.btnMaximizar.Location = New System.Drawing.Point(1213, 0)
+        Me.btnMaximizar.Name = "btnMaximizar"
+        Me.btnMaximizar.Size = New System.Drawing.Size(45, 25)
+        Me.btnMaximizar.TabIndex = 20
+        Me.btnMaximizar.UseVisualStyleBackColor = True
         '
         'Principal
         '
