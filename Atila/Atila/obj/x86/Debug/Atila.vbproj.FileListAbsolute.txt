@@ -28,3 +28,4 @@ C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.ListadeReser
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.ListadeReservas.resources
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Login.resources
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.exe.config
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.exe.config

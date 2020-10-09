@@ -20,6 +20,10 @@ Public Class Login
     End Function
 
     Private Sub Login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR DE LA CLASE
+        timerChequearMayusculaActivada.Enabled = True
+        imagen = pibAnimacion.Image 'ASIGNAMOS A imagen LA IMAGEN QUE TRAE pibAnimacion POR DEFECTO
+        sumadeopacidad = 0.005 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO
+        tmrCambiandoOpacidad.Enabled = True 'COMENZAMOS EL TIMER
         'Cambiando colores
         btnLogin.BackColor = Principal.colorsecundario
         btnLogin.ForeColor = Color.FromArgb(105, 105, 105)
@@ -34,10 +38,6 @@ Public Class Login
             txtContraseña.ForeColor = Color.FromArgb(105, 105, 105)
             txtContraseña.PasswordChar = "•"
         End If
-        timerChequearMayusculaActivada.Enabled = True
-        imagen = pibAnimacion.Image 'ASIGNAMOS A imagen LA IMAGEN QUE TRAE pibAnimacion POR DEFECTO
-        sumadeopacidad = 0.005 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO
-        tmrCambiandoOpacidad.Enabled = True 'COMENZAMOS EL TIMER
     End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrCambiandoOpacidad.Tick
