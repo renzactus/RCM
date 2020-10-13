@@ -32,8 +32,6 @@ Public Class Principal
         Me.Close()
     End Sub
 
-
-
     Private Sub btnMinimizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMinimizar.Click
         Me.WindowState = FormWindowState.Minimized
     End Sub

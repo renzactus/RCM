@@ -28,11 +28,11 @@ Partial Class Principal
         Me.btnListadereservas = New System.Windows.Forms.Button()
         Me.pnlArriba = New System.Windows.Forms.Panel()
         Me.lblPerfil = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.btnRestaurar = New System.Windows.Forms.Button()
         Me.btnMinimizar = New System.Windows.Forms.Button()
         Me.btnCerrar = New System.Windows.Forms.Button()
         Me.btnMaximizar = New System.Windows.Forms.Button()
+        Me.btnRestaurar = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pnlArriba.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -85,34 +85,9 @@ Partial Class Principal
         Me.lblPerfil.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPerfil.Location = New System.Drawing.Point(1006, 9)
         Me.lblPerfil.Name = "lblPerfil"
-        Me.lblPerfil.Size = New System.Drawing.Size(117, 18)
+        Me.lblPerfil.Size = New System.Drawing.Size(130, 18)
         Me.lblPerfil.TabIndex = 21
-        Me.lblPerfil.Text = "Nombre Apellido"
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Location = New System.Drawing.Point(1200, 650)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 15
-        Me.PictureBox1.TabStop = False
-        '
-        'btnRestaurar
-        '
-        Me.btnRestaurar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnRestaurar.FlatAppearance.BorderSize = 0
-        Me.btnRestaurar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
-        Me.btnRestaurar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnRestaurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnRestaurar.Image = Global.Atila.My.Resources.Resources.Icono_Restaurar
-        Me.btnRestaurar.Location = New System.Drawing.Point(1213, 0)
-        Me.btnRestaurar.Name = "btnRestaurar"
-        Me.btnRestaurar.Size = New System.Drawing.Size(45, 25)
-        Me.btnRestaurar.TabIndex = 22
-        Me.btnRestaurar.UseVisualStyleBackColor = True
-        Me.btnRestaurar.Visible = False
+        Me.lblPerfil.Text = "Ana Liz Mazzarino"
         '
         'btnMinimizar
         '
@@ -155,6 +130,31 @@ Partial Class Principal
         Me.btnMaximizar.Size = New System.Drawing.Size(45, 25)
         Me.btnMaximizar.TabIndex = 20
         Me.btnMaximizar.UseVisualStyleBackColor = True
+        '
+        'btnRestaurar
+        '
+        Me.btnRestaurar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnRestaurar.FlatAppearance.BorderSize = 0
+        Me.btnRestaurar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnRestaurar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnRestaurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnRestaurar.Image = Global.Atila.My.Resources.Resources.Icono_Restaurar
+        Me.btnRestaurar.Location = New System.Drawing.Point(1213, 0)
+        Me.btnRestaurar.Name = "btnRestaurar"
+        Me.btnRestaurar.Size = New System.Drawing.Size(45, 25)
+        Me.btnRestaurar.TabIndex = 22
+        Me.btnRestaurar.UseVisualStyleBackColor = True
+        Me.btnRestaurar.Visible = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Location = New System.Drawing.Point(1200, 650)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 15
+        Me.PictureBox1.TabStop = False
         '
         'Principal
         '

@@ -16,7 +16,7 @@ Public Class MySQL
             Conexion.Close()
             Consulta = vbNull
         Catch ex As Exception
-            MsgBox("La conexión no fue exitosa")
+            MsgBox("La conexión no fue exitosa" & ex.ToString)
         End Try
     End Sub
     Sub Consultar(ByVal Consulta As String, Optional ByVal StringdeConexion As String = "server=localhost;database=atila;user=admin;password=contraadmin;")

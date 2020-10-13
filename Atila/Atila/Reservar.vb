@@ -69,9 +69,9 @@
         End If
         mysql.InsertarDatos("insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" &
             telefonos & "','" & txtDireccion.Text & "')") 'Agregamos los clientes
-        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE) values ('" &
+        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
             cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
-            dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'))") 'Agregamos las reservas
+            dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas
     End Sub
 
     Private Sub btnAgregarTelefonos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarTelefonos.Click
@@ -132,16 +132,28 @@
     Private Sub dudCantidadPersonas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dudCantidadPersonas.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
-
-
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Dim a As Date
-        a = "18:00"
-        MsgBox(Format(a, "HH:mm"))
-    End Sub
-
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
 
         MostrarReservasDelDia()
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
+        If cboMotivo.Text = "Fiesta de 15" Then
+            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+        ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
+            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
+        ElseIf cboMotivo.Text = "Parrillada" Then
+            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+        ElseIf cboMotivo.Text = "Graduación" Then
+            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+        ElseIf cboMotivo.Text = "Otro" Then
+            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+        End If
+        txtPrecioTotal.Text = txtPrecioTotal.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
+        If Calendario.SelectionRange.Start.Day = 5 Or 6 Or 7 Then
+            txtPrecioTotal.Text = txtPrecioTotal.Text + txtPrecioTotal.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
+        End If
+
     End Sub
 End Class

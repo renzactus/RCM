@@ -59,10 +59,8 @@ Public Class Login
         If txtCedula.Text = "" Or txtContraseña.Text = "" Or txtCedula.Text = "Cédula" Or txtContraseña.Text = "Contraseña" Then 'SI ESTAN VACIAS
             MsgBox("Las credenciales no pueden estar vacias")
         Else
-            'select sesiones.ID_USUARIO,funcionarios.nombre from sesiones inner join funcionarios_sesiones on sesiones.ID_USUARIO=funcionarios_sesiones.ID_USUARIO inner join funcionarios on funcionarios_sesiones.ID_FUNCIONARIOS=funcionarios.ID_FUNCIONARIOS where sesiones.contraseña= binary 'ana' And funcionarios.cedula=37161635;
-            mysql.Consultar("select sesiones.ID_USUARIO,funcionarios.nombre from sesiones inner join funcionarios_sesiones on " &
-                "sesiones.ID_USUARIO=funcionarios_sesiones.ID_USUARIO inner join funcionarios on " &
-                "funcionarios_sesiones.ID_FUNCIONARIOS=funcionarios.ID_FUNCIONARIOS where sesiones.contraseña= binary '" &
+            mysql.Consultar("select sesiones.ID_USUARIO,funcionarios.nombre from sesiones inner join funcionarios on " &
+                "sesiones.ID_FUNCIONARIO=funcionarios.ID_FUNCIONARIO where sesiones.contraseña= binary '" &
                 txtContraseña.Text & "' And funcionarios.cedula=" & txtCedula.Text & ";",
                 "server=localhost;database=atila;user=login;password=contralogin;") 'ENVIAR CONSULTA
             If mysql.Consultado = True Then 'SI SE CONSULTO SIN ERRORES

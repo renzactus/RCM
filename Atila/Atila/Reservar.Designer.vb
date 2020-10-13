@@ -35,6 +35,11 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtPrecioTotal = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.pnlReserva = New System.Windows.Forms.Panel()
         Me.lblHora3 = New System.Windows.Forms.Label()
         Me.lblHora2 = New System.Windows.Forms.Label()
@@ -57,14 +62,13 @@ Partial Class Reservar
         Me.dudHoraComienzo = New System.Windows.Forms.DomainUpDown()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
         '
-        Me.btnAgregarDatos.Location = New System.Drawing.Point(175, 227)
+        Me.btnAgregarDatos.Location = New System.Drawing.Point(375, 334)
         Me.btnAgregarDatos.Name = "btnAgregarDatos"
         Me.btnAgregarDatos.Size = New System.Drawing.Size(91, 23)
         Me.btnAgregarDatos.TabIndex = 0
@@ -164,6 +168,11 @@ Partial Class Reservar
         '
         'pnlCliente
         '
+        Me.pnlCliente.Controls.Add(Me.TextBox2)
+        Me.pnlCliente.Controls.Add(Me.txtPrecioTotal)
+        Me.pnlCliente.Controls.Add(Me.Label10)
+        Me.pnlCliente.Controls.Add(Me.Button1)
+        Me.pnlCliente.Controls.Add(Me.Label9)
         Me.pnlCliente.Controls.Add(Me.CheckBox1)
         Me.pnlCliente.Controls.Add(Me.txtCedula)
         Me.pnlCliente.Controls.Add(Me.txtTelefono2)
@@ -181,6 +190,47 @@ Partial Class Reservar
         Me.pnlCliente.Size = New System.Drawing.Size(639, 543)
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(134, 305)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.TabIndex = 20
+        '
+        'txtPrecioTotal
+        '
+        Me.txtPrecioTotal.Location = New System.Drawing.Point(134, 271)
+        Me.txtPrecioTotal.Name = "txtPrecioTotal"
+        Me.txtPrecioTotal.Size = New System.Drawing.Size(100, 20)
+        Me.txtPrecioTotal.TabIndex = 19
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(90, 312)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(38, 13)
+        Me.Label10.TabIndex = 18
+        Me.Label10.Text = "Seña: "
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(175, 389)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 17
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(58, 274)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(70, 13)
+        Me.Label9.TabIndex = 14
+        Me.Label9.Text = "Precio Total: "
         '
         'pnlReserva
         '
@@ -405,21 +455,11 @@ Partial Class Reservar
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(646, 57)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 17
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(742, 556)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(737, 556)
         Me.Controls.Add(Me.pnlCliente)
         Me.Controls.Add(Me.pnlReserva)
         Me.Name = "Reservar"
@@ -467,4 +507,8 @@ Partial Class Reservar
     Friend WithEvents lblHora3 As System.Windows.Forms.Label
     Friend WithEvents lblHora2 As System.Windows.Forms.Label
     Friend WithEvents lblHora1 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents txtPrecioTotal As System.Windows.Forms.TextBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
 End Class
