@@ -35,13 +35,16 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.txtPrecioTotal = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlReserva = New System.Windows.Forms.Panel()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.lblHora3 = New System.Windows.Forms.Label()
+        Me.dgvInventario = New System.Windows.Forms.DataGridView()
         Me.lblHora2 = New System.Windows.Forms.Label()
         Me.lblHora1 = New System.Windows.Forms.Label()
         Me.lblNoHayReservas = New System.Windows.Forms.Label()
@@ -62,13 +65,17 @@ Partial Class Reservar
         Me.dudHoraComienzo = New System.Windows.Forms.DomainUpDown()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
+        Me.Marcado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
+        CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
         '
-        Me.btnAgregarDatos.Location = New System.Drawing.Point(375, 334)
+        Me.btnAgregarDatos.Location = New System.Drawing.Point(469, 408)
         Me.btnAgregarDatos.Name = "btnAgregarDatos"
         Me.btnAgregarDatos.Size = New System.Drawing.Size(91, 23)
         Me.btnAgregarDatos.TabIndex = 0
@@ -168,10 +175,10 @@ Partial Class Reservar
         '
         'pnlCliente
         '
+        Me.pnlCliente.Controls.Add(Me.Button2)
         Me.pnlCliente.Controls.Add(Me.TextBox2)
         Me.pnlCliente.Controls.Add(Me.txtPrecioTotal)
         Me.pnlCliente.Controls.Add(Me.Label10)
-        Me.pnlCliente.Controls.Add(Me.Button1)
         Me.pnlCliente.Controls.Add(Me.Label9)
         Me.pnlCliente.Controls.Add(Me.CheckBox1)
         Me.pnlCliente.Controls.Add(Me.txtCedula)
@@ -191,16 +198,25 @@ Partial Class Reservar
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(35, 11)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(37, 23)
+        Me.Button2.TabIndex = 18
+        Me.Button2.Text = "<-"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(134, 305)
+        Me.TextBox2.Location = New System.Drawing.Point(125, 489)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(100, 20)
         Me.TextBox2.TabIndex = 20
         '
         'txtPrecioTotal
         '
-        Me.txtPrecioTotal.Location = New System.Drawing.Point(134, 271)
+        Me.txtPrecioTotal.Location = New System.Drawing.Point(125, 455)
         Me.txtPrecioTotal.Name = "txtPrecioTotal"
         Me.txtPrecioTotal.Size = New System.Drawing.Size(100, 20)
         Me.txtPrecioTotal.TabIndex = 19
@@ -208,33 +224,35 @@ Partial Class Reservar
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(90, 312)
+        Me.Label10.Location = New System.Drawing.Point(81, 496)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(38, 13)
         Me.Label10.TabIndex = 18
         Me.Label10.Text = "Seña: "
         '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(49, 458)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(70, 13)
+        Me.Label9.TabIndex = 14
+        Me.Label9.Text = "Precio Total: "
+        '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(175, 389)
+        Me.Button1.Location = New System.Drawing.Point(646, 118)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 17
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(58, 274)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(70, 13)
-        Me.Label9.TabIndex = 14
-        Me.Label9.Text = "Precio Total: "
-        '
         'pnlReserva
         '
+        Me.pnlReserva.Controls.Add(Me.Label11)
         Me.pnlReserva.Controls.Add(Me.lblHora3)
+        Me.pnlReserva.Controls.Add(Me.dgvInventario)
         Me.pnlReserva.Controls.Add(Me.lblHora2)
         Me.pnlReserva.Controls.Add(Me.lblHora1)
         Me.pnlReserva.Controls.Add(Me.lblNoHayReservas)
@@ -260,6 +278,15 @@ Partial Class Reservar
         Me.pnlReserva.Size = New System.Drawing.Size(639, 543)
         Me.pnlReserva.TabIndex = 16
         '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(386, 258)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(95, 13)
+        Me.Label11.TabIndex = 23
+        Me.Label11.Text = "Cantidad de cosas"
+        '
         'lblHora3
         '
         Me.lblHora3.AutoSize = True
@@ -268,6 +295,22 @@ Partial Class Reservar
         Me.lblHora3.Size = New System.Drawing.Size(45, 13)
         Me.lblHora3.TabIndex = 20
         Me.lblHora3.Text = "Label11"
+        '
+        'dgvInventario
+        '
+        Me.dgvInventario.AllowUserToAddRows = False
+        Me.dgvInventario.AllowUserToDeleteRows = False
+        Me.dgvInventario.AllowUserToResizeColumns = False
+        Me.dgvInventario.AllowUserToResizeRows = False
+        Me.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvInventario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Marcado, Me.Descripcion, Me.Cantidad})
+        Me.dgvInventario.Location = New System.Drawing.Point(385, 276)
+        Me.dgvInventario.MultiSelect = False
+        Me.dgvInventario.Name = "dgvInventario"
+        Me.dgvInventario.RowHeadersVisible = False
+        Me.dgvInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvInventario.Size = New System.Drawing.Size(183, 114)
+        Me.dgvInventario.TabIndex = 22
         '
         'lblHora2
         '
@@ -350,7 +393,7 @@ Partial Class Reservar
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(418, 201)
+        Me.Label8.Location = New System.Drawing.Point(425, 201)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(48, 13)
         Me.Label8.TabIndex = 11
@@ -359,7 +402,7 @@ Partial Class Reservar
         'chkServicio
         '
         Me.chkServicio.AutoSize = True
-        Me.chkServicio.Location = New System.Drawing.Point(430, 217)
+        Me.chkServicio.Location = New System.Drawing.Point(442, 217)
         Me.chkServicio.Name = "chkServicio"
         Me.chkServicio.Size = New System.Drawing.Size(15, 14)
         Me.chkServicio.TabIndex = 10
@@ -437,7 +480,7 @@ Partial Class Reservar
         '
         'btnSiguiente
         '
-        Me.btnSiguiente.Location = New System.Drawing.Point(348, 292)
+        Me.btnSiguiente.Location = New System.Drawing.Point(389, 437)
         Me.btnSiguiente.Name = "btnSiguiente"
         Me.btnSiguiente.Size = New System.Drawing.Size(155, 55)
         Me.btnSiguiente.TabIndex = 1
@@ -455,19 +498,41 @@ Partial Class Reservar
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
+        'Marcado
+        '
+        Me.Marcado.Frozen = True
+        Me.Marcado.HeaderText = "-"
+        Me.Marcado.Name = "Marcado"
+        Me.Marcado.Width = 20
+        '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.Width = 60
+        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 556)
-        Me.Controls.Add(Me.pnlCliente)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.pnlReserva)
+        Me.Controls.Add(Me.pnlCliente)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)
         Me.pnlCliente.PerformLayout()
         Me.pnlReserva.ResumeLayout(False)
         Me.pnlReserva.PerformLayout()
+        CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -511,4 +576,10 @@ Partial Class Reservar
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents txtPrecioTotal As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents dgvInventario As System.Windows.Forms.DataGridView
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents Marcado As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

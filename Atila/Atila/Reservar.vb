@@ -2,6 +2,7 @@
     Dim booleanTelefonos As Boolean
     Dim mysql As New MySQL
     Dim telefonos As String
+    Dim Inventario As DataTable
     Private Sub MostrarReservasDelDia()
         lblFecha.Text = Calendario.SelectionRange.Start
         lblNoHayReservas.Visible = True
@@ -48,6 +49,7 @@
     End Sub
 
     Private Sub Reservar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         Me.BackColor = Color.FromArgb(191, 128, 130)
         Calendario.MinDate = DateAndTime.Today
         Calendario.MaxDate = DateAdd("yyyy", 3, DateAndTime.Today)
@@ -59,19 +61,43 @@
             Calendario.UpdateBoldedDates()
             MostrarReservasDelDia()
         End If
+        mysql.Consultar("select * from inventario")
+        Inventario = mysql.Resultado
+        If mysql.Consultado = True Then
+            For i = 0 To Inventario.Rows.Count - 1
+                dgvInventario.Rows.Add(False, Inventario.Rows(i).Item("descripcion") & " (" & Inventario.Rows(i).Item("cantidad") & ")")
+            Next
+        End If
     End Sub
 
     Private Sub botonAgregarDatos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarDatos.Click
-        If txtTelefono2.Text <> "" Then
-            telefonos = txtTelefono1.Text & "|" & txtTelefono2.Text
-        Else
-            telefonos = txtTelefono1.Text
-        End If
-        mysql.InsertarDatos("insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" &
-            telefonos & "','" & txtDireccion.Text & "')") 'Agregamos los clientes
-        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
-            cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
-            dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas
+        Dim DioError As Boolean = False
+        Try
+            If txtTelefono2.Text <> "" Then
+                telefonos = txtTelefono1.Text & "|" & txtTelefono2.Text
+            Else
+                telefonos = txtTelefono1.Text
+            End If
+            mysql.InsertarDatos("insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" &
+                telefonos & "','" & txtDireccion.Text & "')") 'Agregamos los clientes
+            mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
+                cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
+                dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas
+            'Insertando datos de los inventarios que se utiilizaran
+            For i = 0 To Inventario.Rows.Count - 1
+                If dgvInventario.Rows(i).Cells(0).Value = True Then
+                    mysql.InsertarDatos("insert into utiliza (ID_RESERVA,ID_INVENTARIO,cantidad,precio) values((select ID_RESERVA from reservas where " &
+                                        "ingresodatos=(select max(ingresodatos) from reservas))," & Inventario.Rows(i).Item("ID_INVENTARIO") & "," &
+                                        dgvInventario.Rows(i).Cells(2).Value & "," & dgvInventario.Rows(i).Cells(2).Value * Inventario.Rows(i).Item("precio") & ")")
+                End If
+            Next
+            If DioError = False Then
+                Me.Close()
+            End If
+        Catch ex As Exception
+            DioError = True
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
     Private Sub btnAgregarTelefonos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarTelefonos.Click
@@ -95,9 +121,7 @@
     End Sub
 
     Private Sub Siguiente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSiguiente.Click
-        'Devuelve la id_reserva si la hora en esa fecha esta ocupada
-        mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "';")
-
+        mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd")) 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
         If mysql.Consultado = True Then
             If mysql.Resultado.Rows.Count() > 2 Then 'SI SE DEVOLVIERON 3 FILAS O MAS QUIERE DECIR QUE SE SUPERO EL MAXIMO DE RESERVAS EN UN DIA
                 MsgBox("Se supero el maximo de reservas en un día")
@@ -111,9 +135,29 @@
                         MessageBox.Show("Horario Ocupado")
                     ElseIf dudHoraComienzo.Text = "" Or dudHoraFinal.Text = "" Or cboMotivo.Text = "Ingresar Motivo" Or dudCantidadPersonas.Text = "" Then
                         MsgBox("Campos Sin completar")
+
                     Else 'SI TODO LO DEMAS ESTA CORRECTO
                         pnlReserva.Visible = False
                         pnlCliente.Visible = True
+                        'Actualizar Precio
+                        mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
+                        If mysql.Consultado = True Then
+                            If cboMotivo.Text = "Fiesta de 15" Then
+                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                            ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
+                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
+                            ElseIf cboMotivo.Text = "Parrillada" Then
+                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                            ElseIf cboMotivo.Text = "Graduación" Then
+                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                            ElseIf cboMotivo.Text = "Otro" Then
+                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                            End If
+                            txtPrecioTotal.Text = txtPrecioTotal.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
+                            If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
+                                txtPrecioTotal.Text = txtPrecioTotal.Text + txtPrecioTotal.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
+                            End If
+                        End If
                     End If
                 End If
             End If
@@ -138,22 +182,11 @@
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
-        If cboMotivo.Text = "Fiesta de 15" Then
-            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-        ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
-            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
-        ElseIf cboMotivo.Text = "Parrillada" Then
-            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
-        ElseIf cboMotivo.Text = "Graduación" Then
-            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-        ElseIf cboMotivo.Text = "Otro" Then
-            txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
-        End If
-        txtPrecioTotal.Text = txtPrecioTotal.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
-        If Calendario.SelectionRange.Start.Day = 5 Or 6 Or 7 Then
-            txtPrecioTotal.Text = txtPrecioTotal.Text + txtPrecioTotal.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
-        End If
+        MsgBox(Inventario.Rows.Count - 1)
+    End Sub
 
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        pnlCliente.Visible = False
+        pnlReserva.Visible = True
     End Sub
 End Class
