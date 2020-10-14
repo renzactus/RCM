@@ -1,5 +1,6 @@
-﻿Public Class Reservar
-    Dim booleanTelefonos As Boolean
+﻿
+Public Class Reservar
+    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv As Boolean
     Dim mysql As New MySQL
     Dim telefonos As String
     Dim Inventario As DataTable
@@ -68,6 +69,7 @@
                 dgvInventario.Rows.Add(False, Inventario.Rows(i).Item("descripcion") & " (" & Inventario.Rows(i).Item("cantidad") & ")")
             Next
         End If
+        booleanClaseConstruida = True
     End Sub
 
     Private Sub botonAgregarDatos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarDatos.Click
@@ -121,48 +123,65 @@
     End Sub
 
     Private Sub Siguiente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSiguiente.Click
-        mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd")) 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
-        If mysql.Consultado = True Then
-            If mysql.Resultado.Rows.Count() > 2 Then 'SI SE DEVOLVIERON 3 FILAS O MAS QUIERE DECIR QUE SE SUPERO EL MAXIMO DE RESERVAS EN UN DIA
-                MsgBox("Se supero el maximo de reservas en un día")
-            Else
-                mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
-            dudHoraComienzo.Text & "'<addtime(final,'1:00:00') and '" & dudHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
-            dudHoraFinal.Text & "'<addtime(final,'1:00:00') and '" & dudHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
-            dudHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dudHoraFinal.Text & "'>addtime(final,'1:00:00')));")
-                If mysql.Consultado = True Then
-                    If mysql.Resultado.Rows.Count() > 0 Then 'SI SE DEVOLVIO MAS DE UNA FILA QUIERE DECIR QUE YA HAY RESERVA PARA ESA FECHA y hora
-                        MessageBox.Show("Horario Ocupado")
-                    ElseIf dudHoraComienzo.Text = "" Or dudHoraFinal.Text = "" Or cboMotivo.Text = "Ingresar Motivo" Or dudCantidadPersonas.Text = "" Then
-                        MsgBox("Campos Sin completar")
+        'Si hay algun tipo de problema con dgvInventario devolver booleanErrorEndgv=false para que no se ejecuten los demas chequeos
+        booleanErrorEndgv = False
+        For i = 0 To dgvInventario.Rows.Count - 1
+            If dgvInventario.Rows(i).Cells(0).Value = True Then
+                If dgvInventario.Rows(i).Cells(2).Value = "" Then
+                    MsgBox("Desmarcar " & Inventario.Rows(i).Item("descripcion") & "o establecerle una cantidad")
+                    booleanErrorEndgv = True
+                ElseIf dgvInventario.Rows(i).Cells(2).Value > Inventario.Rows(i).Item("cantidad") Then
+                    MsgBox("La cantidad de " & Inventario.Rows(i).Item("descripcion") & " tiene que ser menor a su maximo que es " & Inventario.Rows(i).Item("cantidad"))
+                    booleanErrorEndgv = True
+                    'Seleccionar la celda que esta mal
+                    dgvInventario.Rows(i).Cells(2).Selected = True
+                    dgvInventario.Select()
+                End If
+            End If
+        Next
+        If booleanErrorEndgv = False Then
+            mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "'") 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
+            If mysql.Consultado = True Then
+                If mysql.Resultado.Rows.Count() > 2 Then 'SI SE DEVOLVIERON 3 FILAS O MAS QUIERE DECIR QUE SE SUPERO EL MAXIMO DE RESERVAS EN UN DIA
+                    MsgBox("Se supero el maximo de reservas en un día")
+                Else
+                    mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
+                dudHoraComienzo.Text & "'<addtime(final,'1:00:00') and '" & dudHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                dudHoraFinal.Text & "'<addtime(final,'1:00:00') and '" & dudHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                dudHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dudHoraFinal.Text & "'>addtime(final,'1:00:00')));")
+                    If mysql.Consultado = True Then
+                        If mysql.Resultado.Rows.Count() > 0 Then 'SI SE DEVOLVIO MAS DE UNA FILA QUIERE DECIR QUE YA HAY RESERVA PARA ESA FECHA y hora
+                            MessageBox.Show("Horario Ocupado")
+                        ElseIf dudHoraComienzo.Text = "" Or dudHoraFinal.Text = "" Or cboMotivo.Text = "Ingresar Motivo" Or dudCantidadPersonas.Text = "" Then
+                            MsgBox("Campos Sin completar")
 
-                    Else 'SI TODO LO DEMAS ESTA CORRECTO
-                        pnlReserva.Visible = False
-                        pnlCliente.Visible = True
-                        'Actualizar Precio
-                        mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
-                        If mysql.Consultado = True Then
-                            If cboMotivo.Text = "Fiesta de 15" Then
-                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-                            ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
-                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
-                            ElseIf cboMotivo.Text = "Parrillada" Then
-                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
-                            ElseIf cboMotivo.Text = "Graduación" Then
-                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-                            ElseIf cboMotivo.Text = "Otro" Then
-                                txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
-                            End If
-                            txtPrecioTotal.Text = txtPrecioTotal.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
-                            If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
-                                txtPrecioTotal.Text = txtPrecioTotal.Text + txtPrecioTotal.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
+                        Else 'SI TODO LO DEMAS ESTA CORRECTO
+                            pnlReserva.Visible = False
+                            pnlCliente.Visible = True
+                            'Actualizar Precio
+                            mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
+                            If mysql.Consultado = True Then
+                                If cboMotivo.Text = "Fiesta de 15" Then
+                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                                ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
+                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
+                                ElseIf cboMotivo.Text = "Parrillada" Then
+                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                                ElseIf cboMotivo.Text = "Graduación" Then
+                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                                ElseIf cboMotivo.Text = "Otro" Then
+                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                                End If
+                                txtPrecioTotal.Text = txtPrecioTotal.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
+                                If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
+                                    txtPrecioTotal.Text = txtPrecioTotal.Text + txtPrecioTotal.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
+                                End If
                             End If
                         End If
                     End If
                 End If
             End If
-            End If
-        
+        End If
     End Sub
 
     Private Sub dudHoraComienz_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dudHoraComienzo.KeyPress
@@ -176,17 +195,30 @@
     Private Sub dudCantidadPersonas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dudCantidadPersonas.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
+
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
 
         MostrarReservasDelDia()
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        MsgBox(Inventario.Rows.Count - 1)
+    Private Sub dgvInventario_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvInventario.CellValueChanged
+        If booleanClaseConstruida = True Then
+            If dgvInventario.Rows(e.RowIndex).Cells(0).Value = True Then
+                dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = False
+            Else
+                dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = True
+                dgvInventario.Rows(e.RowIndex).Cells(2).Value = ""
+            End If
+
+        End If
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub btnVolver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVolver.Click
         pnlCliente.Visible = False
         pnlReserva.Visible = True
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        
     End Sub
 End Class

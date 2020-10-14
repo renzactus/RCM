@@ -35,7 +35,7 @@ Public Class MySQL
         Catch ex As Exception
             Conexion.Close()
             Consultado = False
-            MsgBox("Error al consultar o de conexion", 48)
+            MsgBox("Error al consultar o de conexion" & ex.ToString, 48)
         End Try
     End Sub
 

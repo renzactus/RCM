@@ -35,13 +35,15 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnVolver = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.txtPrecioTotal = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlReserva = New System.Windows.Forms.Panel()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblHora3 = New System.Windows.Forms.Label()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
@@ -175,7 +177,7 @@ Partial Class Reservar
         '
         'pnlCliente
         '
-        Me.pnlCliente.Controls.Add(Me.Button2)
+        Me.pnlCliente.Controls.Add(Me.btnVolver)
         Me.pnlCliente.Controls.Add(Me.TextBox2)
         Me.pnlCliente.Controls.Add(Me.txtPrecioTotal)
         Me.pnlCliente.Controls.Add(Me.Label10)
@@ -198,14 +200,14 @@ Partial Class Reservar
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
         '
-        'Button2
+        'btnVolver
         '
-        Me.Button2.Location = New System.Drawing.Point(35, 11)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(37, 23)
-        Me.Button2.TabIndex = 18
-        Me.Button2.Text = "<-"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnVolver.Location = New System.Drawing.Point(35, 11)
+        Me.btnVolver.Name = "btnVolver"
+        Me.btnVolver.Size = New System.Drawing.Size(37, 23)
+        Me.btnVolver.TabIndex = 18
+        Me.btnVolver.Text = "<-"
+        Me.btnVolver.UseVisualStyleBackColor = True
         '
         'TextBox2
         '
@@ -250,6 +252,8 @@ Partial Class Reservar
         '
         'pnlReserva
         '
+        Me.pnlReserva.Controls.Add(Me.Label13)
+        Me.pnlReserva.Controls.Add(Me.Label12)
         Me.pnlReserva.Controls.Add(Me.Label11)
         Me.pnlReserva.Controls.Add(Me.lblHora3)
         Me.pnlReserva.Controls.Add(Me.dgvInventario)
@@ -278,10 +282,30 @@ Partial Class Reservar
         Me.pnlReserva.Size = New System.Drawing.Size(639, 543)
         Me.pnlReserva.TabIndex = 16
         '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(382, 32)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(53, 18)
+        Me.Label13.TabIndex = 26
+        Me.Label13.Text = "Datos:"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(32, 32)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(206, 18)
+        Me.Label12.TabIndex = 25
+        Me.Label12.Text = "Fecha para realizar reserva:"
+        '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(386, 258)
+        Me.Label11.Location = New System.Drawing.Point(386, 253)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(95, 13)
         Me.Label11.TabIndex = 23
@@ -290,7 +314,7 @@ Partial Class Reservar
         'lblHora3
         '
         Me.lblHora3.AutoSize = True
-        Me.lblHora3.Location = New System.Drawing.Point(125, 334)
+        Me.lblHora3.Location = New System.Drawing.Point(119, 372)
         Me.lblHora3.Name = "lblHora3"
         Me.lblHora3.Size = New System.Drawing.Size(45, 13)
         Me.lblHora3.TabIndex = 20
@@ -315,7 +339,7 @@ Partial Class Reservar
         'lblHora2
         '
         Me.lblHora2.AutoSize = True
-        Me.lblHora2.Location = New System.Drawing.Point(125, 312)
+        Me.lblHora2.Location = New System.Drawing.Point(119, 350)
         Me.lblHora2.Name = "lblHora2"
         Me.lblHora2.Size = New System.Drawing.Size(45, 13)
         Me.lblHora2.TabIndex = 19
@@ -324,7 +348,7 @@ Partial Class Reservar
         'lblHora1
         '
         Me.lblHora1.AutoSize = True
-        Me.lblHora1.Location = New System.Drawing.Point(125, 291)
+        Me.lblHora1.Location = New System.Drawing.Point(119, 329)
         Me.lblHora1.Name = "lblHora1"
         Me.lblHora1.Size = New System.Drawing.Size(39, 13)
         Me.lblHora1.TabIndex = 18
@@ -334,7 +358,7 @@ Partial Class Reservar
         '
         Me.lblNoHayReservas.AutoSize = True
         Me.lblNoHayReservas.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNoHayReservas.Location = New System.Drawing.Point(53, 276)
+        Me.lblNoHayReservas.Location = New System.Drawing.Point(47, 314)
         Me.lblNoHayReservas.Name = "lblNoHayReservas"
         Me.lblNoHayReservas.Size = New System.Drawing.Size(172, 15)
         Me.lblNoHayReservas.TabIndex = 17
@@ -343,7 +367,7 @@ Partial Class Reservar
         'llblMotivoReserva3
         '
         Me.llblMotivoReserva3.AutoSize = True
-        Me.llblMotivoReserva3.Location = New System.Drawing.Point(53, 334)
+        Me.llblMotivoReserva3.Location = New System.Drawing.Point(47, 372)
         Me.llblMotivoReserva3.Name = "llblMotivoReserva3"
         Me.llblMotivoReserva3.Size = New System.Drawing.Size(59, 13)
         Me.llblMotivoReserva3.TabIndex = 16
@@ -353,7 +377,7 @@ Partial Class Reservar
         'llblMotivoReserva2
         '
         Me.llblMotivoReserva2.AutoSize = True
-        Me.llblMotivoReserva2.Location = New System.Drawing.Point(53, 312)
+        Me.llblMotivoReserva2.Location = New System.Drawing.Point(47, 350)
         Me.llblMotivoReserva2.Name = "llblMotivoReserva2"
         Me.llblMotivoReserva2.Size = New System.Drawing.Size(59, 13)
         Me.llblMotivoReserva2.TabIndex = 15
@@ -363,7 +387,7 @@ Partial Class Reservar
         'llblMotivoReserva1
         '
         Me.llblMotivoReserva1.AutoSize = True
-        Me.llblMotivoReserva1.Location = New System.Drawing.Point(53, 291)
+        Me.llblMotivoReserva1.Location = New System.Drawing.Point(47, 329)
         Me.llblMotivoReserva1.Name = "llblMotivoReserva1"
         Me.llblMotivoReserva1.Size = New System.Drawing.Size(59, 13)
         Me.llblMotivoReserva1.TabIndex = 14
@@ -375,7 +399,7 @@ Partial Class Reservar
         Me.lblFecha.AutoSize = True
         Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFecha.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.lblFecha.Location = New System.Drawing.Point(231, 258)
+        Me.lblFecha.Location = New System.Drawing.Point(225, 296)
         Me.lblFecha.Name = "lblFecha"
         Me.lblFecha.Size = New System.Drawing.Size(0, 18)
         Me.lblFecha.TabIndex = 13
@@ -384,7 +408,7 @@ Partial Class Reservar
         '
         Me.lblFiestasReservadasParaEl.AutoSize = True
         Me.lblFiestasReservadasParaEl.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFiestasReservadasParaEl.Location = New System.Drawing.Point(32, 258)
+        Me.lblFiestasReservadasParaEl.Location = New System.Drawing.Point(26, 296)
         Me.lblFiestasReservadasParaEl.Name = "lblFiestasReservadasParaEl"
         Me.lblFiestasReservadasParaEl.Size = New System.Drawing.Size(199, 18)
         Me.lblFiestasReservadasParaEl.TabIndex = 12
@@ -393,7 +417,7 @@ Partial Class Reservar
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(425, 201)
+        Me.Label8.Location = New System.Drawing.Point(420, 221)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(48, 13)
         Me.Label8.TabIndex = 11
@@ -402,7 +426,7 @@ Partial Class Reservar
         'chkServicio
         '
         Me.chkServicio.AutoSize = True
-        Me.chkServicio.Location = New System.Drawing.Point(442, 217)
+        Me.chkServicio.Location = New System.Drawing.Point(437, 237)
         Me.chkServicio.Name = "chkServicio"
         Me.chkServicio.Size = New System.Drawing.Size(15, 14)
         Me.chkServicio.TabIndex = 10
@@ -411,7 +435,7 @@ Partial Class Reservar
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(392, 162)
+        Me.Label7.Location = New System.Drawing.Point(387, 182)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(111, 13)
         Me.Label7.TabIndex = 9
@@ -420,7 +444,7 @@ Partial Class Reservar
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(418, 122)
+        Me.Label6.Location = New System.Drawing.Point(413, 142)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(39, 13)
         Me.Label6.TabIndex = 8
@@ -428,7 +452,7 @@ Partial Class Reservar
         '
         'dudCantidadPersonas
         '
-        Me.dudCantidadPersonas.Location = New System.Drawing.Point(389, 178)
+        Me.dudCantidadPersonas.Location = New System.Drawing.Point(384, 198)
         Me.dudCantidadPersonas.Name = "dudCantidadPersonas"
         Me.dudCantidadPersonas.Size = New System.Drawing.Size(120, 20)
         Me.dudCantidadPersonas.TabIndex = 7
@@ -438,7 +462,7 @@ Partial Class Reservar
         '
         Me.cboMotivo.FormattingEnabled = True
         Me.cboMotivo.Items.AddRange(New Object() {"Fiesta de 15", "Cumpleaño de niño", "Parrillada", "Graduación", "Otro"})
-        Me.cboMotivo.Location = New System.Drawing.Point(389, 138)
+        Me.cboMotivo.Location = New System.Drawing.Point(384, 158)
         Me.cboMotivo.Name = "cboMotivo"
         Me.cboMotivo.Size = New System.Drawing.Size(121, 21)
         Me.cboMotivo.TabIndex = 6
@@ -447,7 +471,7 @@ Partial Class Reservar
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(418, 83)
+        Me.Label5.Location = New System.Drawing.Point(413, 103)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 13)
         Me.Label5.TabIndex = 5
@@ -456,7 +480,7 @@ Partial Class Reservar
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(392, 44)
+        Me.Label4.Location = New System.Drawing.Point(387, 64)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(94, 13)
         Me.Label4.TabIndex = 4
@@ -464,7 +488,7 @@ Partial Class Reservar
         '
         'dudHoraFinal
         '
-        Me.dudHoraFinal.Location = New System.Drawing.Point(389, 99)
+        Me.dudHoraFinal.Location = New System.Drawing.Point(384, 119)
         Me.dudHoraFinal.Name = "dudHoraFinal"
         Me.dudHoraFinal.Size = New System.Drawing.Size(120, 20)
         Me.dudHoraFinal.TabIndex = 3
@@ -472,7 +496,7 @@ Partial Class Reservar
         '
         'dudHoraComienzo
         '
-        Me.dudHoraComienzo.Location = New System.Drawing.Point(389, 60)
+        Me.dudHoraComienzo.Location = New System.Drawing.Point(384, 80)
         Me.dudHoraComienzo.Name = "dudHoraComienzo"
         Me.dudHoraComienzo.Size = New System.Drawing.Size(120, 20)
         Me.dudHoraComienzo.TabIndex = 2
@@ -492,7 +516,7 @@ Partial Class Reservar
         Me.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Calendario.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Calendario.Location = New System.Drawing.Point(38, 31)
+        Me.Calendario.Location = New System.Drawing.Point(32, 62)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
         Me.Calendario.MinDate = New Date(2020, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
@@ -516,6 +540,7 @@ Partial Class Reservar
         '
         Me.Cantidad.HeaderText = "Cantidad"
         Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
         Me.Cantidad.Width = 60
         '
         'Reservar
@@ -576,9 +601,11 @@ Partial Class Reservar
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents txtPrecioTotal As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents btnVolver As System.Windows.Forms.Button
     Friend WithEvents dgvInventario As System.Windows.Forms.DataGridView
     Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Marcado As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
