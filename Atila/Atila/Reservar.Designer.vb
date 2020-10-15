@@ -31,10 +31,11 @@ Partial Class Reservar
         Me.txtDireccion = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtTelefono1 = New System.Windows.Forms.TextBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
+        Me.lblEditandoCliente = New System.Windows.Forms.Label()
+        Me.btnEditarCliente = New System.Windows.Forms.Button()
         Me.btnVolver = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.txtPrecioTotal = New System.Windows.Forms.TextBox()
@@ -70,6 +71,8 @@ Partial Class Reservar
         Me.dudHoraComienzo = New System.Windows.Forms.DomainUpDown()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
+        Me.btnGuardarCliente = New System.Windows.Forms.Button()
+        Me.btnCancelarEdicion = New System.Windows.Forms.Button()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,16 +151,6 @@ Partial Class Reservar
         Me.txtTelefono1.Size = New System.Drawing.Size(100, 20)
         Me.txtTelefono1.TabIndex = 9
         '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(356, 63)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(101, 17)
-        Me.CheckBox1.TabIndex = 11
-        Me.CheckBox1.Text = "Habilitar edicion"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'btnAgregarTelefonos
         '
         Me.btnAgregarTelefonos.Location = New System.Drawing.Point(240, 146)
@@ -177,12 +170,14 @@ Partial Class Reservar
         '
         'pnlCliente
         '
+        Me.pnlCliente.Controls.Add(Me.btnGuardarCliente)
+        Me.pnlCliente.Controls.Add(Me.lblEditandoCliente)
+        Me.pnlCliente.Controls.Add(Me.btnEditarCliente)
         Me.pnlCliente.Controls.Add(Me.btnVolver)
         Me.pnlCliente.Controls.Add(Me.TextBox2)
         Me.pnlCliente.Controls.Add(Me.txtPrecioTotal)
         Me.pnlCliente.Controls.Add(Me.Label10)
         Me.pnlCliente.Controls.Add(Me.Label9)
-        Me.pnlCliente.Controls.Add(Me.CheckBox1)
         Me.pnlCliente.Controls.Add(Me.txtCedula)
         Me.pnlCliente.Controls.Add(Me.txtTelefono2)
         Me.pnlCliente.Controls.Add(Me.btnAgregarDatos)
@@ -194,11 +189,33 @@ Partial Class Reservar
         Me.pnlCliente.Controls.Add(Me.txtDireccion)
         Me.pnlCliente.Controls.Add(Me.txtTelefono1)
         Me.pnlCliente.Controls.Add(Me.lblDireccion)
+        Me.pnlCliente.Controls.Add(Me.btnCancelarEdicion)
         Me.pnlCliente.Location = New System.Drawing.Point(1, 1)
         Me.pnlCliente.Name = "pnlCliente"
         Me.pnlCliente.Size = New System.Drawing.Size(639, 543)
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
+        '
+        'lblEditandoCliente
+        '
+        Me.lblEditandoCliente.AutoSize = True
+        Me.lblEditandoCliente.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEditandoCliente.Location = New System.Drawing.Point(129, 32)
+        Me.lblEditandoCliente.Name = "lblEditandoCliente"
+        Me.lblEditandoCliente.Size = New System.Drawing.Size(105, 18)
+        Me.lblEditandoCliente.TabIndex = 26
+        Me.lblEditandoCliente.Text = "Editar Cliente"
+        Me.lblEditandoCliente.Visible = False
+        '
+        'btnEditarCliente
+        '
+        Me.btnEditarCliente.Location = New System.Drawing.Point(240, 62)
+        Me.btnEditarCliente.Name = "btnEditarCliente"
+        Me.btnEditarCliente.Size = New System.Drawing.Size(60, 27)
+        Me.btnEditarCliente.TabIndex = 21
+        Me.btnEditarCliente.Text = "Editar"
+        Me.btnEditarCliente.UseVisualStyleBackColor = True
+        Me.btnEditarCliente.Visible = False
         '
         'btnVolver
         '
@@ -543,14 +560,34 @@ Partial Class Reservar
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
+        'btnGuardarCliente
+        '
+        Me.btnGuardarCliente.Location = New System.Drawing.Point(306, 62)
+        Me.btnGuardarCliente.Name = "btnGuardarCliente"
+        Me.btnGuardarCliente.Size = New System.Drawing.Size(55, 27)
+        Me.btnGuardarCliente.TabIndex = 27
+        Me.btnGuardarCliente.Text = "Guardar"
+        Me.btnGuardarCliente.UseVisualStyleBackColor = True
+        Me.btnGuardarCliente.Visible = False
+        '
+        'btnCancelarEdicion
+        '
+        Me.btnCancelarEdicion.Location = New System.Drawing.Point(240, 62)
+        Me.btnCancelarEdicion.Name = "btnCancelarEdicion"
+        Me.btnCancelarEdicion.Size = New System.Drawing.Size(60, 27)
+        Me.btnCancelarEdicion.TabIndex = 28
+        Me.btnCancelarEdicion.Text = "Cancelar"
+        Me.btnCancelarEdicion.UseVisualStyleBackColor = True
+        Me.btnCancelarEdicion.Visible = False
+        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 556)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.pnlCliente)
         Me.Controls.Add(Me.pnlReserva)
+        Me.Controls.Add(Me.pnlCliente)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)
@@ -569,7 +606,6 @@ Partial Class Reservar
     Friend WithEvents txtDireccion As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtTelefono1 As System.Windows.Forms.TextBox
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents btnAgregarTelefonos As System.Windows.Forms.Button
     Friend WithEvents txtTelefono2 As System.Windows.Forms.TextBox
     Friend WithEvents pnlCliente As System.Windows.Forms.Panel
@@ -609,4 +645,8 @@ Partial Class Reservar
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents txtCedula As System.Windows.Forms.TextBox
+    Friend WithEvents btnEditarCliente As System.Windows.Forms.Button
+    Friend WithEvents lblEditandoCliente As System.Windows.Forms.Label
+    Friend WithEvents btnGuardarCliente As System.Windows.Forms.Button
+    Friend WithEvents btnCancelarEdicion As System.Windows.Forms.Button
 End Class
