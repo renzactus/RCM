@@ -9,6 +9,7 @@ Public Class MySQL
         Dim ComandoSql As New MySqlCommand
         Conexion = New MySqlConnection(StringdeConexion)
         ComandoSql = New MySqlCommand(Consulta)
+        Consultado = True
         Try
             Conexion.Open()
             ComandoSql.Connection = Conexion
@@ -16,10 +17,12 @@ Public Class MySQL
             Conexion.Close()
             Consulta = vbNull
         Catch ex As Exception
+            Conexion.Close()
+            Consultado = False
             MsgBox("La conexión no fue exitosa" & ex.ToString)
         End Try
     End Sub
-    Sub Consultar(ByVal Consulta As String, Optional ByVal StringdeConexion As String = "server=localhost;database=atila;user=admin;password=contraadmin;")
+    Public Sub Consultar(ByVal Consulta As String, Optional ByVal StringdeConexion As String = "server=localhost;database=atila;user=admin;password=contraadmin;")
         Dim adapter As New MySqlDataAdapter
         Dim commandbuild As New MySqlCommandBuilder
         Conexion = New MySqlConnection(StringdeConexion)

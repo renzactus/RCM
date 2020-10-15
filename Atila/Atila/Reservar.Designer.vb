@@ -47,6 +47,9 @@ Partial Class Reservar
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblHora3 = New System.Windows.Forms.Label()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
+        Me.Marcado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblHora2 = New System.Windows.Forms.Label()
         Me.lblHora1 = New System.Windows.Forms.Label()
         Me.lblNoHayReservas = New System.Windows.Forms.Label()
@@ -67,9 +70,6 @@ Partial Class Reservar
         Me.dudHoraComienzo = New System.Windows.Forms.DomainUpDown()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
-        Me.Marcado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -336,6 +336,27 @@ Partial Class Reservar
         Me.dgvInventario.Size = New System.Drawing.Size(183, 114)
         Me.dgvInventario.TabIndex = 22
         '
+        'Marcado
+        '
+        Me.Marcado.Frozen = True
+        Me.Marcado.HeaderText = "-"
+        Me.Marcado.Name = "Marcado"
+        Me.Marcado.Width = 20
+        '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 60
+        '
         'lblHora2
         '
         Me.lblHora2.AutoSize = True
@@ -522,35 +543,14 @@ Partial Class Reservar
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
-        'Marcado
-        '
-        Me.Marcado.Frozen = True
-        Me.Marcado.HeaderText = "-"
-        Me.Marcado.Name = "Marcado"
-        Me.Marcado.Width = 20
-        '
-        'Descripcion
-        '
-        Me.Descripcion.Frozen = True
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        '
-        'Cantidad
-        '
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 60
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 556)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.pnlReserva)
         Me.Controls.Add(Me.pnlCliente)
+        Me.Controls.Add(Me.pnlReserva)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)
@@ -562,7 +562,6 @@ Partial Class Reservar
 
     End Sub
     Friend WithEvents btnAgregarDatos As System.Windows.Forms.Button
-    Friend WithEvents txtCedula As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtNombre As System.Windows.Forms.TextBox
@@ -609,4 +608,5 @@ Partial Class Reservar
     Friend WithEvents Marcado As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents txtCedula As System.Windows.Forms.TextBox
 End Class

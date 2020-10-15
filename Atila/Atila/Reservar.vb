@@ -1,9 +1,10 @@
 ﻿
 Public Class Reservar
-    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv As Boolean
+    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente As Boolean
     Dim mysql As New MySQL
     Dim telefonos As String
-    Dim Inventario As DataTable
+    Dim Inventario, DatosClientes As DataTable
+    Dim AutoCompletarCedula As New AutoCompleteStringCollection()
     Private Sub MostrarReservasDelDia()
         lblFecha.Text = Calendario.SelectionRange.Start
         lblNoHayReservas.Visible = True
@@ -48,9 +49,35 @@ Public Class Reservar
             End If
         End If
     End Sub
+    Private Sub MostrarOtroTelefono()
+        txtTelefono2.Visible = True
+        btnAgregarTelefonos.Text = "-"
+        booleanTelefonos = True
+        txtDireccion.Location = New Point(txtDireccion.Location.X, 210)
+        lblDireccion.Location = New Point(lblDireccion.Location.X, 196)
+    End Sub
+    Private Sub OcultarOtroTelefono()
+        txtTelefono2.Visible = False
+        btnAgregarTelefonos.Text = "+"
+        txtTelefono2.Text = ""
+        booleanTelefonos = False
+        txtDireccion.Location = New Point(txtDireccion.Location.X, 183)
+        lblDireccion.Location = New Point(lblDireccion.Location.X, 169)
+    End Sub
+    Private Sub DeshabilitarEdicionDatosCliente(ByVal estado As Boolean)
+        txtDireccion.Enabled = estado
+        txtNombre.Enabled = estado
+        txtTelefono1.Enabled = estado
+        txtTelefono2.Enabled = estado
+        btnAgregarTelefonos.Enabled = estado
+    End Sub
 
     Private Sub Reservar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        With txtCedula
+            .AutoCompleteCustomSource = AutoCompletarCedula
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+            .AutoCompleteSource = AutoCompleteSource.CustomSource
+        End With
         Me.BackColor = Color.FromArgb(191, 128, 130)
         Calendario.MinDate = DateAndTime.Today
         Calendario.MaxDate = DateAdd("yyyy", 3, DateAndTime.Today)
@@ -73,53 +100,39 @@ Public Class Reservar
     End Sub
 
     Private Sub botonAgregarDatos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarDatos.Click
-        Dim DioError As Boolean = False
-        Try
+        If booleanClienteExistente = False Then
             If txtTelefono2.Text <> "" Then
                 telefonos = txtTelefono1.Text & "|" & txtTelefono2.Text
             Else
                 telefonos = txtTelefono1.Text
             End If
             mysql.InsertarDatos("insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" &
-                telefonos & "','" & txtDireccion.Text & "')") 'Agregamos los clientes
-            mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
-                cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
-                dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas
-            'Insertando datos de los inventarios que se utiilizaran
-            For i = 0 To Inventario.Rows.Count - 1
-                If dgvInventario.Rows(i).Cells(0).Value = True Then
-                    mysql.InsertarDatos("insert into utiliza (ID_RESERVA,ID_INVENTARIO,cantidad,precio) values((select ID_RESERVA from reservas where " &
-                                        "ingresodatos=(select max(ingresodatos) from reservas))," & Inventario.Rows(i).Item("ID_INVENTARIO") & "," &
-                                        dgvInventario.Rows(i).Cells(2).Value & "," & dgvInventario.Rows(i).Cells(2).Value * Inventario.Rows(i).Item("precio") & ")")
-                End If
-            Next
-            If DioError = False Then
-                Me.Close()
+                telefonos & "','" & txtDireccion.Text & "')") 'Agregamos el cliente
+        End If
+        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
+            cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
+            dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+            "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas
+        'Insertando datos de los inventarios que se utiilizaran
+        For i = 0 To Inventario.Rows.Count - 1
+            If dgvInventario.Rows(i).Cells(0).Value = True Then
+                mysql.InsertarDatos("insert into utiliza (ID_RESERVA,ID_INVENTARIO,cantidad,precio) values((select ID_RESERVA from reservas where " &
+                                    "ingresodatos=(select max(ingresodatos) from reservas))," & Inventario.Rows(i).Item("ID_INVENTARIO") & "," &
+                                    dgvInventario.Rows(i).Cells(2).Value & "," & dgvInventario.Rows(i).Cells(2).Value * Inventario.Rows(i).Item("precio") & ")")
             End If
-        Catch ex As Exception
-            DioError = True
-            MsgBox(ex.ToString)
-        End Try
+        Next
+        If mysql.Consultado = True Then
+            Me.Close()
+        End If
     End Sub
 
     Private Sub btnAgregarTelefonos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarTelefonos.Click
         'PARA PONER VISIBLE EL txtTelefonos2 Y MOVER DE LUGAR txtDireccion y lblDireccion
         If booleanTelefonos = False Then
-            txtTelefono2.Visible = True
-            btnAgregarTelefonos.Text = "-"
-            booleanTelefonos = True
-            txtDireccion.Location = New Point(txtDireccion.Location.X, txtDireccion.Location.Y + 27)
-            lblDireccion.Location = New Point(lblDireccion.Location.X, lblDireccion.Location.Y + 27)
+            MostrarOtroTelefono()
         ElseIf booleanTelefonos = True Then
-            txtTelefono2.Visible = False
-            btnAgregarTelefonos.Text = "+"
-            txtTelefono2.Text = ""
-            booleanTelefonos = False
-            txtDireccion.Location = New Point(txtDireccion.Location.X, txtDireccion.Location.Y - 27)
-            lblDireccion.Location = New Point(lblDireccion.Location.X, lblDireccion.Location.Y - 27)
+            OcultarOtroTelefono()
         End If
-
-
     End Sub
 
     Private Sub Siguiente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSiguiente.Click
@@ -177,6 +190,14 @@ Public Class Reservar
                                     txtPrecioTotal.Text = txtPrecioTotal.Text + txtPrecioTotal.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
                                 End If
                             End If
+                            'Agregar cedulas para autocompletar
+                            mysql.Consultar("select * from clientes")
+                            If mysql.Consultado = True Then
+                                DatosClientes = mysql.Resultado
+                            End If
+                            For i = 0 To DatosClientes.Rows.Count - 1
+                                AutoCompletarCedula.Add(DatosClientes.Rows(i).Item("cedula"))
+                            Next
                         End If
                     End If
                 End If
@@ -193,6 +214,18 @@ Public Class Reservar
     End Sub
 
     Private Sub dudCantidadPersonas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dudCantidadPersonas.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+    End Sub
+
+    Private Sub txtCedula_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCedula.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+    End Sub
+
+    Private Sub txtTelefono1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTelefono1.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+    End Sub
+
+    Private Sub txtTelefono2_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTelefono2.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
 
@@ -218,7 +251,41 @@ Public Class Reservar
         pnlReserva.Visible = True
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        
+    Private Sub txtCedula_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCedula.KeyUp
+        booleanClienteExistente = False
+        For i = 0 To DatosClientes.Rows.Count - 1
+            If txtCedula.Text <> "" Then
+                If txtCedula.Text = DatosClientes.Rows(i).Item("cedula") Then
+                    booleanClienteExistente = True
+                    DeshabilitarEdicionDatosCliente(False)
+                    txtNombre.Text = DatosClientes.Rows(i).Item("nombre")
+                    txtDireccion.Text = DatosClientes.Rows(i).Item("direccion")
+                    If DatosClientes.Rows(i).Item("telefonos").ToString.IndexOf("|") <> -1 Then 'Si el usuario tiene dos telefonos
+                        MostrarOtroTelefono()
+                        txtTelefono1.Text = DatosClientes.Rows(i).Item("telefonos").ToString.Substring(0, DatosClientes.Rows(i).Item("telefonos").ToString.IndexOf("|"))
+                        txtTelefono2.Text = DatosClientes.Rows(i).Item("telefonos").ToString.Substring(DatosClientes.Rows(i).Item("telefonos").ToString.IndexOf("|") + 1)
+                    Else
+                        txtTelefono1.Text = DatosClientes.Rows(i).Item("telefonos").ToString
+                        OcultarOtroTelefono()
+                    End If
+                End If
+            End If
+            If booleanClienteExistente = False Then
+                booleanClienteExistente = False
+                txtNombre.Text = ""
+                txtDireccion.Text = ""
+                txtTelefono1.Text = ""
+                txtTelefono2.Text = ""
+                OcultarOtroTelefono()
+                DeshabilitarEdicionDatosCliente(True)
+            End If
+        Next
     End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+    End Sub
+
+    
+    
 End Class
