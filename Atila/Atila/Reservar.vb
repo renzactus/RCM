@@ -4,6 +4,7 @@ Public Class Reservar
     Dim mysql As New MySQL
     Dim telefonos As String
     Dim Inventario, DatosClientes As DataTable
+    Dim cuotas As String
     Dim AutoCompletarCedula As New AutoCompleteStringCollection()
     Private Sub MostrarReservasDelDia()
         lblFecha.Text = Calendario.SelectionRange.Start
@@ -102,6 +103,15 @@ Public Class Reservar
             End If
         Next
     End Sub
+    Private Sub ActualizarDatosClienteyAutoRellenar()
+        mysql.Consultar("select * from clientes")
+        If mysql.Consultado = True Then
+            DatosClientes = mysql.Resultado
+        End If
+        For i = 0 To DatosClientes.Rows.Count - 1
+            AutoCompletarCedula.Add(DatosClientes.Rows(i).Item("cedula"))
+        Next
+    End Sub
 
     Private Sub Reservar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         With txtCedula
@@ -132,6 +142,12 @@ Public Class Reservar
 
     Private Sub botonAgregarDatos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarDatos.Click
         telefonos = vbNull
+        cuotas = vbNull
+        If cboCuotas.Text = "Ninguna" Then
+            cuotas = vbNull
+        Else
+            cuotas = cboCuotas.Text
+        End If
         If lblEditandoCliente.Visible = True Then
             MsgBox("Guarda La edicion del usuario o reviertela para continuar")
         Else
@@ -144,10 +160,22 @@ Public Class Reservar
                 mysql.InsertarDatos("insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" &
                     telefonos & "','" & txtDireccion.Text & "')") 'Agregamos el cliente
             End If
-            mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
-                cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
-                dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
-                "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas
+            If optSeñar.Checked And txtSeña.Text <> "" And txtSeña.Text <= lblPrecioFiesta.Text Then
+                mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña) values ('" &
+                    cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
+                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ")") 'Agregamos las reservas con seña
+            Else
+                mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
+                    cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
+                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas sin seña
+            End If
+            If optPagado.Checked Then
+                mysql.InsertarDatos("Insert into pagos (NRO_RECIBO,fecha_pago,cuotas,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & ",current_date," &
+                                    cuotas & "," & lblPrecioFiesta.Text & ",'" & cboModoPago.Text &
+                                    "',(select id_reserva from reservas where ingresodatos=(select max(ingresodatos) from reservas)))")
+            End If
             'Insertando datos de los inventarios que se utiilizaran
             For i = 0 To Inventario.Rows.Count - 1
                 If dgvInventario.Rows(i).Cells(0).Value = True Then
@@ -211,29 +239,23 @@ Public Class Reservar
                             mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
                             If mysql.Consultado = True Then
                                 If cboMotivo.Text = "Fiesta de 15" Then
-                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                                    lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
                                 ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
-                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
+                                    lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
                                 ElseIf cboMotivo.Text = "Parrillada" Then
-                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                                    lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_otro")
                                 ElseIf cboMotivo.Text = "Graduación" Then
-                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                                    lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
                                 ElseIf cboMotivo.Text = "Otro" Then
-                                    txtPrecioTotal.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                                    lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_otro")
                                 End If
-                                txtPrecioTotal.Text = txtPrecioTotal.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
+                                lblPrecioFiesta.Text = lblPrecioFiesta.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
                                 If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
-                                    txtPrecioTotal.Text = txtPrecioTotal.Text + txtPrecioTotal.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
+                                    lblPrecioFiesta.Text = lblPrecioFiesta.Text + lblPrecioFiesta.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
                                 End If
                             End If
                             'Agregar cedulas para autocompletar
-                            mysql.Consultar("select * from clientes")
-                            If mysql.Consultado = True Then
-                                DatosClientes = mysql.Resultado
-                            End If
-                            For i = 0 To DatosClientes.Rows.Count - 1
-                                AutoCompletarCedula.Add(DatosClientes.Rows(i).Item("cedula"))
-                            Next
+                            ActualizarDatosClienteyAutoRellenar()
                         End If
                     End If
                 End If
@@ -267,6 +289,10 @@ Public Class Reservar
 
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
         MostrarReservasDelDia()
+    End Sub
+
+    Private Sub txtSeña_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtSeña.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
 
     Private Sub dgvInventario_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvInventario.CellValueChanged
@@ -310,6 +336,7 @@ Public Class Reservar
             btnGuardarCliente.Visible = False
             txtCedula.Enabled = True
             DeshabilitarEdicionDatosCliente(False)
+            ActualizarDatosClienteyAutoRellenar()
         End If
     End Sub
 
@@ -322,6 +349,10 @@ Public Class Reservar
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-
+        MsgBox(cboCuotas.Text)
+        If cboCuotas.Text = "Ninguna" Then
+            MsgBox("ads")
+        End If
     End Sub
+
 End Class

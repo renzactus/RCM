@@ -46,7 +46,7 @@ Partial Class Login
         'btnLogin
         '
         Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnLogin.Font = New System.Drawing.Font("Arial Narrow", 23.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 23.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLogin.Location = New System.Drawing.Point(106, 350)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(238, 51)
@@ -58,7 +58,7 @@ Partial Class Login
         '
         Me.txtCedula.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.txtCedula.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtCedula.Font = New System.Drawing.Font("Arial Narrow", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCedula.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCedula.ForeColor = System.Drawing.Color.LightGray
         Me.txtCedula.Location = New System.Drawing.Point(80, 160)
         Me.txtCedula.Multiline = True
@@ -103,7 +103,7 @@ Partial Class Login
         '
         Me.txtContraseña.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.txtContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtContraseña.Font = New System.Drawing.Font("Arial Narrow", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtContraseña.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtContraseña.ForeColor = System.Drawing.Color.LightGray
         Me.txtContraseña.Location = New System.Drawing.Point(80, 231)
         Me.txtContraseña.Multiline = True
@@ -115,10 +115,10 @@ Partial Class Login
         'chkRecordarSesion
         '
         Me.chkRecordarSesion.AutoSize = True
-        Me.chkRecordarSesion.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkRecordarSesion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkRecordarSesion.Location = New System.Drawing.Point(80, 298)
         Me.chkRecordarSesion.Name = "chkRecordarSesion"
-        Me.chkRecordarSesion.Size = New System.Drawing.Size(107, 20)
+        Me.chkRecordarSesion.Size = New System.Drawing.Size(129, 20)
         Me.chkRecordarSesion.TabIndex = 22
         Me.chkRecordarSesion.Text = "Recordar Sesión"
         Me.chkRecordarSesion.UseVisualStyleBackColor = True
