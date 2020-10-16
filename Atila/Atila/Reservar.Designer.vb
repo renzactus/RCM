@@ -22,6 +22,7 @@ Partial Class Reservar
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.btnAgregarDatos = New System.Windows.Forms.Button()
         Me.txtCedula = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -34,6 +35,8 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
+        Me.txtNroRecibo = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.cboCuotas = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.optPagado = New System.Windows.Forms.RadioButton()
@@ -79,11 +82,11 @@ Partial Class Reservar
         Me.dudHoraComienzo = New System.Windows.Forms.DomainUpDown()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
-        Me.txtNroRecibo = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
@@ -212,9 +215,27 @@ Partial Class Reservar
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
         '
+        'txtNroRecibo
+        '
+        Me.txtNroRecibo.Enabled = False
+        Me.txtNroRecibo.Location = New System.Drawing.Point(423, 326)
+        Me.txtNroRecibo.Name = "txtNroRecibo"
+        Me.txtNroRecibo.Size = New System.Drawing.Size(75, 20)
+        Me.txtNroRecibo.TabIndex = 37
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(339, 329)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(81, 13)
+        Me.Label16.TabIndex = 36
+        Me.Label16.Text = "Numero Recibo"
+        '
         'cboCuotas
         '
         Me.cboCuotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboCuotas.Enabled = False
         Me.cboCuotas.FormattingEnabled = True
         Me.cboCuotas.Items.AddRange(New Object() {"Ninguna", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"})
         Me.cboCuotas.Location = New System.Drawing.Point(423, 297)
@@ -284,7 +305,7 @@ Partial Class Reservar
         '
         'btnGuardarCliente
         '
-        Me.btnGuardarCliente.Location = New System.Drawing.Point(247, 62)
+        Me.btnGuardarCliente.Location = New System.Drawing.Point(262, 62)
         Me.btnGuardarCliente.Name = "btnGuardarCliente"
         Me.btnGuardarCliente.Size = New System.Drawing.Size(55, 27)
         Me.btnGuardarCliente.TabIndex = 27
@@ -305,7 +326,7 @@ Partial Class Reservar
         '
         'btnEditarCliente
         '
-        Me.btnEditarCliente.Location = New System.Drawing.Point(181, 62)
+        Me.btnEditarCliente.Location = New System.Drawing.Point(196, 62)
         Me.btnEditarCliente.Name = "btnEditarCliente"
         Me.btnEditarCliente.Size = New System.Drawing.Size(60, 27)
         Me.btnEditarCliente.TabIndex = 21
@@ -324,6 +345,7 @@ Partial Class Reservar
         '
         'txtSeña
         '
+        Me.txtSeña.Enabled = False
         Me.txtSeña.Location = New System.Drawing.Point(116, 289)
         Me.txtSeña.Name = "txtSeña"
         Me.txtSeña.Size = New System.Drawing.Size(94, 20)
@@ -349,7 +371,7 @@ Partial Class Reservar
         '
         'btnCancelarEdicion
         '
-        Me.btnCancelarEdicion.Location = New System.Drawing.Point(181, 62)
+        Me.btnCancelarEdicion.Location = New System.Drawing.Point(196, 62)
         Me.btnCancelarEdicion.Name = "btnCancelarEdicion"
         Me.btnCancelarEdicion.Size = New System.Drawing.Size(60, 27)
         Me.btnCancelarEdicion.TabIndex = 28
@@ -659,21 +681,9 @@ Partial Class Reservar
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
-        'txtNroRecibo
+        'epError
         '
-        Me.txtNroRecibo.Location = New System.Drawing.Point(423, 326)
-        Me.txtNroRecibo.Name = "txtNroRecibo"
-        Me.txtNroRecibo.Size = New System.Drawing.Size(75, 20)
-        Me.txtNroRecibo.TabIndex = 37
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(339, 329)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(81, 13)
-        Me.Label16.TabIndex = 36
-        Me.Label16.Text = "Numero Recibo"
+        Me.epError.ContainerControl = Me
         '
         'Reservar
         '
@@ -690,6 +700,7 @@ Partial Class Reservar
         Me.pnlReserva.ResumeLayout(False)
         Me.pnlReserva.PerformLayout()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -752,4 +763,5 @@ Partial Class Reservar
     Friend WithEvents optSeñar As System.Windows.Forms.RadioButton
     Friend WithEvents txtNroRecibo As System.Windows.Forms.TextBox
     Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents epError As System.Windows.Forms.ErrorProvider
 End Class

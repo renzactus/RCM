@@ -160,7 +160,7 @@ Public Class Reservar
                 mysql.InsertarDatos("insert into clientes (cedula,nombre,telefonos,direccion) values('" & txtCedula.Text & "','" & txtNombre.Text & "','" &
                     telefonos & "','" & txtDireccion.Text & "')") 'Agregamos el cliente
             End If
-            If optSeñar.Checked And txtSeña.Text <> "" And txtSeña.Text <= lblPrecioFiesta.Text Then
+            If optSeñar.Checked = True And txtSeña.Text <> "" And txtSeña.Text <= lblPrecioFiesta.Text Then
                 mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dudHoraComienzo.Text & "','" & dudHoraFinal.Text & "'," &
                     dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
@@ -171,7 +171,7 @@ Public Class Reservar
                     dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))") 'Agregamos las reservas sin seña
             End If
-            If optPagado.Checked Then
+            If optPagado.Checked = True Then
                 mysql.InsertarDatos("Insert into pagos (NRO_RECIBO,fecha_pago,cuotas,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & ",current_date," &
                                     cuotas & "," & lblPrecioFiesta.Text & ",'" & cboModoPago.Text &
                                     "',(select id_reserva from reservas where ingresodatos=(select max(ingresodatos) from reservas)))")
@@ -276,7 +276,11 @@ Public Class Reservar
     End Sub
 
     Private Sub txtCedula_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCedula.KeyPress
-        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR
+        If txtCedula.Text.Length > 7 Then
+            e.Handled = IsNumeric(e.KeyChar)
+        End If
+        AvisarSiEstaVacio(txtCedula)
     End Sub
 
     Private Sub txtTelefono1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTelefono1.KeyPress
@@ -316,7 +320,8 @@ Public Class Reservar
         AutorellenarCliente()
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarCliente.Click
+    Private Sub btnEditarCliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarCliente.Click
+        btnAgregarDatos.Enabled = False
         lblEditandoCliente.Visible = True
         btnGuardarCliente.Visible = True
         txtCedula.Enabled = False
@@ -332,6 +337,7 @@ Public Class Reservar
         End If
         mysql.InsertarDatos("update clientes set nombre='" & txtNombre.Text & "', telefonos='" & telefonos & "', direccion='" & txtDireccion.Text & "' where cedula=" & txtCedula.Text)
         If mysql.Consultado = True Then
+            btnAgregarDatos.Enabled = True
             lblEditandoCliente.Visible = False
             btnGuardarCliente.Visible = False
             txtCedula.Enabled = True
@@ -342,17 +348,59 @@ Public Class Reservar
 
     Private Sub btnCancelarEdicion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarEdicion.Click
         AutorellenarCliente()
+        btnAgregarDatos.Enabled = True
         lblEditandoCliente.Visible = False
         btnGuardarCliente.Visible = False
         txtCedula.Enabled = True
         DeshabilitarEdicionDatosCliente(False)
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        MsgBox(cboCuotas.Text)
-        If cboCuotas.Text = "Ninguna" Then
-            MsgBox("ads")
+    Private Sub optSeñar_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optSeñar.CheckedChanged
+        If optSeñar.Checked = True Then
+            txtSeña.Enabled = True
+        Else
+            txtSeña.Enabled = False
+            txtSeña.Text = ""
         End If
     End Sub
 
+    Private Sub optPagado_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optPagado.CheckedChanged
+        If optPagado.Checked = True Then
+            cboCuotas.Enabled = True
+            txtNroRecibo.Enabled = True
+        Else
+            cboCuotas.Enabled = False
+            txtNroRecibo.Enabled = False
+            cboCuotas.SelectedIndex = -1
+            txtNroRecibo.Text = ""
+        End If
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        'Validar cedula
+        Dim a As Integer
+        a = (txtCedula.Text.Substring(1) * 8) + (txtCedula.Text.Substring(2) * 1) + (txtCedula.Text.Substring(3) * 2) + (txtCedula.Text.Substring(4) * 3) + (txtCedula.Text.Substring(5) * 4) + (txtCedula.Text.Substring(6) * 7) + (txtCedula.Text.Substring(7) * 6) Mod 10
+        MsgBox(a)
+        If txtCedula.Text.Substring(8) = "" Then
+        Else
+            MsgBox("Cedula Incorrecta")
+        End If
+    End Sub
+
+    Sub AvisarSiEstaVacio(ByVal txtBox As TextBox)
+        If txtBox.Text = "" Then
+            epError.SetError(txtBox, "Porfavor, Ingrese la Cedula")
+        Else
+            epError.SetError(txtBox, "")
+        End If
+    End Sub
+    Private Sub txtCedula_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtCedula.Validating
+        AvisarSiEstaVacio(txtCedula)
+    End Sub
+
+    Private Sub txtTelefono2_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtTelefono2.Validating
+        If btnAgregarTelefonos.Text = "-" Then
+            AvisarSiEstaVacio(txtTelefono2)
+        End If
+    End Sub
 End Class
