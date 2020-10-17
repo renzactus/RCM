@@ -164,7 +164,7 @@ Partial Class Reservar
         '
         'btnAgregarTelefonos
         '
-        Me.btnAgregarTelefonos.Location = New System.Drawing.Point(181, 146)
+        Me.btnAgregarTelefonos.Location = New System.Drawing.Point(188, 146)
         Me.btnAgregarTelefonos.Name = "btnAgregarTelefonos"
         Me.btnAgregarTelefonos.Size = New System.Drawing.Size(26, 23)
         Me.btnAgregarTelefonos.TabIndex = 12
