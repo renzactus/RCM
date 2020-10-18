@@ -35,22 +35,24 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
+        Me.cboModoPagoSeña = New System.Windows.Forms.ComboBox()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.txtNroRecibo = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.cboCuotas = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.optPagado = New System.Windows.Forms.RadioButton()
         Me.optSeñar = New System.Windows.Forms.RadioButton()
-        Me.cboModoPago = New System.Windows.Forms.ComboBox()
+        Me.cboModoPagoPagado = New System.Windows.Forms.ComboBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.lblPrecioFiesta = New System.Windows.Forms.Label()
         Me.btnGuardarCliente = New System.Windows.Forms.Button()
         Me.lblEditandoCliente = New System.Windows.Forms.Label()
-        Me.btnEditarCliente = New System.Windows.Forms.Button()
         Me.btnVolver = New System.Windows.Forms.Button()
         Me.txtSeña = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.btnEditarCliente = New System.Windows.Forms.Button()
         Me.btnCancelarEdicion = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlReserva = New System.Windows.Forms.Panel()
@@ -181,18 +183,19 @@ Partial Class Reservar
         '
         'pnlCliente
         '
+        Me.pnlCliente.Controls.Add(Me.cboModoPagoSeña)
+        Me.pnlCliente.Controls.Add(Me.Label17)
         Me.pnlCliente.Controls.Add(Me.txtNroRecibo)
         Me.pnlCliente.Controls.Add(Me.Label16)
         Me.pnlCliente.Controls.Add(Me.cboCuotas)
         Me.pnlCliente.Controls.Add(Me.Label15)
         Me.pnlCliente.Controls.Add(Me.optPagado)
         Me.pnlCliente.Controls.Add(Me.optSeñar)
-        Me.pnlCliente.Controls.Add(Me.cboModoPago)
+        Me.pnlCliente.Controls.Add(Me.cboModoPagoPagado)
         Me.pnlCliente.Controls.Add(Me.Label14)
         Me.pnlCliente.Controls.Add(Me.lblPrecioFiesta)
         Me.pnlCliente.Controls.Add(Me.btnGuardarCliente)
         Me.pnlCliente.Controls.Add(Me.lblEditandoCliente)
-        Me.pnlCliente.Controls.Add(Me.btnEditarCliente)
         Me.pnlCliente.Controls.Add(Me.btnVolver)
         Me.pnlCliente.Controls.Add(Me.txtSeña)
         Me.pnlCliente.Controls.Add(Me.Label10)
@@ -208,6 +211,7 @@ Partial Class Reservar
         Me.pnlCliente.Controls.Add(Me.txtDireccion)
         Me.pnlCliente.Controls.Add(Me.txtTelefono1)
         Me.pnlCliente.Controls.Add(Me.lblDireccion)
+        Me.pnlCliente.Controls.Add(Me.btnEditarCliente)
         Me.pnlCliente.Controls.Add(Me.btnCancelarEdicion)
         Me.pnlCliente.Location = New System.Drawing.Point(1, 1)
         Me.pnlCliente.Name = "pnlCliente"
@@ -215,10 +219,30 @@ Partial Class Reservar
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
         '
+        'cboModoPagoSeña
+        '
+        Me.cboModoPagoSeña.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboModoPagoSeña.Enabled = False
+        Me.cboModoPagoSeña.FormattingEnabled = True
+        Me.cboModoPagoSeña.Items.AddRange(New Object() {"Efectivo", "Efectivo con seña", "Tarjeta"})
+        Me.cboModoPagoSeña.Location = New System.Drawing.Point(117, 323)
+        Me.cboModoPagoSeña.Name = "cboModoPagoSeña"
+        Me.cboModoPagoSeña.Size = New System.Drawing.Size(94, 21)
+        Me.cboModoPagoSeña.TabIndex = 39
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(34, 326)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(79, 13)
+        Me.Label17.TabIndex = 38
+        Me.Label17.Text = "Modo de pago:"
+        '
         'txtNroRecibo
         '
         Me.txtNroRecibo.Enabled = False
-        Me.txtNroRecibo.Location = New System.Drawing.Point(423, 326)
+        Me.txtNroRecibo.Location = New System.Drawing.Point(416, 289)
         Me.txtNroRecibo.Name = "txtNroRecibo"
         Me.txtNroRecibo.Size = New System.Drawing.Size(75, 20)
         Me.txtNroRecibo.TabIndex = 37
@@ -226,7 +250,7 @@ Partial Class Reservar
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(339, 329)
+        Me.Label16.Location = New System.Drawing.Point(332, 292)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(81, 13)
         Me.Label16.TabIndex = 36
@@ -238,7 +262,7 @@ Partial Class Reservar
         Me.cboCuotas.Enabled = False
         Me.cboCuotas.FormattingEnabled = True
         Me.cboCuotas.Items.AddRange(New Object() {"Ninguna", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"})
-        Me.cboCuotas.Location = New System.Drawing.Point(423, 297)
+        Me.cboCuotas.Location = New System.Drawing.Point(416, 323)
         Me.cboCuotas.Name = "cboCuotas"
         Me.cboCuotas.Size = New System.Drawing.Size(75, 21)
         Me.cboCuotas.TabIndex = 35
@@ -246,7 +270,7 @@ Partial Class Reservar
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(339, 300)
+        Me.Label15.Location = New System.Drawing.Point(332, 326)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(40, 13)
         Me.Label15.TabIndex = 34
@@ -274,20 +298,21 @@ Partial Class Reservar
         Me.optSeñar.Text = "Señar"
         Me.optSeñar.UseVisualStyleBackColor = True
         '
-        'cboModoPago
+        'cboModoPagoPagado
         '
-        Me.cboModoPago.FormattingEnabled = True
-        Me.cboModoPago.Items.AddRange(New Object() {"Efectivo", "Efectivo con seña", "Tarjeta"})
-        Me.cboModoPago.Location = New System.Drawing.Point(476, 105)
-        Me.cboModoPago.Name = "cboModoPago"
-        Me.cboModoPago.Size = New System.Drawing.Size(94, 21)
-        Me.cboModoPago.TabIndex = 31
-        Me.cboModoPago.Text = "Seleccionar"
+        Me.cboModoPagoPagado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboModoPagoPagado.Enabled = False
+        Me.cboModoPagoPagado.FormattingEnabled = True
+        Me.cboModoPagoPagado.Items.AddRange(New Object() {"Efectivo", "Efectivo con seña", "Tarjeta"})
+        Me.cboModoPagoPagado.Location = New System.Drawing.Point(415, 357)
+        Me.cboModoPagoPagado.Name = "cboModoPagoPagado"
+        Me.cboModoPagoPagado.Size = New System.Drawing.Size(94, 21)
+        Me.cboModoPagoPagado.TabIndex = 31
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(393, 108)
+        Me.Label14.Location = New System.Drawing.Point(332, 360)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(79, 13)
         Me.Label14.TabIndex = 30
@@ -324,16 +349,6 @@ Partial Class Reservar
         Me.lblEditandoCliente.Text = "Editar Cliente"
         Me.lblEditandoCliente.Visible = False
         '
-        'btnEditarCliente
-        '
-        Me.btnEditarCliente.Location = New System.Drawing.Point(196, 62)
-        Me.btnEditarCliente.Name = "btnEditarCliente"
-        Me.btnEditarCliente.Size = New System.Drawing.Size(60, 27)
-        Me.btnEditarCliente.TabIndex = 21
-        Me.btnEditarCliente.Text = "Editar"
-        Me.btnEditarCliente.UseVisualStyleBackColor = True
-        Me.btnEditarCliente.Visible = False
-        '
         'btnVolver
         '
         Me.btnVolver.Location = New System.Drawing.Point(11, 11)
@@ -368,6 +383,16 @@ Partial Class Reservar
         Me.Label9.Size = New System.Drawing.Size(89, 13)
         Me.Label9.TabIndex = 14
         Me.Label9.Text = "Precio de Fiesta: "
+        '
+        'btnEditarCliente
+        '
+        Me.btnEditarCliente.Location = New System.Drawing.Point(196, 62)
+        Me.btnEditarCliente.Name = "btnEditarCliente"
+        Me.btnEditarCliente.Size = New System.Drawing.Size(60, 27)
+        Me.btnEditarCliente.TabIndex = 21
+        Me.btnEditarCliente.Text = "Editar"
+        Me.btnEditarCliente.UseVisualStyleBackColor = True
+        Me.btnEditarCliente.Visible = False
         '
         'btnCancelarEdicion
         '
@@ -755,7 +780,7 @@ Partial Class Reservar
     Friend WithEvents btnGuardarCliente As System.Windows.Forms.Button
     Friend WithEvents btnCancelarEdicion As System.Windows.Forms.Button
     Friend WithEvents lblPrecioFiesta As System.Windows.Forms.Label
-    Friend WithEvents cboModoPago As System.Windows.Forms.ComboBox
+    Friend WithEvents cboModoPagoPagado As System.Windows.Forms.ComboBox
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents cboCuotas As System.Windows.Forms.ComboBox
     Friend WithEvents Label15 As System.Windows.Forms.Label
@@ -764,4 +789,6 @@ Partial Class Reservar
     Friend WithEvents txtNroRecibo As System.Windows.Forms.TextBox
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents epError As System.Windows.Forms.ErrorProvider
+    Friend WithEvents cboModoPagoSeña As System.Windows.Forms.ComboBox
+    Friend WithEvents Label17 As System.Windows.Forms.Label
 End Class
