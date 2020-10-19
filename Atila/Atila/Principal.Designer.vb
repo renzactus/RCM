@@ -40,7 +40,7 @@ Partial Class Principal
         'btnRealizarunareserva
         '
         Me.btnRealizarunareserva.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnRealizarunareserva.Location = New System.Drawing.Point(473, 226)
+        Me.btnRealizarunareserva.Location = New System.Drawing.Point(468, 164)
         Me.btnRealizarunareserva.Name = "btnRealizarunareserva"
         Me.btnRealizarunareserva.Size = New System.Drawing.Size(320, 55)
         Me.btnRealizarunareserva.TabIndex = 0
@@ -59,7 +59,7 @@ Partial Class Principal
         'btnListadereservas
         '
         Me.btnListadereservas.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnListadereservas.Location = New System.Drawing.Point(473, 285)
+        Me.btnListadereservas.Location = New System.Drawing.Point(468, 223)
         Me.btnListadereservas.Name = "btnListadereservas"
         Me.btnListadereservas.Size = New System.Drawing.Size(320, 55)
         Me.btnListadereservas.TabIndex = 16

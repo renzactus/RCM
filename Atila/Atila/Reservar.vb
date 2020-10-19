@@ -21,7 +21,7 @@ Public Class Reservar
         Me.BackColor = Color.FromArgb(191, 128, 130)
         Calendario.MinDate = DateAndTime.Today
         Calendario.MaxDate = DateAdd("yyyy", 3, DateAndTime.Today)
-        mysql.Consultar("select distinct fecha from reservas")
+        mysql.Consultar("select distinct fecha from reservas where fecha_cancelacion is null")
         If mysql.Consultado = True Then
             For i = 0 To mysql.Resultado.Rows.Count - 1
                 Calendario.AddBoldedDate(mysql.Resultado.Rows(i).Item("fecha"))
@@ -48,7 +48,7 @@ Public Class Reservar
         lblHora1.Visible = False
         lblHora2.Visible = False
         lblHora3.Visible = False
-        mysql.Consultar("select motivo,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "';")
+        mysql.Consultar("select motivo,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
         If mysql.Consultado = True Then
             If mysql.Resultado.Rows.Count() = 1 Then
                 lblNoHayReservas.Visible = False
@@ -167,7 +167,10 @@ Public Class Reservar
                     epError.SetError(Calendario, "Se supero el maximo de reservas en un día")
                 ElseIf ReservasEntreEsaHora > 0 Then
                     MsgBox("Horario Ocupado")
-                ElseIf booleanErrorEndgv = False Then
+                ElseIf dtpHoraComienzo.Text = dtpHoraFinal.Text Then
+                    epError.SetError(dtpHoraComienzo, "La Hora de comienzo de fiesta no puede ser la misma que la hora final")
+                    epError.SetError(dtpHoraFinal, "La Hora de comienzo de fiesta no puede ser la misma que la hora final")
+                ElseIf booleanErrorEndgv = False Then 'Si no hay errores
                     PasarAlSiguientePanel()
                     ActualizarDatosCliente()
                     AutoCompletar()
@@ -178,6 +181,7 @@ Public Class Reservar
             End If
         End If
     End Sub
+
     Private Sub ChequeardgvInventario()
         For i = 0 To dgvInventario.Rows.Count - 1
             If dgvInventario.Rows(i).Cells(0).Value = True Then
@@ -196,13 +200,13 @@ Public Class Reservar
         Next
     End Sub
     Private Sub consultarCantidadDeReservasEnElDiaSeleccionado()
-        mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "'") 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
+        mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null") 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
     End Sub
     Private Sub consultarChequearSiLaHoraEstaOcupada()
         mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
                 dtpHoraComienzo.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
                 dtpHoraFinal.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
-                dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(final,'1:00:00')));")
+                dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(final,'1:00:00'))) and fecha_cancelacion is null")
     End Sub
     Private Sub AvisarSiHayDatosDeReservasVacios()
         AvisarSiEstaVacio(dtpHoraComienzo)
@@ -273,9 +277,13 @@ Public Class Reservar
             sonidoError()
         ElseIf txtCedula.Text.Substring(7) <> sumaCedula Mod 10 Then
             epError.SetError(txtCedula, "Porfavor, Ingrese una cedula valida")
+            sonidoError()
         ElseIf optSeñar.Checked = False And optPagado.Checked = False Then
             epError.SetError(optPagado, "Porfavor, Marque y complete alguna de las dos opciones")
             epError.SetError(optSeñar, "Porfavor, Marque y complete alguna de las dos opciones")
+            sonidoError()
+        ElseIf optSeñar.Checked = True And CInt(txtSeña.Text) > CInt(lblPrecioFiesta.Text) Then
+            epError.SetError(txtSeña, "La seña no puede ser mayor al precio total")
             sonidoError()
         ElseIf optSeñar.Checked = True And (txtSeña.Text = "" Or cboModoPagoSeña.SelectedIndex = -1) Then 'Señar
             AvisarSiEstaVacio(txtSeña)
@@ -344,25 +352,26 @@ Public Class Reservar
     Private Sub insertarReservasConSeña()
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
-                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "')")
     End Sub
     Private Sub insertarPago()
+
         mysql.InsertarDatos("Insert into pagos (NRO_RECIBO,fecha_pago,cuotas,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & ",current_date," &
                                     cuotas & "," & lblPrecioFiesta.Text & ",'" & cboModoPagoPagado.Text &
-                                    "',(select id_reserva from reservas where ingresodatos=(select max(ingresodatos) from reservas)))")
+                                    "',(select id_reserva from reservas where ingresodatos=(select max(ingresodatos) from reservas where fecha_cancelacion is null)))")
     End Sub
     Private Sub insertarReservasSinSeña()
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
-                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where nombre='" & txtNombre.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
     End Sub
     Private Sub insertarInventario()
         For i = 0 To Inventario.Rows.Count - 1
             If dgvInventario.Rows(i).Cells(0).Value = True Then
                 mysql.InsertarDatos("insert into utiliza (ID_RESERVA,ID_INVENTARIO,cantidad) values((select ID_RESERVA from reservas where " &
-                                                    "ingresodatos=(select max(ingresodatos) from reservas))," & Inventario.Rows(i).Item("ID_INVENTARIO") & "," &
+                                                    "ingresodatos=(select max(ingresodatos) from reservas where fecha_cancelacion is null))," & Inventario.Rows(i).Item("ID_INVENTARIO") & "," &
                                                     dgvInventario.Rows(i).Cells(2).Value & ")")
             End If
         Next
@@ -428,6 +437,7 @@ Public Class Reservar
 
     Private Sub txtSeña_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtSeña.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+        epError.SetError(txtSeña, "")
     End Sub
 
     Private Sub dgvInventario_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvInventario.CellValueChanged
@@ -571,8 +581,40 @@ Public Class Reservar
         AvisarSiEstaVacio(dudCantidadPersonas)
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        MsgBox(dudCantidadPersonas.Text)
+    Private Sub dtpHoraComienzo_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpHoraComienzo.ValueChanged
+        epError.SetError(dtpHoraComienzo, "")
+        epError.SetError(dtpHoraFinal, "")
+
     End Sub
 
+    Private Sub dtpHoraFinal_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpHoraFinal.ValueChanged
+        epError.SetError(dtpHoraComienzo, "")
+        epError.SetError(dtpHoraFinal, "")
+    End Sub
+
+    Private Sub cboModoPagoSeña_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboModoPagoSeña.SelectedIndexChanged
+        epError.SetError(cboModoPagoSeña, "")
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        MsgBox(cboCuotas.Text)
+    End Sub
+
+    
+    
+    Private Sub btnEditarPrecioFiesta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarPrecioFiesta.Click
+        txtPrecioFiesta.Visible = True
+        btnGuardarPrecioFiesta.Visible = True
+        txtPrecioFiesta.Text = lblPrecioFiesta.Text
+    End Sub
+
+    Private Sub btnGuardarPrecioFiesta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardarPrecioFiesta.Click
+        lblPrecioFiesta.Text = txtPrecioFiesta.Text
+        txtPrecioFiesta.Visible = False
+        btnGuardarPrecioFiesta.Visible = False
+    End Sub
+
+    Private Sub txtPrecioFiesta_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPrecioFiesta.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsPunctuation(e.KeyChar)
+    End Sub
 End Class

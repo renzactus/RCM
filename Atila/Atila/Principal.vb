@@ -6,6 +6,7 @@ Public Class Principal
         Me.BackColor = colorprincipal
         pnlArriba.BackColor = Color.FromArgb(colorsecundario.R, colorsecundario.G, colorsecundario.B)
     End Sub
+
     'Importamos dll de windows para mover la pestaña arrastrando en el pnlArriba
     <DllImport("user32.DLL", EntryPoint:="ReleaseCapture")>
     Public Shared Sub ReleaseCapture()
