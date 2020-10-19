@@ -56,6 +56,8 @@ Partial Class Reservar
         Me.btnCancelarEdicion = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlReserva = New System.Windows.Forms.Panel()
+        Me.dtpHoraFinal = New System.Windows.Forms.DateTimePicker()
+        Me.dtpHoraComienzo = New System.Windows.Forms.DateTimePicker()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -80,8 +82,6 @@ Partial Class Reservar
         Me.cboMotivo = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.dudHoraFinal = New System.Windows.Forms.DomainUpDown()
-        Me.dudHoraComienzo = New System.Windows.Forms.DomainUpDown()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
@@ -415,6 +415,8 @@ Partial Class Reservar
         '
         'pnlReserva
         '
+        Me.pnlReserva.Controls.Add(Me.dtpHoraFinal)
+        Me.pnlReserva.Controls.Add(Me.dtpHoraComienzo)
         Me.pnlReserva.Controls.Add(Me.Label13)
         Me.pnlReserva.Controls.Add(Me.Label12)
         Me.pnlReserva.Controls.Add(Me.Label11)
@@ -436,14 +438,32 @@ Partial Class Reservar
         Me.pnlReserva.Controls.Add(Me.cboMotivo)
         Me.pnlReserva.Controls.Add(Me.Label5)
         Me.pnlReserva.Controls.Add(Me.Label4)
-        Me.pnlReserva.Controls.Add(Me.dudHoraFinal)
-        Me.pnlReserva.Controls.Add(Me.dudHoraComienzo)
         Me.pnlReserva.Controls.Add(Me.btnSiguiente)
         Me.pnlReserva.Controls.Add(Me.Calendario)
         Me.pnlReserva.Location = New System.Drawing.Point(1, 1)
         Me.pnlReserva.Name = "pnlReserva"
         Me.pnlReserva.Size = New System.Drawing.Size(639, 543)
         Me.pnlReserva.TabIndex = 16
+        '
+        'dtpHoraFinal
+        '
+        Me.dtpHoraFinal.CustomFormat = "H:mm"
+        Me.dtpHoraFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHoraFinal.Location = New System.Drawing.Point(408, 113)
+        Me.dtpHoraFinal.Name = "dtpHoraFinal"
+        Me.dtpHoraFinal.ShowUpDown = True
+        Me.dtpHoraFinal.Size = New System.Drawing.Size(59, 20)
+        Me.dtpHoraFinal.TabIndex = 28
+        '
+        'dtpHoraComienzo
+        '
+        Me.dtpHoraComienzo.CustomFormat = "H:mm"
+        Me.dtpHoraComienzo.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHoraComienzo.Location = New System.Drawing.Point(408, 74)
+        Me.dtpHoraComienzo.Name = "dtpHoraComienzo"
+        Me.dtpHoraComienzo.ShowUpDown = True
+        Me.dtpHoraComienzo.Size = New System.Drawing.Size(59, 20)
+        Me.dtpHoraComienzo.TabIndex = 27
         '
         'Label13
         '
@@ -468,7 +488,7 @@ Partial Class Reservar
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(386, 253)
+        Me.Label11.Location = New System.Drawing.Point(386, 257)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(95, 13)
         Me.Label11.TabIndex = 23
@@ -491,7 +511,7 @@ Partial Class Reservar
         Me.dgvInventario.AllowUserToResizeRows = False
         Me.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvInventario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Marcado, Me.Descripcion, Me.Cantidad})
-        Me.dgvInventario.Location = New System.Drawing.Point(385, 276)
+        Me.dgvInventario.Location = New System.Drawing.Point(385, 280)
         Me.dgvInventario.MultiSelect = False
         Me.dgvInventario.Name = "dgvInventario"
         Me.dgvInventario.RowHeadersVisible = False
@@ -601,7 +621,7 @@ Partial Class Reservar
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(420, 221)
+        Me.Label8.Location = New System.Drawing.Point(419, 215)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(48, 13)
         Me.Label8.TabIndex = 11
@@ -610,7 +630,7 @@ Partial Class Reservar
         'chkServicio
         '
         Me.chkServicio.AutoSize = True
-        Me.chkServicio.Location = New System.Drawing.Point(437, 237)
+        Me.chkServicio.Location = New System.Drawing.Point(436, 231)
         Me.chkServicio.Name = "chkServicio"
         Me.chkServicio.Size = New System.Drawing.Size(15, 14)
         Me.chkServicio.TabIndex = 10
@@ -619,7 +639,7 @@ Partial Class Reservar
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(387, 182)
+        Me.Label7.Location = New System.Drawing.Point(386, 176)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(111, 13)
         Me.Label7.TabIndex = 9
@@ -628,7 +648,7 @@ Partial Class Reservar
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(413, 142)
+        Me.Label6.Location = New System.Drawing.Point(412, 136)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(39, 13)
         Me.Label6.TabIndex = 8
@@ -636,18 +656,19 @@ Partial Class Reservar
         '
         'dudCantidadPersonas
         '
-        Me.dudCantidadPersonas.Location = New System.Drawing.Point(384, 198)
+        Me.dudCantidadPersonas.Location = New System.Drawing.Point(408, 192)
         Me.dudCantidadPersonas.Name = "dudCantidadPersonas"
-        Me.dudCantidadPersonas.Size = New System.Drawing.Size(120, 20)
+        Me.dudCantidadPersonas.Size = New System.Drawing.Size(59, 20)
         Me.dudCantidadPersonas.TabIndex = 7
         Me.dudCantidadPersonas.Text = "0"
+        Me.dudCantidadPersonas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'cboMotivo
         '
         Me.cboMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboMotivo.FormattingEnabled = True
         Me.cboMotivo.Items.AddRange(New Object() {"Fiesta de 15", "Cumpleaño de niño", "Parrillada", "Graduación", "Otro"})
-        Me.cboMotivo.Location = New System.Drawing.Point(384, 158)
+        Me.cboMotivo.Location = New System.Drawing.Point(383, 152)
         Me.cboMotivo.Name = "cboMotivo"
         Me.cboMotivo.Size = New System.Drawing.Size(121, 21)
         Me.cboMotivo.TabIndex = 6
@@ -655,7 +676,7 @@ Partial Class Reservar
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(413, 103)
+        Me.Label5.Location = New System.Drawing.Point(412, 97)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(55, 13)
         Me.Label5.TabIndex = 5
@@ -664,27 +685,11 @@ Partial Class Reservar
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(387, 64)
+        Me.Label4.Location = New System.Drawing.Point(386, 58)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(94, 13)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Hora de Comienzo"
-        '
-        'dudHoraFinal
-        '
-        Me.dudHoraFinal.Location = New System.Drawing.Point(384, 119)
-        Me.dudHoraFinal.Name = "dudHoraFinal"
-        Me.dudHoraFinal.Size = New System.Drawing.Size(120, 20)
-        Me.dudHoraFinal.TabIndex = 3
-        Me.dudHoraFinal.Text = "23:59"
-        '
-        'dudHoraComienzo
-        '
-        Me.dudHoraComienzo.Location = New System.Drawing.Point(384, 80)
-        Me.dudHoraComienzo.Name = "dudHoraComienzo"
-        Me.dudHoraComienzo.Size = New System.Drawing.Size(120, 20)
-        Me.dudHoraComienzo.TabIndex = 2
-        Me.dudHoraComienzo.Text = "0:00"
         '
         'btnSiguiente
         '
@@ -716,8 +721,8 @@ Partial Class Reservar
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 556)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.pnlCliente)
         Me.Controls.Add(Me.pnlReserva)
+        Me.Controls.Add(Me.pnlCliente)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)
@@ -743,8 +748,6 @@ Partial Class Reservar
     Friend WithEvents pnlReserva As System.Windows.Forms.Panel
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents dudHoraFinal As System.Windows.Forms.DomainUpDown
-    Friend WithEvents dudHoraComienzo As System.Windows.Forms.DomainUpDown
     Friend WithEvents btnSiguiente As System.Windows.Forms.Button
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents chkServicio As System.Windows.Forms.CheckBox
@@ -791,4 +794,6 @@ Partial Class Reservar
     Friend WithEvents epError As System.Windows.Forms.ErrorProvider
     Friend WithEvents cboModoPagoSeña As System.Windows.Forms.ComboBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents dtpHoraComienzo As System.Windows.Forms.DateTimePicker
+    Friend WithEvents dtpHoraFinal As System.Windows.Forms.DateTimePicker
 End Class
