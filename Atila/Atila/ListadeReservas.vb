@@ -8,7 +8,7 @@
     End Sub
     'Metodos utilizados
     Private Sub MostrarReservasDelDia()
-        lblFecha.Text = Calendario.SelectionRange.Start
+        lblFechaSeleccionada.Text = Calendario.SelectionRange.Start
         lblNoHayReservas.Visible = True
         llblMotivoReserva1.Visible = False
         llblMotivoReserva2.Visible = False
@@ -61,34 +61,40 @@
         End If
     End Sub
 
-    Private Sub VaciarLista()
+    Private Sub MostrarDatosDeReserva()
+        ConsultarDatosDeReservaConSuCliente()
+        If mysql.Consultado = True Then
 
-    End Sub
-    Private Sub ListarReservasDelMesSeleccionado()
 
-        mysql.Consultar("select month(fecha) as mes,year(fecha) as year,motivo,cantidad_personas,id_cliente from reservas where month(fecha)=" & cboMes.SelectedIndex + 1 & " and fecha_cancelacion is null")
-        For i = 0 To mysql.Resultado.Rows.Count - 1
-            dgvFiltrarReservas.Rows.Add(mysql.Resultado.Rows(i).Item("mes") & "/" & mysql.Resultado.Rows(i).Item("year"), mysql.Resultado.Rows(i).Item("motivo"), mysql.Resultado.Rows(i).Item("cantidad_personas"))
-        Next
+            lblMotivo.Text = mysql.Resultado.Rows(0).Item("motivo")
+            lblFecha.Text = mysql.Resultado.Rows(0).Item("fecha")
+            lblHora.Text = mysql.Resultado.Rows(0).Item("comienzo").ToString & " - " & mysql.Resultado.Rows(0).Item("final").ToString
+            lblPersonas.Text = mysql.Resultado.Rows(0).Item("cantidad_personas")
+            lblServicio.Text = mysql.Resultado.Rows(0).Item("servicio")
+            lblCliente.Text = mysql.Resultado.Rows(0).Item("nombre")
+            If Not IsDBNull(mysql.Resultado.Rows(0).Item("s")) Then
+                lblSeña.Text = mysql.Resultado.Rows(0).Item("s")
+            End If
+
+
+        End If
     End Sub
+    Private Sub ConsultarDatosDeReservaConSuCliente()
+        mysql.Consultar("select motivo,fecha,comienzo,final,cantidad_personas,servicio,nombre,seña as s from reservas inner join " &
+                        "clientes on reservas.id_cliente=clientes.id_cliente where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "'")
+    End Sub
+
 
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
         MostrarReservasDelDia()
+        MostrarDatosDeReserva()
     End Sub
 
-    Private Sub cboMes_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboMes.SelectedIndexChanged
-        VaciarLista()
-        ListarReservasDelMesSeleccionado()
-    End Sub
 
-    Private Sub cboFiltrarPor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboFiltrarPor.SelectedIndexChanged
-        If cboFiltrarPor.Text = "Mes" Then
-            cboMes.SelectedIndex = DateAndTime.Now.Month - 1
-            cboMes.Visible = True
-        End If
+    Private Sub cboFiltrarPor_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        MsgBox(cboMes.SelectedIndex + 1)
+
     End Sub
 End Class
