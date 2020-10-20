@@ -1,6 +1,6 @@
 ﻿
 Public Class Reservar
-    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente As Boolean
+    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente, booleanNroReciboUnico, booleanSeñaMayorQuePrecioTotal As Boolean
     Dim mysql As New MySQL
     Dim telefonos As String
     Dim Inventario, DatosClientes As DataTable
@@ -142,13 +142,15 @@ Public Class Reservar
             epError.SetError(txtBox, "")
         End If
     End Sub
+    Private Sub sonidoError()
+        My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
+    End Sub
     
     'Usados al pasar al segundo panel
 
     Private Sub ChequearAntesDeSiguiente()
 
-        booleanErrorEndgv = False
-        ChequeardgvInventario()
+        chequeardgvInventario()
         consultarCantidadDeReservasEnElDiaSeleccionado()
         ReservasEnElDiaSeleccionado = mysql.Resultado.Rows.Count()
         If mysql.Consultado = True Then
@@ -161,11 +163,16 @@ Public Class Reservar
                     AvisarSiHayDatosDeReservasVacios()
                 ElseIf ReservasEnElDiaSeleccionado > 2 Then
                     epError.SetError(Calendario, "Se supero el maximo de reservas en un día")
+                    sonidoError()
                 ElseIf ReservasEntreEsaHora > 0 Then
                     MsgBox("Horario Ocupado")
+                    sonidoError()
                 ElseIf dtpHoraComienzo.Text = dtpHoraFinal.Text Then
                     epError.SetError(dtpHoraComienzo, "La Hora de comienzo de fiesta no puede ser la misma que la hora final")
                     epError.SetError(dtpHoraFinal, "La Hora de comienzo de fiesta no puede ser la misma que la hora final")
+                    sonidoError()
+                ElseIf booleanErrorEndgv = True Then
+                    sonidoError()
                 ElseIf booleanErrorEndgv = False Then 'Si no hay errores
                     PasarAlSiguientePanel()
                     ActualizarDatosCliente()
@@ -178,7 +185,8 @@ Public Class Reservar
         End If
     End Sub
 
-    Private Sub ChequeardgvInventario()
+    Private Sub chequeardgvInventario()
+        booleanErrorEndgv = False
         For i = 0 To dgvInventario.Rows.Count - 1
             If dgvInventario.Rows(i).Cells(0).Value = True Then
                 If dgvInventario.Rows(i).Cells(2).Value = "" Then
@@ -191,7 +199,11 @@ Public Class Reservar
                     dgvInventario.Rows(i).Cells(2).Selected = True
                     dgvInventario.Select()
                     booleanErrorEndgv = True
+                Else
+                    dgvInventario.Rows(i).Cells(2).ErrorText = ""
                 End If
+            Else
+                dgvInventario.Rows(i).Cells(2).ErrorText = ""
             End If
         Next
     End Sub
@@ -211,6 +223,7 @@ Public Class Reservar
         AvisarSiEstaVacio(nudCantidadPersonas)
         If nudCantidadPersonas.Text = "0" Then
             epError.SetError(nudCantidadPersonas, "Porfavor, ingrese un numero distinto a 0 en " & nudCantidadPersonas.Name.Substring(3))
+            sonidoError()
         Else
             epError.SetError(nudCantidadPersonas, "")
         End If
@@ -248,20 +261,20 @@ Public Class Reservar
             If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
                 PrecioTotal = PrecioTotal + PrecioTotal / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
             End If
+            lblPrecioFiesta.Text = PrecioTotal
         End If
     End Sub
     Private Sub consultarUltimaActualizacionDeCostos()
         mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
     End Sub
+
     'Agregar datos
     Private Sub ChequearCamposAntesDeContinuar()
         telefonos = vbNull
         cuotas = vbNull
-        If txtCedula.Text <> "" And txtCedula.Text.Length = 8 Then
-            sumaCedula = (txtCedula.Text.Substring(0, 1) * 8) + (txtCedula.Text.Substring(1, 1) * 1) + (txtCedula.Text.Substring(2, 1) * 2) +
-                (txtCedula.Text.Substring(3, 1) * 3) + (txtCedula.Text.Substring(4, 1) * 4) + (txtCedula.Text.Substring(5, 1) * 7) + (txtCedula.Text.Substring(6, 1) * 6)
-        End If
-
+        SiLaCedulaTiene8CaracteresEstablecersumaCedula()
+        chequearSiSeñaMayorQuePrecioTotal()
+        chequearQueNroReciboSeaUnico()
         If txtCedula.Text.Length < 8 Then
             epError.SetError(txtCedula, "Cedula Incompleta")
             sonidoError()
@@ -278,7 +291,7 @@ Public Class Reservar
             epError.SetError(optPagado, "Porfavor, Marque y complete alguna de las dos opciones")
             epError.SetError(optSeñar, "Porfavor, Marque y complete alguna de las dos opciones")
             sonidoError()
-        ElseIf optSeñar.Checked = True And txtSeña.Text > PrecioTotal Then
+        ElseIf booleanSeñaMayorQuePrecioTotal = True Then
             epError.SetError(txtSeña, "La seña no puede ser mayor al precio total")
             sonidoError()
         ElseIf optSeñar.Checked = True And (txtSeña.Text = "" Or cboModoPagoSeña.SelectedIndex = -1) Then 'Señar
@@ -290,11 +303,40 @@ Public Class Reservar
             AvisarSiEstaVacio(cboCuotas)
             AvisarSiEstaVacio(cboModoPagoPagado)
             sonidoError()
-        Else 'Si no hay cuadros incompletos
+        ElseIf booleanNroReciboUnico = False And txtNroRecibo.Text <> "" Then 'Si no hay cuadros incompletos
+            epError.SetError(txtNroRecibo, "Ya existe un numero de recibo igual, ingrese otro")
+        Else
             insertarDatos()
         End If
     End Sub
 
+    Private Sub SiLaCedulaTiene8CaracteresEstablecersumaCedula()
+        If txtCedula.Text <> "" And txtCedula.Text.Length = 8 Then
+            sumaCedula = (txtCedula.Text.Substring(0, 1) * 8) + (txtCedula.Text.Substring(1, 1) * 1) + (txtCedula.Text.Substring(2, 1) * 2) +
+                (txtCedula.Text.Substring(3, 1) * 3) + (txtCedula.Text.Substring(4, 1) * 4) + (txtCedula.Text.Substring(5, 1) * 7) + (txtCedula.Text.Substring(6, 1) * 6)
+        End If
+    End Sub
+    Private Sub chequearSiSeñaMayorQuePrecioTotal()
+        booleanSeñaMayorQuePrecioTotal = False
+        If optSeñar.Checked = True And txtSeña.Text <> "" Then
+            If txtSeña.Text > PrecioTotal Then
+                booleanSeñaMayorQuePrecioTotal = True
+            End If
+        End If
+    End Sub
+    Private Sub chequearQueNroReciboSeaUnico()
+        If txtNroRecibo.Text <> "" Then
+            booleanNroReciboUnico = True
+            mysql.Consultar("select nro_recibo from pagos")
+            If mysql.Consultado = True Then
+                For i = 0 To mysql.Resultado.Rows.Count - 1
+                    If mysql.Resultado.Rows(i).Item("nro_recibo") = txtNroRecibo.Text Then
+                        booleanNroReciboUnico = False
+                    End If
+                Next
+            End If
+        End If
+    End Sub
     Private Sub AvisarSiHayDatosDeClientesVacios()
         AvisarSiEstaVacio(txtCedula)
         AvisarSiEstaVacio(txtNombre)
@@ -303,9 +345,6 @@ Public Class Reservar
         If btnAgregarTelefonos.Text = "-" Then
             AvisarSiEstaVacio(txtTelefono2)
         End If
-    End Sub
-    Private Sub sonidoError()
-        My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
     End Sub
 
     Private Sub insertarDatos()
@@ -348,20 +387,20 @@ Public Class Reservar
     Private Sub insertarReservasConSeña()
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
-                    nudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "')")
+    End Sub
+    Private Sub insertarReservasSinSeña()
+        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
+                    cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
+                    nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
     End Sub
     Private Sub insertarPago()
 
         mysql.InsertarDatos("Insert into pagos (NRO_RECIBO,fecha_pago,cuotas,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & ",current_date," &
                                     cuotas & "," & lblPrecioFiesta.Text & ",'" & cboModoPagoPagado.Text &
                                     "',(select id_reserva from reservas where ingresodatos=(select max(ingresodatos) from reservas where fecha_cancelacion is null)))")
-    End Sub
-    Private Sub insertarReservasSinSeña()
-        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
-                    cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
-                    nudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
-                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
     End Sub
     Private Sub insertarInventario()
         For i = 0 To Inventario.Rows.Count - 1
@@ -430,15 +469,17 @@ Public Class Reservar
     End Sub
 
     Private Sub dgvInventario_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvInventario.CellValueChanged
-        If booleanClaseConstruida = True Then
-            If dgvInventario.Rows(e.RowIndex).Cells(0).Value = True Then
-                dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = False
-            Else
-                dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = True
-                dgvInventario.Rows(e.RowIndex).Cells(2).Value = ""
-            End If
+        chequeardgvInventario()
+            epError.SetError(dgvInventario, "")
+            If booleanClaseConstruida = True Then
+                If dgvInventario.Rows(e.RowIndex).Cells(0).Value = True Then
+                    dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = False
+                Else
+                    dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = True
+                    dgvInventario.Rows(e.RowIndex).Cells(2).Value = ""
+                End If
 
-        End If
+            End If
     End Sub
 
     Private Sub btnVolver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVolver.Click
@@ -492,6 +533,8 @@ Public Class Reservar
     Private Sub optSeñar_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optSeñar.CheckedChanged
         epError.SetError(optPagado, "")
         epError.SetError(optSeñar, "")
+        epError.SetError(cboModoPagoSeña, "")
+        epError.SetError(txtSeña, "")
         If optSeñar.Checked = True Then
             txtSeña.Enabled = True
             cboModoPagoSeña.Enabled = True
@@ -506,6 +549,9 @@ Public Class Reservar
     Private Sub optPagado_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optPagado.CheckedChanged
         epError.SetError(optPagado, "")
         epError.SetError(optSeñar, "")
+        epError.SetError(cboModoPagoPagado, "")
+        epError.SetError(cboCuotas, "")
+        epError.SetError(txtNroRecibo, "")
         If optPagado.Checked = True Then
             cboCuotas.Enabled = True
             txtNroRecibo.Enabled = True
@@ -581,22 +627,19 @@ Public Class Reservar
         epError.SetError(cboModoPagoSeña, "")
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        MsgBox(cboCuotas.Text)
-    End Sub
-
-    
-    
     Private Sub btnEditarPrecioFiesta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarPrecioFiesta.Click
         txtPrecioFiesta.Visible = True
         btnGuardarPrecioFiesta.Visible = True
-        txtPrecioFiesta.Text = lblPrecioFiesta.Text
+        txtPrecioFiesta.Text = PrecioTotal
+        btnAgregarDatos.Enabled = False
     End Sub
 
     Private Sub btnGuardarPrecioFiesta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardarPrecioFiesta.Click
-        lblPrecioFiesta.Text = txtPrecioFiesta.Text
+        PrecioTotal = txtPrecioFiesta.Text
         txtPrecioFiesta.Visible = False
         btnGuardarPrecioFiesta.Visible = False
+        lblPrecioFiesta.Text = PrecioTotal
+        btnAgregarDatos.Enabled = True
     End Sub
 
     Private Sub txtPrecioFiesta_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPrecioFiesta.KeyPress
@@ -613,4 +656,9 @@ Public Class Reservar
             e.Handled = True And Not Char.IsControl(e.KeyChar)
         End If
     End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        MsgBox(cboCuotas.Text)
+    End Sub
+
 End Class

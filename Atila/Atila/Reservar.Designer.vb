@@ -58,6 +58,7 @@ Partial Class Reservar
         Me.btnGuardarPrecioFiesta = New System.Windows.Forms.Button()
         Me.btnEditarPrecioFiesta = New System.Windows.Forms.Button()
         Me.pnlReserva = New System.Windows.Forms.Panel()
+        Me.nudCantidadPersonas = New System.Windows.Forms.NumericUpDown()
         Me.dtpHoraFinal = New System.Windows.Forms.DateTimePicker()
         Me.dtpHoraComienzo = New System.Windows.Forms.DateTimePicker()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -86,12 +87,11 @@ Partial Class Reservar
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.nudCantidadPersonas = New System.Windows.Forms.NumericUpDown()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
+        CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
@@ -471,6 +471,14 @@ Partial Class Reservar
         Me.pnlReserva.Size = New System.Drawing.Size(639, 543)
         Me.pnlReserva.TabIndex = 16
         '
+        'nudCantidadPersonas
+        '
+        Me.nudCantidadPersonas.Location = New System.Drawing.Point(422, 192)
+        Me.nudCantidadPersonas.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
+        Me.nudCantidadPersonas.Name = "nudCantidadPersonas"
+        Me.nudCantidadPersonas.Size = New System.Drawing.Size(38, 20)
+        Me.nudCantidadPersonas.TabIndex = 29
+        '
         'dtpHoraFinal
         '
         Me.dtpHoraFinal.CustomFormat = "H:mm"
@@ -732,30 +740,22 @@ Partial Class Reservar
         '
         Me.epError.ContainerControl = Me
         '
-        'nudCantidadPersonas
-        '
-        Me.nudCantidadPersonas.Location = New System.Drawing.Point(422, 192)
-        Me.nudCantidadPersonas.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
-        Me.nudCantidadPersonas.Name = "nudCantidadPersonas"
-        Me.nudCantidadPersonas.Size = New System.Drawing.Size(38, 20)
-        Me.nudCantidadPersonas.TabIndex = 29
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 556)
-        Me.Controls.Add(Me.pnlReserva)
         Me.Controls.Add(Me.pnlCliente)
+        Me.Controls.Add(Me.pnlReserva)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)
         Me.pnlCliente.PerformLayout()
         Me.pnlReserva.ResumeLayout(False)
         Me.pnlReserva.PerformLayout()
+        CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
