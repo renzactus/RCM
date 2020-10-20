@@ -4,8 +4,7 @@ Public Class Reservar
     Dim mysql As New MySQL
     Dim telefonos As String
     Dim Inventario, DatosClientes As DataTable
-    Dim MaximasPersonas As Integer = 350
-    Dim ReservasEnElDiaSeleccionado, ReservasEntreEsaHora, sumaCedula As Integer
+    Dim ReservasEnElDiaSeleccionado, ReservasEntreEsaHora, sumaCedula, PrecioTotal As Integer
     Dim cuotas As String
     Dim AutoCompletarCedula As New AutoCompleteStringCollection()
     'Constructor
@@ -15,9 +14,6 @@ Public Class Reservar
             .AutoCompleteMode = AutoCompleteMode.Suggest
             .AutoCompleteSource = AutoCompleteSource.CustomSource
         End With
-        For i = 1 To MaximasPersonas
-            dudCantidadPersonas.Items.Add(i)
-        Next
         Me.BackColor = Color.FromArgb(191, 128, 130)
         Calendario.MinDate = DateAndTime.Today
         Calendario.MaxDate = DateAdd("yyyy", 3, DateAndTime.Today)
@@ -161,7 +157,7 @@ Public Class Reservar
             If mysql.Consultado = True Then
 
 
-                If dtpHoraComienzo.Text = "" Or dtpHoraFinal.Text = "" Or cboMotivo.SelectedIndex = -1 Or dudCantidadPersonas.Text = "" Or dudCantidadPersonas.Text = "0" Then
+                If dtpHoraComienzo.Text = "" Or dtpHoraFinal.Text = "" Or cboMotivo.SelectedIndex = -1 Or nudCantidadPersonas.Text = "" Or nudCantidadPersonas.Text = "0" Then
                     AvisarSiHayDatosDeReservasVacios()
                 ElseIf ReservasEnElDiaSeleccionado > 2 Then
                     epError.SetError(Calendario, "Se supero el maximo de reservas en un día")
@@ -212,11 +208,11 @@ Public Class Reservar
         AvisarSiEstaVacio(dtpHoraComienzo)
         AvisarSiEstaVacio(dtpHoraFinal)
         AvisarSiEstaVacio(cboMotivo)
-        AvisarSiEstaVacio(dudCantidadPersonas)
-        If dudCantidadPersonas.Text = "0" Then
-            epError.SetError(dudCantidadPersonas, "Porfavor, ingrese un numero distinto a 0 en " & dudCantidadPersonas.Name.Substring(3))
+        AvisarSiEstaVacio(nudCantidadPersonas)
+        If nudCantidadPersonas.Text = "0" Then
+            epError.SetError(nudCantidadPersonas, "Porfavor, ingrese un numero distinto a 0 en " & nudCantidadPersonas.Name.Substring(3))
         Else
-            epError.SetError(dudCantidadPersonas, "")
+            epError.SetError(nudCantidadPersonas, "")
         End If
     End Sub
     Private Sub PasarAlSiguientePanel()
@@ -238,19 +234,19 @@ Public Class Reservar
         consultarUltimaActualizacionDeCostos()
         If mysql.Consultado = True Then
             If cboMotivo.Text = "Fiesta de 15" Then
-                lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                PrecioTotal = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
             ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
-                lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
+                PrecioTotal = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
             ElseIf cboMotivo.Text = "Parrillada" Then
-                lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                PrecioTotal = mysql.Resultado.Rows(0).Item("c_otro")
             ElseIf cboMotivo.Text = "Graduación" Then
-                lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
+                PrecioTotal = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
             ElseIf cboMotivo.Text = "Otro" Then
-                lblPrecioFiesta.Text = mysql.Resultado.Rows(0).Item("c_otro")
+                PrecioTotal = mysql.Resultado.Rows(0).Item("c_otro")
             End If
-            lblPrecioFiesta.Text = lblPrecioFiesta.Text + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * dudCantidadPersonas.Text
+            PrecioTotal = PrecioTotal + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * nudCantidadPersonas.Text
             If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
-                lblPrecioFiesta.Text = lblPrecioFiesta.Text + lblPrecioFiesta.Text / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
+                PrecioTotal = PrecioTotal + PrecioTotal / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
             End If
         End If
     End Sub
@@ -282,7 +278,7 @@ Public Class Reservar
             epError.SetError(optPagado, "Porfavor, Marque y complete alguna de las dos opciones")
             epError.SetError(optSeñar, "Porfavor, Marque y complete alguna de las dos opciones")
             sonidoError()
-        ElseIf optSeñar.Checked = True And CInt(txtSeña.Text) > CInt(lblPrecioFiesta.Text) Then
+        ElseIf optSeñar.Checked = True And txtSeña.Text > PrecioTotal Then
             epError.SetError(txtSeña, "La seña no puede ser mayor al precio total")
             sonidoError()
         ElseIf optSeñar.Checked = True And (txtSeña.Text = "" Or cboModoPagoSeña.SelectedIndex = -1) Then 'Señar
@@ -352,7 +348,7 @@ Public Class Reservar
     Private Sub insertarReservasConSeña()
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
-                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    nudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "')")
     End Sub
     Private Sub insertarPago()
@@ -364,7 +360,7 @@ Public Class Reservar
     Private Sub insertarReservasSinSeña()
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
-                    dudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                    nudCantidadPersonas.Text & "," & chkServicio.CheckState & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
     End Sub
     Private Sub insertarInventario()
@@ -404,13 +400,6 @@ Public Class Reservar
 
     Private Sub dtpHoraFinal_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dtpHoraFinal.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsPunctuation(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS, BORRAR Y ESCRIBIR PUNTUACIONES
-    End Sub
-
-    Private Sub dudCantidadPersonas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dudCantidadPersonas.KeyPress
-        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
-        If dudCantidadPersonas.Text.Length > 2 Then
-            e.Handled = True And Not Char.IsControl(e.KeyChar)
-        End If
     End Sub
 
     Private Sub txtCedula_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCedula.KeyPress
@@ -577,10 +566,6 @@ Public Class Reservar
         AvisarSiEstaVacio(cboMotivo)
     End Sub
 
-    Private Sub dudCantidadPersonas_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles dudCantidadPersonas.Validating
-        AvisarSiEstaVacio(dudCantidadPersonas)
-    End Sub
-
     Private Sub dtpHoraComienzo_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpHoraComienzo.ValueChanged
         epError.SetError(dtpHoraComienzo, "")
         epError.SetError(dtpHoraFinal, "")
@@ -596,7 +581,7 @@ Public Class Reservar
         epError.SetError(cboModoPagoSeña, "")
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         MsgBox(cboCuotas.Text)
     End Sub
 
@@ -616,5 +601,16 @@ Public Class Reservar
 
     Private Sub txtPrecioFiesta_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPrecioFiesta.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsPunctuation(e.KeyChar)
+    End Sub
+
+    Private Sub nudCantidadPersonas_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles nudCantidadPersonas.Validating
+        AvisarSiEstaVacio(nudCantidadPersonas)
+    End Sub
+
+    Private Sub nudCantidadPersonas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles nudCantidadPersonas.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+        If nudCantidadPersonas.Text.Length > 2 Then
+            e.Handled = True And Not Char.IsControl(e.KeyChar)
+        End If
     End Sub
 End Class

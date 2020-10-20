@@ -64,19 +64,21 @@
     Private Sub MostrarDatosDeReserva()
         ConsultarDatosDeReservaConSuCliente()
         If mysql.Consultado = True Then
+            If mysql.Resultado.Rows.Count <> 0 Then
 
 
-            lblMotivo.Text = mysql.Resultado.Rows(0).Item("motivo")
-            lblFecha.Text = mysql.Resultado.Rows(0).Item("fecha")
-            lblHora.Text = mysql.Resultado.Rows(0).Item("comienzo").ToString & " - " & mysql.Resultado.Rows(0).Item("final").ToString
-            lblPersonas.Text = mysql.Resultado.Rows(0).Item("cantidad_personas")
-            lblServicio.Text = mysql.Resultado.Rows(0).Item("servicio")
-            lblCliente.Text = mysql.Resultado.Rows(0).Item("nombre")
-            If Not IsDBNull(mysql.Resultado.Rows(0).Item("s")) Then
-                lblSeña.Text = mysql.Resultado.Rows(0).Item("s")
+                lblMostrarMotivo.Text = mysql.Resultado.Rows(0).Item("motivo")
+                lblMostrarFecha.Text = mysql.Resultado.Rows(0).Item("fecha")
+                lblMostrarHora.Text = mysql.Resultado.Rows(0).Item("comienzo").ToString & " - " & mysql.Resultado.Rows(0).Item("final").ToString
+                lblMostrarPersonas.Text = mysql.Resultado.Rows(0).Item("cantidad_personas")
+                lblMostrarServicio.Text = mysql.Resultado.Rows(0).Item("servicio")
+                lblMostrarCliente.Text = mysql.Resultado.Rows(0).Item("nombre")
+                If Not IsDBNull(mysql.Resultado.Rows(0).Item("s")) Then
+                    lblMostrarSeña.Text = mysql.Resultado.Rows(0).Item("s")
+                End If
+
+
             End If
-
-
         End If
     End Sub
     Private Sub ConsultarDatosDeReservaConSuCliente()
