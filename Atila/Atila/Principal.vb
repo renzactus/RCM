@@ -63,6 +63,18 @@ Public Class Principal
     End Sub
 
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        MsgBox(RadioButton1.Checked)
+        If Panel1.Controls.Count > 0 Then
+            Panel1.Controls.RemoveAt(0)
+        Else
+            Dim dr As Object
+            Dim listadereservas As ListadeReservas = New ListadeReservas
+            listadereservas.ChequearSiHayMasDeUnaReservaEnElDiaYProceder("29/10/2020")
+            listadereservas.cboReservasEnElDia.SelectedIndex = 0
+            dr = listadereservas.pnlDatosReservas
+            dr.Dock = DockStyle.Fill
+            Panel1.Controls.Add(dr)
+            Panel1.Tag = dr
+            dr.Show()
+        End If
     End Sub
 End Class

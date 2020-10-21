@@ -7,6 +7,8 @@ Public Class Reservar
     Dim ReservasEnElDiaSeleccionado, ReservasEntreEsaHora, sumaCedula, PrecioTotal As Integer
     Dim cuotas As String
     Dim AutoCompletarCedula As New AutoCompleteStringCollection()
+    Dim objetoDatosReservas As Object
+    Dim listadereservas As ListadeReservas = New ListadeReservas
     'Constructor
     Private Sub Reservar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         With txtCedula
@@ -144,6 +146,26 @@ Public Class Reservar
     End Sub
     Private Sub sonidoError()
         My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
+    End Sub
+    Private Sub AbrirMenuConDatosReservas(ByVal lbl As LinkLabel)
+        If pnlDatosReserva.Controls.Count > 0 Then
+            pnlDatosReserva.Controls.RemoveAt(0)
+            pnlDatosReserva.Visible = False
+        Else
+            pnlDatosReserva.Location = New Point(lbl.Location.X, lbl.Location.Y + 13)
+            pnlDatosReserva.Visible = True
+            ObtenerPanelDeClaseListadeReservaConLosDatos(lbl.Name.Substring(17))
+        End If
+    End Sub
+    Private Sub ObtenerPanelDeClaseListadeReservaConLosDatos(ByVal nroFila As Integer)
+
+            listadereservas.ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionStart)
+            listadereservas.cboReservasEnElDia.SelectedIndex = nroFila - 1
+            objetoDatosReservas = listadereservas.pnlDatosReservas
+            objetoDatosReservas.Dock = DockStyle.Fill
+            pnlDatosReserva.Controls.Add(objetoDatosReservas)
+            pnlDatosReserva.Tag = objetoDatosReservas
+            objetoDatosReservas.Show()
     End Sub
     
     'Usados al pasar al segundo panel
@@ -459,6 +481,7 @@ Public Class Reservar
     End Sub
 
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
+        Calendario.SelectionRange = New SelectionRange(Calendario.SelectionStart, Calendario.SelectionStart)
         MostrarReservasDelDia()
         epError.SetError(Calendario, "")
     End Sub
@@ -659,6 +682,18 @@ Public Class Reservar
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         MsgBox(cboCuotas.Text)
+    End Sub
+
+    Private Sub llblMotivoReserva1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblMotivoReserva1.LinkClicked
+        AbrirMenuConDatosReservas(llblMotivoReserva1)
+    End Sub
+
+    Private Sub llblMotivoReserva2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblMotivoReserva2.LinkClicked
+        AbrirMenuConDatosReservas(llblMotivoReserva2)
+    End Sub
+
+    Private Sub llblMotivoReserva3_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblMotivoReserva3.LinkClicked
+        AbrirMenuConDatosReservas(llblMotivoReserva3)
     End Sub
 
 End Class

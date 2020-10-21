@@ -87,6 +87,7 @@ Partial Class Reservar
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.pnlDatosReserva = New System.Windows.Forms.Panel()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -221,7 +222,7 @@ Partial Class Reservar
         Me.pnlCliente.Controls.Add(Me.btnEditarPrecioFiesta)
         Me.pnlCliente.Location = New System.Drawing.Point(1, 1)
         Me.pnlCliente.Name = "pnlCliente"
-        Me.pnlCliente.Size = New System.Drawing.Size(639, 543)
+        Me.pnlCliente.Size = New System.Drawing.Size(639, 571)
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
         '
@@ -441,6 +442,7 @@ Partial Class Reservar
         '
         'pnlReserva
         '
+        Me.pnlReserva.Controls.Add(Me.pnlDatosReserva)
         Me.pnlReserva.Controls.Add(Me.nudCantidadPersonas)
         Me.pnlReserva.Controls.Add(Me.dtpHoraFinal)
         Me.pnlReserva.Controls.Add(Me.dtpHoraComienzo)
@@ -468,7 +470,7 @@ Partial Class Reservar
         Me.pnlReserva.Controls.Add(Me.Calendario)
         Me.pnlReserva.Location = New System.Drawing.Point(1, 1)
         Me.pnlReserva.Name = "pnlReserva"
-        Me.pnlReserva.Size = New System.Drawing.Size(639, 543)
+        Me.pnlReserva.Size = New System.Drawing.Size(639, 571)
         Me.pnlReserva.TabIndex = 16
         '
         'nudCantidadPersonas
@@ -531,7 +533,7 @@ Partial Class Reservar
         'lblHora3
         '
         Me.lblHora3.AutoSize = True
-        Me.lblHora3.Location = New System.Drawing.Point(119, 372)
+        Me.lblHora3.Location = New System.Drawing.Point(150, 372)
         Me.lblHora3.Name = "lblHora3"
         Me.lblHora3.Size = New System.Drawing.Size(45, 13)
         Me.lblHora3.TabIndex = 20
@@ -577,7 +579,7 @@ Partial Class Reservar
         'lblHora2
         '
         Me.lblHora2.AutoSize = True
-        Me.lblHora2.Location = New System.Drawing.Point(119, 350)
+        Me.lblHora2.Location = New System.Drawing.Point(150, 350)
         Me.lblHora2.Name = "lblHora2"
         Me.lblHora2.Size = New System.Drawing.Size(45, 13)
         Me.lblHora2.TabIndex = 19
@@ -586,7 +588,7 @@ Partial Class Reservar
         'lblHora1
         '
         Me.lblHora1.AutoSize = True
-        Me.lblHora1.Location = New System.Drawing.Point(119, 329)
+        Me.lblHora1.Location = New System.Drawing.Point(150, 329)
         Me.lblHora1.Name = "lblHora1"
         Me.lblHora1.Size = New System.Drawing.Size(39, 13)
         Me.lblHora1.TabIndex = 18
@@ -740,11 +742,20 @@ Partial Class Reservar
         '
         Me.epError.ContainerControl = Me
         '
+        'pnlDatosReserva
+        '
+        Me.pnlDatosReserva.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.pnlDatosReserva.Location = New System.Drawing.Point(29, 487)
+        Me.pnlDatosReserva.Name = "pnlDatosReserva"
+        Me.pnlDatosReserva.Size = New System.Drawing.Size(225, 188)
+        Me.pnlDatosReserva.TabIndex = 54
+        Me.pnlDatosReserva.Visible = False
+        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(737, 556)
+        Me.ClientSize = New System.Drawing.Size(737, 584)
         Me.Controls.Add(Me.pnlCliente)
         Me.Controls.Add(Me.pnlReserva)
         Me.Name = "Reservar"
@@ -823,4 +834,5 @@ Partial Class Reservar
     Friend WithEvents txtPrecioFiesta As System.Windows.Forms.TextBox
     Friend WithEvents btnGuardarPrecioFiesta As System.Windows.Forms.Button
     Friend WithEvents nudCantidadPersonas As System.Windows.Forms.NumericUpDown
+    Friend WithEvents pnlDatosReserva As System.Windows.Forms.Panel
 End Class

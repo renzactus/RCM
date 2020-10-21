@@ -42,13 +42,17 @@ Partial Class ListadeReservas
         Me.lblMostrarSeña = New System.Windows.Forms.Label()
         Me.cboReservasEnElDia = New System.Windows.Forms.ComboBox()
         Me.chkMostrarServicio = New System.Windows.Forms.CheckBox()
+        Me.pnlDatosReservas = New System.Windows.Forms.Panel()
+        Me.lblMostrarPrecio = New System.Windows.Forms.Label()
+        Me.lblPrecio = New System.Windows.Forms.Label()
+        Me.pnlDatosReservas.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblNoHayReservas
         '
         Me.lblNoHayReservas.AutoSize = True
         Me.lblNoHayReservas.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNoHayReservas.Location = New System.Drawing.Point(351, 27)
+        Me.lblNoHayReservas.Location = New System.Drawing.Point(357, 27)
         Me.lblNoHayReservas.Name = "lblNoHayReservas"
         Me.lblNoHayReservas.Size = New System.Drawing.Size(172, 15)
         Me.lblNoHayReservas.TabIndex = 26
@@ -68,7 +72,7 @@ Partial Class ListadeReservas
         '
         Me.lblFiestasReservadasParaEl.AutoSize = True
         Me.lblFiestasReservadasParaEl.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFiestasReservadasParaEl.Location = New System.Drawing.Point(330, 9)
+        Me.lblFiestasReservadasParaEl.Location = New System.Drawing.Point(336, 9)
         Me.lblFiestasReservadasParaEl.Name = "lblFiestasReservadasParaEl"
         Me.lblFiestasReservadasParaEl.Size = New System.Drawing.Size(199, 18)
         Me.lblFiestasReservadasParaEl.TabIndex = 21
@@ -79,7 +83,7 @@ Partial Class ListadeReservas
         Me.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Calendario.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Calendario.Location = New System.Drawing.Point(28, 18)
+        Me.Calendario.Location = New System.Drawing.Point(18, 38)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
         Me.Calendario.MinDate = New Date(2020, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
@@ -98,7 +102,7 @@ Partial Class ListadeReservas
         '
         Me.lblMotivo.AutoSize = True
         Me.lblMotivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMotivo.Location = New System.Drawing.Point(384, 84)
+        Me.lblMotivo.Location = New System.Drawing.Point(28, 11)
         Me.lblMotivo.Name = "lblMotivo"
         Me.lblMotivo.Size = New System.Drawing.Size(48, 16)
         Me.lblMotivo.TabIndex = 34
@@ -108,7 +112,7 @@ Partial Class ListadeReservas
         '
         Me.lblFecha.AutoSize = True
         Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFecha.Location = New System.Drawing.Point(386, 109)
+        Me.lblFecha.Location = New System.Drawing.Point(30, 36)
         Me.lblFecha.Name = "lblFecha"
         Me.lblFecha.Size = New System.Drawing.Size(46, 16)
         Me.lblFecha.TabIndex = 35
@@ -118,7 +122,7 @@ Partial Class ListadeReservas
         '
         Me.lblHora.AutoSize = True
         Me.lblHora.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHora.Location = New System.Drawing.Point(394, 134)
+        Me.lblHora.Location = New System.Drawing.Point(38, 61)
         Me.lblHora.Name = "lblHora"
         Me.lblHora.Size = New System.Drawing.Size(38, 16)
         Me.lblHora.TabIndex = 36
@@ -128,7 +132,7 @@ Partial Class ListadeReservas
         '
         Me.lblPersonas.AutoSize = True
         Me.lblPersonas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPersonas.Location = New System.Drawing.Point(366, 160)
+        Me.lblPersonas.Location = New System.Drawing.Point(10, 87)
         Me.lblPersonas.Name = "lblPersonas"
         Me.lblPersonas.Size = New System.Drawing.Size(66, 16)
         Me.lblPersonas.TabIndex = 37
@@ -138,7 +142,7 @@ Partial Class ListadeReservas
         '
         Me.lblServicio.AutoSize = True
         Me.lblServicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblServicio.Location = New System.Drawing.Point(375, 185)
+        Me.lblServicio.Location = New System.Drawing.Point(19, 112)
         Me.lblServicio.Name = "lblServicio"
         Me.lblServicio.Size = New System.Drawing.Size(57, 16)
         Me.lblServicio.TabIndex = 39
@@ -148,7 +152,7 @@ Partial Class ListadeReservas
         '
         Me.lblCliente.AutoSize = True
         Me.lblCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCliente.Location = New System.Drawing.Point(384, 211)
+        Me.lblCliente.Location = New System.Drawing.Point(28, 138)
         Me.lblCliente.Name = "lblCliente"
         Me.lblCliente.Size = New System.Drawing.Size(49, 16)
         Me.lblCliente.TabIndex = 40
@@ -158,7 +162,7 @@ Partial Class ListadeReservas
         '
         Me.lblSeña.AutoSize = True
         Me.lblSeña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSeña.Location = New System.Drawing.Point(393, 237)
+        Me.lblSeña.Location = New System.Drawing.Point(37, 164)
         Me.lblSeña.Name = "lblSeña"
         Me.lblSeña.Size = New System.Drawing.Size(40, 16)
         Me.lblSeña.TabIndex = 41
@@ -168,7 +172,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarMotivo.AutoSize = True
         Me.lblMostrarMotivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarMotivo.Location = New System.Drawing.Point(452, 84)
+        Me.lblMostrarMotivo.Location = New System.Drawing.Point(96, 11)
         Me.lblMostrarMotivo.Name = "lblMostrarMotivo"
         Me.lblMostrarMotivo.Size = New System.Drawing.Size(48, 16)
         Me.lblMostrarMotivo.TabIndex = 42
@@ -178,7 +182,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarFecha.AutoSize = True
         Me.lblMostrarFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarFecha.Location = New System.Drawing.Point(452, 109)
+        Me.lblMostrarFecha.Location = New System.Drawing.Point(96, 36)
         Me.lblMostrarFecha.Name = "lblMostrarFecha"
         Me.lblMostrarFecha.Size = New System.Drawing.Size(46, 16)
         Me.lblMostrarFecha.TabIndex = 43
@@ -188,7 +192,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarHora.AutoSize = True
         Me.lblMostrarHora.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarHora.Location = New System.Drawing.Point(452, 134)
+        Me.lblMostrarHora.Location = New System.Drawing.Point(96, 61)
         Me.lblMostrarHora.Name = "lblMostrarHora"
         Me.lblMostrarHora.Size = New System.Drawing.Size(38, 16)
         Me.lblMostrarHora.TabIndex = 44
@@ -198,7 +202,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarPersonas.AutoSize = True
         Me.lblMostrarPersonas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarPersonas.Location = New System.Drawing.Point(452, 160)
+        Me.lblMostrarPersonas.Location = New System.Drawing.Point(96, 87)
         Me.lblMostrarPersonas.Name = "lblMostrarPersonas"
         Me.lblMostrarPersonas.Size = New System.Drawing.Size(66, 16)
         Me.lblMostrarPersonas.TabIndex = 45
@@ -208,7 +212,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarCliente.AutoSize = True
         Me.lblMostrarCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarCliente.Location = New System.Drawing.Point(452, 211)
+        Me.lblMostrarCliente.Location = New System.Drawing.Point(96, 138)
         Me.lblMostrarCliente.Name = "lblMostrarCliente"
         Me.lblMostrarCliente.Size = New System.Drawing.Size(49, 16)
         Me.lblMostrarCliente.TabIndex = 48
@@ -218,7 +222,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarSeña.AutoSize = True
         Me.lblMostrarSeña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarSeña.Location = New System.Drawing.Point(452, 237)
+        Me.lblMostrarSeña.Location = New System.Drawing.Point(96, 164)
         Me.lblMostrarSeña.Name = "lblMostrarSeña"
         Me.lblMostrarSeña.Size = New System.Drawing.Size(40, 16)
         Me.lblMostrarSeña.TabIndex = 49
@@ -229,7 +233,7 @@ Partial Class ListadeReservas
         Me.cboReservasEnElDia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboReservasEnElDia.Enabled = False
         Me.cboReservasEnElDia.FormattingEnabled = True
-        Me.cboReservasEnElDia.Location = New System.Drawing.Point(387, 42)
+        Me.cboReservasEnElDia.Location = New System.Drawing.Point(396, 45)
         Me.cboReservasEnElDia.Name = "cboReservasEnElDia"
         Me.cboReservasEnElDia.Size = New System.Drawing.Size(94, 21)
         Me.cboReservasEnElDia.TabIndex = 50
@@ -238,32 +242,63 @@ Partial Class ListadeReservas
         '
         Me.chkMostrarServicio.AutoSize = True
         Me.chkMostrarServicio.Enabled = False
-        Me.chkMostrarServicio.Location = New System.Drawing.Point(466, 187)
+        Me.chkMostrarServicio.Location = New System.Drawing.Point(110, 114)
         Me.chkMostrarServicio.Name = "chkMostrarServicio"
         Me.chkMostrarServicio.Size = New System.Drawing.Size(15, 14)
         Me.chkMostrarServicio.TabIndex = 51
         Me.chkMostrarServicio.UseVisualStyleBackColor = True
+        Me.chkMostrarServicio.Visible = False
+        '
+        'pnlDatosReservas
+        '
+        Me.pnlDatosReservas.Controls.Add(Me.lblMostrarPrecio)
+        Me.pnlDatosReservas.Controls.Add(Me.lblPrecio)
+        Me.pnlDatosReservas.Controls.Add(Me.lblMotivo)
+        Me.pnlDatosReservas.Controls.Add(Me.chkMostrarServicio)
+        Me.pnlDatosReservas.Controls.Add(Me.lblFecha)
+        Me.pnlDatosReservas.Controls.Add(Me.lblHora)
+        Me.pnlDatosReservas.Controls.Add(Me.lblMostrarSeña)
+        Me.pnlDatosReservas.Controls.Add(Me.lblPersonas)
+        Me.pnlDatosReservas.Controls.Add(Me.lblMostrarCliente)
+        Me.pnlDatosReservas.Controls.Add(Me.lblServicio)
+        Me.pnlDatosReservas.Controls.Add(Me.lblMostrarPersonas)
+        Me.pnlDatosReservas.Controls.Add(Me.lblCliente)
+        Me.pnlDatosReservas.Controls.Add(Me.lblMostrarHora)
+        Me.pnlDatosReservas.Controls.Add(Me.lblSeña)
+        Me.pnlDatosReservas.Controls.Add(Me.lblMostrarFecha)
+        Me.pnlDatosReservas.Controls.Add(Me.lblMostrarMotivo)
+        Me.pnlDatosReservas.Location = New System.Drawing.Point(363, 72)
+        Me.pnlDatosReservas.Name = "pnlDatosReservas"
+        Me.pnlDatosReservas.Size = New System.Drawing.Size(225, 252)
+        Me.pnlDatosReservas.TabIndex = 52
+        '
+        'lblMostrarPrecio
+        '
+        Me.lblMostrarPrecio.AutoSize = True
+        Me.lblMostrarPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarPrecio.Location = New System.Drawing.Point(96, 164)
+        Me.lblMostrarPrecio.Name = "lblMostrarPrecio"
+        Me.lblMostrarPrecio.Size = New System.Drawing.Size(47, 16)
+        Me.lblMostrarPrecio.TabIndex = 53
+        Me.lblMostrarPrecio.Text = "Precio"
+        '
+        'lblPrecio
+        '
+        Me.lblPrecio.AutoSize = True
+        Me.lblPrecio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPrecio.Location = New System.Drawing.Point(37, 164)
+        Me.lblPrecio.Name = "lblPrecio"
+        Me.lblPrecio.Size = New System.Drawing.Size(47, 16)
+        Me.lblPrecio.TabIndex = 52
+        Me.lblPrecio.Text = "Precio"
         '
         'ListadeReservas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(734, 438)
-        Me.Controls.Add(Me.chkMostrarServicio)
+        Me.Controls.Add(Me.pnlDatosReservas)
         Me.Controls.Add(Me.cboReservasEnElDia)
-        Me.Controls.Add(Me.lblMostrarSeña)
-        Me.Controls.Add(Me.lblMostrarCliente)
-        Me.Controls.Add(Me.lblMostrarPersonas)
-        Me.Controls.Add(Me.lblMostrarHora)
-        Me.Controls.Add(Me.lblMostrarFecha)
-        Me.Controls.Add(Me.lblMostrarMotivo)
-        Me.Controls.Add(Me.lblSeña)
-        Me.Controls.Add(Me.lblCliente)
-        Me.Controls.Add(Me.lblServicio)
-        Me.Controls.Add(Me.lblPersonas)
-        Me.Controls.Add(Me.lblHora)
-        Me.Controls.Add(Me.lblFecha)
-        Me.Controls.Add(Me.lblMotivo)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Calendario)
         Me.Controls.Add(Me.lblNoHayReservas)
@@ -271,6 +306,8 @@ Partial Class ListadeReservas
         Me.Controls.Add(Me.lblFiestasReservadasParaEl)
         Me.Name = "ListadeReservas"
         Me.Text = "ListadeReservas"
+        Me.pnlDatosReservas.ResumeLayout(False)
+        Me.pnlDatosReservas.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -295,4 +332,7 @@ Partial Class ListadeReservas
     Friend WithEvents lblMostrarSeña As System.Windows.Forms.Label
     Friend WithEvents cboReservasEnElDia As System.Windows.Forms.ComboBox
     Friend WithEvents chkMostrarServicio As System.Windows.Forms.CheckBox
+    Friend WithEvents pnlDatosReservas As System.Windows.Forms.Panel
+    Friend WithEvents lblMostrarPrecio As System.Windows.Forms.Label
+    Friend WithEvents lblPrecio As System.Windows.Forms.Label
 End Class
