@@ -58,6 +58,7 @@ Partial Class Reservar
         Me.btnGuardarPrecioFiesta = New System.Windows.Forms.Button()
         Me.btnEditarPrecioFiesta = New System.Windows.Forms.Button()
         Me.pnlReserva = New System.Windows.Forms.Panel()
+        Me.pnlDatosReserva = New System.Windows.Forms.Panel()
         Me.nudCantidadPersonas = New System.Windows.Forms.NumericUpDown()
         Me.dtpHoraFinal = New System.Windows.Forms.DateTimePicker()
         Me.dtpHoraComienzo = New System.Windows.Forms.DateTimePicker()
@@ -87,7 +88,6 @@ Partial Class Reservar
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.pnlDatosReserva = New System.Windows.Forms.Panel()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -473,6 +473,15 @@ Partial Class Reservar
         Me.pnlReserva.Size = New System.Drawing.Size(639, 571)
         Me.pnlReserva.TabIndex = 16
         '
+        'pnlDatosReserva
+        '
+        Me.pnlDatosReserva.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.pnlDatosReserva.Location = New System.Drawing.Point(29, 487)
+        Me.pnlDatosReserva.Name = "pnlDatosReserva"
+        Me.pnlDatosReserva.Size = New System.Drawing.Size(225, 188)
+        Me.pnlDatosReserva.TabIndex = 54
+        Me.pnlDatosReserva.Visible = False
+        '
         'nudCantidadPersonas
         '
         Me.nudCantidadPersonas.Location = New System.Drawing.Point(422, 192)
@@ -742,22 +751,13 @@ Partial Class Reservar
         '
         Me.epError.ContainerControl = Me
         '
-        'pnlDatosReserva
-        '
-        Me.pnlDatosReserva.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.pnlDatosReserva.Location = New System.Drawing.Point(29, 487)
-        Me.pnlDatosReserva.Name = "pnlDatosReserva"
-        Me.pnlDatosReserva.Size = New System.Drawing.Size(225, 188)
-        Me.pnlDatosReserva.TabIndex = 54
-        Me.pnlDatosReserva.Visible = False
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 584)
-        Me.Controls.Add(Me.pnlCliente)
         Me.Controls.Add(Me.pnlReserva)
+        Me.Controls.Add(Me.pnlCliente)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)

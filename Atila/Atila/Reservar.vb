@@ -63,7 +63,7 @@ Public Class Reservar
                 llblMotivoReserva1.Text = mysql.Resultado.Rows(0).Item("motivo")
                 llblMotivoReserva2.Text = mysql.Resultado.Rows(1).Item("motivo")
                 lblHora1.Text = mysql.Resultado.Rows(0).Item("comienzo") & "-" & mysql.Resultado.Rows(0).Item("final")
-                lblHora1.Text = mysql.Resultado.Rows(1).Item("comienzo") & "-" & mysql.Resultado.Rows(1).Item("final")
+                lblHora2.Text = mysql.Resultado.Rows(1).Item("comienzo") & "-" & mysql.Resultado.Rows(1).Item("final")
             ElseIf mysql.Resultado.Rows.Count() = 3 Then
                 lblNoHayReservas.Visible = False
                 llblMotivoReserva1.Visible = True
@@ -137,14 +137,14 @@ Public Class Reservar
             End If
         Next
     End Sub
-    Private Sub AvisarSiEstaVacio(ByVal txtBox As Object)
-        If txtBox.Text = "" Then
-            epError.SetError(txtBox, "Porfavor, Complete los datos de " & txtBox.Name.Substring(3))
+    Private Sub avisarSiEstaVacio(ByVal componente As Object)
+        If componente.Text = "" Then
+            epError.SetError(componente, "Porfavor, Complete los datos de " & componente.Name.Substring(3))
         Else
-            epError.SetError(txtBox, "")
+            epError.SetError(componente, "")
         End If
     End Sub
-    Private Sub sonidoError()
+    Public Sub sonidoError()
         My.Computer.Audio.PlaySystemSound(System.Media.SystemSounds.Asterisk)
     End Sub
     Private Sub AbrirMenuConDatosReservas(ByVal lbl As LinkLabel)
@@ -159,15 +159,15 @@ Public Class Reservar
     End Sub
     Private Sub ObtenerPanelDeClaseListadeReservaConLosDatos(ByVal nroFila As Integer)
 
-            listadereservas.ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionStart)
-            listadereservas.cboReservasEnElDia.SelectedIndex = nroFila - 1
-            objetoDatosReservas = listadereservas.pnlDatosReservas
-            objetoDatosReservas.Dock = DockStyle.Fill
-            pnlDatosReserva.Controls.Add(objetoDatosReservas)
-            pnlDatosReserva.Tag = objetoDatosReservas
-            objetoDatosReservas.Show()
+        listadereservas.ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionStart)
+        listadereservas.cboReservasEnElDia.SelectedIndex = nroFila - 1
+        objetoDatosReservas = listadereservas.pnlDatosReservas
+        objetoDatosReservas.Dock = DockStyle.Fill
+        pnlDatosReserva.Controls.Add(objetoDatosReservas)
+        pnlDatosReserva.Tag = objetoDatosReservas
+        objetoDatosReservas.Show()
     End Sub
-    
+
     'Usados al pasar al segundo panel
 
     Private Sub ChequearAntesDeSiguiente()
@@ -239,10 +239,10 @@ Public Class Reservar
                 dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(final,'1:00:00'))) and fecha_cancelacion is null")
     End Sub
     Private Sub AvisarSiHayDatosDeReservasVacios()
-        AvisarSiEstaVacio(dtpHoraComienzo)
-        AvisarSiEstaVacio(dtpHoraFinal)
-        AvisarSiEstaVacio(cboMotivo)
-        AvisarSiEstaVacio(nudCantidadPersonas)
+        avisarSiEstaVacio(dtpHoraComienzo)
+        avisarSiEstaVacio(dtpHoraFinal)
+        avisarSiEstaVacio(cboMotivo)
+        avisarSiEstaVacio(nudCantidadPersonas)
         If nudCantidadPersonas.Text = "0" Then
             epError.SetError(nudCantidadPersonas, "Porfavor, ingrese un numero distinto a 0 en " & nudCantidadPersonas.Name.Substring(3))
             sonidoError()
@@ -304,7 +304,7 @@ Public Class Reservar
             AvisarSiHayDatosDeClientesVacios()
             sonidoError()
         ElseIf btnAgregarTelefonos.Text = "-" And txtTelefono2.Text = "" Then
-            AvisarSiEstaVacio(txtTelefono2)
+            avisarSiEstaVacio(txtTelefono2)
             sonidoError()
         ElseIf txtCedula.Text.Substring(7) <> sumaCedula Mod 10 Then
             epError.SetError(txtCedula, "Porfavor, Ingrese una cedula valida")
@@ -317,13 +317,13 @@ Public Class Reservar
             epError.SetError(txtSeña, "La seña no puede ser mayor al precio total")
             sonidoError()
         ElseIf optSeñar.Checked = True And (txtSeña.Text = "" Or cboModoPagoSeña.SelectedIndex = -1) Then 'Señar
-            AvisarSiEstaVacio(txtSeña)
-            AvisarSiEstaVacio(cboModoPagoSeña)
+            avisarSiEstaVacio(txtSeña)
+            avisarSiEstaVacio(cboModoPagoSeña)
             sonidoError()
         ElseIf optPagado.Checked = True And (txtNroRecibo.Text = "" Or cboCuotas.SelectedIndex = -1 Or cboModoPagoPagado.SelectedIndex = -1) Then
-            AvisarSiEstaVacio(txtNroRecibo)
-            AvisarSiEstaVacio(cboCuotas)
-            AvisarSiEstaVacio(cboModoPagoPagado)
+            avisarSiEstaVacio(txtNroRecibo)
+            avisarSiEstaVacio(cboCuotas)
+            avisarSiEstaVacio(cboModoPagoPagado)
             sonidoError()
         ElseIf booleanNroReciboUnico = False And txtNroRecibo.Text <> "" Then 'Si no hay cuadros incompletos
             epError.SetError(txtNroRecibo, "Ya existe un numero de recibo igual, ingrese otro")
@@ -360,12 +360,12 @@ Public Class Reservar
         End If
     End Sub
     Private Sub AvisarSiHayDatosDeClientesVacios()
-        AvisarSiEstaVacio(txtCedula)
-        AvisarSiEstaVacio(txtNombre)
-        AvisarSiEstaVacio(txtDireccion)
-        AvisarSiEstaVacio(txtTelefono1)
+        avisarSiEstaVacio(txtCedula)
+        avisarSiEstaVacio(txtNombre)
+        avisarSiEstaVacio(txtDireccion)
+        avisarSiEstaVacio(txtTelefono1)
         If btnAgregarTelefonos.Text = "-" Then
-            AvisarSiEstaVacio(txtTelefono2)
+            avisarSiEstaVacio(txtTelefono2)
         End If
     End Sub
 
@@ -382,7 +382,7 @@ Public Class Reservar
             insertarCliente()
         End If
 
-        If optSeñar.Checked = True And txtSeña.Text <> "" And txtSeña.Text <= lblPrecioFiesta.Text Then
+        If optSeñar.Checked = True Then
             insertarReservasConSeña()
         Else
             insertarReservasSinSeña()
@@ -407,12 +407,14 @@ Public Class Reservar
                                 telefonos & "','" & txtDireccion.Text & "')")
     End Sub
     Private Sub insertarReservasConSeña()
+        MsgBox("con seña")
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
                     nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "')")
     End Sub
     Private Sub insertarReservasSinSeña()
+        MsgBox("sin seña")
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
                     nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
@@ -493,16 +495,16 @@ Public Class Reservar
 
     Private Sub dgvInventario_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvInventario.CellValueChanged
         chequeardgvInventario()
-            epError.SetError(dgvInventario, "")
-            If booleanClaseConstruida = True Then
-                If dgvInventario.Rows(e.RowIndex).Cells(0).Value = True Then
-                    dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = False
-                Else
-                    dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = True
-                    dgvInventario.Rows(e.RowIndex).Cells(2).Value = ""
-                End If
-
+        epError.SetError(dgvInventario, "")
+        If booleanClaseConstruida = True Then
+            If dgvInventario.Rows(e.RowIndex).Cells(0).Value = True Then
+                dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = False
+            Else
+                dgvInventario.Rows(e.RowIndex).Cells(2).ReadOnly = True
+                dgvInventario.Rows(e.RowIndex).Cells(2).Value = ""
             End If
+
+        End If
     End Sub
 
     Private Sub btnVolver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnVolver.Click
@@ -590,49 +592,49 @@ Public Class Reservar
     End Sub
 
     Private Sub txtCedula_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtCedula.Validating
-        AvisarSiEstaVacio(txtCedula)
+        avisarSiEstaVacio(txtCedula)
     End Sub
 
     Private Sub txtTelefono2_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtTelefono2.Validating
         If btnAgregarTelefonos.Text = "-" Then
-            AvisarSiEstaVacio(txtTelefono2)
+            avisarSiEstaVacio(txtTelefono2)
         End If
     End Sub
 
     Private Sub txtNombre_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtNombre.Validating
-        AvisarSiEstaVacio(txtNombre)
+        avisarSiEstaVacio(txtNombre)
     End Sub
 
     Private Sub txtTelefono1_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtTelefono1.Validating
-        AvisarSiEstaVacio(txtTelefono1)
+        avisarSiEstaVacio(txtTelefono1)
     End Sub
 
     Private Sub txtDireccion_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtDireccion.Validating
-        AvisarSiEstaVacio(txtDireccion)
+        avisarSiEstaVacio(txtDireccion)
     End Sub
 
     Private Sub txtNroRecibo_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtNroRecibo.Validating
-        AvisarSiEstaVacio(txtNroRecibo)
+        avisarSiEstaVacio(txtNroRecibo)
     End Sub
 
     Private Sub cboCuotas_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cboCuotas.Validating
-        AvisarSiEstaVacio(cboCuotas)
+        avisarSiEstaVacio(cboCuotas)
     End Sub
 
     Private Sub cboModoPagoPagado_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cboModoPagoPagado.Validating
-        AvisarSiEstaVacio(cboModoPagoPagado)
+        avisarSiEstaVacio(cboModoPagoPagado)
     End Sub
 
     Private Sub dtpHoraComienzo_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs)
-        AvisarSiEstaVacio(dtpHoraComienzo)
+        avisarSiEstaVacio(dtpHoraComienzo)
     End Sub
 
     Private Sub dtpHoraFinal_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles dtpHoraFinal.Validating
-        AvisarSiEstaVacio(dtpHoraFinal)
+        avisarSiEstaVacio(dtpHoraFinal)
     End Sub
 
     Private Sub cboMotivo_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cboMotivo.Validating
-        AvisarSiEstaVacio(cboMotivo)
+        avisarSiEstaVacio(cboMotivo)
     End Sub
 
     Private Sub dtpHoraComienzo_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dtpHoraComienzo.ValueChanged
@@ -670,7 +672,7 @@ Public Class Reservar
     End Sub
 
     Private Sub nudCantidadPersonas_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles nudCantidadPersonas.Validating
-        AvisarSiEstaVacio(nudCantidadPersonas)
+        avisarSiEstaVacio(nudCantidadPersonas)
     End Sub
 
     Private Sub nudCantidadPersonas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles nudCantidadPersonas.KeyPress
