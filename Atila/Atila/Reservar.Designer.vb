@@ -88,6 +88,7 @@ Partial Class Reservar
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -751,11 +752,21 @@ Partial Class Reservar
         '
         Me.epError.ContainerControl = Me
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(650, 98)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 17
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 584)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.pnlReserva)
         Me.Controls.Add(Me.pnlCliente)
         Me.Name = "Reservar"
@@ -835,4 +846,5 @@ Partial Class Reservar
     Friend WithEvents btnGuardarPrecioFiesta As System.Windows.Forms.Button
     Friend WithEvents nudCantidadPersonas As System.Windows.Forms.NumericUpDown
     Friend WithEvents pnlDatosReserva As System.Windows.Forms.Panel
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

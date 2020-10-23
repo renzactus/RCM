@@ -3,7 +3,7 @@ Public Class Reservar
     Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente, booleanNroReciboUnico, booleanSeñaMayorQuePrecioTotal As Boolean
     Dim mysql As New MySQL
     Dim telefonos As String
-    Dim Inventario, DatosClientes As DataTable
+    Dim Inventario, DatosClientes, reservaInvertida As DataTable
     Dim ReservasEnElDiaSeleccionado, ReservasEntreEsaHora, sumaCedula, PrecioTotal As Integer
     Dim cuotas As String
     Dim AutoCompletarCedula As New AutoCompleteStringCollection()
@@ -233,10 +233,61 @@ Public Class Reservar
         mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null") 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
     End Sub
     Private Sub consultarChequearSiLaHoraEstaOcupada()
-        mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
+        mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
+        reservaInvertida = mysql.Resultado
+        
+        If dtpHoraComienzo.Value < dtpHoraFinal.Value Then
+
+
+            If reservaInvertida.Rows.Count = 0 Then
+                mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
                 dtpHoraComienzo.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
                 dtpHoraFinal.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
-                dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(final,'1:00:00'))) and fecha_cancelacion is null")
+                dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(final,'1:00:00'))) and " &
+                "fecha_cancelacion is null")
+            Else
+                mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
+                dtpHoraComienzo.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                dtpHoraFinal.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(final,'1:00:00'))) and " &
+                "fecha_cancelacion is null and ID_RESERVA<>" & reservaInvertida.Rows(0).Item("ID_RESERVA"))
+                If mysql.Resultado.Rows.Count = 0 Then
+                    mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
+                    dtpHoraComienzo.Text & "'<addtime(final,'1:00:00')) or ('" &
+                    dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'<addtime(final,'1:00:00'))) and fecha_cancelacion is null")
+                End If
+            End If
+            
+
+
+        Else
+            If reservaInvertida.Rows.Count = 0 Then
+                mysql.Consultar("select ID_RESERVA from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
+                    dtpHoraComienzo.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    dtpHoraFinal.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    dtpHoraComienzo.Text & "'>addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00'))) and fecha_cancelacion is null")
+            Else
+                mysql.Consultar("select ID_RESERVA from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
+                    dtpHoraComienzo.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    dtpHoraFinal.Text & "'<addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    dtpHoraComienzo.Text & "'>addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00'))) and fecha_cancelacion is null and ID_RESERVA<>" & reservaInvertida.Rows(0).Item("ID_RESERVA"))
+
+                If mysql.Resultado.Rows.Count = 0 Then
+                    MsgBox("ver si esta al reves en la base de datos")
+
+                    mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
+                    dtpHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    dtpHoraFinal.Text & "'<addtime(final,'1:00:00')) or ('" &
+                    dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(final,'1:00:00'))) and fecha_cancelacion is null")
+
+                End If
+            End If
+            
+
+            
+
+        End If
     End Sub
     Private Sub AvisarSiHayDatosDeReservasVacios()
         avisarSiEstaVacio(dtpHoraComienzo)
@@ -414,11 +465,10 @@ Public Class Reservar
                     "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "')")
     End Sub
     Private Sub insertarReservasSinSeña()
-        MsgBox("sin seña")
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
-                    cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
-                    nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
-                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
+                cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
+                nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
+                "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
     End Sub
     Private Sub insertarPago()
 
@@ -698,4 +748,9 @@ Public Class Reservar
         AbrirMenuConDatosReservas(llblMotivoReserva3)
     End Sub
 
+    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "'")
+        reservaInvertida = mysql.Resultado
+        MsgBox(reservaInvertida.Rows(0).Item("ID_RESERVA"))
+    End Sub
 End Class
