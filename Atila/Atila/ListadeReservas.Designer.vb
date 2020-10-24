@@ -63,6 +63,7 @@ Partial Class ListadeReservas
         Me.btnEditarPrecioFiesta = New System.Windows.Forms.Button()
         Me.pnlSiNoSePago = New System.Windows.Forms.Panel()
         Me.btnCancelarReserva = New System.Windows.Forms.Button()
+        Me.btnSurgioImprevisto = New System.Windows.Forms.Button()
         Me.pnlDatosReservas.SuspendLayout()
         Me.pnlPagar.SuspendLayout()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -475,11 +476,22 @@ Partial Class ListadeReservas
         Me.btnCancelarReserva.UseVisualStyleBackColor = True
         Me.btnCancelarReserva.Visible = False
         '
+        'btnSurgioImprevisto
+        '
+        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(360, 344)
+        Me.btnSurgioImprevisto.Name = "btnSurgioImprevisto"
+        Me.btnSurgioImprevisto.Size = New System.Drawing.Size(225, 26)
+        Me.btnSurgioImprevisto.TabIndex = 61
+        Me.btnSurgioImprevisto.Text = "Surgió imprevisto"
+        Me.btnSurgioImprevisto.UseVisualStyleBackColor = True
+        Me.btnSurgioImprevisto.Visible = False
+        '
         'ListadeReservas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(734, 438)
+        Me.Controls.Add(Me.btnSurgioImprevisto)
         Me.Controls.Add(Me.btnCancelarReserva)
         Me.Controls.Add(Me.pnlSiNoSePago)
         Me.Controls.Add(Me.cboReservasEnElDia)
@@ -543,4 +555,5 @@ Partial Class ListadeReservas
     Friend WithEvents btnEditarPrecioFiesta As System.Windows.Forms.Button
     Friend WithEvents pnlSiNoSePago As System.Windows.Forms.Panel
     Friend WithEvents btnCancelarReserva As System.Windows.Forms.Button
+    Friend WithEvents btnSurgioImprevisto As System.Windows.Forms.Button
 End Class

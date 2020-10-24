@@ -2,9 +2,9 @@
     Dim mysql As New MySQL
     Dim booleanNroReciboUnico As Boolean
     Dim cuotas, Preciototal, FilaNumero As Integer
-    Dim razon_cancelacion As String
+    Dim razon_cancelacion, ibImprevisto As String
+
     Dim datosReserva As DataTable
-    Dim fecha_actual As Date
 
     Private Sub ListadeReservas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PonerEnNegritasDiasConReservas()
@@ -76,11 +76,11 @@
     End Sub
 
     Private Sub consultarDatosDeReservaConSuClienteYPrecio(ByVal fecha As Date)
-        mysql.Consultar("select reservas.ID_RESERVA,reservas.ID_CLIENTE,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
+        mysql.Consultar("select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
                         ",cantidad_personas,servicio,nombre,seña as s,costo from reservas left join pagos on " &
                         "pagos.id_reserva=reservas.id_reserva inner join clientes on clientes.id_cliente=reservas.id_cliente" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null UNION" &
-                        " select reservas.ID_RESERVA,reservas.ID_CLIENTE,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final," &
+                        " select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final," &
                         "cantidad_personas,servicio,nombre,seña as s,costo from reservas right join pagos on pagos.id_reserva=reservas.id_reserva" &
                         " inner join clientes on clientes.id_cliente=reservas.id_cliente" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
@@ -101,6 +101,7 @@
         lblPagado.Visible = False
         pnlSiNoSePago.Visible = False
         btnCancelarReserva.Visible = False
+        btnSurgioImprevisto.Visible = False
 
     End Sub
     Private Sub DeshabilitarOHabilitarDatos(ByVal valor As Boolean)
@@ -126,7 +127,13 @@
             chkMostrarServicio.Visible = True
             chkMostrarServicio.Checked = datosReserva.Rows(FilaNumero).Item("servicio")
             lblMostrarCliente.Text = datosReserva.Rows(FilaNumero).Item("nombre")
-            btnCancelarReserva.Visible = True
+            If (datosReserva.Rows(FilaNumero).Item("fecha") = mysql.Consultar("select current_date").rows(0).item("current_Date")) And (datosReserva.Rows(FilaNumero).Item("comienzo").ToString < mysql.Consultar("select current_time").rows(0).item("current_time").ToString) Then
+                btnSurgioImprevisto.Visible = True
+            ElseIf (datosReserva.Rows(FilaNumero).Item("fecha") < mysql.Consultar("select current_date").rows(0).item("current_Date")) Then
+                btnSurgioImprevisto.Visible = True
+            ElseIf (datosReserva.Rows(FilaNumero).Item("fecha") > mysql.Consultar("select current_date").rows(0).item("current_Date")) Then
+                btnCancelarReserva.Visible = True
+            End If
             If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
                 lblMostrarPagado.Text = datosReserva.Rows(FilaNumero).Item("costo")
                 lblPagado.Visible = True
@@ -196,7 +203,7 @@
         End If
     End Sub
     'Actualizando datos
-    Private Sub CancelarReservaSeleccionada()
+    Private Sub CancelarReservaSeleccionadaYAgregarDineroAFavor()
         If MsgBox("Desea cancelar la reserva del " & datosReserva.Rows(FilaNumero).Item("fecha"), vbYesNo, "Atención!") = vbYes Then
             'CONTINUAR CONN ESTO
             'razon_cancelacion = InputBox("Ingrese la razon por la cual se cancelo la reserva")
@@ -213,6 +220,18 @@
                 ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
                 PonerEnNegritasDiasConReservas()
             End If
+        End If
+    End Sub
+    Private Sub AlmacenarImprevisto()
+        ibImprevisto = InputBox("¿Cual fue el imprevisto?", "Atención!", mysql.Consultar("select razon_cancelacion from reservas where ID_RESERVA=" &
+                                                                                                 datosReserva.Rows(FilaNumero).Item("ID_RESERVA")).Rows(FilaNumero).Item("razon_cancelacion"))
+        If ibImprevisto = " " Then
+            MessageBox.Show("You must enter a Status date to continue.")
+            Exit Sub
+        ElseIf ibImprevisto = "" Then
+            Exit Sub
+        Else
+            mysql.InsertarDatos("update reservas set razon_cancelacion='" & ibImprevisto & "' where ID_RESERVA=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
         End If
     End Sub
 
@@ -281,12 +300,17 @@
     End Sub
 
     Private Sub btnCancelarReserva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarReserva.Click
-        CancelarReservaSeleccionada()
+        CancelarReservaSeleccionadaYAgregarDineroAFavor()
+    End Sub
+
+    Private Sub btnSurgioImprevisto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSurgioImprevisto.Click
+        AlmacenarImprevisto()
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-
+        MsgBox(mysql.Consultar("select current_date").rows(0).item("current_Date"))
     End Sub
 
+    
     
 End Class
