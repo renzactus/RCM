@@ -44,17 +44,17 @@ Partial Class ListadeReservas
         Me.cboReservasEnElDia = New System.Windows.Forms.ComboBox()
         Me.chkMostrarServicio = New System.Windows.Forms.CheckBox()
         Me.pnlDatosReservas = New System.Windows.Forms.Panel()
+        Me.lblMostrarPagado = New System.Windows.Forms.Label()
+        Me.lblPagado = New System.Windows.Forms.Label()
         Me.pnlPagar = New System.Windows.Forms.Panel()
+        Me.btnInsertarPago = New System.Windows.Forms.Button()
         Me.txtNroRecibo = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.cboCuotas = New System.Windows.Forms.ComboBox()
         Me.cboModoPagoPagado = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.lblMostrarPagado = New System.Windows.Forms.Label()
-        Me.lblPagado = New System.Windows.Forms.Label()
         Me.btnPagar = New System.Windows.Forms.Button()
-        Me.btnInsertarPago = New System.Windows.Forms.Button()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.txtPrecioFiesta = New System.Windows.Forms.TextBox()
         Me.lblPrecioFiesta = New System.Windows.Forms.Label()
@@ -62,6 +62,7 @@ Partial Class ListadeReservas
         Me.btnGuardarPrecioFiesta = New System.Windows.Forms.Button()
         Me.btnEditarPrecioFiesta = New System.Windows.Forms.Button()
         Me.pnlSiNoSePago = New System.Windows.Forms.Panel()
+        Me.btnCancelarReserva = New System.Windows.Forms.Button()
         Me.pnlDatosReservas.SuspendLayout()
         Me.pnlPagar.SuspendLayout()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -292,6 +293,26 @@ Partial Class ListadeReservas
         Me.pnlDatosReservas.Size = New System.Drawing.Size(225, 182)
         Me.pnlDatosReservas.TabIndex = 52
         '
+        'lblMostrarPagado
+        '
+        Me.lblMostrarPagado.AutoSize = True
+        Me.lblMostrarPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarPagado.Location = New System.Drawing.Point(96, 164)
+        Me.lblMostrarPagado.Name = "lblMostrarPagado"
+        Me.lblMostrarPagado.Size = New System.Drawing.Size(57, 16)
+        Me.lblMostrarPagado.TabIndex = 53
+        Me.lblMostrarPagado.Text = "Pagado"
+        '
+        'lblPagado
+        '
+        Me.lblPagado.AutoSize = True
+        Me.lblPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPagado.Location = New System.Drawing.Point(20, 164)
+        Me.lblPagado.Name = "lblPagado"
+        Me.lblPagado.Size = New System.Drawing.Size(57, 16)
+        Me.lblPagado.TabIndex = 52
+        Me.lblPagado.Text = "Pagado"
+        '
         'pnlPagar
         '
         Me.pnlPagar.Controls.Add(Me.btnInsertarPago)
@@ -306,6 +327,15 @@ Partial Class ListadeReservas
         Me.pnlPagar.Size = New System.Drawing.Size(225, 182)
         Me.pnlPagar.TabIndex = 54
         Me.pnlPagar.Visible = False
+        '
+        'btnInsertarPago
+        '
+        Me.btnInsertarPago.Location = New System.Drawing.Point(118, 138)
+        Me.btnInsertarPago.Name = "btnInsertarPago"
+        Me.btnInsertarPago.Size = New System.Drawing.Size(75, 23)
+        Me.btnInsertarPago.TabIndex = 55
+        Me.btnInsertarPago.Text = "Pagar Reserva"
+        Me.btnInsertarPago.UseVisualStyleBackColor = True
         '
         'txtNroRecibo
         '
@@ -361,26 +391,6 @@ Partial Class ListadeReservas
         Me.Label15.TabIndex = 56
         Me.Label15.Text = "Cuotas"
         '
-        'lblMostrarPagado
-        '
-        Me.lblMostrarPagado.AutoSize = True
-        Me.lblMostrarPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarPagado.Location = New System.Drawing.Point(96, 164)
-        Me.lblMostrarPagado.Name = "lblMostrarPagado"
-        Me.lblMostrarPagado.Size = New System.Drawing.Size(57, 16)
-        Me.lblMostrarPagado.TabIndex = 53
-        Me.lblMostrarPagado.Text = "Pagado"
-        '
-        'lblPagado
-        '
-        Me.lblPagado.AutoSize = True
-        Me.lblPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPagado.Location = New System.Drawing.Point(20, 164)
-        Me.lblPagado.Name = "lblPagado"
-        Me.lblPagado.Size = New System.Drawing.Size(57, 16)
-        Me.lblPagado.TabIndex = 52
-        Me.lblPagado.Text = "Pagado"
-        '
         'btnPagar
         '
         Me.btnPagar.Location = New System.Drawing.Point(58, 23)
@@ -389,15 +399,6 @@ Partial Class ListadeReservas
         Me.btnPagar.TabIndex = 53
         Me.btnPagar.Text = "Pagar Reserva"
         Me.btnPagar.UseVisualStyleBackColor = True
-        '
-        'btnInsertarPago
-        '
-        Me.btnInsertarPago.Location = New System.Drawing.Point(118, 138)
-        Me.btnInsertarPago.Name = "btnInsertarPago"
-        Me.btnInsertarPago.Size = New System.Drawing.Size(75, 23)
-        Me.btnInsertarPago.TabIndex = 55
-        Me.btnInsertarPago.Text = "Pagar Reserva"
-        Me.btnInsertarPago.UseVisualStyleBackColor = True
         '
         'epError
         '
@@ -464,11 +465,22 @@ Partial Class ListadeReservas
         Me.pnlSiNoSePago.Size = New System.Drawing.Size(212, 48)
         Me.pnlSiNoSePago.TabIndex = 60
         '
+        'btnCancelarReserva
+        '
+        Me.btnCancelarReserva.Location = New System.Drawing.Point(363, 330)
+        Me.btnCancelarReserva.Name = "btnCancelarReserva"
+        Me.btnCancelarReserva.Size = New System.Drawing.Size(225, 26)
+        Me.btnCancelarReserva.TabIndex = 60
+        Me.btnCancelarReserva.Text = "Cancelar Reserva"
+        Me.btnCancelarReserva.UseVisualStyleBackColor = True
+        Me.btnCancelarReserva.Visible = False
+        '
         'ListadeReservas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(734, 438)
+        Me.Controls.Add(Me.btnCancelarReserva)
         Me.Controls.Add(Me.pnlSiNoSePago)
         Me.Controls.Add(Me.cboReservasEnElDia)
         Me.Controls.Add(Me.Button1)
@@ -530,4 +542,5 @@ Partial Class ListadeReservas
     Friend WithEvents btnGuardarPrecioFiesta As System.Windows.Forms.Button
     Friend WithEvents btnEditarPrecioFiesta As System.Windows.Forms.Button
     Friend WithEvents pnlSiNoSePago As System.Windows.Forms.Panel
+    Friend WithEvents btnCancelarReserva As System.Windows.Forms.Button
 End Class

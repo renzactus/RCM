@@ -35,6 +35,7 @@ Partial Class Principal
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.pnlArriba.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -42,7 +43,7 @@ Partial Class Principal
         'btnRealizarunareserva
         '
         Me.btnRealizarunareserva.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnRealizarunareserva.Location = New System.Drawing.Point(461, 92)
+        Me.btnRealizarunareserva.Location = New System.Drawing.Point(461, 90)
         Me.btnRealizarunareserva.Name = "btnRealizarunareserva"
         Me.btnRealizarunareserva.Size = New System.Drawing.Size(320, 55)
         Me.btnRealizarunareserva.TabIndex = 0
@@ -61,7 +62,7 @@ Partial Class Principal
         'btnListadereservas
         '
         Me.btnListadereservas.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnListadereservas.Location = New System.Drawing.Point(461, 151)
+        Me.btnListadereservas.Location = New System.Drawing.Point(461, 142)
         Me.btnListadereservas.Name = "btnListadereservas"
         Me.btnListadereservas.Size = New System.Drawing.Size(320, 55)
         Me.btnListadereservas.TabIndex = 16
@@ -160,7 +161,7 @@ Partial Class Principal
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(528, 531)
+        Me.Button1.Location = New System.Drawing.Point(984, 618)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 18
@@ -169,16 +170,27 @@ Partial Class Principal
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(512, 242)
+        Me.Panel1.Location = New System.Drawing.Point(897, 360)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(234, 252)
         Me.Panel1.TabIndex = 19
+        '
+        'Button3
+        '
+        Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Button3.Location = New System.Drawing.Point(461, 193)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(320, 55)
+        Me.Button3.TabIndex = 20
+        Me.Button3.Text = "Configuracion"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1300, 700)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnListadereservas)
@@ -208,5 +220,6 @@ Partial Class Principal
     Friend WithEvents btnRestaurar As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 
 End Class

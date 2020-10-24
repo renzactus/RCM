@@ -2,11 +2,14 @@
     Dim mysql As New MySQL
     Dim booleanNroReciboUnico As Boolean
     Dim cuotas, Preciototal, FilaNumero As Integer
+    Dim razon_cancelacion As String
     Dim datosReserva As DataTable
 
     Private Sub ListadeReservas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PonerEnNegritasDiasConReservas()
         ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
+        btnCancelarReserva.Visible = False
+
     End Sub
     'Metodos utilizados
     Private Sub PonerEnNegritasDiasConReservas()
@@ -68,7 +71,6 @@
             VaciarDatos()
         End If
     End Sub
-    
 
     Private Sub consultarDatosDeReservaConSuClienteYPrecio(ByVal fecha As Date)
         mysql.Consultar("select reservas.ID_RESERVA,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
@@ -95,6 +97,8 @@
         lblPagado.Enabled = False
         lblPagado.Visible = False
         pnlSiNoSePago.Visible = False
+        btnCancelarReserva.Visible = False
+
     End Sub
     Private Sub DeshabilitarOHabilitarDatos(ByVal valor As Boolean)
         lblMotivo.Enabled = valor
@@ -119,6 +123,7 @@
             chkMostrarServicio.Visible = True
             chkMostrarServicio.Checked = datosReserva.Rows(FilaNumero).Item("servicio")
             lblMostrarCliente.Text = datosReserva.Rows(FilaNumero).Item("nombre")
+            btnCancelarReserva.Visible = True
             If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
                 lblMostrarPagado.Text = datosReserva.Rows(FilaNumero).Item("costo")
                 lblPagado.Visible = True
@@ -178,11 +183,12 @@
             cuotas = cboCuotas.Text
         End If
         mysql.InsertarDatos("insert into pagos (NRO_RECIBO,cuotas,fecha_pago,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & "," & cuotas & ",current_date," &
-                            Preciototal + datosReserva.Rows(FilaNumero).Item("s") & ",'" & cboModoPagoPagado.SelectedText & "'," & datosReserva.Rows(FilaNumero).Item("ID_RESERVA") & ")")
+                            Preciototal + datosReserva.Rows(FilaNumero).Item("s") & ",'" & cboModoPagoPagado.Text & "'," & datosReserva.Rows(FilaNumero).Item("ID_RESERVA") & ")")
         If mysql.Consultado = True Then
             MsgBox("Pagado Correctamente")
             pnlPagar.Visible = False
             pnlDatosReservas.Visible = True
+            btnInsertarPago.Text = "Pagar"
             ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
         End If
     End Sub
@@ -255,4 +261,25 @@
 
     End Sub
 
+    Private Sub btnCancelarReserva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarReserva.Click
+        If MsgBox("Desea cancelar la reserva del " & datosReserva.Rows(FilaNumero).Item("fecha"), vbYesNo, "Atención!") = vbYes Then
+            'CONTINUAR CONN ESTO
+            razon_cancelacion = InputBox("Ingrese la razon por la cual se cancelo la reserva")
+            If razon_cancelacion = vbNullString Then
+                MsgBox("se cancelo")
+            Else
+                MsgBox("rc no es null")
+                mysql.InsertarDatos("update reservas set fecha_cancelacion=current_timestamp, razon_cancelacion='" & razon_cancelacion & "' where ID_RESERVA=" &
+                            datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+                If mysql.Consultado = True Then
+                    ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
+                    PonerEnNegritasDiasConReservas()
+                End If
+            End If
+
+
+
+
+        End If
+    End Sub
 End Class
