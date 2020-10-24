@@ -467,7 +467,7 @@ Partial Class ListadeReservas
         '
         'btnCancelarReserva
         '
-        Me.btnCancelarReserva.Location = New System.Drawing.Point(363, 330)
+        Me.btnCancelarReserva.Location = New System.Drawing.Point(360, 312)
         Me.btnCancelarReserva.Name = "btnCancelarReserva"
         Me.btnCancelarReserva.Size = New System.Drawing.Size(225, 26)
         Me.btnCancelarReserva.TabIndex = 60

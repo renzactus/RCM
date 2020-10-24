@@ -4,6 +4,7 @@
     Dim cuotas, Preciototal, FilaNumero As Integer
     Dim razon_cancelacion As String
     Dim datosReserva As DataTable
+    Dim fecha_actual As Date
 
     Private Sub ListadeReservas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PonerEnNegritasDiasConReservas()
@@ -13,8 +14,10 @@
     End Sub
     'Metodos utilizados
     Private Sub PonerEnNegritasDiasConReservas()
+        Calendario.RemoveAllBoldedDates()
         mysql.Consultar("select distinct fecha from reservas where fecha_cancelacion is null")
         If mysql.Consultado = True Then
+
             For i = 0 To mysql.Resultado.Rows.Count - 1
                 Calendario.AddBoldedDate(mysql.Resultado.Rows(i).Item("fecha"))
             Next
@@ -73,11 +76,11 @@
     End Sub
 
     Private Sub consultarDatosDeReservaConSuClienteYPrecio(ByVal fecha As Date)
-        mysql.Consultar("select reservas.ID_RESERVA,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
+        mysql.Consultar("select reservas.ID_RESERVA,reservas.ID_CLIENTE,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
                         ",cantidad_personas,servicio,nombre,seña as s,costo from reservas left join pagos on " &
                         "pagos.id_reserva=reservas.id_reserva inner join clientes on clientes.id_cliente=reservas.id_cliente" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null UNION" &
-                        " select reservas.ID_RESERVA,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final," &
+                        " select reservas.ID_RESERVA,reservas.ID_CLIENTE,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final," &
                         "cantidad_personas,servicio,nombre,seña as s,costo from reservas right join pagos on pagos.id_reserva=reservas.id_reserva" &
                         " inner join clientes on clientes.id_cliente=reservas.id_cliente" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
@@ -192,6 +195,26 @@
             ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
         End If
     End Sub
+    'Actualizando datos
+    Private Sub CancelarReservaSeleccionada()
+        If MsgBox("Desea cancelar la reserva del " & datosReserva.Rows(FilaNumero).Item("fecha"), vbYesNo, "Atención!") = vbYes Then
+            'CONTINUAR CONN ESTO
+            'razon_cancelacion = InputBox("Ingrese la razon por la cual se cancelo la reserva")
+            mysql.InsertarDatos("update reservas set fecha_cancelacion=current_timestamp, razon_cancelacion='" & razon_cancelacion & "' where ID_RESERVA=" &
+                        datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+            If mysql.Consultado = True Then
+
+                If mysql.Consultado = True Then
+                    If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
+                        mysql.InsertarDatos("update clientes set dinero_a_favor=" & CInt((datosReserva.Rows(FilaNumero).Item("costo") / 100) * 70) + datosReserva.Rows(FilaNumero).Item("dinero_a_favor") & " where ID_CLIENTE=" & datosReserva.Rows(FilaNumero).Item("ID_CLIENTE"))
+                    End If
+                End If
+
+                ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
+                PonerEnNegritasDiasConReservas()
+            End If
+        End If
+    End Sub
 
     'Eventos
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
@@ -257,29 +280,13 @@
         btnPagar.Enabled = False
     End Sub
 
+    Private Sub btnCancelarReserva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarReserva.Click
+        CancelarReservaSeleccionada()
+    End Sub
+
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
     End Sub
 
-    Private Sub btnCancelarReserva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarReserva.Click
-        If MsgBox("Desea cancelar la reserva del " & datosReserva.Rows(FilaNumero).Item("fecha"), vbYesNo, "Atención!") = vbYes Then
-            'CONTINUAR CONN ESTO
-            razon_cancelacion = InputBox("Ingrese la razon por la cual se cancelo la reserva")
-            If razon_cancelacion = vbNullString Then
-                MsgBox("se cancelo")
-            Else
-                MsgBox("rc no es null")
-                mysql.InsertarDatos("update reservas set fecha_cancelacion=current_timestamp, razon_cancelacion='" & razon_cancelacion & "' where ID_RESERVA=" &
-                            datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
-                If mysql.Consultado = True Then
-                    ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
-                    PonerEnNegritasDiasConReservas()
-                End If
-            End If
-
-
-
-
-        End If
-    End Sub
+    
 End Class
