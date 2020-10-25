@@ -89,6 +89,9 @@ Partial Class Reservar
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.chkUtilizarDineroAFavor = New System.Windows.Forms.CheckBox()
+        Me.lblDineroAFavor = New System.Windows.Forms.Label()
+        Me.lblMostrarDineroAFavor = New System.Windows.Forms.Label()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,6 +191,9 @@ Partial Class Reservar
         '
         'pnlCliente
         '
+        Me.pnlCliente.Controls.Add(Me.lblMostrarDineroAFavor)
+        Me.pnlCliente.Controls.Add(Me.lblDineroAFavor)
+        Me.pnlCliente.Controls.Add(Me.chkUtilizarDineroAFavor)
         Me.pnlCliente.Controls.Add(Me.txtPrecioFiesta)
         Me.pnlCliente.Controls.Add(Me.cboModoPagoSeña)
         Me.pnlCliente.Controls.Add(Me.Label17)
@@ -241,7 +247,7 @@ Partial Class Reservar
         Me.cboModoPagoSeña.Enabled = False
         Me.cboModoPagoSeña.FormattingEnabled = True
         Me.cboModoPagoSeña.Items.AddRange(New Object() {"Efectivo", "Tarjeta"})
-        Me.cboModoPagoSeña.Location = New System.Drawing.Point(117, 323)
+        Me.cboModoPagoSeña.Location = New System.Drawing.Point(134, 340)
         Me.cboModoPagoSeña.Name = "cboModoPagoSeña"
         Me.cboModoPagoSeña.Size = New System.Drawing.Size(94, 21)
         Me.cboModoPagoSeña.TabIndex = 39
@@ -249,7 +255,7 @@ Partial Class Reservar
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(34, 326)
+        Me.Label17.Location = New System.Drawing.Point(51, 343)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(79, 13)
         Me.Label17.TabIndex = 38
@@ -258,7 +264,7 @@ Partial Class Reservar
         'txtNroRecibo
         '
         Me.txtNroRecibo.Enabled = False
-        Me.txtNroRecibo.Location = New System.Drawing.Point(353, 291)
+        Me.txtNroRecibo.Location = New System.Drawing.Point(370, 308)
         Me.txtNroRecibo.Name = "txtNroRecibo"
         Me.txtNroRecibo.Size = New System.Drawing.Size(75, 20)
         Me.txtNroRecibo.TabIndex = 37
@@ -266,7 +272,7 @@ Partial Class Reservar
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(269, 294)
+        Me.Label16.Location = New System.Drawing.Point(286, 311)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(81, 13)
         Me.Label16.TabIndex = 36
@@ -278,7 +284,7 @@ Partial Class Reservar
         Me.cboCuotas.Enabled = False
         Me.cboCuotas.FormattingEnabled = True
         Me.cboCuotas.Items.AddRange(New Object() {"Ninguna", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"})
-        Me.cboCuotas.Location = New System.Drawing.Point(353, 325)
+        Me.cboCuotas.Location = New System.Drawing.Point(370, 342)
         Me.cboCuotas.Name = "cboCuotas"
         Me.cboCuotas.Size = New System.Drawing.Size(75, 21)
         Me.cboCuotas.TabIndex = 35
@@ -286,7 +292,7 @@ Partial Class Reservar
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(269, 328)
+        Me.Label15.Location = New System.Drawing.Point(286, 345)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(40, 13)
         Me.Label15.TabIndex = 34
@@ -295,7 +301,7 @@ Partial Class Reservar
         'optPagado
         '
         Me.optPagado.AutoSize = True
-        Me.optPagado.Location = New System.Drawing.Point(291, 253)
+        Me.optPagado.Location = New System.Drawing.Point(308, 270)
         Me.optPagado.Name = "optPagado"
         Me.optPagado.Size = New System.Drawing.Size(62, 17)
         Me.optPagado.TabIndex = 33
@@ -306,7 +312,7 @@ Partial Class Reservar
         'optSeñar
         '
         Me.optSeñar.AutoSize = True
-        Me.optSeñar.Location = New System.Drawing.Point(117, 253)
+        Me.optSeñar.Location = New System.Drawing.Point(134, 270)
         Me.optSeñar.Name = "optSeñar"
         Me.optSeñar.Size = New System.Drawing.Size(53, 17)
         Me.optSeñar.TabIndex = 32
@@ -320,7 +326,7 @@ Partial Class Reservar
         Me.cboModoPagoPagado.Enabled = False
         Me.cboModoPagoPagado.FormattingEnabled = True
         Me.cboModoPagoPagado.Items.AddRange(New Object() {"Efectivo", "Tarjeta"})
-        Me.cboModoPagoPagado.Location = New System.Drawing.Point(352, 359)
+        Me.cboModoPagoPagado.Location = New System.Drawing.Point(369, 376)
         Me.cboModoPagoPagado.Name = "cboModoPagoPagado"
         Me.cboModoPagoPagado.Size = New System.Drawing.Size(94, 21)
         Me.cboModoPagoPagado.TabIndex = 31
@@ -328,7 +334,7 @@ Partial Class Reservar
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(269, 362)
+        Me.Label14.Location = New System.Drawing.Point(286, 379)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(79, 13)
         Me.Label14.TabIndex = 30
@@ -377,7 +383,7 @@ Partial Class Reservar
         'txtSeña
         '
         Me.txtSeña.Enabled = False
-        Me.txtSeña.Location = New System.Drawing.Point(116, 289)
+        Me.txtSeña.Location = New System.Drawing.Point(133, 306)
         Me.txtSeña.Name = "txtSeña"
         Me.txtSeña.Size = New System.Drawing.Size(94, 20)
         Me.txtSeña.TabIndex = 20
@@ -385,7 +391,7 @@ Partial Class Reservar
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(72, 296)
+        Me.Label10.Location = New System.Drawing.Point(89, 313)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(38, 13)
         Me.Label10.TabIndex = 18
@@ -761,6 +767,40 @@ Partial Class Reservar
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'chkUtilizarDineroAFavor
+        '
+        Me.chkUtilizarDineroAFavor.AutoSize = True
+        Me.chkUtilizarDineroAFavor.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkUtilizarDineroAFavor.Enabled = False
+        Me.chkUtilizarDineroAFavor.Location = New System.Drawing.Point(289, 414)
+        Me.chkUtilizarDineroAFavor.Name = "chkUtilizarDineroAFavor"
+        Me.chkUtilizarDineroAFavor.Size = New System.Drawing.Size(127, 17)
+        Me.chkUtilizarDineroAFavor.TabIndex = 43
+        Me.chkUtilizarDineroAFavor.Text = "Utilizar Dinero a favor"
+        Me.chkUtilizarDineroAFavor.UseVisualStyleBackColor = True
+        Me.chkUtilizarDineroAFavor.Visible = False
+        '
+        'lblDineroAFavor
+        '
+        Me.lblDineroAFavor.AutoSize = True
+        Me.lblDineroAFavor.Location = New System.Drawing.Point(50, 214)
+        Me.lblDineroAFavor.Name = "lblDineroAFavor"
+        Me.lblDineroAFavor.Size = New System.Drawing.Size(77, 13)
+        Me.lblDineroAFavor.TabIndex = 44
+        Me.lblDineroAFavor.Text = "Dinero a favor:"
+        Me.lblDineroAFavor.Visible = False
+        '
+        'lblMostrarDineroAFavor
+        '
+        Me.lblMostrarDineroAFavor.AutoSize = True
+        Me.lblMostrarDineroAFavor.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarDineroAFavor.Location = New System.Drawing.Point(126, 211)
+        Me.lblMostrarDineroAFavor.Name = "lblMostrarDineroAFavor"
+        Me.lblMostrarDineroAFavor.Size = New System.Drawing.Size(44, 18)
+        Me.lblMostrarDineroAFavor.TabIndex = 45
+        Me.lblMostrarDineroAFavor.Text = "$$$$"
+        Me.lblMostrarDineroAFavor.Visible = False
+        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -847,4 +887,7 @@ Partial Class Reservar
     Friend WithEvents nudCantidadPersonas As System.Windows.Forms.NumericUpDown
     Friend WithEvents pnlDatosReserva As System.Windows.Forms.Panel
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents lblMostrarDineroAFavor As System.Windows.Forms.Label
+    Friend WithEvents lblDineroAFavor As System.Windows.Forms.Label
+    Friend WithEvents chkUtilizarDineroAFavor As System.Windows.Forms.CheckBox
 End Class

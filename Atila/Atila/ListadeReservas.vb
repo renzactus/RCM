@@ -3,7 +3,6 @@
     Dim booleanNroReciboUnico As Boolean
     Dim cuotas, Preciototal, FilaNumero As Integer
     Dim razon_cancelacion, ibImprevisto As String
-
     Dim datosReserva As DataTable
 
     Private Sub ListadeReservas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -211,10 +210,8 @@
                         datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
             If mysql.Consultado = True Then
 
-                If mysql.Consultado = True Then
-                    If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
-                        mysql.InsertarDatos("update clientes set dinero_a_favor=" & CInt((datosReserva.Rows(FilaNumero).Item("costo") / 100) * 70) + datosReserva.Rows(FilaNumero).Item("dinero_a_favor") & " where ID_CLIENTE=" & datosReserva.Rows(FilaNumero).Item("ID_CLIENTE"))
-                    End If
+                If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
+                    mysql.InsertarDatos("update clientes set dinero_a_favor=" & CInt((datosReserva.Rows(FilaNumero).Item("costo") / 100) * 70) + datosReserva.Rows(FilaNumero).Item("dinero_a_favor") & " where ID_CLIENTE=" & datosReserva.Rows(FilaNumero).Item("ID_CLIENTE"))
                 End If
 
                 ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)

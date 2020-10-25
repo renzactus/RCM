@@ -1,10 +1,10 @@
 ﻿
 Public Class Reservar
-    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente, booleanNroReciboUnico, booleanSeñaMayorQuePrecioTotal As Boolean
+    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente, booleanNroReciboUnico, booleanSeñaMayorQuePrecioTotal, booleanDaParaPagarTodo, booleanPagoVacio As Boolean
     Dim mysql As New MySQL
-    Dim telefonos As String
+    Dim telefonos, PagarModo As String
     Dim Inventario, DatosClientes, reservaInvertida As DataTable
-    Dim ReservasEnElDiaSeleccionado, ReservasEntreEsaHora, sumaCedula, PrecioTotal As Integer
+    Dim ReservasEnElDiaSeleccionado, ReservasEntreEsaHora, sumaCedula, PrecioTotal, FilaNumero As Integer
     Dim cuotas As String
     Dim AutoCompletarCedula As New AutoCompleteStringCollection()
     Dim objetoDatosReservas As Object
@@ -87,6 +87,9 @@ Public Class Reservar
         booleanTelefonos = True
         txtDireccion.Location = New Point(txtDireccion.Location.X, 210)
         lblDireccion.Location = New Point(lblDireccion.Location.X, 196)
+
+        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 235)
+        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 235)
     End Sub
     Private Sub OcultarOtroTelefono()
         txtTelefono2.Visible = False
@@ -95,6 +98,9 @@ Public Class Reservar
         booleanTelefonos = False
         txtDireccion.Location = New Point(txtDireccion.Location.X, 183)
         lblDireccion.Location = New Point(lblDireccion.Location.X, 169)
+
+        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 211)
+        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 211)
     End Sub
     Private Sub DeshabilitarEdicionDatosCliente(ByVal estado As Boolean)
         txtDireccion.Enabled = estado
@@ -110,6 +116,7 @@ Public Class Reservar
         For i = 0 To DatosClientes.Rows.Count - 1
             If txtCedula.Text <> "" Then
                 If txtCedula.Text = DatosClientes.Rows(i).Item("cedula") Then
+                    FilaNumero = i
                     booleanClienteExistente = True
                     DeshabilitarEdicionDatosCliente(False)
                     txtNombre.Text = DatosClientes.Rows(i).Item("nombre")
@@ -118,9 +125,19 @@ Public Class Reservar
                         MostrarOtroTelefono()
                         txtTelefono1.Text = DatosClientes.Rows(i).Item("telefonos").ToString.Substring(0, DatosClientes.Rows(i).Item("telefonos").ToString.IndexOf("|"))
                         txtTelefono2.Text = DatosClientes.Rows(i).Item("telefonos").ToString.Substring(DatosClientes.Rows(i).Item("telefonos").ToString.IndexOf("|") + 1)
+
                     Else
+
                         txtTelefono1.Text = DatosClientes.Rows(i).Item("telefonos").ToString
                         OcultarOtroTelefono()
+                    End If
+                    If DatosClientes.Rows(i).Item("dinero_a_favor") <> 0 Then
+                        lblDineroAFavor.Visible = True
+                        lblMostrarDineroAFavor.Visible = True
+                        chkUtilizarDineroAFavor.Visible = True
+                        chkUtilizarDineroAFavor.Text = "Utilizar Dinero " & vbNewLine & " a Favor (" &
+                            DatosClientes.Rows(i).Item("dinero_a_favor") & ")"
+                        lblMostrarDineroAFavor.Text = DatosClientes.Rows(i).Item("dinero_a_favor")
                     End If
                     AvisarSiHayDatosDeClientesVacios()
                 End If
@@ -132,6 +149,12 @@ Public Class Reservar
                 txtDireccion.Text = ""
                 txtTelefono1.Text = ""
                 txtTelefono2.Text = ""
+                lblDineroAFavor.Visible = False
+                lblMostrarDineroAFavor.Visible = False
+                lblMostrarDineroAFavor.Text = ""
+                chkUtilizarDineroAFavor.Visible = False
+                chkUtilizarDineroAFavor.Checked = False
+                chkDineroAFavorCambiovalor()
                 OcultarOtroTelefono()
                 DeshabilitarEdicionDatosCliente(True)
             End If
@@ -167,6 +190,29 @@ Public Class Reservar
         pnlDatosReserva.Tag = objetoDatosReservas
         objetoDatosReservas.Show()
     End Sub
+    Private Sub chkDineroAFavorCambiovalor()
+        booleanDaParaPagarTodo = False
+        If chkUtilizarDineroAFavor.Checked = True Then
+            btnEditarPrecioFiesta.Enabled = False
+            If DatosClientes.Rows(FilaNumero).Item("dinero_a_favor") >= PrecioTotal Then
+                cboCuotas.Enabled = False
+                cboModoPagoPagado.Enabled = False
+                lblPrecioFiesta.Text = 0
+                booleanDaParaPagarTodo = True
+            Else
+                lblPrecioFiesta.Text = PrecioTotal - DatosClientes.Rows(FilaNumero).Item("dinero_a_favor")
+            End If
+        Else
+            btnEditarPrecioFiesta.Enabled = True
+            If PrecioTotal = 0 Then
+                ActualizarPrecio()
+            End If
+            cboCuotas.Enabled = True
+            cboModoPagoPagado.Enabled = True
+            lblPrecioFiesta.Text = PrecioTotal
+        End If
+    End Sub
+
 
     'Usados al pasar al segundo panel
 
@@ -235,7 +281,7 @@ Public Class Reservar
     Private Sub consultarChequearSiLaHoraEstaOcupada()
         mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
         reservaInvertida = mysql.Resultado
-        
+
         If dtpHoraComienzo.Value < dtpHoraFinal.Value Then
 
 
@@ -258,7 +304,7 @@ Public Class Reservar
                     dtpHoraComienzo.Text & "'<addtime(comienzo,'-1:00:00') and '" & dtpHoraFinal.Text & "'<addtime(final,'1:00:00'))) and fecha_cancelacion is null")
                 End If
             End If
-            
+
 
 
         Else
@@ -283,9 +329,9 @@ Public Class Reservar
 
                 End If
             End If
-            
 
-            
+
+
 
         End If
     End Sub
@@ -348,6 +394,7 @@ Public Class Reservar
         SiLaCedulaTiene8CaracteresEstablecersumaCedula()
         chequearSiSeñaMayorQuePrecioTotal()
         chequearQueNroReciboSeaUnico()
+        chequearValoresDePago()
         If txtCedula.Text.Length < 8 Then
             epError.SetError(txtCedula, "Cedula Incompleta")
             sonidoError()
@@ -371,10 +418,12 @@ Public Class Reservar
             avisarSiEstaVacio(txtSeña)
             avisarSiEstaVacio(cboModoPagoSeña)
             sonidoError()
-        ElseIf optPagado.Checked = True And (txtNroRecibo.Text = "" Or cboCuotas.SelectedIndex = -1 Or cboModoPagoPagado.SelectedIndex = -1) Then
+        ElseIf booleanPagoVacio = True Then
             avisarSiEstaVacio(txtNroRecibo)
-            avisarSiEstaVacio(cboCuotas)
-            avisarSiEstaVacio(cboModoPagoPagado)
+            If booleanDaParaPagarTodo = False Then
+                avisarSiEstaVacio(cboCuotas)
+                avisarSiEstaVacio(cboModoPagoPagado)
+            End If
             sonidoError()
         ElseIf booleanNroReciboUnico = False And txtNroRecibo.Text <> "" Then 'Si no hay cuadros incompletos
             epError.SetError(txtNroRecibo, "Ya existe un numero de recibo igual, ingrese otro")
@@ -410,6 +459,17 @@ Public Class Reservar
             End If
         End If
     End Sub
+    Private Sub chequearValoresDePago()
+        If optPagado.Checked = True And (cboCuotas.SelectedIndex = -1 Or cboModoPagoPagado.SelectedIndex = -1) Then
+            If booleanDaParaPagarTodo = False Then
+                booleanPagoVacio = True
+                avisarSiEstaVacio(cboCuotas)
+                avisarSiEstaVacio(cboModoPagoPagado)
+            End If
+        ElseIf optPagado.Checked = True And txtNroRecibo.Text = "" Then
+            booleanPagoVacio = True
+        End If
+    End Sub
     Private Sub AvisarSiHayDatosDeClientesVacios()
         avisarSiEstaVacio(txtCedula)
         avisarSiEstaVacio(txtNombre)
@@ -419,10 +479,13 @@ Public Class Reservar
             avisarSiEstaVacio(txtTelefono2)
         End If
     End Sub
+    
 
     Private Sub insertarDatos()
 
         If cboCuotas.Text = "Ninguna" Then
+            cuotas = 1
+        ElseIf cboCuotas.SelectedIndex = -1 Then
             cuotas = 1
         Else
             cuotas = cboCuotas.Text
@@ -440,7 +503,17 @@ Public Class Reservar
         End If
 
         If optPagado.Checked = True Then
+            If chkUtilizarDineroAFavor.Checked = True Then
+                If lblPrecioFiesta.Text = 0 Then
+                    mysql.InsertarDatos("update clientes set dinero_a_favor=dinero_a_favor-" & PrecioTotal &
+                                        " where ID_CLIENTE=" & DatosClientes.Rows(FilaNumero).Item("ID_CLIENTE"))
+                Else
+                    mysql.InsertarDatos("update clientes set dinero_a_favor=0 where ID_CLIENTE=" &
+                                        DatosClientes.Rows(FilaNumero).Item("ID_CLIENTE"))
+                End If
+            End If
             insertarPago()
+
         End If
 
         insertarInventario()
@@ -458,7 +531,6 @@ Public Class Reservar
                                 telefonos & "','" & txtDireccion.Text & "')")
     End Sub
     Private Sub insertarReservasConSeña()
-        MsgBox("con seña")
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
                     nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
@@ -471,9 +543,20 @@ Public Class Reservar
                 "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
     End Sub
     Private Sub insertarPago()
-
+        If cboModoPagoPagado.Text = "" Then
+            If lblPrecioFiesta.Text = 0 Then
+                PagarModo = "dfu:" & DatosClientes.Rows(FilaNumero).Item("dinero_a_favor") - lblPrecioFiesta.Text
+            End If
+        Else
+            If chkUtilizarDineroAFavor.Checked = True Then
+                PagarModo = "dfu:" & DatosClientes.Rows(FilaNumero).Item("dinero_a_favor") &
+                    "r:" & cboModoPagoPagado.Text
+            Else
+                PagarModo = cboModoPagoPagado.Text
+            End If
+        End If
         mysql.InsertarDatos("Insert into pagos (NRO_RECIBO,fecha_pago,cuotas,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & ",current_date," &
-                                    cuotas & "," & lblPrecioFiesta.Text & ",'" & cboModoPagoPagado.Text &
+                                    cuotas & "," & lblPrecioFiesta.Text & ",'" & PagarModo &
                                     "',(select id_reserva from reservas where ingresodatos=(select max(ingresodatos) from reservas where fecha_cancelacion is null)))")
     End Sub
     Private Sub insertarInventario()
@@ -631,6 +714,7 @@ Public Class Reservar
             cboCuotas.Enabled = True
             txtNroRecibo.Enabled = True
             cboModoPagoPagado.Enabled = True
+            chkUtilizarDineroAFavor.Enabled = True
         Else
             cboModoPagoPagado.Enabled = False
             cboModoPagoPagado.SelectedIndex = -1
@@ -638,6 +722,8 @@ Public Class Reservar
             txtNroRecibo.Enabled = False
             cboCuotas.SelectedIndex = -1
             txtNroRecibo.Text = ""
+            chkUtilizarDineroAFavor.Checked = False
+            chkUtilizarDineroAFavor.Enabled = False
         End If
     End Sub
 
@@ -748,9 +834,14 @@ Public Class Reservar
         AbrirMenuConDatosReservas(llblMotivoReserva3)
     End Sub
 
+    Private Sub chkUtilizarDineroAFavor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUtilizarDineroAFavor.CheckedChanged
+        chkDineroAFavorCambiovalor()
+    End Sub
+
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "'")
         reservaInvertida = mysql.Resultado
         MsgBox(reservaInvertida.Rows(0).Item("ID_RESERVA"))
     End Sub
+
 End Class
