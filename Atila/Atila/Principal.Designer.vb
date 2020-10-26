@@ -28,14 +28,15 @@ Partial Class Principal
         Me.btnListadereservas = New System.Windows.Forms.Button()
         Me.pnlArriba = New System.Windows.Forms.Panel()
         Me.lblPerfil = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnMinimizar = New System.Windows.Forms.Button()
         Me.btnCerrar = New System.Windows.Forms.Button()
         Me.btnMaximizar = New System.Windows.Forms.Button()
         Me.btnRestaurar = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.pnlArriba.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -91,6 +92,42 @@ Partial Class Principal
         Me.lblPerfil.Size = New System.Drawing.Size(130, 18)
         Me.lblPerfil.TabIndex = 21
         Me.lblPerfil.Text = "Ana Liz Mazzarino"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(984, 618)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 18
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.Location = New System.Drawing.Point(897, 360)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(234, 252)
+        Me.Panel1.TabIndex = 19
+        '
+        'Button3
+        '
+        Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Button3.Location = New System.Drawing.Point(461, 193)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(320, 55)
+        Me.Button3.TabIndex = 20
+        Me.Button3.Text = "Configuracion"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.Location = New System.Drawing.Point(1200, 650)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 15
+        Me.PictureBox1.TabStop = False
         '
         'btnMinimizar
         '
@@ -149,47 +186,22 @@ Partial Class Principal
         Me.btnRestaurar.UseVisualStyleBackColor = True
         Me.btnRestaurar.Visible = False
         '
-        'PictureBox1
+        'Button4
         '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Location = New System.Drawing.Point(1200, 650)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 15
-        Me.PictureBox1.TabStop = False
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(984, 618)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 18
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Panel1
-        '
-        Me.Panel1.Location = New System.Drawing.Point(897, 360)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(234, 252)
-        Me.Panel1.TabIndex = 19
-        '
-        'Button3
-        '
-        Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Button3.Location = New System.Drawing.Point(461, 193)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(320, 55)
-        Me.Button3.TabIndex = 20
-        Me.Button3.Text = "Configuracion"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button4.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Button4.Location = New System.Drawing.Point(461, 242)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(320, 55)
+        Me.Button4.TabIndex = 21
+        Me.Button4.Text = "Inventario"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1300, 700)
+        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Button1)
@@ -221,5 +233,6 @@ Partial Class Principal
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Button4 As System.Windows.Forms.Button
 
 End Class

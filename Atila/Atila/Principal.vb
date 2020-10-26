@@ -81,4 +81,9 @@ Public Class Principal
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
 
     End Sub
+
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        Dim inventario As New Inventario
+        inventario.Show()
+    End Sub
 End Class
