@@ -22,10 +22,12 @@ Partial Class Inventario
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.conf = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -71,6 +73,11 @@ Partial Class Inventario
         Me.conf.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.conf.Width = 40
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
+        '
         'Inventario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -87,4 +94,5 @@ Partial Class Inventario
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents conf As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
 End Class

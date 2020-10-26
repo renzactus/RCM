@@ -329,11 +329,13 @@
 
     Private Sub btnPagar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPagar.Click
         If pnlPagar.Visible = False Then
+            btnEditarFecha.Visible = False
             btnPagar.Text = "Cancelar"
             pnlDatosReservas.Visible = False
             pnlPagar.Visible = True
             cboReservasEnElDia.Enabled = False
         Else
+            btnEditarFecha.Visible = True
             btnPagar.Text = "Pagar"
             txtNroRecibo.Text = ""
             cboCuotas.SelectedIndex = -1

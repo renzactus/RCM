@@ -23,4 +23,10 @@
             dgvInventario.Rows(e.RowIndex).Cells(2).Value = ""
         End If
     End Sub
+
+    Private Sub dgvInventario_CellMouseClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvInventario.CellMouseClick
+        If e.ColumnIndex = 2 And e.RowIndex <> -1 Then
+            ContextMenuStrip.Show()
+        End If
+    End Sub
 End Class

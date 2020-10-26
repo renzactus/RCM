@@ -555,7 +555,7 @@ Partial Class ListadeReservas
         Me.dgvUtiliza.AllowUserToResizeRows = False
         Me.dgvUtiliza.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvUtiliza.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.Cantidad})
-        Me.dgvUtiliza.Location = New System.Drawing.Point(570, 185)
+        Me.dgvUtiliza.Location = New System.Drawing.Point(627, 167)
         Me.dgvUtiliza.MultiSelect = False
         Me.dgvUtiliza.Name = "dgvUtiliza"
         Me.dgvUtiliza.RowHeadersVisible = False
@@ -581,7 +581,7 @@ Partial Class ListadeReservas
         '
         Me.lblCosasUtilizar.AutoSize = True
         Me.lblCosasUtilizar.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCosasUtilizar.Location = New System.Drawing.Point(570, 164)
+        Me.lblCosasUtilizar.Location = New System.Drawing.Point(624, 146)
         Me.lblCosasUtilizar.Name = "lblCosasUtilizar"
         Me.lblCosasUtilizar.Size = New System.Drawing.Size(116, 18)
         Me.lblCosasUtilizar.TabIndex = 68

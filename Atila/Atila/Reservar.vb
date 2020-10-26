@@ -279,7 +279,7 @@ Public Class Reservar
     Private Sub consultarCantidadDeReservasEnElDiaSeleccionado()
         mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null") 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
     End Sub
-    Public Sub consultarChequearSiLaHoraEstaOcupada()
+    Private Sub consultarChequearSiLaHoraEstaOcupada()
         mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
         reservaInvertida = mysql.Resultado
 
