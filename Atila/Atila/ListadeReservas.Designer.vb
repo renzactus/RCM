@@ -44,6 +44,7 @@ Partial Class ListadeReservas
         Me.cboReservasEnElDia = New System.Windows.Forms.ComboBox()
         Me.chkMostrarServicio = New System.Windows.Forms.CheckBox()
         Me.pnlDatosReservas = New System.Windows.Forms.Panel()
+        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
         Me.lblMostrarPagado = New System.Windows.Forms.Label()
         Me.lblPagado = New System.Windows.Forms.Label()
         Me.pnlPagar = New System.Windows.Forms.Panel()
@@ -64,10 +65,19 @@ Partial Class ListadeReservas
         Me.pnlSiNoSePago = New System.Windows.Forms.Panel()
         Me.btnCancelarReserva = New System.Windows.Forms.Button()
         Me.btnSurgioImprevisto = New System.Windows.Forms.Button()
+        Me.btnGuardarFecha = New System.Windows.Forms.Button()
+        Me.btnEditarFecha = New System.Windows.Forms.Button()
+        Me.lblEditandoReservas = New System.Windows.Forms.Label()
+        Me.btnCancelarFecha = New System.Windows.Forms.Button()
+        Me.dgvUtiliza = New System.Windows.Forms.DataGridView()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lblCosasUtilizar = New System.Windows.Forms.Label()
         Me.pnlDatosReservas.SuspendLayout()
         Me.pnlPagar.SuspendLayout()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlSiNoSePago.SuspendLayout()
+        CType(Me.dgvUtiliza, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblNoHayReservas
@@ -105,7 +115,7 @@ Partial Class ListadeReservas
         Me.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Calendario.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Calendario.Location = New System.Drawing.Point(18, 38)
+        Me.Calendario.Location = New System.Drawing.Point(57, 38)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
         Me.Calendario.MinDate = New Date(2020, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
@@ -113,7 +123,7 @@ Partial Class ListadeReservas
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(649, 389)
+        Me.Button1.Location = New System.Drawing.Point(726, 410)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 33
@@ -154,7 +164,7 @@ Partial Class ListadeReservas
         '
         Me.lblPersonas.AutoSize = True
         Me.lblPersonas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPersonas.Location = New System.Drawing.Point(10, 87)
+        Me.lblPersonas.Location = New System.Drawing.Point(10, 111)
         Me.lblPersonas.Name = "lblPersonas"
         Me.lblPersonas.Size = New System.Drawing.Size(66, 16)
         Me.lblPersonas.TabIndex = 37
@@ -164,7 +174,7 @@ Partial Class ListadeReservas
         '
         Me.lblServicio.AutoSize = True
         Me.lblServicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblServicio.Location = New System.Drawing.Point(19, 112)
+        Me.lblServicio.Location = New System.Drawing.Point(19, 136)
         Me.lblServicio.Name = "lblServicio"
         Me.lblServicio.Size = New System.Drawing.Size(57, 16)
         Me.lblServicio.TabIndex = 39
@@ -174,7 +184,7 @@ Partial Class ListadeReservas
         '
         Me.lblCliente.AutoSize = True
         Me.lblCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCliente.Location = New System.Drawing.Point(28, 138)
+        Me.lblCliente.Location = New System.Drawing.Point(28, 162)
         Me.lblCliente.Name = "lblCliente"
         Me.lblCliente.Size = New System.Drawing.Size(49, 16)
         Me.lblCliente.TabIndex = 40
@@ -184,7 +194,7 @@ Partial Class ListadeReservas
         '
         Me.lblSeña.AutoSize = True
         Me.lblSeña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSeña.Location = New System.Drawing.Point(37, 164)
+        Me.lblSeña.Location = New System.Drawing.Point(37, 188)
         Me.lblSeña.Name = "lblSeña"
         Me.lblSeña.Size = New System.Drawing.Size(40, 16)
         Me.lblSeña.TabIndex = 41
@@ -224,7 +234,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarPersonas.AutoSize = True
         Me.lblMostrarPersonas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarPersonas.Location = New System.Drawing.Point(96, 87)
+        Me.lblMostrarPersonas.Location = New System.Drawing.Point(96, 111)
         Me.lblMostrarPersonas.Name = "lblMostrarPersonas"
         Me.lblMostrarPersonas.Size = New System.Drawing.Size(66, 16)
         Me.lblMostrarPersonas.TabIndex = 45
@@ -234,7 +244,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarCliente.AutoSize = True
         Me.lblMostrarCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarCliente.Location = New System.Drawing.Point(96, 138)
+        Me.lblMostrarCliente.Location = New System.Drawing.Point(96, 162)
         Me.lblMostrarCliente.Name = "lblMostrarCliente"
         Me.lblMostrarCliente.Size = New System.Drawing.Size(49, 16)
         Me.lblMostrarCliente.TabIndex = 48
@@ -244,7 +254,7 @@ Partial Class ListadeReservas
         '
         Me.lblMostrarSeña.AutoSize = True
         Me.lblMostrarSeña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarSeña.Location = New System.Drawing.Point(96, 164)
+        Me.lblMostrarSeña.Location = New System.Drawing.Point(96, 188)
         Me.lblMostrarSeña.Name = "lblMostrarSeña"
         Me.lblMostrarSeña.Size = New System.Drawing.Size(40, 16)
         Me.lblMostrarSeña.TabIndex = 49
@@ -255,7 +265,7 @@ Partial Class ListadeReservas
         Me.cboReservasEnElDia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboReservasEnElDia.Enabled = False
         Me.cboReservasEnElDia.FormattingEnabled = True
-        Me.cboReservasEnElDia.Location = New System.Drawing.Point(396, 45)
+        Me.cboReservasEnElDia.Location = New System.Drawing.Point(411, 27)
         Me.cboReservasEnElDia.Name = "cboReservasEnElDia"
         Me.cboReservasEnElDia.Size = New System.Drawing.Size(94, 21)
         Me.cboReservasEnElDia.TabIndex = 50
@@ -264,7 +274,7 @@ Partial Class ListadeReservas
         '
         Me.chkMostrarServicio.AutoSize = True
         Me.chkMostrarServicio.Enabled = False
-        Me.chkMostrarServicio.Location = New System.Drawing.Point(110, 114)
+        Me.chkMostrarServicio.Location = New System.Drawing.Point(110, 138)
         Me.chkMostrarServicio.Name = "chkMostrarServicio"
         Me.chkMostrarServicio.Size = New System.Drawing.Size(15, 14)
         Me.chkMostrarServicio.TabIndex = 51
@@ -273,6 +283,7 @@ Partial Class ListadeReservas
         '
         'pnlDatosReservas
         '
+        Me.pnlDatosReservas.Controls.Add(Me.dtpFecha)
         Me.pnlDatosReservas.Controls.Add(Me.lblMostrarPagado)
         Me.pnlDatosReservas.Controls.Add(Me.lblPagado)
         Me.pnlDatosReservas.Controls.Add(Me.lblMotivo)
@@ -289,16 +300,25 @@ Partial Class ListadeReservas
         Me.pnlDatosReservas.Controls.Add(Me.lblSeña)
         Me.pnlDatosReservas.Controls.Add(Me.lblMostrarFecha)
         Me.pnlDatosReservas.Controls.Add(Me.lblMostrarMotivo)
-        Me.pnlDatosReservas.Location = New System.Drawing.Point(363, 72)
+        Me.pnlDatosReservas.Location = New System.Drawing.Point(339, 74)
         Me.pnlDatosReservas.Name = "pnlDatosReservas"
-        Me.pnlDatosReservas.Size = New System.Drawing.Size(225, 182)
+        Me.pnlDatosReservas.Size = New System.Drawing.Size(225, 217)
         Me.pnlDatosReservas.TabIndex = 52
+        '
+        'dtpFecha
+        '
+        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFecha.Location = New System.Drawing.Point(97, 35)
+        Me.dtpFecha.Name = "dtpFecha"
+        Me.dtpFecha.Size = New System.Drawing.Size(88, 20)
+        Me.dtpFecha.TabIndex = 54
+        Me.dtpFecha.Visible = False
         '
         'lblMostrarPagado
         '
         Me.lblMostrarPagado.AutoSize = True
         Me.lblMostrarPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarPagado.Location = New System.Drawing.Point(96, 164)
+        Me.lblMostrarPagado.Location = New System.Drawing.Point(96, 188)
         Me.lblMostrarPagado.Name = "lblMostrarPagado"
         Me.lblMostrarPagado.Size = New System.Drawing.Size(57, 16)
         Me.lblMostrarPagado.TabIndex = 53
@@ -308,7 +328,7 @@ Partial Class ListadeReservas
         '
         Me.lblPagado.AutoSize = True
         Me.lblPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPagado.Location = New System.Drawing.Point(20, 164)
+        Me.lblPagado.Location = New System.Drawing.Point(20, 188)
         Me.lblPagado.Name = "lblPagado"
         Me.lblPagado.Size = New System.Drawing.Size(57, 16)
         Me.lblPagado.TabIndex = 52
@@ -323,7 +343,7 @@ Partial Class ListadeReservas
         Me.pnlPagar.Controls.Add(Me.cboCuotas)
         Me.pnlPagar.Controls.Add(Me.cboModoPagoPagado)
         Me.pnlPagar.Controls.Add(Me.Label15)
-        Me.pnlPagar.Location = New System.Drawing.Point(363, 72)
+        Me.pnlPagar.Location = New System.Drawing.Point(339, 74)
         Me.pnlPagar.Name = "pnlPagar"
         Me.pnlPagar.Size = New System.Drawing.Size(225, 182)
         Me.pnlPagar.TabIndex = 54
@@ -461,14 +481,14 @@ Partial Class ListadeReservas
         Me.pnlSiNoSePago.Controls.Add(Me.Label9)
         Me.pnlSiNoSePago.Controls.Add(Me.btnPagar)
         Me.pnlSiNoSePago.Controls.Add(Me.btnEditarPrecioFiesta)
-        Me.pnlSiNoSePago.Location = New System.Drawing.Point(363, 260)
+        Me.pnlSiNoSePago.Location = New System.Drawing.Point(339, 297)
         Me.pnlSiNoSePago.Name = "pnlSiNoSePago"
         Me.pnlSiNoSePago.Size = New System.Drawing.Size(212, 48)
         Me.pnlSiNoSePago.TabIndex = 60
         '
         'btnCancelarReserva
         '
-        Me.btnCancelarReserva.Location = New System.Drawing.Point(360, 312)
+        Me.btnCancelarReserva.Location = New System.Drawing.Point(336, 349)
         Me.btnCancelarReserva.Name = "btnCancelarReserva"
         Me.btnCancelarReserva.Size = New System.Drawing.Size(225, 26)
         Me.btnCancelarReserva.TabIndex = 60
@@ -478,7 +498,7 @@ Partial Class ListadeReservas
         '
         'btnSurgioImprevisto
         '
-        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(360, 344)
+        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(336, 381)
         Me.btnSurgioImprevisto.Name = "btnSurgioImprevisto"
         Me.btnSurgioImprevisto.Size = New System.Drawing.Size(225, 26)
         Me.btnSurgioImprevisto.TabIndex = 61
@@ -486,11 +506,96 @@ Partial Class ListadeReservas
         Me.btnSurgioImprevisto.UseVisualStyleBackColor = True
         Me.btnSurgioImprevisto.Visible = False
         '
+        'btnGuardarFecha
+        '
+        Me.btnGuardarFecha.Location = New System.Drawing.Point(627, 110)
+        Me.btnGuardarFecha.Name = "btnGuardarFecha"
+        Me.btnGuardarFecha.Size = New System.Drawing.Size(57, 21)
+        Me.btnGuardarFecha.TabIndex = 63
+        Me.btnGuardarFecha.Text = "Guardar"
+        Me.btnGuardarFecha.UseVisualStyleBackColor = True
+        Me.btnGuardarFecha.Visible = False
+        '
+        'btnEditarFecha
+        '
+        Me.btnEditarFecha.Location = New System.Drawing.Point(570, 110)
+        Me.btnEditarFecha.Name = "btnEditarFecha"
+        Me.btnEditarFecha.Size = New System.Drawing.Size(51, 21)
+        Me.btnEditarFecha.TabIndex = 62
+        Me.btnEditarFecha.Text = "Editar"
+        Me.btnEditarFecha.UseVisualStyleBackColor = True
+        Me.btnEditarFecha.Visible = False
+        '
+        'lblEditandoReservas
+        '
+        Me.lblEditandoReservas.AutoSize = True
+        Me.lblEditandoReservas.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEditandoReservas.Location = New System.Drawing.Point(343, 50)
+        Me.lblEditandoReservas.Name = "lblEditandoReservas"
+        Me.lblEditandoReservas.Size = New System.Drawing.Size(143, 18)
+        Me.lblEditandoReservas.TabIndex = 65
+        Me.lblEditandoReservas.Text = "Editando Reservas"
+        Me.lblEditandoReservas.Visible = False
+        '
+        'btnCancelarFecha
+        '
+        Me.btnCancelarFecha.Location = New System.Drawing.Point(570, 110)
+        Me.btnCancelarFecha.Name = "btnCancelarFecha"
+        Me.btnCancelarFecha.Size = New System.Drawing.Size(51, 21)
+        Me.btnCancelarFecha.TabIndex = 66
+        Me.btnCancelarFecha.Text = "Cancelar"
+        Me.btnCancelarFecha.UseVisualStyleBackColor = True
+        Me.btnCancelarFecha.Visible = False
+        '
+        'dgvUtiliza
+        '
+        Me.dgvUtiliza.AllowUserToAddRows = False
+        Me.dgvUtiliza.AllowUserToDeleteRows = False
+        Me.dgvUtiliza.AllowUserToResizeColumns = False
+        Me.dgvUtiliza.AllowUserToResizeRows = False
+        Me.dgvUtiliza.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.dgvUtiliza.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.Cantidad})
+        Me.dgvUtiliza.Location = New System.Drawing.Point(570, 185)
+        Me.dgvUtiliza.MultiSelect = False
+        Me.dgvUtiliza.Name = "dgvUtiliza"
+        Me.dgvUtiliza.RowHeadersVisible = False
+        Me.dgvUtiliza.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvUtiliza.Size = New System.Drawing.Size(163, 114)
+        Me.dgvUtiliza.TabIndex = 67
+        '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 60
+        '
+        'lblCosasUtilizar
+        '
+        Me.lblCosasUtilizar.AutoSize = True
+        Me.lblCosasUtilizar.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCosasUtilizar.Location = New System.Drawing.Point(570, 164)
+        Me.lblCosasUtilizar.Name = "lblCosasUtilizar"
+        Me.lblCosasUtilizar.Size = New System.Drawing.Size(116, 18)
+        Me.lblCosasUtilizar.TabIndex = 68
+        Me.lblCosasUtilizar.Text = "Cosas a utilizar"
+        '
         'ListadeReservas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(734, 438)
+        Me.ClientSize = New System.Drawing.Size(813, 445)
+        Me.Controls.Add(Me.lblCosasUtilizar)
+        Me.Controls.Add(Me.dgvUtiliza)
+        Me.Controls.Add(Me.lblEditandoReservas)
+        Me.Controls.Add(Me.btnGuardarFecha)
         Me.Controls.Add(Me.btnSurgioImprevisto)
         Me.Controls.Add(Me.btnCancelarReserva)
         Me.Controls.Add(Me.pnlSiNoSePago)
@@ -502,6 +607,8 @@ Partial Class ListadeReservas
         Me.Controls.Add(Me.lblFiestasReservadasParaEl)
         Me.Controls.Add(Me.pnlDatosReservas)
         Me.Controls.Add(Me.pnlPagar)
+        Me.Controls.Add(Me.btnEditarFecha)
+        Me.Controls.Add(Me.btnCancelarFecha)
         Me.Name = "ListadeReservas"
         Me.Text = "ListadeReservas"
         Me.pnlDatosReservas.ResumeLayout(False)
@@ -511,6 +618,7 @@ Partial Class ListadeReservas
         CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlSiNoSePago.ResumeLayout(False)
         Me.pnlSiNoSePago.PerformLayout()
+        CType(Me.dgvUtiliza, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -556,4 +664,13 @@ Partial Class ListadeReservas
     Friend WithEvents pnlSiNoSePago As System.Windows.Forms.Panel
     Friend WithEvents btnCancelarReserva As System.Windows.Forms.Button
     Friend WithEvents btnSurgioImprevisto As System.Windows.Forms.Button
+    Friend WithEvents lblEditandoReservas As System.Windows.Forms.Label
+    Friend WithEvents btnGuardarFecha As System.Windows.Forms.Button
+    Friend WithEvents btnEditarFecha As System.Windows.Forms.Button
+    Friend WithEvents dtpFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents btnCancelarFecha As System.Windows.Forms.Button
+    Friend WithEvents lblCosasUtilizar As System.Windows.Forms.Label
+    Friend WithEvents dgvUtiliza As System.Windows.Forms.DataGridView
+    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

@@ -35,6 +35,9 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
+        Me.lblMostrarDineroAFavor = New System.Windows.Forms.Label()
+        Me.lblDineroAFavor = New System.Windows.Forms.Label()
+        Me.chkUtilizarDineroAFavor = New System.Windows.Forms.CheckBox()
         Me.txtPrecioFiesta = New System.Windows.Forms.TextBox()
         Me.cboModoPagoSeña = New System.Windows.Forms.ComboBox()
         Me.Label17 = New System.Windows.Forms.Label()
@@ -89,9 +92,6 @@ Partial Class Reservar
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.chkUtilizarDineroAFavor = New System.Windows.Forms.CheckBox()
-        Me.lblDineroAFavor = New System.Windows.Forms.Label()
-        Me.lblMostrarDineroAFavor = New System.Windows.Forms.Label()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -223,15 +223,49 @@ Partial Class Reservar
         Me.pnlCliente.Controls.Add(Me.txtDireccion)
         Me.pnlCliente.Controls.Add(Me.txtTelefono1)
         Me.pnlCliente.Controls.Add(Me.lblDireccion)
-        Me.pnlCliente.Controls.Add(Me.btnEditarCliente)
-        Me.pnlCliente.Controls.Add(Me.btnCancelarEdicion)
         Me.pnlCliente.Controls.Add(Me.btnGuardarPrecioFiesta)
         Me.pnlCliente.Controls.Add(Me.btnEditarPrecioFiesta)
+        Me.pnlCliente.Controls.Add(Me.btnEditarCliente)
+        Me.pnlCliente.Controls.Add(Me.btnCancelarEdicion)
         Me.pnlCliente.Location = New System.Drawing.Point(1, 1)
         Me.pnlCliente.Name = "pnlCliente"
         Me.pnlCliente.Size = New System.Drawing.Size(639, 571)
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
+        '
+        'lblMostrarDineroAFavor
+        '
+        Me.lblMostrarDineroAFavor.AutoSize = True
+        Me.lblMostrarDineroAFavor.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarDineroAFavor.Location = New System.Drawing.Point(126, 211)
+        Me.lblMostrarDineroAFavor.Name = "lblMostrarDineroAFavor"
+        Me.lblMostrarDineroAFavor.Size = New System.Drawing.Size(44, 18)
+        Me.lblMostrarDineroAFavor.TabIndex = 45
+        Me.lblMostrarDineroAFavor.Text = "$$$$"
+        Me.lblMostrarDineroAFavor.Visible = False
+        '
+        'lblDineroAFavor
+        '
+        Me.lblDineroAFavor.AutoSize = True
+        Me.lblDineroAFavor.Location = New System.Drawing.Point(50, 214)
+        Me.lblDineroAFavor.Name = "lblDineroAFavor"
+        Me.lblDineroAFavor.Size = New System.Drawing.Size(77, 13)
+        Me.lblDineroAFavor.TabIndex = 44
+        Me.lblDineroAFavor.Text = "Dinero a favor:"
+        Me.lblDineroAFavor.Visible = False
+        '
+        'chkUtilizarDineroAFavor
+        '
+        Me.chkUtilizarDineroAFavor.AutoSize = True
+        Me.chkUtilizarDineroAFavor.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkUtilizarDineroAFavor.Enabled = False
+        Me.chkUtilizarDineroAFavor.Location = New System.Drawing.Point(289, 414)
+        Me.chkUtilizarDineroAFavor.Name = "chkUtilizarDineroAFavor"
+        Me.chkUtilizarDineroAFavor.Size = New System.Drawing.Size(127, 17)
+        Me.chkUtilizarDineroAFavor.TabIndex = 43
+        Me.chkUtilizarDineroAFavor.Text = "Utilizar Dinero a favor"
+        Me.chkUtilizarDineroAFavor.UseVisualStyleBackColor = True
+        Me.chkUtilizarDineroAFavor.Visible = False
         '
         'txtPrecioFiesta
         '
@@ -767,48 +801,14 @@ Partial Class Reservar
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'chkUtilizarDineroAFavor
-        '
-        Me.chkUtilizarDineroAFavor.AutoSize = True
-        Me.chkUtilizarDineroAFavor.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkUtilizarDineroAFavor.Enabled = False
-        Me.chkUtilizarDineroAFavor.Location = New System.Drawing.Point(289, 414)
-        Me.chkUtilizarDineroAFavor.Name = "chkUtilizarDineroAFavor"
-        Me.chkUtilizarDineroAFavor.Size = New System.Drawing.Size(127, 17)
-        Me.chkUtilizarDineroAFavor.TabIndex = 43
-        Me.chkUtilizarDineroAFavor.Text = "Utilizar Dinero a favor"
-        Me.chkUtilizarDineroAFavor.UseVisualStyleBackColor = True
-        Me.chkUtilizarDineroAFavor.Visible = False
-        '
-        'lblDineroAFavor
-        '
-        Me.lblDineroAFavor.AutoSize = True
-        Me.lblDineroAFavor.Location = New System.Drawing.Point(50, 214)
-        Me.lblDineroAFavor.Name = "lblDineroAFavor"
-        Me.lblDineroAFavor.Size = New System.Drawing.Size(77, 13)
-        Me.lblDineroAFavor.TabIndex = 44
-        Me.lblDineroAFavor.Text = "Dinero a favor:"
-        Me.lblDineroAFavor.Visible = False
-        '
-        'lblMostrarDineroAFavor
-        '
-        Me.lblMostrarDineroAFavor.AutoSize = True
-        Me.lblMostrarDineroAFavor.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarDineroAFavor.Location = New System.Drawing.Point(126, 211)
-        Me.lblMostrarDineroAFavor.Name = "lblMostrarDineroAFavor"
-        Me.lblMostrarDineroAFavor.Size = New System.Drawing.Size(44, 18)
-        Me.lblMostrarDineroAFavor.TabIndex = 45
-        Me.lblMostrarDineroAFavor.Text = "$$$$"
-        Me.lblMostrarDineroAFavor.Visible = False
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 584)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.pnlCliente)
         Me.Controls.Add(Me.pnlReserva)
+        Me.Controls.Add(Me.pnlCliente)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)

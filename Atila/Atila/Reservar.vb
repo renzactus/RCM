@@ -4,7 +4,8 @@ Public Class Reservar
     Dim mysql As New MySQL
     Dim telefonos, PagarModo As String
     Dim Inventario, DatosClientes, reservaInvertida As DataTable
-    Dim ReservasEnElDiaSeleccionado, ReservasEntreEsaHora, sumaCedula, PrecioTotal, FilaNumero As Integer
+    Dim ReservasEnElDiaSeleccionado, sumaCedula, PrecioTotal, FilaNumero As Integer
+    Public ReservasEntreEsaHora As Integer
     Dim cuotas As String
     Dim AutoCompletarCedula As New AutoCompleteStringCollection()
     Dim objetoDatosReservas As Object
@@ -278,7 +279,7 @@ Public Class Reservar
     Private Sub consultarCantidadDeReservasEnElDiaSeleccionado()
         mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null") 'Devuelve la id_reserva si la hora en esa fecha esta ocupada
     End Sub
-    Private Sub consultarChequearSiLaHoraEstaOcupada()
+    Public Sub consultarChequearSiLaHoraEstaOcupada()
         mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
         reservaInvertida = mysql.Resultado
 
@@ -398,7 +399,7 @@ Public Class Reservar
         If txtCedula.Text.Length < 8 Then
             epError.SetError(txtCedula, "Cedula Incompleta")
             sonidoError()
-        ElseIf txtCedula.Text = "" Or txtNombre.Text = "" Or txtDireccion.Text = "" Or txtTelefono1.Text = "" Then 'Cliente
+        ElseIf txtCedula.Text = "" Or txtNombre.Text = "" Or txtTelefono1.Text = "" Then 'Cliente
             AvisarSiHayDatosDeClientesVacios()
             sonidoError()
         ElseIf btnAgregarTelefonos.Text = "-" And txtTelefono2.Text = "" Then
@@ -473,7 +474,6 @@ Public Class Reservar
     Private Sub AvisarSiHayDatosDeClientesVacios()
         avisarSiEstaVacio(txtCedula)
         avisarSiEstaVacio(txtNombre)
-        avisarSiEstaVacio(txtDireccion)
         avisarSiEstaVacio(txtTelefono1)
         If btnAgregarTelefonos.Text = "-" Then
             avisarSiEstaVacio(txtTelefono2)
@@ -684,6 +684,7 @@ Public Class Reservar
         btnAgregarDatos.Enabled = True
         lblEditandoCliente.Visible = False
         btnGuardarCliente.Visible = False
+        btnCancelarEdicion.Visible = False
         txtCedula.Enabled = True
         DeshabilitarEdicionDatosCliente(False)
     End Sub
@@ -746,7 +747,7 @@ Public Class Reservar
     End Sub
 
     Private Sub txtDireccion_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtDireccion.Validating
-        avisarSiEstaVacio(txtDireccion)
+        'avisarSiEstaVacio(txtDireccion)
     End Sub
 
     Private Sub txtNroRecibo_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtNroRecibo.Validating
@@ -816,6 +817,10 @@ Public Class Reservar
         If nudCantidadPersonas.Text.Length > 2 Then
             e.Handled = True And Not Char.IsControl(e.KeyChar)
         End If
+    End Sub
+
+    Private Sub txtNroRecibo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroRecibo.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

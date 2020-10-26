@@ -3,7 +3,7 @@
     Dim booleanNroReciboUnico As Boolean
     Dim cuotas, Preciototal, FilaNumero As Integer
     Dim razon_cancelacion, ibImprevisto As String
-    Dim datosReserva As DataTable
+    Dim datosReserva, reservaInvertida As DataTable
 
     Private Sub ListadeReservas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PonerEnNegritasDiasConReservas()
@@ -56,6 +56,7 @@
         lblFechaSeleccionada.Text = fecha
         If mysql.Resultado.Rows.Count > 1 Then
             cboReservasEnElDia.Enabled = True
+            cboReservasEnElDia.Visible = True
             lblNoHayReservas.Visible = False
             For i = 0 To mysql.Resultado.Rows.Count - 1
                 cboReservasEnElDia.Items.Add(mysql.Resultado.Rows(i).Item("comienzo").ToString & " - " & mysql.Resultado.Rows(i).Item("final").ToString)
@@ -63,12 +64,14 @@
         ElseIf mysql.Resultado.Rows.Count = 1 Then
             lblNoHayReservas.Visible = False
             cboReservasEnElDia.Enabled = True
+            cboReservasEnElDia.Visible = True
             cboReservasEnElDia.Items.Add(mysql.Resultado.Rows(0).Item("comienzo").ToString & " - " & mysql.Resultado.Rows(0).Item("final").ToString)
             cboReservasEnElDia.SelectedIndex = 0
             MostrarDatosDeReserva()
         Else
             lblNoHayReservas.Visible = True
             cboReservasEnElDia.Enabled = False
+            cboReservasEnElDia.Visible = False
             DeshabilitarOHabilitarDatos(False)
             VaciarDatos()
         End If
@@ -101,6 +104,8 @@
         pnlSiNoSePago.Visible = False
         btnCancelarReserva.Visible = False
         btnSurgioImprevisto.Visible = False
+        btnEditarFecha.Visible = False
+        dgvUtiliza.Rows.Clear()
 
     End Sub
     Private Sub DeshabilitarOHabilitarDatos(ByVal valor As Boolean)
@@ -110,9 +115,12 @@
         lblPersonas.Enabled = valor
         lblServicio.Enabled = valor
         lblCliente.Enabled = valor
+        lblCosasUtilizar.Enabled = valor
+        dgvUtiliza.Enabled = valor
     End Sub
 
     Private Sub MostrarDatosDeReserva()
+
         FilaNumero = cboReservasEnElDia.SelectedIndex
         DeshabilitarOHabilitarDatos(True)
         VaciarDatos()
@@ -126,11 +134,18 @@
             chkMostrarServicio.Visible = True
             chkMostrarServicio.Checked = datosReserva.Rows(FilaNumero).Item("servicio")
             lblMostrarCliente.Text = datosReserva.Rows(FilaNumero).Item("nombre")
+
+            mysql.Consultar("select descripcion,utiliza.cantidad from utiliza inner join inventario on utiliza.ID_INVENTARIO=inventario.ID_INVENTARIO where id_reserva=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+            For i = 0 To mysql.Resultado.Rows.Count - 1
+                dgvUtiliza.Rows.Add(mysql.Resultado.Rows(i).Item("descripcion"), mysql.Resultado.Rows(i).Item("cantidad"))
+            Next
+
             If (datosReserva.Rows(FilaNumero).Item("fecha") = mysql.Consultar("select current_date").rows(0).item("current_Date")) And (datosReserva.Rows(FilaNumero).Item("comienzo").ToString < mysql.Consultar("select current_time").rows(0).item("current_time").ToString) Then
                 btnSurgioImprevisto.Visible = True
             ElseIf (datosReserva.Rows(FilaNumero).Item("fecha") < mysql.Consultar("select current_date").rows(0).item("current_Date")) Then
                 btnSurgioImprevisto.Visible = True
-            ElseIf (datosReserva.Rows(FilaNumero).Item("fecha") > mysql.Consultar("select current_date").rows(0).item("current_Date")) Then
+            Else
+                btnEditarFecha.Visible = True
                 btnCancelarReserva.Visible = True
             End If
             If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
@@ -201,6 +216,7 @@
             ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
         End If
     End Sub
+
     'Actualizando datos
     Private Sub CancelarReservaSeleccionadaYAgregarDineroAFavor()
         If MsgBox("Desea cancelar la reserva del " & datosReserva.Rows(FilaNumero).Item("fecha"), vbYesNo, "Atención!") = vbYes Then
@@ -220,15 +236,84 @@
         End If
     End Sub
     Private Sub AlmacenarImprevisto()
-        ibImprevisto = InputBox("¿Cual fue el imprevisto?", "Atención!", mysql.Consultar("select razon_cancelacion from reservas where ID_RESERVA=" &
-                                                                                                 datosReserva.Rows(FilaNumero).Item("ID_RESERVA")).Rows(FilaNumero).Item("razon_cancelacion"))
+        mysql.Consultar("select descripcion from imprevisto where ID_RESERVA=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+        If mysql.Resultado.Rows.Count = 0 Then
+            ibImprevisto = InputBox("¿Cual fue el imprevisto?", "Atención!", " ")
+        Else
+            ibImprevisto = InputBox("¿Cual fue el imprevisto?", "Atención!", mysql.Resultado.Rows(0).Item("descripcion"))
+        End If
+
         If ibImprevisto = " " Then
-            MessageBox.Show("You must enter a Status date to continue.")
+            MessageBox.Show("Tienes que escribir algun imprevisto para que se guarde")
             Exit Sub
         ElseIf ibImprevisto = "" Then
             Exit Sub
         Else
-            mysql.InsertarDatos("update reservas set razon_cancelacion='" & ibImprevisto & "' where ID_RESERVA=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+
+            If mysql.Resultado.Rows.Count = 0 Then
+                mysql.InsertarDatos("insert into imprevisto (ID_RESERVA,descripcion) values(" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA") & ",'" & ibImprevisto & "')")
+            Else
+                mysql.InsertarDatos("update imprevisto set descripcion='" & ibImprevisto & "' where ID_RESERVA=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+            End If
+
+
+        End If
+    End Sub
+    Public Sub consultarChequearSiLaHoraEstaOcupada()
+        mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
+        reservaInvertida = mysql.Resultado
+
+        If datosReserva.Rows(FilaNumero).Item("comienzo") < datosReserva.Rows(FilaNumero).Item("final") Then
+
+
+            If reservaInvertida.Rows.Count = 0 Then
+                mysql.Consultar("select id_reserva from reservas where fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and (('" &
+                datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                datosReserva.Rows(FilaNumero).Item("final") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(comienzo,'-1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(final,'1:00:00'))) and " &
+                "fecha_cancelacion is null")
+            Else
+                mysql.Consultar("select id_reserva from reservas where fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and (('" &
+                datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                datosReserva.Rows(FilaNumero).Item("final") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(comienzo,'-1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(final,'1:00:00'))) and " &
+                "fecha_cancelacion is null and ID_RESERVA<>" & reservaInvertida.Rows(0).Item("ID_RESERVA"))
+                If mysql.Resultado.Rows.Count = 0 Then
+                    mysql.Consultar("select id_reserva from reservas where fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and (('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(final,'1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(comienzo,'-1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'<addtime(final,'1:00:00'))) and fecha_cancelacion is null")
+                End If
+            End If
+
+
+
+        Else
+            If reservaInvertida.Rows.Count = 0 Then
+                mysql.Consultar("select ID_RESERVA from reservas where fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and (('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("final") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00'))) and fecha_cancelacion is null")
+            Else
+                mysql.Consultar("select ID_RESERVA from reservas where fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and (('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("final") & "'<addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00'))) and fecha_cancelacion is null and ID_RESERVA<>" & reservaInvertida.Rows(0).Item("ID_RESERVA"))
+
+                If mysql.Resultado.Rows.Count = 0 Then
+                    MsgBox("ver si esta al reves en la base de datos")
+
+                    mysql.Consultar("select id_reserva from reservas where fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and (('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(comienzo,'-1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("final") & "'<addtime(final,'1:00:00')) or ('" &
+                    datosReserva.Rows(FilaNumero).Item("comienzo") & "'<addtime(comienzo,'-1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(final,'1:00:00'))) and fecha_cancelacion is null")
+
+                End If
+            End If
+
+
+
+
         End If
     End Sub
 
@@ -310,4 +395,41 @@
 
     
     
+    Private Sub btnGuardarFecha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardarFecha.Click
+        consultarChequearSiLaHoraEstaOcupada()
+        If mysql.Resultado.Rows.Count = 0 Then
+            mysql.InsertarDatos("update reservas set fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' where ID_RESERVA=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+            If mysql.Consultado = True Then
+                epError.SetError(dtpFecha, "")
+                dtpFecha.Visible = False
+                btnEditarFecha.Visible = True
+                btnCancelarFecha.Visible = False
+                btnGuardarFecha.Visible = False
+                ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
+                PonerEnNegritasDiasConReservas()
+                Calendario.Enabled = True
+            End If
+        Else
+            epError.SetError(dtpFecha, "Fecha ocupada")
+        End If
+    End Sub
+
+    Private Sub btnEditarFecha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarFecha.Click
+        dtpFecha.MinDate = mysql.Consultar("select current_date").rows(0).item("current_date")
+        Calendario.Enabled = False
+        dtpFecha.Value = lblMostrarFecha.Text
+        dtpFecha.Visible = True
+        btnEditarFecha.Visible = False
+        btnCancelarFecha.Visible = True
+        btnGuardarFecha.Visible = True
+    End Sub
+
+    Private Sub btnCancelarFecha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarFecha.Click
+        Calendario.Enabled = True
+        dtpFecha.Value = lblMostrarFecha.Text
+        dtpFecha.Visible = False
+        btnEditarFecha.Visible = True
+        btnCancelarFecha.Visible = False
+        btnGuardarFecha.Visible = False
+    End Sub
 End Class
