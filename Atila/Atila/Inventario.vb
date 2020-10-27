@@ -7,7 +7,6 @@
     'Constructor
     Private Sub Inventario_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         MostrarInventarioEndgv()
-        dgvInventario.Rows(0).Selected = False
         btnEditarCantidad.Enabled = False
         btnBorrar.Enabled = False
     End Sub
@@ -19,9 +18,12 @@
         For i = 0 To datosInventario.Rows.Count - 1
             dgvInventario.Rows.Add(datosInventario.Rows(i).Item("descripcion"), datosInventario.Rows(i).Item("cantidad"))
         Next
+        dgvInventario.Rows(0).Selected = False
+        btnBorrar.Enabled = False
+        btnEditarCantidad.Enabled = False
     End Sub
     Private Sub SaberFilaSeleccionada()
-
+        FilaSeleccionada = vbNull
         If dgvInventario.SelectedRows.Count > 0 Then
             FilaSeleccionada = dgvInventario.CurrentRow.Index
         End If
@@ -49,6 +51,7 @@
         mysql.Consultar("select ID_INVENTARIO from utiliza where ID_INVENTARIO=" & datosInventario.Rows(FilaSeleccionada).Item("ID_INVENTARIO"))
         If mysql.Resultado.Rows.Count > 0 Then
             epError.SetError(dgvInventario, "Este Inventario no se puede eliminar porque se ha utilizado")
+            Reservar.sonidoError()
         Else
             mysql.InsertarDatos("delete from inventario where ID_INVENTARIO=" & datosInventario.Rows(FilaSeleccionada).Item("ID_INVENTARIO"))
             MostrarInventarioEndgv()
@@ -97,6 +100,7 @@
     Private Sub dgvInventario_SelectionChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles dgvInventario.SelectionChanged
         btnEditarCantidad.Enabled = True
         btnBorrar.Enabled = True
+
     End Sub
 
     Private Sub btnAgregarDatos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregarDatos.Click
@@ -104,7 +108,7 @@
     End Sub
 
     Private Sub btnBorrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBorrar.Click
-        borrarInventario()
+            borrarInventario()
     End Sub
 
     Private Sub btnBorrar_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles btnBorrar.Validating

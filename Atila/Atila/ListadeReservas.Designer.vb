@@ -498,7 +498,7 @@ Partial Class ListadeReservas
         '
         'btnSurgioImprevisto
         '
-        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(336, 381)
+        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(336, 300)
         Me.btnSurgioImprevisto.Name = "btnSurgioImprevisto"
         Me.btnSurgioImprevisto.Size = New System.Drawing.Size(225, 26)
         Me.btnSurgioImprevisto.TabIndex = 61
