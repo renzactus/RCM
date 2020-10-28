@@ -3,8 +3,10 @@
 Public Class Principal
     Dim mysql As New MySQL
     Dim datosReservasNotificacion As DataTable
+    Dim PaginaNotificacion As Integer = 1
     Public colorprincipal As Color = Color.FromArgb(239, 231, 219)
     Public colorsecundario As Color = Color.FromArgb(227, 195, 176)
+    Public booleanImprevistoAlmacenado As Boolean
 
     'Constructor
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR DE LA CLASE
@@ -12,7 +14,7 @@ Public Class Principal
 
         Me.BackColor = colorprincipal
         pnlArriba.BackColor = Color.FromArgb(colorsecundario.R, colorsecundario.G, colorsecundario.B)
-        actualizarNotificaciones(1)
+        ActualizarNotificaciones()
     End Sub
     'Notificaciones
     Private Sub MostrarCuadroNotificaciones()
@@ -24,14 +26,70 @@ Public Class Principal
         End If
 
     End Sub
-    Private Sub actualizarNotificaciones(ByVal pagina As Integer)
 
-        mysql.Consultar("select motivo,fecha,nombre from reservas inner join clientes on clientes.ID_CLIENTE=reservas.ID_CLIENTE where fecha<current_date and fecha_cancelacion is null")
+    Private Sub ActualizarNotificaciones()
+
+        mysql.Consultar("select ID_RESERVA,motivo,fecha,nombre,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final from reservas inner join clientes on " &
+                        "clientes.ID_CLIENTE=reservas.ID_CLIENTE where fecha<current_date and fecha_cancelacion is null and razon_cancelacion is null order by fecha")
         datosReservasNotificacion = mysql.Resultado
+        If PaginaNotificacion = 3 And datosReservasNotificacion.Rows.Count <= 6 Then
+            PaginaNotificacion = 2
+        ElseIf PaginaNotificacion = 2 And datosReservasNotificacion.Rows.Count <= 3 Then
+            PaginaNotificacion = 1
+        End If
+        If PaginaNotificacion = 2 And datosReservasNotificacion.Rows.Count <= 6 Then
+            llblPaginaSiguiente.Visible = False
+        ElseIf PaginaNotificacion = 1 And datosReservasNotificacion.Rows.Count <= 3 Then
+            llblPaginaSiguiente.Visible = False
+        End If
+        actualizarNumeroNotificaciones()
+        rellenarNotificaciones(PaginaNotificacion)
+
+    End Sub
+    Private Sub actualizarNumeroNotificaciones()
+        If datosReservasNotificacion.Rows.Count > 9 Then
+            lblCantidadDeNotificaciones.Text = "+9"
+        Else
+            lblCantidadDeNotificaciones.Text = datosReservasNotificacion.Rows.Count
+        End If
+    End Sub
+    Private Sub rellenarNotificaciones(ByVal pagina As Integer)
         vaciarNotificaciones()
-        rellenarNotificaciones(pagina)
-        If datosReservasNotificacion.Rows.Count > 3 Then
-            llblPaginaSiguiente.Visible = True
+        If datosReservasNotificacion.Rows.Count = 1 Or (datosReservasNotificacion.Rows.Count = 4 And pagina = 2) Or (datosReservasNotificacion.Rows.Count = 7 And pagina = 3) Then
+
+            pnlNotificacion1.Visible = True
+            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo")
+            lblNotificacion1Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("fecha")
+            lblNotificacion1Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("final").ToString
+
+        ElseIf datosReservasNotificacion.Rows.Count = 2 Or (datosReservasNotificacion.Rows.Count = 5 And pagina = 2) Or (datosReservasNotificacion.Rows.Count = 8 And pagina = 3) Then
+
+            pnlNotificacion1.Visible = True
+            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo")
+            lblNotificacion1Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("fecha")
+            lblNotificacion1Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("final").ToString
+
+            pnlNotificacion2.Visible = True
+            lblNotificacion2Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("motivo")
+            lblNotificacion2Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("fecha")
+            lblNotificacion2Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("final").ToString
+
+        ElseIf datosReservasNotificacion.Rows.Count > 2 Or (datosReservasNotificacion.Rows.Count = 6 And pagina = 2) Or (datosReservasNotificacion.Rows.Count = 9 And pagina = 3) Then
+            pnlNotificacion1.Visible = True
+            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo")
+            lblNotificacion1Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("fecha")
+            lblNotificacion1Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("final").ToString
+
+            pnlNotificacion2.Visible = True
+            lblNotificacion2Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("motivo")
+            lblNotificacion2Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("fecha")
+            lblNotificacion2Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("final").ToString
+
+            pnlNotificacion3.Visible = True
+            lblNotificacion3Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("motivo")
+            lblNotificacion3Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("fecha")
+            lblNotificacion3Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("final").ToString
+            'dar los valores al 3
         End If
     End Sub
     Private Sub vaciarNotificaciones()
@@ -40,22 +98,19 @@ Public Class Principal
         pnlNotificacion3.Visible = False
         'Tambien que se achique el pnlCuadroNotificaciones dependiendo los que sean visibles
     End Sub
-    Private Sub rellenarNotificaciones(ByVal pagina As Integer)
-        If datosReservasNotificacion.Rows.Count = 1 Then
-            pnlNotificacion1.Visible = True
-            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("Motivo")
-            'dar los valores al 1
-        ElseIf datosReservasNotificacion.Rows.Count = 2 Then
-            pnlNotificacion1.Visible = True
-            pnlNotificacion2.Visible = True
-            'dar los valores al 1,2
-        ElseIf datosReservasNotificacion.Rows.Count > 2 Then
-            pnlNotificacion1.Visible = True
-            pnlNotificacion2.Visible = True
-            pnlNotificacion3.Visible = True
-            'dar los valores al 3
-        End If
+
+    Private Sub actualizarAReservaSinProblema(ByVal NroNotificacion As Integer)
+        mysql.InsertarDatos("update reservas set razon_cancelacion='' where ID_RESERVA=" & datosReservasNotificacion.Rows(3 * (PaginaNotificacion - 1) + NroNotificacion - 1).Item("ID_RESERVA"))
+        ActualizarNotificaciones()
     End Sub
+    Private Sub actualizarAReservaConImprevisto(ByVal NroNotificacion As Integer)
+        ListadeReservas.AlmacenarImprevisto(datosReservasNotificacion.Rows(3 * (PaginaNotificacion - 1) + NroNotificacion - 1).Item("ID_RESERVA"))
+        If mysql.Consultado = True And booleanImprevistoAlmacenado = True Then
+            mysql.InsertarDatos("update reservas set razon_cancelacion='' where ID_RESERVA=" & datosReservasNotificacion.Rows(3 * (PaginaNotificacion - 1) + NroNotificacion - 1).Item("ID_RESERVA"))
+        End If
+        ActualizarNotificaciones()
+    End Sub
+
     'Importamos dll de windows para mover la pestaña arrastrando en el pnlArriba
     <DllImport("user32.DLL", EntryPoint:="ReleaseCapture")>
     Public Shared Sub ReleaseCapture()
@@ -148,15 +203,83 @@ Public Class Principal
         Me.ToolTip1.SetToolTip(btnAyuda, "Ante cualquier duda llamar a 091111111")
     End Sub
 
+    'Eventos Relacionados con notificaciones
+
     Private Sub btnNotificaciones_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificaciones.Click
         MostrarCuadroNotificaciones()
+        ActualizarNotificaciones()
+        PaginaNotificacion = 1
+        llblPaginaAnterior.Visible = False
+        If datosReservasNotificacion.Rows.Count > 3 Then
+            llblPaginaSiguiente.Visible = True
+        Else
+            llblPaginaSiguiente.Visible = False
+        End If
     End Sub
 
     Private Sub llblPaginaSiguiente_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblPaginaSiguiente.LinkClicked
 
+        If PaginaNotificacion = 1 Then
+            rellenarNotificaciones(2)
+            PaginaNotificacion = 2
+            llblPaginaAnterior.Visible = True
+            If datosReservasNotificacion.Rows.Count < 7 Then
+                llblPaginaSiguiente.Visible = False
+            End If
+
+        ElseIf PaginaNotificacion = 2 Then
+            rellenarNotificaciones(3)
+            llblPaginaSiguiente.Visible = False
+            PaginaNotificacion = 3
+
+        End If
+
+
     End Sub
+
+    Private Sub llblPaginaAnterior_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblPaginaAnterior.LinkClicked
+        PaginaNotificacion = PaginaNotificacion - 1
+        llblPaginaSiguiente.Visible = True
+        If PaginaNotificacion = 2 Then
+            rellenarNotificaciones(2)
+        ElseIf PaginaNotificacion = 1 Then
+            rellenarNotificaciones(1)
+            llblPaginaAnterior.Visible = False
+        End If
+    End Sub
+
+    Private Sub btnNotificacion1Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion1Si.Click
+        actualizarAReservaSinProblema(1)
+    End Sub
+
+    Private Sub btnNotificacion2Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion2Si.Click
+        actualizarAReservaSinProblema(2)
+    End Sub
+
+    Private Sub btnNotificacion3Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion3Si.Click
+        actualizarAReservaSinProblema(3)
+    End Sub
+
+
+    Private Sub btnNotificacion1No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion1No.Click
+        actualizarAReservaConImprevisto(1)
+    End Sub
+
+    Private Sub btnNotificacion2No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion2No.Click
+        actualizarAReservaConImprevisto(2)
+    End Sub
+
+    Private Sub btnNotificacion3No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion3No.Click
+        actualizarAReservaConImprevisto(3)
+    End Sub
+
+
+
+
 
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-
+        
     End Sub
+
+    
 End Class

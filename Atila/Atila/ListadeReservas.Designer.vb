@@ -481,7 +481,7 @@ Partial Class ListadeReservas
         Me.pnlSiNoSePago.Controls.Add(Me.Label9)
         Me.pnlSiNoSePago.Controls.Add(Me.btnPagar)
         Me.pnlSiNoSePago.Controls.Add(Me.btnEditarPrecioFiesta)
-        Me.pnlSiNoSePago.Location = New System.Drawing.Point(339, 297)
+        Me.pnlSiNoSePago.Location = New System.Drawing.Point(346, 297)
         Me.pnlSiNoSePago.Name = "pnlSiNoSePago"
         Me.pnlSiNoSePago.Size = New System.Drawing.Size(212, 48)
         Me.pnlSiNoSePago.TabIndex = 60
@@ -498,7 +498,7 @@ Partial Class ListadeReservas
         '
         'btnSurgioImprevisto
         '
-        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(336, 300)
+        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(339, 294)
         Me.btnSurgioImprevisto.Name = "btnSurgioImprevisto"
         Me.btnSurgioImprevisto.Size = New System.Drawing.Size(225, 26)
         Me.btnSurgioImprevisto.TabIndex = 61

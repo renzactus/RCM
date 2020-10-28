@@ -235,8 +235,9 @@
             End If
         End If
     End Sub
-    Private Sub AlmacenarImprevisto()
-        mysql.Consultar("select descripcion from imprevisto where ID_RESERVA=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+    Public Sub AlmacenarImprevisto(ByVal ID_RESERVA As Integer)
+        Principal.booleanImprevistoAlmacenado = False
+        mysql.Consultar("select descripcion from imprevisto where ID_RESERVA=" & ID_RESERVA)
         If mysql.Resultado.Rows.Count = 0 Then
             ibImprevisto = InputBox("¿Cual fue el imprevisto?", "Atención!", " ")
         Else
@@ -249,11 +250,11 @@
         ElseIf ibImprevisto = "" Then
             Exit Sub
         Else
-
+            Principal.booleanImprevistoAlmacenado = True
             If mysql.Resultado.Rows.Count = 0 Then
-                mysql.InsertarDatos("insert into imprevisto (ID_RESERVA,descripcion) values(" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA") & ",'" & ibImprevisto & "')")
+                mysql.InsertarDatos("insert into imprevisto (ID_RESERVA,descripcion) values(" & ID_RESERVA & ",'" & ibImprevisto & "')")
             Else
-                mysql.InsertarDatos("update imprevisto set descripcion='" & ibImprevisto & "' where ID_RESERVA=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+                mysql.InsertarDatos("update imprevisto set descripcion='" & ibImprevisto & "' where ID_RESERVA=" & ID_RESERVA)
             End If
 
 
@@ -388,7 +389,7 @@
     End Sub
 
     Private Sub btnSurgioImprevisto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSurgioImprevisto.Click
-        AlmacenarImprevisto()
+        AlmacenarImprevisto(datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click

@@ -132,33 +132,33 @@ Public Class Reservar
                         txtTelefono1.Text = DatosClientes.Rows(i).Item("telefonos").ToString
                         OcultarOtroTelefono()
                     End If
-                    If DatosClientes.Rows(i).Item("dinero_a_favor") <> 0 Then
-                        lblDineroAFavor.Visible = True
-                        lblMostrarDineroAFavor.Visible = True
-                        chkUtilizarDineroAFavor.Visible = True
-                        chkUtilizarDineroAFavor.Text = "Utilizar Dinero " & vbNewLine & " a Favor (" &
-                            DatosClientes.Rows(i).Item("dinero_a_favor") & ")"
-                        lblMostrarDineroAFavor.Text = DatosClientes.Rows(i).Item("dinero_a_favor")
+                        If DatosClientes.Rows(i).Item("dinero_a_favor") <> 0 Then
+                            lblDineroAFavor.Visible = True
+                            lblMostrarDineroAFavor.Visible = True
+                            chkUtilizarDineroAFavor.Visible = True
+                            chkUtilizarDineroAFavor.Text = "Utilizar Dinero " & vbNewLine & " a Favor (" &
+                                DatosClientes.Rows(i).Item("dinero_a_favor") & ")"
+                            lblMostrarDineroAFavor.Text = DatosClientes.Rows(i).Item("dinero_a_favor")
+                        End If
+                        AvisarSiHayDatosDeClientesVacios()
                     End If
-                    AvisarSiHayDatosDeClientesVacios()
-                End If
 
-            End If
-            If booleanClienteExistente = False And txtNombre.Enabled = False Then
-                booleanClienteExistente = False
-                txtNombre.Text = ""
-                txtDireccion.Text = ""
-                txtTelefono1.Text = ""
-                txtTelefono2.Text = ""
-                lblDineroAFavor.Visible = False
-                lblMostrarDineroAFavor.Visible = False
-                lblMostrarDineroAFavor.Text = ""
-                chkUtilizarDineroAFavor.Visible = False
-                chkUtilizarDineroAFavor.Checked = False
-                chkDineroAFavorCambiovalor()
-                OcultarOtroTelefono()
-                DeshabilitarEdicionDatosCliente(True)
-            End If
+                End If
+                If booleanClienteExistente = False And txtNombre.Enabled = False Then
+                    booleanClienteExistente = False
+                    txtNombre.Text = ""
+                    txtDireccion.Text = ""
+                    txtTelefono1.Text = ""
+                    txtTelefono2.Text = ""
+                    lblDineroAFavor.Visible = False
+                    lblMostrarDineroAFavor.Visible = False
+                    lblMostrarDineroAFavor.Text = ""
+                    chkUtilizarDineroAFavor.Visible = False
+                    chkUtilizarDineroAFavor.Checked = False
+                    chkDineroAFavorCambiovalor()
+                    OcultarOtroTelefono()
+                    DeshabilitarEdicionDatosCliente(True)
+                End If
         Next
     End Sub
     Private Sub avisarSiEstaVacio(ByVal componente As Object)

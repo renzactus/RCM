@@ -64,6 +64,9 @@ Partial Class Principal
         Me.btnNotificacion1Si = New System.Windows.Forms.Button()
         Me.lblNoHayNotificaciones = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblCantidadDeNotificaciones = New System.Windows.Forms.Label()
         Me.pnlArriba.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlCuadroNotificaciones.SuspendLayout()
@@ -103,6 +106,7 @@ Partial Class Principal
         '
         'pnlArriba
         '
+        Me.pnlArriba.Controls.Add(Me.lblCantidadDeNotificaciones)
         Me.pnlArriba.Controls.Add(Me.btnNotificaciones)
         Me.pnlArriba.Controls.Add(Me.btnAyuda)
         Me.pnlArriba.Controls.Add(Me.lblPerfil)
@@ -259,22 +263,24 @@ Partial Class Principal
         'pnlCuadroNotificaciones
         '
         Me.pnlCuadroNotificaciones.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.Label2)
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.Label1)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.llblPaginaAnterior)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.llblPaginaSiguiente)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion3)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion2)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion1)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.lblNoHayNotificaciones)
-        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(137, 242)
+        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(137, 210)
         Me.pnlCuadroNotificaciones.Name = "pnlCuadroNotificaciones"
-        Me.pnlCuadroNotificaciones.Size = New System.Drawing.Size(300, 322)
+        Me.pnlCuadroNotificaciones.Size = New System.Drawing.Size(300, 357)
         Me.pnlCuadroNotificaciones.TabIndex = 23
         Me.pnlCuadroNotificaciones.Visible = False
         '
         'llblPaginaAnterior
         '
         Me.llblPaginaAnterior.AutoSize = True
-        Me.llblPaginaAnterior.Location = New System.Drawing.Point(3, 303)
+        Me.llblPaginaAnterior.Location = New System.Drawing.Point(3, 340)
         Me.llblPaginaAnterior.Name = "llblPaginaAnterior"
         Me.llblPaginaAnterior.Size = New System.Drawing.Size(76, 13)
         Me.llblPaginaAnterior.TabIndex = 35
@@ -285,7 +291,7 @@ Partial Class Principal
         'llblPaginaSiguiente
         '
         Me.llblPaginaSiguiente.AutoSize = True
-        Me.llblPaginaSiguiente.Location = New System.Drawing.Point(210, 303)
+        Me.llblPaginaSiguiente.Location = New System.Drawing.Point(210, 340)
         Me.llblPaginaSiguiente.Name = "llblPaginaSiguiente"
         Me.llblPaginaSiguiente.Size = New System.Drawing.Size(87, 13)
         Me.llblPaginaSiguiente.TabIndex = 34
@@ -301,7 +307,7 @@ Partial Class Principal
         Me.pnlNotificacion3.Controls.Add(Me.lblNotificacion3Hora)
         Me.pnlNotificacion3.Controls.Add(Me.btnNotificacion3No)
         Me.pnlNotificacion3.Controls.Add(Me.btnNotificacion3Si)
-        Me.pnlNotificacion3.Location = New System.Drawing.Point(2, 202)
+        Me.pnlNotificacion3.Location = New System.Drawing.Point(2, 240)
         Me.pnlNotificacion3.Name = "pnlNotificacion3"
         Me.pnlNotificacion3.Size = New System.Drawing.Size(296, 98)
         Me.pnlNotificacion3.TabIndex = 33
@@ -310,7 +316,7 @@ Partial Class Principal
         '
         Me.lblNotificacion3Motivo.AutoSize = True
         Me.lblNotificacion3Motivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNotificacion3Motivo.Location = New System.Drawing.Point(127, 35)
+        Me.lblNotificacion3Motivo.Location = New System.Drawing.Point(106, 35)
         Me.lblNotificacion3Motivo.Name = "lblNotificacion3Motivo"
         Me.lblNotificacion3Motivo.Size = New System.Drawing.Size(59, 18)
         Me.lblNotificacion3Motivo.TabIndex = 32
@@ -362,7 +368,7 @@ Partial Class Principal
         Me.pnlNotificacion2.Controls.Add(Me.lblNotificacion2Hora)
         Me.pnlNotificacion2.Controls.Add(Me.btnNotificacion2No)
         Me.pnlNotificacion2.Controls.Add(Me.btnNotificacion2Si)
-        Me.pnlNotificacion2.Location = New System.Drawing.Point(2, 102)
+        Me.pnlNotificacion2.Location = New System.Drawing.Point(2, 140)
         Me.pnlNotificacion2.Name = "pnlNotificacion2"
         Me.pnlNotificacion2.Size = New System.Drawing.Size(296, 98)
         Me.pnlNotificacion2.TabIndex = 33
@@ -371,7 +377,7 @@ Partial Class Principal
         '
         Me.lblNotificacion2Motivo.AutoSize = True
         Me.lblNotificacion2Motivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNotificacion2Motivo.Location = New System.Drawing.Point(127, 35)
+        Me.lblNotificacion2Motivo.Location = New System.Drawing.Point(106, 33)
         Me.lblNotificacion2Motivo.Name = "lblNotificacion2Motivo"
         Me.lblNotificacion2Motivo.Size = New System.Drawing.Size(59, 18)
         Me.lblNotificacion2Motivo.TabIndex = 32
@@ -423,7 +429,7 @@ Partial Class Principal
         Me.pnlNotificacion1.Controls.Add(Me.lblNotificacion1Hora)
         Me.pnlNotificacion1.Controls.Add(Me.btnNotificacion1No)
         Me.pnlNotificacion1.Controls.Add(Me.btnNotificacion1Si)
-        Me.pnlNotificacion1.Location = New System.Drawing.Point(2, 2)
+        Me.pnlNotificacion1.Location = New System.Drawing.Point(2, 40)
         Me.pnlNotificacion1.Name = "pnlNotificacion1"
         Me.pnlNotificacion1.Size = New System.Drawing.Size(296, 98)
         Me.pnlNotificacion1.TabIndex = 29
@@ -432,7 +438,7 @@ Partial Class Principal
         '
         Me.lblNotificacion1Motivo.AutoSize = True
         Me.lblNotificacion1Motivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNotificacion1Motivo.Location = New System.Drawing.Point(127, 35)
+        Me.lblNotificacion1Motivo.Location = New System.Drawing.Point(106, 35)
         Me.lblNotificacion1Motivo.Name = "lblNotificacion1Motivo"
         Me.lblNotificacion1Motivo.Size = New System.Drawing.Size(59, 18)
         Me.lblNotificacion1Motivo.TabIndex = 32
@@ -479,7 +485,7 @@ Partial Class Principal
         'lblNoHayNotificaciones
         '
         Me.lblNoHayNotificaciones.AutoSize = True
-        Me.lblNoHayNotificaciones.Location = New System.Drawing.Point(100, 65)
+        Me.lblNoHayNotificaciones.Location = New System.Drawing.Point(101, 95)
         Me.lblNoHayNotificaciones.Name = "lblNoHayNotificaciones"
         Me.lblNoHayNotificaciones.Size = New System.Drawing.Size(109, 13)
         Me.lblNoHayNotificaciones.TabIndex = 0
@@ -493,6 +499,35 @@ Partial Class Principal
         Me.Button7.TabIndex = 28
         Me.Button7.Text = "Button7"
         Me.Button7.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(26, 3)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(228, 18)
+        Me.Label1.TabIndex = 33
+        Me.Label1.Text = "Seleccionar si las siguientes "
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(6, 21)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(290, 18)
+        Me.Label2.TabIndex = 36
+        Me.Label2.Text = "reservas se realizaron correctamente"
+        '
+        'lblCantidadDeNotificaciones
+        '
+        Me.lblCantidadDeNotificaciones.AutoSize = True
+        Me.lblCantidadDeNotificaciones.Location = New System.Drawing.Point(954, 4)
+        Me.lblCantidadDeNotificaciones.Name = "lblCantidadDeNotificaciones"
+        Me.lblCantidadDeNotificaciones.Size = New System.Drawing.Size(19, 13)
+        Me.lblCantidadDeNotificaciones.TabIndex = 29
+        Me.lblCantidadDeNotificaciones.Text = "+9"
         '
         'Principal
         '
@@ -568,5 +603,8 @@ Partial Class Principal
     Friend WithEvents btnNotificacion2Si As System.Windows.Forms.Button
     Friend WithEvents llblPaginaAnterior As System.Windows.Forms.LinkLabel
     Friend WithEvents llblPaginaSiguiente As System.Windows.Forms.LinkLabel
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblCantidadDeNotificaciones As System.Windows.Forms.Label
 
 End Class
