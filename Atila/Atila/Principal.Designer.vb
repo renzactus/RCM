@@ -42,16 +42,34 @@ Partial Class Principal
         Me.Button4 = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlCuadroNotificaciones = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.pnlN = New System.Windows.Forms.Panel()
-        Me.pnllPlantillaNotificacion = New System.Windows.Forms.Panel()
-        Me.btnPlantillaAceptar = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.llblPaginaAnterior = New System.Windows.Forms.LinkLabel()
+        Me.llblPaginaSiguiente = New System.Windows.Forms.LinkLabel()
+        Me.pnlNotificacion3 = New System.Windows.Forms.Panel()
+        Me.lblNotificacion3Motivo = New System.Windows.Forms.Label()
+        Me.lblNotificacion3Fecha = New System.Windows.Forms.Label()
+        Me.lblNotificacion3Hora = New System.Windows.Forms.Label()
+        Me.btnNotificacion3No = New System.Windows.Forms.Button()
+        Me.btnNotificacion3Si = New System.Windows.Forms.Button()
+        Me.pnlNotificacion2 = New System.Windows.Forms.Panel()
+        Me.lblNotificacion2Motivo = New System.Windows.Forms.Label()
+        Me.lblNotificacion2Fecha = New System.Windows.Forms.Label()
+        Me.lblNotificacion2Hora = New System.Windows.Forms.Label()
+        Me.btnNotificacion2No = New System.Windows.Forms.Button()
+        Me.btnNotificacion2Si = New System.Windows.Forms.Button()
+        Me.pnlNotificacion1 = New System.Windows.Forms.Panel()
+        Me.lblNotificacion1Motivo = New System.Windows.Forms.Label()
+        Me.lblNotificacion1Fecha = New System.Windows.Forms.Label()
+        Me.lblNotificacion1Hora = New System.Windows.Forms.Label()
+        Me.btnNotificacion1No = New System.Windows.Forms.Button()
+        Me.btnNotificacion1Si = New System.Windows.Forms.Button()
+        Me.lblNoHayNotificaciones = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.pnlArriba.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlCuadroNotificaciones.SuspendLayout()
-        Me.pnllPlantillaNotificacion.SuspendLayout()
+        Me.pnlNotificacion3.SuspendLayout()
+        Me.pnlNotificacion2.SuspendLayout()
+        Me.pnlNotificacion1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnRealizarunareserva
@@ -241,60 +259,235 @@ Partial Class Principal
         'pnlCuadroNotificaciones
         '
         Me.pnlCuadroNotificaciones.BackColor = System.Drawing.SystemColors.ScrollBar
-        Me.pnlCuadroNotificaciones.Controls.Add(Me.Label1)
-        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(157, 310)
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.llblPaginaAnterior)
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.llblPaginaSiguiente)
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion3)
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion2)
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion1)
+        Me.pnlCuadroNotificaciones.Controls.Add(Me.lblNoHayNotificaciones)
+        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(137, 242)
         Me.pnlCuadroNotificaciones.Name = "pnlCuadroNotificaciones"
-        Me.pnlCuadroNotificaciones.Size = New System.Drawing.Size(300, 267)
+        Me.pnlCuadroNotificaciones.Size = New System.Drawing.Size(300, 322)
         Me.pnlCuadroNotificaciones.TabIndex = 23
         Me.pnlCuadroNotificaciones.Visible = False
         '
-        'Label1
+        'llblPaginaAnterior
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(108, 116)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(109, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "No hay notificaciones"
+        Me.llblPaginaAnterior.AutoSize = True
+        Me.llblPaginaAnterior.Location = New System.Drawing.Point(3, 303)
+        Me.llblPaginaAnterior.Name = "llblPaginaAnterior"
+        Me.llblPaginaAnterior.Size = New System.Drawing.Size(76, 13)
+        Me.llblPaginaAnterior.TabIndex = 35
+        Me.llblPaginaAnterior.TabStop = True
+        Me.llblPaginaAnterior.Text = "PaginaAnterior"
+        Me.llblPaginaAnterior.Visible = False
         '
-        'pnlN
+        'llblPaginaSiguiente
         '
-        Me.pnlN.AllowDrop = True
-        Me.pnlN.AutoScroll = True
-        Me.pnlN.Location = New System.Drawing.Point(497, 333)
-        Me.pnlN.Name = "pnlN"
-        Me.pnlN.Size = New System.Drawing.Size(297, 190)
-        Me.pnlN.TabIndex = 20
+        Me.llblPaginaSiguiente.AutoSize = True
+        Me.llblPaginaSiguiente.Location = New System.Drawing.Point(210, 303)
+        Me.llblPaginaSiguiente.Name = "llblPaginaSiguiente"
+        Me.llblPaginaSiguiente.Size = New System.Drawing.Size(87, 13)
+        Me.llblPaginaSiguiente.TabIndex = 34
+        Me.llblPaginaSiguiente.TabStop = True
+        Me.llblPaginaSiguiente.Text = "Pagina Siguiente"
+        Me.llblPaginaSiguiente.Visible = False
         '
-        'pnllPlantillaNotificacion
+        'pnlNotificacion3
         '
-        Me.pnllPlantillaNotificacion.Controls.Add(Me.btnPlantillaAceptar)
-        Me.pnllPlantillaNotificacion.Location = New System.Drawing.Point(923, 115)
-        Me.pnllPlantillaNotificacion.Name = "pnllPlantillaNotificacion"
-        Me.pnllPlantillaNotificacion.Size = New System.Drawing.Size(280, 100)
-        Me.pnllPlantillaNotificacion.TabIndex = 23
+        Me.pnlNotificacion3.BackColor = System.Drawing.SystemColors.Info
+        Me.pnlNotificacion3.Controls.Add(Me.lblNotificacion3Motivo)
+        Me.pnlNotificacion3.Controls.Add(Me.lblNotificacion3Fecha)
+        Me.pnlNotificacion3.Controls.Add(Me.lblNotificacion3Hora)
+        Me.pnlNotificacion3.Controls.Add(Me.btnNotificacion3No)
+        Me.pnlNotificacion3.Controls.Add(Me.btnNotificacion3Si)
+        Me.pnlNotificacion3.Location = New System.Drawing.Point(2, 202)
+        Me.pnlNotificacion3.Name = "pnlNotificacion3"
+        Me.pnlNotificacion3.Size = New System.Drawing.Size(296, 98)
+        Me.pnlNotificacion3.TabIndex = 33
         '
-        'btnPlantillaAceptar
+        'lblNotificacion3Motivo
         '
-        Me.btnPlantillaAceptar.Location = New System.Drawing.Point(94, 61)
-        Me.btnPlantillaAceptar.Name = "btnPlantillaAceptar"
-        Me.btnPlantillaAceptar.Size = New System.Drawing.Size(75, 23)
-        Me.btnPlantillaAceptar.TabIndex = 27
-        Me.btnPlantillaAceptar.Text = "btnPlantillaAceptar"
-        Me.btnPlantillaAceptar.UseVisualStyleBackColor = True
+        Me.lblNotificacion3Motivo.AutoSize = True
+        Me.lblNotificacion3Motivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNotificacion3Motivo.Location = New System.Drawing.Point(127, 35)
+        Me.lblNotificacion3Motivo.Name = "lblNotificacion3Motivo"
+        Me.lblNotificacion3Motivo.Size = New System.Drawing.Size(59, 18)
+        Me.lblNotificacion3Motivo.TabIndex = 32
+        Me.lblNotificacion3Motivo.Text = "Motivo"
         '
-        'Button5
+        'lblNotificacion3Fecha
         '
-        Me.Button5.Location = New System.Drawing.Point(936, 274)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 23)
-        Me.Button5.TabIndex = 26
-        Me.Button5.Text = "Button5"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.lblNotificacion3Fecha.AutoSize = True
+        Me.lblNotificacion3Fecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNotificacion3Fecha.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.lblNotificacion3Fecha.Location = New System.Drawing.Point(106, 6)
+        Me.lblNotificacion3Fecha.Name = "lblNotificacion3Fecha"
+        Me.lblNotificacion3Fecha.Size = New System.Drawing.Size(80, 18)
+        Me.lblNotificacion3Fecha.TabIndex = 31
+        Me.lblNotificacion3Fecha.Text = "00/00/0000"
+        '
+        'lblNotificacion3Hora
+        '
+        Me.lblNotificacion3Hora.AutoSize = True
+        Me.lblNotificacion3Hora.Location = New System.Drawing.Point(192, 10)
+        Me.lblNotificacion3Hora.Name = "lblNotificacion3Hora"
+        Me.lblNotificacion3Hora.Size = New System.Drawing.Size(30, 13)
+        Me.lblNotificacion3Hora.TabIndex = 30
+        Me.lblNotificacion3Hora.Text = "Hora"
+        '
+        'btnNotificacion3No
+        '
+        Me.btnNotificacion3No.Location = New System.Drawing.Point(174, 65)
+        Me.btnNotificacion3No.Name = "btnNotificacion3No"
+        Me.btnNotificacion3No.Size = New System.Drawing.Size(75, 23)
+        Me.btnNotificacion3No.TabIndex = 29
+        Me.btnNotificacion3No.Text = "No"
+        Me.btnNotificacion3No.UseVisualStyleBackColor = True
+        '
+        'btnNotificacion3Si
+        '
+        Me.btnNotificacion3Si.Location = New System.Drawing.Point(50, 65)
+        Me.btnNotificacion3Si.Name = "btnNotificacion3Si"
+        Me.btnNotificacion3Si.Size = New System.Drawing.Size(75, 23)
+        Me.btnNotificacion3Si.TabIndex = 26
+        Me.btnNotificacion3Si.Text = "Si"
+        Me.btnNotificacion3Si.UseVisualStyleBackColor = True
+        '
+        'pnlNotificacion2
+        '
+        Me.pnlNotificacion2.BackColor = System.Drawing.SystemColors.Info
+        Me.pnlNotificacion2.Controls.Add(Me.lblNotificacion2Motivo)
+        Me.pnlNotificacion2.Controls.Add(Me.lblNotificacion2Fecha)
+        Me.pnlNotificacion2.Controls.Add(Me.lblNotificacion2Hora)
+        Me.pnlNotificacion2.Controls.Add(Me.btnNotificacion2No)
+        Me.pnlNotificacion2.Controls.Add(Me.btnNotificacion2Si)
+        Me.pnlNotificacion2.Location = New System.Drawing.Point(2, 102)
+        Me.pnlNotificacion2.Name = "pnlNotificacion2"
+        Me.pnlNotificacion2.Size = New System.Drawing.Size(296, 98)
+        Me.pnlNotificacion2.TabIndex = 33
+        '
+        'lblNotificacion2Motivo
+        '
+        Me.lblNotificacion2Motivo.AutoSize = True
+        Me.lblNotificacion2Motivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNotificacion2Motivo.Location = New System.Drawing.Point(127, 35)
+        Me.lblNotificacion2Motivo.Name = "lblNotificacion2Motivo"
+        Me.lblNotificacion2Motivo.Size = New System.Drawing.Size(59, 18)
+        Me.lblNotificacion2Motivo.TabIndex = 32
+        Me.lblNotificacion2Motivo.Text = "Motivo"
+        '
+        'lblNotificacion2Fecha
+        '
+        Me.lblNotificacion2Fecha.AutoSize = True
+        Me.lblNotificacion2Fecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNotificacion2Fecha.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.lblNotificacion2Fecha.Location = New System.Drawing.Point(106, 6)
+        Me.lblNotificacion2Fecha.Name = "lblNotificacion2Fecha"
+        Me.lblNotificacion2Fecha.Size = New System.Drawing.Size(80, 18)
+        Me.lblNotificacion2Fecha.TabIndex = 31
+        Me.lblNotificacion2Fecha.Text = "00/00/0000"
+        '
+        'lblNotificacion2Hora
+        '
+        Me.lblNotificacion2Hora.AutoSize = True
+        Me.lblNotificacion2Hora.Location = New System.Drawing.Point(192, 10)
+        Me.lblNotificacion2Hora.Name = "lblNotificacion2Hora"
+        Me.lblNotificacion2Hora.Size = New System.Drawing.Size(30, 13)
+        Me.lblNotificacion2Hora.TabIndex = 30
+        Me.lblNotificacion2Hora.Text = "Hora"
+        '
+        'btnNotificacion2No
+        '
+        Me.btnNotificacion2No.Location = New System.Drawing.Point(174, 65)
+        Me.btnNotificacion2No.Name = "btnNotificacion2No"
+        Me.btnNotificacion2No.Size = New System.Drawing.Size(75, 23)
+        Me.btnNotificacion2No.TabIndex = 29
+        Me.btnNotificacion2No.Text = "No"
+        Me.btnNotificacion2No.UseVisualStyleBackColor = True
+        '
+        'btnNotificacion2Si
+        '
+        Me.btnNotificacion2Si.Location = New System.Drawing.Point(50, 65)
+        Me.btnNotificacion2Si.Name = "btnNotificacion2Si"
+        Me.btnNotificacion2Si.Size = New System.Drawing.Size(75, 23)
+        Me.btnNotificacion2Si.TabIndex = 26
+        Me.btnNotificacion2Si.Text = "Si"
+        Me.btnNotificacion2Si.UseVisualStyleBackColor = True
+        '
+        'pnlNotificacion1
+        '
+        Me.pnlNotificacion1.BackColor = System.Drawing.SystemColors.Info
+        Me.pnlNotificacion1.Controls.Add(Me.lblNotificacion1Motivo)
+        Me.pnlNotificacion1.Controls.Add(Me.lblNotificacion1Fecha)
+        Me.pnlNotificacion1.Controls.Add(Me.lblNotificacion1Hora)
+        Me.pnlNotificacion1.Controls.Add(Me.btnNotificacion1No)
+        Me.pnlNotificacion1.Controls.Add(Me.btnNotificacion1Si)
+        Me.pnlNotificacion1.Location = New System.Drawing.Point(2, 2)
+        Me.pnlNotificacion1.Name = "pnlNotificacion1"
+        Me.pnlNotificacion1.Size = New System.Drawing.Size(296, 98)
+        Me.pnlNotificacion1.TabIndex = 29
+        '
+        'lblNotificacion1Motivo
+        '
+        Me.lblNotificacion1Motivo.AutoSize = True
+        Me.lblNotificacion1Motivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNotificacion1Motivo.Location = New System.Drawing.Point(127, 35)
+        Me.lblNotificacion1Motivo.Name = "lblNotificacion1Motivo"
+        Me.lblNotificacion1Motivo.Size = New System.Drawing.Size(59, 18)
+        Me.lblNotificacion1Motivo.TabIndex = 32
+        Me.lblNotificacion1Motivo.Text = "Motivo"
+        '
+        'lblNotificacion1Fecha
+        '
+        Me.lblNotificacion1Fecha.AutoSize = True
+        Me.lblNotificacion1Fecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNotificacion1Fecha.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.lblNotificacion1Fecha.Location = New System.Drawing.Point(106, 6)
+        Me.lblNotificacion1Fecha.Name = "lblNotificacion1Fecha"
+        Me.lblNotificacion1Fecha.Size = New System.Drawing.Size(80, 18)
+        Me.lblNotificacion1Fecha.TabIndex = 31
+        Me.lblNotificacion1Fecha.Text = "00/00/0000"
+        '
+        'lblNotificacion1Hora
+        '
+        Me.lblNotificacion1Hora.AutoSize = True
+        Me.lblNotificacion1Hora.Location = New System.Drawing.Point(192, 10)
+        Me.lblNotificacion1Hora.Name = "lblNotificacion1Hora"
+        Me.lblNotificacion1Hora.Size = New System.Drawing.Size(30, 13)
+        Me.lblNotificacion1Hora.TabIndex = 30
+        Me.lblNotificacion1Hora.Text = "Hora"
+        '
+        'btnNotificacion1No
+        '
+        Me.btnNotificacion1No.Location = New System.Drawing.Point(174, 65)
+        Me.btnNotificacion1No.Name = "btnNotificacion1No"
+        Me.btnNotificacion1No.Size = New System.Drawing.Size(75, 23)
+        Me.btnNotificacion1No.TabIndex = 29
+        Me.btnNotificacion1No.Text = "No"
+        Me.btnNotificacion1No.UseVisualStyleBackColor = True
+        '
+        'btnNotificacion1Si
+        '
+        Me.btnNotificacion1Si.Location = New System.Drawing.Point(50, 65)
+        Me.btnNotificacion1Si.Name = "btnNotificacion1Si"
+        Me.btnNotificacion1Si.Size = New System.Drawing.Size(75, 23)
+        Me.btnNotificacion1Si.TabIndex = 26
+        Me.btnNotificacion1Si.Text = "Si"
+        Me.btnNotificacion1Si.UseVisualStyleBackColor = True
+        '
+        'lblNoHayNotificaciones
+        '
+        Me.lblNoHayNotificaciones.AutoSize = True
+        Me.lblNoHayNotificaciones.Location = New System.Drawing.Point(100, 65)
+        Me.lblNoHayNotificaciones.Name = "lblNoHayNotificaciones"
+        Me.lblNoHayNotificaciones.Size = New System.Drawing.Size(109, 13)
+        Me.lblNoHayNotificaciones.TabIndex = 0
+        Me.lblNoHayNotificaciones.Text = "No hay notificaciones"
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(1114, 242)
+        Me.Button7.Location = New System.Drawing.Point(689, 354)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(75, 23)
         Me.Button7.TabIndex = 28
@@ -307,9 +500,6 @@ Partial Class Principal
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1300, 700)
         Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.pnllPlantillaNotificacion)
-        Me.Controls.Add(Me.pnlN)
         Me.Controls.Add(Me.pnlCuadroNotificaciones)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -329,7 +519,12 @@ Partial Class Principal
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlCuadroNotificaciones.ResumeLayout(False)
         Me.pnlCuadroNotificaciones.PerformLayout()
-        Me.pnllPlantillaNotificacion.ResumeLayout(False)
+        Me.pnlNotificacion3.ResumeLayout(False)
+        Me.pnlNotificacion3.PerformLayout()
+        Me.pnlNotificacion2.ResumeLayout(False)
+        Me.pnlNotificacion2.PerformLayout()
+        Me.pnlNotificacion1.ResumeLayout(False)
+        Me.pnlNotificacion1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -351,11 +546,27 @@ Partial Class Principal
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents btnNotificaciones As System.Windows.Forms.Button
     Friend WithEvents pnlCuadroNotificaciones As System.Windows.Forms.Panel
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents pnlN As System.Windows.Forms.Panel
-    Friend WithEvents pnllPlantillaNotificacion As System.Windows.Forms.Panel
-    Friend WithEvents btnPlantillaAceptar As System.Windows.Forms.Button
-    Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents lblNoHayNotificaciones As System.Windows.Forms.Label
+    Friend WithEvents btnNotificacion1Si As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
+    Friend WithEvents pnlNotificacion1 As System.Windows.Forms.Panel
+    Friend WithEvents btnNotificacion1No As System.Windows.Forms.Button
+    Friend WithEvents lblNotificacion1Hora As System.Windows.Forms.Label
+    Friend WithEvents lblNotificacion1Motivo As System.Windows.Forms.Label
+    Friend WithEvents lblNotificacion1Fecha As System.Windows.Forms.Label
+    Friend WithEvents pnlNotificacion3 As System.Windows.Forms.Panel
+    Friend WithEvents lblNotificacion3Motivo As System.Windows.Forms.Label
+    Friend WithEvents lblNotificacion3Fecha As System.Windows.Forms.Label
+    Friend WithEvents lblNotificacion3Hora As System.Windows.Forms.Label
+    Friend WithEvents btnNotificacion3No As System.Windows.Forms.Button
+    Friend WithEvents btnNotificacion3Si As System.Windows.Forms.Button
+    Friend WithEvents pnlNotificacion2 As System.Windows.Forms.Panel
+    Friend WithEvents lblNotificacion2Motivo As System.Windows.Forms.Label
+    Friend WithEvents lblNotificacion2Fecha As System.Windows.Forms.Label
+    Friend WithEvents lblNotificacion2Hora As System.Windows.Forms.Label
+    Friend WithEvents btnNotificacion2No As System.Windows.Forms.Button
+    Friend WithEvents btnNotificacion2Si As System.Windows.Forms.Button
+    Friend WithEvents llblPaginaAnterior As System.Windows.Forms.LinkLabel
+    Friend WithEvents llblPaginaSiguiente As System.Windows.Forms.LinkLabel
 
 End Class

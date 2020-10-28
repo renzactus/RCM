@@ -1,22 +1,18 @@
 ﻿Imports System.Runtime.InteropServices
+
 Public Class Principal
     Dim mysql As New MySQL
     Dim datosReservasNotificacion As DataTable
     Public colorprincipal As Color = Color.FromArgb(239, 231, 219)
     Public colorsecundario As Color = Color.FromArgb(227, 195, 176)
 
-    Dim TamañoNotificacionY As Integer = 0
-    Dim contador As Integer = 0
-    Dim some_button As New Button
-    Dim new_panel(5) As Panel
-    Dim cliceado As Integer
     'Constructor
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR DE LA CLASE
 
 
         Me.BackColor = colorprincipal
         pnlArriba.BackColor = Color.FromArgb(colorsecundario.R, colorsecundario.G, colorsecundario.B)
-        actualizarNotificaciones()
+        actualizarNotificaciones(1)
     End Sub
     'Notificaciones
     Private Sub MostrarCuadroNotificaciones()
@@ -28,14 +24,37 @@ Public Class Principal
         End If
 
     End Sub
-    Private Sub actualizarNotificaciones()
-        mysql.Consultar("select motivo,fecha,nombre from reservas inner join clientes on clientes.ID_CLIENTE=reservas.ID_CLIENTE where fecha<current_date")
+    Private Sub actualizarNotificaciones(ByVal pagina As Integer)
+
+        mysql.Consultar("select motivo,fecha,nombre from reservas inner join clientes on clientes.ID_CLIENTE=reservas.ID_CLIENTE where fecha<current_date and fecha_cancelacion is null")
         datosReservasNotificacion = mysql.Resultado
-        For i = 0 To datosReservasNotificacion.Rows.Count - 1
-            ' dgvNotificaciones.Rows.Add(Panel1)
-            'continuar esto
-            'datosReservasNotificacion.Rows(i).Item("motivo")
-        Next
+        vaciarNotificaciones()
+        rellenarNotificaciones(pagina)
+        If datosReservasNotificacion.Rows.Count > 3 Then
+            llblPaginaSiguiente.Visible = True
+        End If
+    End Sub
+    Private Sub vaciarNotificaciones()
+        pnlNotificacion1.Visible = False
+        pnlNotificacion2.Visible = False
+        pnlNotificacion3.Visible = False
+        'Tambien que se achique el pnlCuadroNotificaciones dependiendo los que sean visibles
+    End Sub
+    Private Sub rellenarNotificaciones(ByVal pagina As Integer)
+        If datosReservasNotificacion.Rows.Count = 1 Then
+            pnlNotificacion1.Visible = True
+            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("Motivo")
+            'dar los valores al 1
+        ElseIf datosReservasNotificacion.Rows.Count = 2 Then
+            pnlNotificacion1.Visible = True
+            pnlNotificacion2.Visible = True
+            'dar los valores al 1,2
+        ElseIf datosReservasNotificacion.Rows.Count > 2 Then
+            pnlNotificacion1.Visible = True
+            pnlNotificacion2.Visible = True
+            pnlNotificacion3.Visible = True
+            'dar los valores al 3
+        End If
     End Sub
     'Importamos dll de windows para mover la pestaña arrastrando en el pnlArriba
     <DllImport("user32.DLL", EntryPoint:="ReleaseCapture")>
@@ -133,41 +152,11 @@ Public Class Principal
         MostrarCuadroNotificaciones()
     End Sub
 
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        new_panel(contador) = New Panel
-        With new_panel(contador)
-            .Location = New Point(0, TamañoNotificacionY)
-            .Size = New Size(pnllPlantillaNotificacion.Width, pnllPlantillaNotificacion.Height)
-            AddHandler new_panel(contador).MouseClick, AddressOf pnllPlantillaNotificacion_MouseClick
-        End With
-        'new_panel.Controls.Add(some_label)
+    Private Sub llblPaginaSiguiente_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblPaginaSiguiente.LinkClicked
 
-        some_button = New Button
-
-            With some_button
-            .Tag = "some value" ' A way to Identify the button if clicked
-            .BackColor = btnPlantillaAceptar.BackColor
-            .UseVisualStyleBackColor = True
-            .Location = btnPlantillaAceptar.Location
-            .Text = btnPlantillaAceptar.Text
-            AddHandler some_button.Click, AddressOf btnPlantillaAceptar_Click
-            ' The Sub that determines what happens when that button is clicked.
-            End With
-
-        new_panel(contador).Controls.Add(some_button)
-        pnlN.Controls.Add(new_panel(contador))
-
-        Button5.Tag = new_panel(contador).Bottom ' Set the bottom position of the last panel added.
-
-        TamañoNotificacionY = TamañoNotificacionY + 200
-        contador = contador + 1
     End Sub
 
-    Private Sub btnPlantillaAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlantillaAceptar.Click
-        'MsgBox("aa" & Me.new_panel().)
-    End Sub
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
 
-    Private Sub pnllPlantillaNotificacion_MouseClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pnllPlantillaNotificacion.MouseClick
-        cliceado = new
     End Sub
 End Class
