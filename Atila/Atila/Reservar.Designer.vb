@@ -89,15 +89,15 @@ Partial Class Reservar
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAgregarDatos
@@ -781,6 +781,15 @@ Partial Class Reservar
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Atila.My.Resources.Resources.Contornos
+        Me.PictureBox1.Location = New System.Drawing.Point(518, 130)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(62, 23)
+        Me.PictureBox1.TabIndex = 55
+        Me.PictureBox1.TabStop = False
+        '
         'epError
         '
         Me.epError.ContainerControl = Me
@@ -793,15 +802,6 @@ Partial Class Reservar
         Me.Button1.TabIndex = 17
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.Atila.My.Resources.Resources.Contornos
-        Me.PictureBox1.Location = New System.Drawing.Point(518, 130)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(62, 23)
-        Me.PictureBox1.TabIndex = 55
-        Me.PictureBox1.TabStop = False
         '
         'Reservar
         '
@@ -819,8 +819,8 @@ Partial Class Reservar
         Me.pnlReserva.PerformLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
