@@ -23,20 +23,12 @@ Partial Class Clientes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.cboFiltrarPor = New System.Windows.Forms.ComboBox()
         Me.rboCedula = New System.Windows.Forms.RadioButton()
         Me.rboNombre = New System.Windows.Forms.RadioButton()
         Me.rboTelefono = New System.Windows.Forms.RadioButton()
         Me.txtFiltrarCedula = New System.Windows.Forms.TextBox()
         Me.txtFiltrarTelefono = New System.Windows.Forms.TextBox()
         Me.dgvClientes = New System.Windows.Forms.DataGridView()
-        Me.cedula = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Telefonos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Dinero_a_favor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ultimareserva = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblMostrarDineroAFavor = New System.Windows.Forms.Label()
         Me.lblDineroAFavor = New System.Windows.Forms.Label()
         Me.btnGuardarCliente = New System.Windows.Forms.Button()
@@ -68,63 +60,54 @@ Partial Class Clientes
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.txtFiltrarNombre = New System.Windows.Forms.TextBox()
+        Me.btnGuardarDinero = New System.Windows.Forms.Button()
+        Me.btnCancelarDinero = New System.Windows.Forms.Button()
+        Me.btnEditarDinero = New System.Windows.Forms.Button()
+        Me.txtDineroAFavor = New System.Windows.Forms.TextBox()
+        Me.cedula = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Telefonos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Dinero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ultimareserva = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvReservas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(459, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(60, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Mostrar por"
-        '
-        'cboFiltrarPor
-        '
-        Me.cboFiltrarPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboFiltrarPor.FormattingEnabled = True
-        Me.cboFiltrarPor.Items.AddRange(New Object() {"Nombre", "Cedula", "Telefono", "Reserva"})
-        Me.cboFiltrarPor.Location = New System.Drawing.Point(525, 11)
-        Me.cboFiltrarPor.Name = "cboFiltrarPor"
-        Me.cboFiltrarPor.Size = New System.Drawing.Size(121, 21)
-        Me.cboFiltrarPor.TabIndex = 1
-        '
         'rboCedula
         '
         Me.rboCedula.AutoSize = True
+        Me.rboCedula.Enabled = False
         Me.rboCedula.Location = New System.Drawing.Point(246, 354)
         Me.rboCedula.Name = "rboCedula"
         Me.rboCedula.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.rboCedula.Size = New System.Drawing.Size(58, 17)
-        Me.rboCedula.TabIndex = 6
-        Me.rboCedula.TabStop = True
+        Me.rboCedula.TabIndex = 7
         Me.rboCedula.Text = "Cedula"
         Me.rboCedula.UseVisualStyleBackColor = True
         '
         'rboNombre
         '
         Me.rboNombre.AutoSize = True
+        Me.rboNombre.Enabled = False
         Me.rboNombre.Location = New System.Drawing.Point(34, 354)
         Me.rboNombre.Name = "rboNombre"
         Me.rboNombre.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.rboNombre.Size = New System.Drawing.Size(62, 17)
-        Me.rboNombre.TabIndex = 7
-        Me.rboNombre.TabStop = True
+        Me.rboNombre.TabIndex = 6
         Me.rboNombre.Text = "Nombre"
         Me.rboNombre.UseVisualStyleBackColor = True
         '
         'rboTelefono
         '
         Me.rboTelefono.AutoSize = True
+        Me.rboTelefono.Enabled = False
         Me.rboTelefono.Location = New System.Drawing.Point(433, 354)
         Me.rboTelefono.Name = "rboTelefono"
         Me.rboTelefono.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.rboTelefono.Size = New System.Drawing.Size(67, 17)
         Me.rboTelefono.TabIndex = 8
-        Me.rboTelefono.TabStop = True
         Me.rboTelefono.Text = "Telefono"
         Me.rboTelefono.UseVisualStyleBackColor = True
         '
@@ -151,59 +134,14 @@ Partial Class Clientes
         Me.dgvClientes.AllowUserToResizeColumns = False
         Me.dgvClientes.AllowUserToResizeRows = False
         Me.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvClientes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cedula, Me.Cantidad, Me.Telefonos, Me.Direccion, Me.Dinero_a_favor, Me.ultimareserva})
-        Me.dgvClientes.Location = New System.Drawing.Point(1, 74)
+        Me.dgvClientes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.cedula, Me.Cantidad, Me.Telefonos, Me.Direccion, Me.Dinero, Me.ultimareserva})
+        Me.dgvClientes.Location = New System.Drawing.Point(23, 67)
         Me.dgvClientes.MultiSelect = False
         Me.dgvClientes.Name = "dgvClientes"
         Me.dgvClientes.ReadOnly = True
         Me.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvClientes.Size = New System.Drawing.Size(652, 233)
         Me.dgvClientes.TabIndex = 24
-        '
-        'cedula
-        '
-        Me.cedula.Frozen = True
-        Me.cedula.HeaderText = "Cedula"
-        Me.cedula.Name = "cedula"
-        Me.cedula.ReadOnly = True
-        '
-        'Cantidad
-        '
-        Me.Cantidad.Frozen = True
-        Me.Cantidad.HeaderText = "Nombre"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 140
-        '
-        'Telefonos
-        '
-        Me.Telefonos.Frozen = True
-        Me.Telefonos.HeaderText = "Telefonos"
-        Me.Telefonos.Name = "Telefonos"
-        Me.Telefonos.ReadOnly = True
-        '
-        'Direccion
-        '
-        Me.Direccion.Frozen = True
-        Me.Direccion.HeaderText = "Direccion"
-        Me.Direccion.Name = "Direccion"
-        Me.Direccion.ReadOnly = True
-        '
-        'Dinero_a_favor
-        '
-        Me.Dinero_a_favor.Frozen = True
-        Me.Dinero_a_favor.HeaderText = "Dinero a favor"
-        Me.Dinero_a_favor.Name = "Dinero_a_favor"
-        Me.Dinero_a_favor.ReadOnly = True
-        Me.Dinero_a_favor.Width = 82
-        '
-        'ultimareserva
-        '
-        Me.ultimareserva.Frozen = True
-        Me.ultimareserva.HeaderText = "Ultima Reserva"
-        Me.ultimareserva.Name = "ultimareserva"
-        Me.ultimareserva.ReadOnly = True
-        Me.ultimareserva.Width = 85
         '
         'lblMostrarDineroAFavor
         '
@@ -339,6 +277,7 @@ Partial Class Clientes
         '
         'txtCedula
         '
+        Me.txtCedula.Enabled = False
         Me.txtCedula.Location = New System.Drawing.Point(754, 83)
         Me.txtCedula.Name = "txtCedula"
         Me.txtCedula.Size = New System.Drawing.Size(100, 20)
@@ -466,7 +405,7 @@ Partial Class Clientes
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(47, 32)
+        Me.Label7.Location = New System.Drawing.Point(20, 31)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(67, 18)
         Me.Label7.TabIndex = 70
@@ -490,11 +429,98 @@ Partial Class Clientes
         Me.txtFiltrarNombre.Size = New System.Drawing.Size(100, 20)
         Me.txtFiltrarNombre.TabIndex = 72
         '
+        'btnGuardarDinero
+        '
+        Me.btnGuardarDinero.Location = New System.Drawing.Point(933, 223)
+        Me.btnGuardarDinero.Name = "btnGuardarDinero"
+        Me.btnGuardarDinero.Size = New System.Drawing.Size(54, 23)
+        Me.btnGuardarDinero.TabIndex = 74
+        Me.btnGuardarDinero.Text = "Guardar"
+        Me.btnGuardarDinero.UseVisualStyleBackColor = True
+        Me.btnGuardarDinero.Visible = False
+        '
+        'btnCancelarDinero
+        '
+        Me.btnCancelarDinero.Location = New System.Drawing.Point(867, 223)
+        Me.btnCancelarDinero.Name = "btnCancelarDinero"
+        Me.btnCancelarDinero.Size = New System.Drawing.Size(59, 23)
+        Me.btnCancelarDinero.TabIndex = 75
+        Me.btnCancelarDinero.Text = "Cancelar"
+        Me.btnCancelarDinero.UseVisualStyleBackColor = True
+        Me.btnCancelarDinero.Visible = False
+        '
+        'btnEditarDinero
+        '
+        Me.btnEditarDinero.Location = New System.Drawing.Point(867, 223)
+        Me.btnEditarDinero.Name = "btnEditarDinero"
+        Me.btnEditarDinero.Size = New System.Drawing.Size(59, 23)
+        Me.btnEditarDinero.TabIndex = 73
+        Me.btnEditarDinero.Text = "Editar"
+        Me.btnEditarDinero.UseVisualStyleBackColor = True
+        Me.btnEditarDinero.Visible = False
+        '
+        'txtDineroAFavor
+        '
+        Me.txtDineroAFavor.Location = New System.Drawing.Point(808, 228)
+        Me.txtDineroAFavor.Name = "txtDineroAFavor"
+        Me.txtDineroAFavor.Size = New System.Drawing.Size(51, 20)
+        Me.txtDineroAFavor.TabIndex = 76
+        Me.txtDineroAFavor.Visible = False
+        '
+        'cedula
+        '
+        Me.cedula.Frozen = True
+        Me.cedula.HeaderText = "Cedula"
+        Me.cedula.Name = "cedula"
+        Me.cedula.ReadOnly = True
+        Me.cedula.Width = 60
+        '
+        'Cantidad
+        '
+        Me.Cantidad.Frozen = True
+        Me.Cantidad.HeaderText = "Nombre"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 110
+        '
+        'Telefonos
+        '
+        Me.Telefonos.Frozen = True
+        Me.Telefonos.HeaderText = "Telefonos"
+        Me.Telefonos.Name = "Telefonos"
+        Me.Telefonos.ReadOnly = True
+        Me.Telefonos.Width = 120
+        '
+        'Direccion
+        '
+        Me.Direccion.Frozen = True
+        Me.Direccion.HeaderText = "Direccion"
+        Me.Direccion.Name = "Direccion"
+        Me.Direccion.ReadOnly = True
+        '
+        'Dinero
+        '
+        Me.Dinero.Frozen = True
+        Me.Dinero.HeaderText = "Credito"
+        Me.Dinero.Name = "Dinero"
+        Me.Dinero.ReadOnly = True
+        Me.Dinero.Width = 50
+        '
+        'ultimareserva
+        '
+        Me.ultimareserva.Frozen = True
+        Me.ultimareserva.HeaderText = "Ultima Reserva"
+        Me.ultimareserva.Name = "ultimareserva"
+        Me.ultimareserva.ReadOnly = True
+        Me.ultimareserva.Width = 85
+        '
         'Clientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1105, 589)
+        Me.Controls.Add(Me.txtDineroAFavor)
+        Me.Controls.Add(Me.btnGuardarDinero)
         Me.Controls.Add(Me.txtFiltrarNombre)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
@@ -524,10 +550,10 @@ Partial Class Clientes
         Me.Controls.Add(Me.rboTelefono)
         Me.Controls.Add(Me.rboNombre)
         Me.Controls.Add(Me.rboCedula)
-        Me.Controls.Add(Me.cboFiltrarPor)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.btnCancelarEdicion)
         Me.Controls.Add(Me.btnEditarCliente)
+        Me.Controls.Add(Me.btnEditarDinero)
+        Me.Controls.Add(Me.btnCancelarDinero)
+        Me.Controls.Add(Me.btnCancelarEdicion)
         Me.Name = "Clientes"
         Me.Text = "Clientes"
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).EndInit()
@@ -537,8 +563,6 @@ Partial Class Clientes
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents cboFiltrarPor As System.Windows.Forms.ComboBox
     Friend WithEvents rboCedula As System.Windows.Forms.RadioButton
     Friend WithEvents rboNombre As System.Windows.Forms.RadioButton
     Friend WithEvents rboTelefono As System.Windows.Forms.RadioButton
@@ -567,12 +591,6 @@ Partial Class Clientes
     Friend WithEvents btnFiltrarCedula As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents dgvReservas As System.Windows.Forms.DataGridView
-    Friend WithEvents cedula As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Telefonos As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Direccion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Dinero_a_favor As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents ultimareserva As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Motivo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Personas As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -582,4 +600,14 @@ Partial Class Clientes
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents txtFiltrarNombre As System.Windows.Forms.TextBox
+    Friend WithEvents btnGuardarDinero As System.Windows.Forms.Button
+    Friend WithEvents btnCancelarDinero As System.Windows.Forms.Button
+    Friend WithEvents btnEditarDinero As System.Windows.Forms.Button
+    Friend WithEvents txtDineroAFavor As System.Windows.Forms.TextBox
+    Friend WithEvents cedula As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Telefonos As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Direccion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Dinero As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ultimareserva As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

@@ -61,6 +61,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -89,6 +90,12 @@
       <DependentUpon>Configuracion.vb</DependentUpon>
     </Compile>
     <Compile Include="Configuracion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ganancias.Designer.vb">
+      <DependentUpon>Ganancias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ganancias.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inventario.Designer.vb">
@@ -145,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Configuracion.resx">
       <DependentUpon>Configuracion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ganancias.resx">
+      <DependentUpon>Ganancias.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario.resx">
       <DependentUpon>Inventario.vb</DependentUpon>

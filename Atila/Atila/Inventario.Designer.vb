@@ -24,6 +24,8 @@ Partial Class Inventario
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnEditarCantidad = New System.Windows.Forms.Button()
         Me.btnAgregarDatos = New System.Windows.Forms.Button()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
@@ -32,8 +34,6 @@ Partial Class Inventario
         Me.nudCantidad = New System.Windows.Forms.NumericUpDown()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.btnBorrar = New System.Windows.Forms.Button()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCantidad, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +54,22 @@ Partial Class Inventario
         Me.dgvInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvInventario.Size = New System.Drawing.Size(403, 233)
         Me.dgvInventario.TabIndex = 23
+        '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 300
+        '
+        'Cantidad
+        '
+        Me.Cantidad.Frozen = True
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 60
         '
         'btnEditarCantidad
         '
@@ -120,22 +136,6 @@ Partial Class Inventario
         Me.btnBorrar.TabIndex = 33
         Me.btnBorrar.Text = "Borrar Seleccionado"
         Me.btnBorrar.UseVisualStyleBackColor = True
-        '
-        'Descripcion
-        '
-        Me.Descripcion.Frozen = True
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 300
-        '
-        'Cantidad
-        '
-        Me.Cantidad.Frozen = True
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 60
         '
         'Inventario
         '

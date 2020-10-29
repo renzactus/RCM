@@ -21,6 +21,10 @@
         autocompletarFiltrarCedula()
         autocompletarFiltrarTelefono()
         booleanNoCambiarSeleccion = False
+
+        rboCedula.Enabled = True
+        rboNombre.Enabled = True
+        rboTelefono.Enabled = True
     End Sub
 
     'Otro
@@ -66,6 +70,20 @@
     End Sub
 
     'AutoCompletar y editar
+    Private Sub MostrarOtroTelefono()
+        txtTelefono2.Visible = True
+        btnAgregarTelefonos.Text = "-"
+        booleanTelefonos = True
+        txtDireccion.Location = New Point(txtDireccion.Location.X, 224)
+        lblDireccion.Location = New Point(lblDireccion.Location.X, 210)
+
+        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 250)
+        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 250)
+        txtDineroAFavor.Location = New Point(txtDineroAFavor.Location.X, 250)
+        btnEditarDinero.Location = New Point(btnEditarDinero.Location.X, 250)
+        btnGuardarDinero.Location = New Point(btnGuardarDinero.Location.X, 250)
+        btnCancelarDinero.Location = New Point(btnCancelarDinero.Location.X, 250)
+    End Sub
     Private Sub OcultarOtroTelefono()
         txtTelefono2.Visible = False
         btnAgregarTelefonos.Text = "+"
@@ -76,16 +94,10 @@
 
         lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 226)
         lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 226)
-    End Sub
-    Private Sub MostrarOtroTelefono()
-        txtTelefono2.Visible = True
-        btnAgregarTelefonos.Text = "-"
-        booleanTelefonos = True
-        txtDireccion.Location = New Point(txtDireccion.Location.X, 224)
-        lblDireccion.Location = New Point(lblDireccion.Location.X, 210)
-
-        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 250)
-        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 250)
+        txtDineroAFavor.Location = New Point(txtDineroAFavor.Location.X, 226)
+        btnEditarDinero.Location = New Point(btnEditarDinero.Location.X, 226)
+        btnGuardarDinero.Location = New Point(btnGuardarDinero.Location.X, 226)
+        btnCancelarDinero.Location = New Point(btnCancelarDinero.Location.X, 226)
     End Sub
     
     Private Sub AutoCompletar()
@@ -133,10 +145,12 @@
                         lblDineroAFavor.Visible = True
                         lblMostrarDineroAFavor.Visible = True
                         lblMostrarDineroAFavor.Text = DatosClientes.Rows(i).Item("dinero_a_favor")
+                        btnEditarDinero.Visible = True
                     Else
                         lblDineroAFavor.Visible = False
                         lblMostrarDineroAFavor.Visible = False
                         lblMostrarDineroAFavor.Text = ""
+                        btnEditarDinero.Visible = False
                     End If
                 Else
 
@@ -171,10 +185,11 @@
         btnEditarCliente.Visible = Not estado
     End Sub
     Private Sub actualizardgvReservas()
+        dgvReservas.Rows.Clear()
         Dim cancelada As Boolean
         Dim Fecha As String
         mysql.Consultar("select ID_RESERVA,motivo,fecha,cantidad_personas,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final,fecha_cancelacion " &
-                        "from reservas where ID_CLIENTE=" & DatosClientes.Rows(FilaNumero).Item("ID_CLIENTE"))
+                        "from reservas where ID_CLIENTE=" & DatosClientes.Rows(FilaNumero).Item("ID_CLIENTE") & " order by fecha desc")
         For i = 0 To mysql.Resultado.Rows.Count - 1
             Fecha = mysql.Resultado.Rows(i).Item("fecha")
             If IsDBNull(mysql.Resultado.Rows(i).Item("fecha_cancelacion")) Then
@@ -318,6 +333,16 @@
         btnFiltrarTelefono.Enabled = False
 
     End Sub
+    Private Sub vaciarTodo()
+        vaciaryDesmarcarrbo()
+        vaciarEditorCliente()
+        dgvReservas.Rows.Clear()
+        SaberFilaSeleccionada()
+        booleanNoCambiarSeleccion = True
+        dgvClientes.Rows(FilaSeleccionada).Selected = False
+        booleanNoCambiarSeleccion = False
+    End Sub
+
     'Eventos
     Private Sub txtCedula_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCedula.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR
@@ -355,7 +380,6 @@
             lblEditandoCliente.Visible = False
             btnGuardarCliente.Visible = False
             btnCancelarEdicion.Visible = False
-            txtCedula.Enabled = True
             DeshabilitarEdicionDatosCliente(False)
             HabilitarTodo(True)
             ActualizarDatosCliente()
@@ -371,7 +395,6 @@
         lblEditandoCliente.Visible = False
         btnGuardarCliente.Visible = False
         btnCancelarEdicion.Visible = False
-        txtCedula.Enabled = True
         DeshabilitarEdicionDatosCliente(False)
         HabilitarTodo(True)
     End Sub
@@ -382,6 +405,7 @@
             txtCedula.Text = dgvClientes.Rows(FilaSeleccionada).Cells(0).Value
             AutorellenarClienteSiLaCedulaCoincide()
             vaciaryDesmarcarrbo()
+
         End If
 
     End Sub
@@ -393,14 +417,16 @@
     End Sub
 
     Private Sub rboNombre_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rboNombre.Click
-        vaciaryDesmarcarrbo()
+        vaciarTodo()
+
         rboNombre.Checked = True
         btnFiltrarNombre.Enabled = True
         txtFiltrarNombre.Enabled = True
-
     End Sub
 
     Private Sub rboCedula_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rboCedula.Click
+        vaciarTodo()
+
         vaciaryDesmarcarrbo()
         rboCedula.Checked = True
         btnFiltrarCedula.Enabled = True
@@ -408,6 +434,8 @@
     End Sub
 
     Private Sub rboTelefono_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rboTelefono.Click
+        vaciarTodo()
+
         vaciaryDesmarcarrbo()
         rboTelefono.Checked = True
         btnFiltrarTelefono.Enabled = True
@@ -438,6 +466,63 @@
                 e.Handled = True And Not Char.IsControl(e.KeyChar)
             End If
         End If
+    End Sub
+
+    Private Sub btnEditarDinero_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarDinero.Click
+        btnEditarDinero.Visible = False
+        HabilitarTodo(False)
+        btnCancelarDinero.Visible = True
+        txtDineroAFavor.Text = DatosClientes.Rows(FilaNumero).Item("dinero_a_favor")
+        txtDineroAFavor.Visible = True
+        btnGuardarDinero.Visible = True
+        btnEditarCliente.Enabled = False
+        txtCedula.Enabled = False
+    End Sub
+
+    Private Sub btnGuardarDinero_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardarDinero.Click
+        mysql.InsertarDatos("update clientes set dinero_a_favor=" & txtDineroAFavor.Text & " where ID_CLIENTE=" & DatosClientes.Rows(FilaNumero).Item("ID_CLIENTE"))
+        ActualizarDatosCliente()
+        booleanNoCambiarSeleccion = True
+        actualizardgv()
+        booleanNoCambiarSeleccion = False
+        AutorellenarClienteSiLaCedulaCoincide()
+        btnCancelarDinero.Visible = False
+        btnGuardarDinero.Visible = False
+        txtDineroAFavor.Visible = False
+        btnEditarDinero.Visible = True
+        btnEditarCliente.Enabled = True
+        HabilitarTodo(True)
+    End Sub
+
+    Private Sub btnCancelarDinero_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarDinero.Click
+        btnCancelarDinero.Visible = False
+        btnGuardarDinero.Visible = False
+        txtDineroAFavor.Visible = False
+        btnEditarDinero.Visible = True
+        btnEditarCliente.Enabled = True
+        HabilitarTodo(True)
+    End Sub
+
+    Private Sub txtTelefono1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTelefono1.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR
+        If txtTelefono1.Text.Length > 8 Then
+            If txtTelefono1.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
+    End Sub
+
+    Private Sub txtTelefono2_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTelefono2.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR
+        If txtTelefono2.Text.Length > 8 Then
+            If txtTelefono2.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
+    End Sub
+
+    Private Sub txtDineroAFavor_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtDineroAFavor.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR
     End Sub
 
 End Class
