@@ -79,6 +79,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clientes.Designer.vb">
+      <DependentUpon>Clientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Configuracion.Designer.vb">
       <DependentUpon>Configuracion.vb</DependentUpon>
     </Compile>
@@ -134,6 +140,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Clientes.resx">
+      <DependentUpon>Clientes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Configuracion.resx">
       <DependentUpon>Configuracion.vb</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Icono_Mayusculas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Contornos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

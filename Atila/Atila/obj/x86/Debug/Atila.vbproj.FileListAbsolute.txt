@@ -33,3 +33,4 @@ C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Config
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Inventario.resources
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Configuracion.resources
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Inventario.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Clientes.resources

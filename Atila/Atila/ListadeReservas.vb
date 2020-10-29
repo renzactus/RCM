@@ -79,12 +79,12 @@
 
     Private Sub consultarDatosDeReservaConSuClienteYPrecio(ByVal fecha As Date)
         mysql.Consultar("select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
-                        ",cantidad_personas,servicio,nombre,seña as s,costo from reservas left join pagos on " &
-                        "pagos.id_reserva=reservas.id_reserva inner join clientes on clientes.id_cliente=reservas.id_cliente" &
+                        ",cantidad_personas,servicio,nombre,seña as s,costo,imprevisto.descripcion from reservas left join pagos on pagos.id_reserva=reservas.id_reserva" &
+                        " inner join clientes on clientes.id_cliente=reservas.id_cliente left join imprevisto on imprevisto.ID_RESERVA=reservas.ID_RESERVA" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null UNION" &
                         " select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final," &
-                        "cantidad_personas,servicio,nombre,seña as s,costo from reservas right join pagos on pagos.id_reserva=reservas.id_reserva" &
-                        " inner join clientes on clientes.id_cliente=reservas.id_cliente" &
+                        "cantidad_personas,servicio,nombre,seña as s,costo,imprevisto.descripcion from reservas right join pagos on pagos.id_reserva=reservas.id_reserva" &
+                        " inner join clientes on clientes.id_cliente=reservas.id_cliente left join imprevisto on imprevisto.ID_RESERVA=reservas.ID_RESERVA" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
         datosReserva = mysql.Resultado
     End Sub
@@ -97,6 +97,7 @@
         lblMostrarCliente.Text = ""
         lblMostrarSeña.Text = ""
         lblMostrarPagado.Text = ""
+        lblMostrarImprevisto.Text = ""
         lblSeña.Enabled = False
         lblSeña.Visible = False
         lblPagado.Enabled = False
@@ -105,6 +106,8 @@
         btnCancelarReserva.Visible = False
         btnSurgioImprevisto.Visible = False
         btnEditarFecha.Visible = False
+        lblImprevisto.Enabled = False
+        lblImprevisto.Visible = False
         dgvUtiliza.Rows.Clear()
 
     End Sub
@@ -116,6 +119,8 @@
         lblServicio.Enabled = valor
         lblCliente.Enabled = valor
         lblCosasUtilizar.Enabled = valor
+
+        lblImprevisto.Enabled = False
         dgvUtiliza.Enabled = valor
     End Sub
 
@@ -134,6 +139,11 @@
             chkMostrarServicio.Visible = True
             chkMostrarServicio.Checked = datosReserva.Rows(FilaNumero).Item("servicio")
             lblMostrarCliente.Text = datosReserva.Rows(FilaNumero).Item("nombre")
+            If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("descripcion")) Then
+                lblMostrarImprevisto.Text = datosReserva.Rows(FilaNumero).Item("descripcion")
+                lblImprevisto.Visible = True
+                lblImprevisto.Enabled = True
+            End If
 
             mysql.Consultar("select descripcion,utiliza.cantidad from utiliza inner join inventario on utiliza.ID_INVENTARIO=inventario.ID_INVENTARIO where id_reserva=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
             For i = 0 To mysql.Resultado.Rows.Count - 1

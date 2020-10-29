@@ -24,8 +24,6 @@ Partial Class Inventario
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnEditarCantidad = New System.Windows.Forms.Button()
         Me.btnAgregarDatos = New System.Windows.Forms.Button()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
@@ -34,6 +32,8 @@ Partial Class Inventario
         Me.nudCantidad = New System.Windows.Forms.NumericUpDown()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.btnBorrar = New System.Windows.Forms.Button()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudCantidad, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,33 +47,18 @@ Partial Class Inventario
         Me.dgvInventario.AllowUserToResizeRows = False
         Me.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvInventario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.Cantidad})
-        Me.dgvInventario.Location = New System.Drawing.Point(23, 47)
+        Me.dgvInventario.Location = New System.Drawing.Point(12, 85)
         Me.dgvInventario.MultiSelect = False
         Me.dgvInventario.Name = "dgvInventario"
         Me.dgvInventario.ReadOnly = True
         Me.dgvInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvInventario.Size = New System.Drawing.Size(230, 114)
+        Me.dgvInventario.Size = New System.Drawing.Size(403, 233)
         Me.dgvInventario.TabIndex = 23
-        '
-        'Descripcion
-        '
-        Me.Descripcion.Frozen = True
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        '
-        'Cantidad
-        '
-        Me.Cantidad.Frozen = True
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 60
         '
         'btnEditarCantidad
         '
         Me.btnEditarCantidad.Enabled = False
-        Me.btnEditarCantidad.Location = New System.Drawing.Point(269, 47)
+        Me.btnEditarCantidad.Location = New System.Drawing.Point(479, 85)
         Me.btnEditarCantidad.Name = "btnEditarCantidad"
         Me.btnEditarCantidad.Size = New System.Drawing.Size(85, 43)
         Me.btnEditarCantidad.TabIndex = 24
@@ -82,7 +67,7 @@ Partial Class Inventario
         '
         'btnAgregarDatos
         '
-        Me.btnAgregarDatos.Location = New System.Drawing.Point(450, 134)
+        Me.btnAgregarDatos.Location = New System.Drawing.Point(350, 25)
         Me.btnAgregarDatos.Name = "btnAgregarDatos"
         Me.btnAgregarDatos.Size = New System.Drawing.Size(77, 43)
         Me.btnAgregarDatos.TabIndex = 25
@@ -91,7 +76,7 @@ Partial Class Inventario
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(444, 47)
+        Me.txtDescripcion.Location = New System.Drawing.Point(64, 41)
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(100, 20)
         Me.txtDescripcion.TabIndex = 26
@@ -99,7 +84,7 @@ Partial Class Inventario
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(464, 31)
+        Me.Label1.Location = New System.Drawing.Point(84, 25)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 13)
         Me.Label1.TabIndex = 27
@@ -108,7 +93,7 @@ Partial Class Inventario
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(464, 77)
+        Me.Label3.Location = New System.Drawing.Point(208, 25)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(49, 13)
         Me.Label3.TabIndex = 31
@@ -116,7 +101,7 @@ Partial Class Inventario
         '
         'nudCantidad
         '
-        Me.nudCantidad.Location = New System.Drawing.Point(467, 93)
+        Me.nudCantidad.Location = New System.Drawing.Point(211, 41)
         Me.nudCantidad.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
         Me.nudCantidad.Name = "nudCantidad"
         Me.nudCantidad.Size = New System.Drawing.Size(53, 20)
@@ -129,12 +114,28 @@ Partial Class Inventario
         'btnBorrar
         '
         Me.btnBorrar.Enabled = False
-        Me.btnBorrar.Location = New System.Drawing.Point(269, 118)
+        Me.btnBorrar.Location = New System.Drawing.Point(479, 187)
         Me.btnBorrar.Name = "btnBorrar"
         Me.btnBorrar.Size = New System.Drawing.Size(85, 43)
         Me.btnBorrar.TabIndex = 33
         Me.btnBorrar.Text = "Borrar Seleccionado"
         Me.btnBorrar.UseVisualStyleBackColor = True
+        '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 300
+        '
+        'Cantidad
+        '
+        Me.Cantidad.Frozen = True
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 60
         '
         'Inventario
         '
@@ -160,8 +161,6 @@ Partial Class Inventario
     End Sub
     Friend WithEvents dgvInventario As System.Windows.Forms.DataGridView
     Friend WithEvents btnEditarCantidad As System.Windows.Forms.Button
-    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnAgregarDatos As System.Windows.Forms.Button
     Friend WithEvents txtDescripcion As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -169,4 +168,6 @@ Partial Class Inventario
     Friend WithEvents nudCantidad As System.Windows.Forms.NumericUpDown
     Friend WithEvents epError As System.Windows.Forms.ErrorProvider
     Friend WithEvents btnBorrar As System.Windows.Forms.Button
+    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

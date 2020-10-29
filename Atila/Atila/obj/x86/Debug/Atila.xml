@@ -15,6 +15,10 @@ Atila
   Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
+</member><member name="P:Atila.My.Resources.Resources.Contornos">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Atila.My.Resources.Resources.Icono_cerrar">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.

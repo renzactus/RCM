@@ -9,9 +9,7 @@ Public Class Principal
     Public booleanImprevistoAlmacenado As Boolean
 
     'Constructor
-    Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR DE LA CLASE
-
-
+    Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.BackColor = colorprincipal
         pnlArriba.BackColor = Color.FromArgb(colorsecundario.R, colorsecundario.G, colorsecundario.B)
         ActualizarNotificaciones()
@@ -20,7 +18,7 @@ Public Class Principal
     Private Sub MostrarCuadroNotificaciones()
         If pnlCuadroNotificaciones.Visible = False Then
             pnlCuadroNotificaciones.Visible = True
-            pnlCuadroNotificaciones.Location = New Point(958, 31)
+            pnlCuadroNotificaciones.Location = New Point(718, 29)
         Else
             pnlCuadroNotificaciones.Visible = False
         End If
@@ -156,12 +154,6 @@ Public Class Principal
         lblPerfil.Font = New Font("Sans Serif", 11, FontStyle.Regular, GraphicsUnit.Point)
     End Sub
 
-    Private Sub btnMaximizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMaximizar.Click
-        Me.WindowState = FormWindowState.Maximized
-        btnMaximizar.Visible = False
-        btnRestaurar.Visible = True
-    End Sub
-
     Private Sub btnRestaurar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRestaurar.Click
         Me.WindowState = FormWindowState.Normal
         btnRestaurar.Visible = False
@@ -282,4 +274,8 @@ Public Class Principal
     End Sub
 
     
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Dim clientes As New Clientes
+        clientes.Show()
+    End Sub
 End Class

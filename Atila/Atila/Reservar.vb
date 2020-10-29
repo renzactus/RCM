@@ -844,9 +844,8 @@ Public Class Reservar
     End Sub
 
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        mysql.Consultar("select ID_RESERVA from reservas where comienzo>final and fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "'")
-        reservaInvertida = mysql.Resultado
-        MsgBox(reservaInvertida.Rows(0).Item("ID_RESERVA"))
+        cboMotivo.BackColor = Color.FromArgb(227, 194, 175)
+        'cboMotivo.ForeColor = Color.FromArgb(227, 194, 175)
     End Sub
 
 End Class

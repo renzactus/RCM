@@ -28,6 +28,7 @@ Partial Class Principal
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btnListadereservas = New System.Windows.Forms.Button()
         Me.pnlArriba = New System.Windows.Forms.Panel()
+        Me.lblCantidadDeNotificaciones = New System.Windows.Forms.Label()
         Me.btnNotificaciones = New System.Windows.Forms.Button()
         Me.btnAyuda = New System.Windows.Forms.Button()
         Me.lblPerfil = New System.Windows.Forms.Label()
@@ -38,10 +39,11 @@ Partial Class Principal
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlCuadroNotificaciones = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.llblPaginaAnterior = New System.Windows.Forms.LinkLabel()
         Me.llblPaginaSiguiente = New System.Windows.Forms.LinkLabel()
         Me.pnlNotificacion3 = New System.Windows.Forms.Panel()
@@ -64,11 +66,8 @@ Partial Class Principal
         Me.btnNotificacion1Si = New System.Windows.Forms.Button()
         Me.lblNoHayNotificaciones = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.lblCantidadDeNotificaciones = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.pnlArriba.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlCuadroNotificaciones.SuspendLayout()
         Me.pnlNotificacion3.SuspendLayout()
         Me.pnlNotificacion2.SuspendLayout()
@@ -78,7 +77,7 @@ Partial Class Principal
         'btnRealizarunareserva
         '
         Me.btnRealizarunareserva.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnRealizarunareserva.Location = New System.Drawing.Point(461, 90)
+        Me.btnRealizarunareserva.Location = New System.Drawing.Point(331, 90)
         Me.btnRealizarunareserva.Name = "btnRealizarunareserva"
         Me.btnRealizarunareserva.Size = New System.Drawing.Size(320, 55)
         Me.btnRealizarunareserva.TabIndex = 0
@@ -97,7 +96,7 @@ Partial Class Principal
         'btnListadereservas
         '
         Me.btnListadereservas.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.btnListadereservas.Location = New System.Drawing.Point(461, 142)
+        Me.btnListadereservas.Location = New System.Drawing.Point(331, 142)
         Me.btnListadereservas.Name = "btnListadereservas"
         Me.btnListadereservas.Size = New System.Drawing.Size(320, 55)
         Me.btnListadereservas.TabIndex = 16
@@ -117,12 +116,21 @@ Partial Class Principal
         Me.pnlArriba.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlArriba.Location = New System.Drawing.Point(0, 0)
         Me.pnlArriba.Name = "pnlArriba"
-        Me.pnlArriba.Size = New System.Drawing.Size(1300, 52)
+        Me.pnlArriba.Size = New System.Drawing.Size(1040, 30)
         Me.pnlArriba.TabIndex = 17
+        '
+        'lblCantidadDeNotificaciones
+        '
+        Me.lblCantidadDeNotificaciones.AutoSize = True
+        Me.lblCantidadDeNotificaciones.Location = New System.Drawing.Point(714, -1)
+        Me.lblCantidadDeNotificaciones.Name = "lblCantidadDeNotificaciones"
+        Me.lblCantidadDeNotificaciones.Size = New System.Drawing.Size(19, 13)
+        Me.lblCantidadDeNotificaciones.TabIndex = 29
+        Me.lblCantidadDeNotificaciones.Text = "+9"
         '
         'btnNotificaciones
         '
-        Me.btnNotificaciones.Location = New System.Drawing.Point(958, 8)
+        Me.btnNotificaciones.Location = New System.Drawing.Point(718, 3)
         Me.btnNotificaciones.Name = "btnNotificaciones"
         Me.btnNotificaciones.Size = New System.Drawing.Size(30, 26)
         Me.btnNotificaciones.TabIndex = 24
@@ -142,7 +150,7 @@ Partial Class Principal
         '
         Me.lblPerfil.AutoSize = True
         Me.lblPerfil.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPerfil.Location = New System.Drawing.Point(1006, 9)
+        Me.lblPerfil.Location = New System.Drawing.Point(766, 4)
         Me.lblPerfil.Name = "lblPerfil"
         Me.lblPerfil.Size = New System.Drawing.Size(130, 18)
         Me.lblPerfil.TabIndex = 21
@@ -156,7 +164,7 @@ Partial Class Principal
         Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
-        Me.btnMinimizar.Location = New System.Drawing.Point(1171, 0)
+        Me.btnMinimizar.Location = New System.Drawing.Point(911, 0)
         Me.btnMinimizar.Name = "btnMinimizar"
         Me.btnMinimizar.Size = New System.Drawing.Size(45, 25)
         Me.btnMinimizar.TabIndex = 19
@@ -170,7 +178,7 @@ Partial Class Principal
         Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
         Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
-        Me.btnCerrar.Location = New System.Drawing.Point(1255, 0)
+        Me.btnCerrar.Location = New System.Drawing.Point(995, 0)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(45, 25)
         Me.btnCerrar.TabIndex = 18
@@ -184,7 +192,7 @@ Partial Class Principal
         Me.btnMaximizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnMaximizar.Image = Global.Atila.My.Resources.Resources.Icono_Maximizar
-        Me.btnMaximizar.Location = New System.Drawing.Point(1213, 0)
+        Me.btnMaximizar.Location = New System.Drawing.Point(953, 0)
         Me.btnMaximizar.Name = "btnMaximizar"
         Me.btnMaximizar.Size = New System.Drawing.Size(45, 25)
         Me.btnMaximizar.TabIndex = 20
@@ -198,7 +206,7 @@ Partial Class Principal
         Me.btnRestaurar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
         Me.btnRestaurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRestaurar.Image = Global.Atila.My.Resources.Resources.Icono_Restaurar
-        Me.btnRestaurar.Location = New System.Drawing.Point(1213, 0)
+        Me.btnRestaurar.Location = New System.Drawing.Point(953, 0)
         Me.btnRestaurar.Name = "btnRestaurar"
         Me.btnRestaurar.Size = New System.Drawing.Size(45, 25)
         Me.btnRestaurar.TabIndex = 22
@@ -207,44 +215,34 @@ Partial Class Principal
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(984, 618)
+        Me.Button1.Location = New System.Drawing.Point(82, 529)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(75, 29)
         Me.Button1.TabIndex = 18
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Panel1
         '
-        Me.Panel1.Location = New System.Drawing.Point(914, 360)
+        Me.Panel1.Location = New System.Drawing.Point(12, 271)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(234, 252)
+        Me.Panel1.Size = New System.Drawing.Size(234, 258)
         Me.Panel1.TabIndex = 19
         '
         'Button3
         '
         Me.Button3.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Button3.Location = New System.Drawing.Point(461, 193)
+        Me.Button3.Location = New System.Drawing.Point(331, 193)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(320, 55)
         Me.Button3.TabIndex = 20
         Me.Button3.Text = "Configuracion"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.Location = New System.Drawing.Point(1200, 650)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 15
-        Me.PictureBox1.TabStop = False
-        '
         'Button4
         '
         Me.Button4.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Button4.Location = New System.Drawing.Point(461, 242)
+        Me.Button4.Location = New System.Drawing.Point(331, 242)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(320, 55)
         Me.Button4.TabIndex = 21
@@ -271,11 +269,31 @@ Partial Class Principal
         Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion2)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion1)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.lblNoHayNotificaciones)
-        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(137, 210)
+        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(718, 31)
         Me.pnlCuadroNotificaciones.Name = "pnlCuadroNotificaciones"
         Me.pnlCuadroNotificaciones.Size = New System.Drawing.Size(300, 357)
         Me.pnlCuadroNotificaciones.TabIndex = 23
         Me.pnlCuadroNotificaciones.Visible = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(6, 21)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(290, 18)
+        Me.Label2.TabIndex = 36
+        Me.Label2.Text = "reservas se realizaron correctamente"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(26, 3)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(228, 18)
+        Me.Label1.TabIndex = 33
+        Me.Label1.Text = "Seleccionar si las siguientes "
         '
         'llblPaginaAnterior
         '
@@ -493,47 +511,29 @@ Partial Class Principal
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(689, 354)
+        Me.Button7.Location = New System.Drawing.Point(599, 466)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(75, 23)
         Me.Button7.TabIndex = 28
         Me.Button7.Text = "Button7"
         Me.Button7.UseVisualStyleBackColor = True
         '
-        'Label1
+        'Button5
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(26, 3)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(228, 18)
-        Me.Label1.TabIndex = 33
-        Me.Label1.Text = "Seleccionar si las siguientes "
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(6, 21)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(290, 18)
-        Me.Label2.TabIndex = 36
-        Me.Label2.Text = "reservas se realizaron correctamente"
-        '
-        'lblCantidadDeNotificaciones
-        '
-        Me.lblCantidadDeNotificaciones.AutoSize = True
-        Me.lblCantidadDeNotificaciones.Location = New System.Drawing.Point(954, 4)
-        Me.lblCantidadDeNotificaciones.Name = "lblCantidadDeNotificaciones"
-        Me.lblCantidadDeNotificaciones.Size = New System.Drawing.Size(19, 13)
-        Me.lblCantidadDeNotificaciones.TabIndex = 29
-        Me.lblCantidadDeNotificaciones.Text = "+9"
+        Me.Button5.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Button5.Location = New System.Drawing.Point(330, 296)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(320, 55)
+        Me.Button5.TabIndex = 29
+        Me.Button5.Text = "Clientes"
+        Me.Button5.UseVisualStyleBackColor = True
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1300, 700)
+        Me.ClientSize = New System.Drawing.Size(1040, 572)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.pnlCuadroNotificaciones)
         Me.Controls.Add(Me.Button4)
@@ -541,7 +541,6 @@ Partial Class Principal
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnListadereservas)
-        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.btnRealizarunareserva)
         Me.Controls.Add(Me.pnlArriba)
@@ -551,7 +550,6 @@ Partial Class Principal
         Me.Text = "Principal"
         Me.pnlArriba.ResumeLayout(False)
         Me.pnlArriba.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlCuadroNotificaciones.ResumeLayout(False)
         Me.pnlCuadroNotificaciones.PerformLayout()
         Me.pnlNotificacion3.ResumeLayout(False)
@@ -565,7 +563,6 @@ Partial Class Principal
     End Sub
     Friend WithEvents btnRealizarunareserva As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents btnListadereservas As System.Windows.Forms.Button
     Friend WithEvents pnlArriba As System.Windows.Forms.Panel
     Friend WithEvents btnCerrar As System.Windows.Forms.Button
@@ -606,5 +603,6 @@ Partial Class Principal
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents lblCantidadDeNotificaciones As System.Windows.Forms.Label
+    Friend WithEvents Button5 As System.Windows.Forms.Button
 
 End Class
