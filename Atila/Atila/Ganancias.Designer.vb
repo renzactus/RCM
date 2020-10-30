@@ -22,33 +22,32 @@ Partial Class Ganancias
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Me.Grafica = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.cboCuotas = New System.Windows.Forms.ComboBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.cboAño = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnAlternar = New System.Windows.Forms.Button()
+        CType(Me.Grafica, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Chart1
+        'Grafica
         '
-        ChartArea2.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea2)
-        Legend2.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend2)
-        Me.Chart1.Location = New System.Drawing.Point(71, 74)
-        Me.Chart1.Name = "Chart1"
-        Me.Chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light
-        Series2.ChartArea = "ChartArea1"
-        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
-        Series2.Legend = "Legend1"
-        Series2.Name = "Series1"
-        Series2.YValuesPerPoint = 2
-        Me.Chart1.Series.Add(Series2)
-        Me.Chart1.Size = New System.Drawing.Size(590, 356)
-        Me.Chart1.TabIndex = 0
-        Me.Chart1.Text = "Chart1"
+        Me.Grafica.BackColor = System.Drawing.Color.DarkGray
+        ChartArea1.AxisX.Interval = 1.0R
+        ChartArea1.Name = "ChartArea1"
+        Me.Grafica.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.Grafica.Legends.Add(Legend1)
+        Me.Grafica.Location = New System.Drawing.Point(42, 77)
+        Me.Grafica.Name = "Grafica"
+        Me.Grafica.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light
+        Me.Grafica.Size = New System.Drawing.Size(1103, 499)
+        Me.Grafica.TabIndex = 0
+        Me.Grafica.Text = "Grafica"
         '
         'cboCuotas
         '
@@ -71,22 +70,67 @@ Partial Class Ganancias
         Me.Label12.TabIndex = 37
         Me.Label12.Text = "Mostrar:"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(583, 30)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 38
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'cboAño
+        '
+        Me.cboAño.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboAño.FormattingEnabled = True
+        Me.cboAño.Items.AddRange(New Object() {"2020"})
+        Me.cboAño.Location = New System.Drawing.Point(158, 50)
+        Me.cboAño.Name = "cboAño"
+        Me.cboAño.Size = New System.Drawing.Size(75, 21)
+        Me.cboAño.TabIndex = 40
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(126, 53)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(26, 13)
+        Me.Label1.TabIndex = 41
+        Me.Label1.Text = "Año"
+        '
+        'btnAlternar
+        '
+        Me.btnAlternar.Location = New System.Drawing.Point(42, 77)
+        Me.btnAlternar.Name = "btnAlternar"
+        Me.btnAlternar.Size = New System.Drawing.Size(57, 35)
+        Me.btnAlternar.TabIndex = 42
+        Me.btnAlternar.Text = "Alternar"
+        Me.btnAlternar.UseVisualStyleBackColor = True
+        '
         'Ganancias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(772, 495)
+        Me.ClientSize = New System.Drawing.Size(1240, 669)
+        Me.Controls.Add(Me.btnAlternar)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.cboAño)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.cboCuotas)
-        Me.Controls.Add(Me.Chart1)
+        Me.Controls.Add(Me.Grafica)
         Me.Name = "Ganancias"
         Me.Text = "Ganancias"
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Grafica, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Chart1 As System.Windows.Forms.DataVisualization.Charting.Chart
+    Friend WithEvents Grafica As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents cboCuotas As System.Windows.Forms.ComboBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents cboAño As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents btnAlternar As System.Windows.Forms.Button
 End Class

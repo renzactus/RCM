@@ -67,6 +67,7 @@ Partial Class Principal
         Me.lblNoHayNotificaciones = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.pnlArriba.SuspendLayout()
         Me.pnlCuadroNotificaciones.SuspendLayout()
         Me.pnlNotificacion3.SuspendLayout()
@@ -528,11 +529,22 @@ Partial Class Principal
         Me.Button5.Text = "Clientes"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'Button6
+        '
+        Me.Button6.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Button6.Location = New System.Drawing.Point(331, 350)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(320, 55)
+        Me.Button6.TabIndex = 30
+        Me.Button6.Text = "Ganancias"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1040, 572)
+        Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.pnlCuadroNotificaciones)
@@ -604,5 +616,6 @@ Partial Class Principal
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents lblCantidadDeNotificaciones As System.Windows.Forms.Label
     Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents Button6 As System.Windows.Forms.Button
 
 End Class

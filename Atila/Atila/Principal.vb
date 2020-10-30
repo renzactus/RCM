@@ -278,4 +278,9 @@ Public Class Principal
         Dim clientes As New Clientes
         clientes.Show()
     End Sub
+
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
+        Dim ganancias As New Ganancias
+        ganancias.Show()
+    End Sub
 End Class
