@@ -22,43 +22,47 @@ Partial Class Ganancias
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Me.Grafica = New System.Windows.Forms.DataVisualization.Charting.Chart()
-        Me.cboCuotas = New System.Windows.Forms.ComboBox()
+        Me.cboSeleccionar = New System.Windows.Forms.ComboBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.cboAño = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblAño = New System.Windows.Forms.Label()
         Me.btnAlternar = New System.Windows.Forms.Button()
+        Me.lblMes = New System.Windows.Forms.Label()
+        Me.cboMes = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblTotal = New System.Windows.Forms.Label()
+        Me.lblMostrarTotal = New System.Windows.Forms.Label()
         CType(Me.Grafica, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Grafica
         '
         Me.Grafica.BackColor = System.Drawing.Color.DarkGray
-        ChartArea1.AxisX.Interval = 1.0R
-        ChartArea1.Name = "ChartArea1"
-        Me.Grafica.ChartAreas.Add(ChartArea1)
-        Legend1.Name = "Legend1"
-        Me.Grafica.Legends.Add(Legend1)
+        ChartArea2.AxisX.Interval = 1.0R
+        ChartArea2.Name = "ChartArea1"
+        Me.Grafica.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        Me.Grafica.Legends.Add(Legend2)
         Me.Grafica.Location = New System.Drawing.Point(42, 77)
         Me.Grafica.Name = "Grafica"
         Me.Grafica.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light
         Me.Grafica.Size = New System.Drawing.Size(1103, 499)
         Me.Grafica.TabIndex = 0
-        Me.Grafica.Text = "Grafica"
+        Me.Grafica.Text = "eqw"
         '
-        'cboCuotas
+        'cboSeleccionar
         '
-        Me.cboCuotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboCuotas.Enabled = False
-        Me.cboCuotas.FormattingEnabled = True
-        Me.cboCuotas.Items.AddRange(New Object() {"Ganancias del mes", "Fiestas de este Mes", "Fiestas en el año"})
-        Me.cboCuotas.Location = New System.Drawing.Point(177, 12)
-        Me.cboCuotas.Name = "cboCuotas"
-        Me.cboCuotas.Size = New System.Drawing.Size(75, 21)
-        Me.cboCuotas.TabIndex = 36
+        Me.cboSeleccionar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboSeleccionar.FormattingEnabled = True
+        Me.cboSeleccionar.Items.AddRange(New Object() {"Reservas Anuales", "Ganancias Mensuales", "Reservas Mensuales", "Ganancias Anuales"})
+        Me.cboSeleccionar.Location = New System.Drawing.Point(177, 12)
+        Me.cboSeleccionar.Name = "cboSeleccionar"
+        Me.cboSeleccionar.Size = New System.Drawing.Size(122, 21)
+        Me.cboSeleccionar.TabIndex = 36
         '
         'Label12
         '
@@ -83,41 +87,98 @@ Partial Class Ganancias
         '
         Me.cboAño.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboAño.FormattingEnabled = True
-        Me.cboAño.Items.AddRange(New Object() {"2020"})
-        Me.cboAño.Location = New System.Drawing.Point(158, 50)
+        Me.cboAño.Location = New System.Drawing.Point(132, 50)
         Me.cboAño.Name = "cboAño"
         Me.cboAño.Size = New System.Drawing.Size(75, 21)
         Me.cboAño.TabIndex = 40
+        Me.cboAño.Visible = False
         '
-        'Label1
+        'lblAño
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(126, 53)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(26, 13)
-        Me.Label1.TabIndex = 41
-        Me.Label1.Text = "Año"
+        Me.lblAño.AutoSize = True
+        Me.lblAño.Location = New System.Drawing.Point(100, 53)
+        Me.lblAño.Name = "lblAño"
+        Me.lblAño.Size = New System.Drawing.Size(26, 13)
+        Me.lblAño.TabIndex = 41
+        Me.lblAño.Text = "Año"
+        Me.lblAño.Visible = False
         '
         'btnAlternar
         '
         Me.btnAlternar.Location = New System.Drawing.Point(42, 77)
         Me.btnAlternar.Name = "btnAlternar"
-        Me.btnAlternar.Size = New System.Drawing.Size(57, 35)
+        Me.btnAlternar.Size = New System.Drawing.Size(52, 22)
         Me.btnAlternar.TabIndex = 42
         Me.btnAlternar.Text = "Alternar"
         Me.btnAlternar.UseVisualStyleBackColor = True
+        '
+        'lblMes
+        '
+        Me.lblMes.AutoSize = True
+        Me.lblMes.Location = New System.Drawing.Point(250, 53)
+        Me.lblMes.Name = "lblMes"
+        Me.lblMes.Size = New System.Drawing.Size(27, 13)
+        Me.lblMes.TabIndex = 44
+        Me.lblMes.Text = "Mes"
+        Me.lblMes.Visible = False
+        '
+        'cboMes
+        '
+        Me.cboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboMes.Enabled = False
+        Me.cboMes.FormattingEnabled = True
+        Me.cboMes.Items.AddRange(New Object() {"ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"})
+        Me.cboMes.Location = New System.Drawing.Point(283, 50)
+        Me.cboMes.Name = "cboMes"
+        Me.cboMes.Size = New System.Drawing.Size(90, 21)
+        Me.cboMes.TabIndex = 43
+        Me.cboMes.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(518, 32)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 45
+        Me.Label1.Text = "Label1"
+        '
+        'lblTotal
+        '
+        Me.lblTotal.AutoSize = True
+        Me.lblTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotal.Location = New System.Drawing.Point(760, 42)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(51, 24)
+        Me.lblTotal.TabIndex = 46
+        Me.lblTotal.Text = "Total"
+        '
+        'lblMostrarTotal
+        '
+        Me.lblMostrarTotal.AutoSize = True
+        Me.lblMostrarTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarTotal.Location = New System.Drawing.Point(817, 42)
+        Me.lblMostrarTotal.Name = "lblMostrarTotal"
+        Me.lblMostrarTotal.Size = New System.Drawing.Size(51, 24)
+        Me.lblMostrarTotal.TabIndex = 47
+        Me.lblMostrarTotal.Text = "Total"
         '
         'Ganancias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1240, 669)
-        Me.Controls.Add(Me.btnAlternar)
+        Me.Controls.Add(Me.lblMostrarTotal)
+        Me.Controls.Add(Me.lblTotal)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblMes)
+        Me.Controls.Add(Me.cboMes)
+        Me.Controls.Add(Me.btnAlternar)
+        Me.Controls.Add(Me.lblAño)
         Me.Controls.Add(Me.cboAño)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.cboCuotas)
+        Me.Controls.Add(Me.cboSeleccionar)
         Me.Controls.Add(Me.Grafica)
         Me.Name = "Ganancias"
         Me.Text = "Ganancias"
@@ -127,10 +188,15 @@ Partial Class Ganancias
 
     End Sub
     Friend WithEvents Grafica As System.Windows.Forms.DataVisualization.Charting.Chart
-    Friend WithEvents cboCuotas As System.Windows.Forms.ComboBox
+    Friend WithEvents cboSeleccionar As System.Windows.Forms.ComboBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents cboAño As System.Windows.Forms.ComboBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblAño As System.Windows.Forms.Label
     Friend WithEvents btnAlternar As System.Windows.Forms.Button
+    Friend WithEvents lblMes As System.Windows.Forms.Label
+    Friend WithEvents cboMes As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblTotal As System.Windows.Forms.Label
+    Friend WithEvents lblMostrarTotal As System.Windows.Forms.Label
 End Class

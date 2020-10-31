@@ -29,6 +29,12 @@ Partial Class Clientes
         Me.txtFiltrarCedula = New System.Windows.Forms.TextBox()
         Me.txtFiltrarTelefono = New System.Windows.Forms.TextBox()
         Me.dgvClientes = New System.Windows.Forms.DataGridView()
+        Me.cedula = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Telefonos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Dinero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ultimareserva = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblMostrarDineroAFavor = New System.Windows.Forms.Label()
         Me.lblDineroAFavor = New System.Windows.Forms.Label()
         Me.btnGuardarCliente = New System.Windows.Forms.Button()
@@ -64,12 +70,6 @@ Partial Class Clientes
         Me.btnCancelarDinero = New System.Windows.Forms.Button()
         Me.btnEditarDinero = New System.Windows.Forms.Button()
         Me.txtDineroAFavor = New System.Windows.Forms.TextBox()
-        Me.cedula = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Telefonos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Direccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Dinero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ultimareserva = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvReservas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,6 +142,53 @@ Partial Class Clientes
         Me.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvClientes.Size = New System.Drawing.Size(652, 233)
         Me.dgvClientes.TabIndex = 24
+        '
+        'cedula
+        '
+        Me.cedula.Frozen = True
+        Me.cedula.HeaderText = "Cedula"
+        Me.cedula.Name = "cedula"
+        Me.cedula.ReadOnly = True
+        Me.cedula.Width = 60
+        '
+        'Cantidad
+        '
+        Me.Cantidad.Frozen = True
+        Me.Cantidad.HeaderText = "Nombre"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 110
+        '
+        'Telefonos
+        '
+        Me.Telefonos.Frozen = True
+        Me.Telefonos.HeaderText = "Telefonos"
+        Me.Telefonos.Name = "Telefonos"
+        Me.Telefonos.ReadOnly = True
+        Me.Telefonos.Width = 120
+        '
+        'Direccion
+        '
+        Me.Direccion.Frozen = True
+        Me.Direccion.HeaderText = "Direccion"
+        Me.Direccion.Name = "Direccion"
+        Me.Direccion.ReadOnly = True
+        '
+        'Dinero
+        '
+        Me.Dinero.Frozen = True
+        Me.Dinero.HeaderText = "Credito"
+        Me.Dinero.Name = "Dinero"
+        Me.Dinero.ReadOnly = True
+        Me.Dinero.Width = 50
+        '
+        'ultimareserva
+        '
+        Me.ultimareserva.Frozen = True
+        Me.ultimareserva.HeaderText = "Ultima Reserva"
+        Me.ultimareserva.Name = "ultimareserva"
+        Me.ultimareserva.ReadOnly = True
+        Me.ultimareserva.Width = 85
         '
         'lblMostrarDineroAFavor
         '
@@ -466,53 +513,6 @@ Partial Class Clientes
         Me.txtDineroAFavor.Size = New System.Drawing.Size(51, 20)
         Me.txtDineroAFavor.TabIndex = 76
         Me.txtDineroAFavor.Visible = False
-        '
-        'cedula
-        '
-        Me.cedula.Frozen = True
-        Me.cedula.HeaderText = "Cedula"
-        Me.cedula.Name = "cedula"
-        Me.cedula.ReadOnly = True
-        Me.cedula.Width = 60
-        '
-        'Cantidad
-        '
-        Me.Cantidad.Frozen = True
-        Me.Cantidad.HeaderText = "Nombre"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 110
-        '
-        'Telefonos
-        '
-        Me.Telefonos.Frozen = True
-        Me.Telefonos.HeaderText = "Telefonos"
-        Me.Telefonos.Name = "Telefonos"
-        Me.Telefonos.ReadOnly = True
-        Me.Telefonos.Width = 120
-        '
-        'Direccion
-        '
-        Me.Direccion.Frozen = True
-        Me.Direccion.HeaderText = "Direccion"
-        Me.Direccion.Name = "Direccion"
-        Me.Direccion.ReadOnly = True
-        '
-        'Dinero
-        '
-        Me.Dinero.Frozen = True
-        Me.Dinero.HeaderText = "Credito"
-        Me.Dinero.Name = "Dinero"
-        Me.Dinero.ReadOnly = True
-        Me.Dinero.Width = 50
-        '
-        'ultimareserva
-        '
-        Me.ultimareserva.Frozen = True
-        Me.ultimareserva.HeaderText = "Ultima Reserva"
-        Me.ultimareserva.Name = "ultimareserva"
-        Me.ultimareserva.ReadOnly = True
-        Me.ultimareserva.Width = 85
         '
         'Clientes
         '

@@ -35,3 +35,5 @@ C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Configuracio
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Inventario.resources
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Clientes.resources
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Ganancias.resources
+C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Clientes.resources
+C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Ganancias.resources

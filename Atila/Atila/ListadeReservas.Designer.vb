@@ -119,7 +119,7 @@ Partial Class ListadeReservas
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Calendario.Location = New System.Drawing.Point(39, 39)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
-        Me.Calendario.MinDate = New Date(2020, 1, 1, 0, 0, 0, 0)
+        Me.Calendario.MinDate = New Date(2019, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 30
         '

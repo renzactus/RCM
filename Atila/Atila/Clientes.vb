@@ -1,7 +1,7 @@
 ﻿Public Class Clientes
     Dim CompletarCedula, CompletarNombre, CompletarTelefono As New AutoCompleteStringCollection()
     Dim mysql As New MySQL
-    Dim booleanTelefonos, booleanClienteExistente, booleanNoCambiarSeleccion, booleanSiNoCoincideFiltrar As Boolean
+    Dim booleanTelefonos, booleanClienteExistente, booleanNoCambiarSeleccion, booleanSiNoCoincideFiltrar, booleanNoActualizarTabla As Boolean
     Dim DatosClientes As DataTable
     Dim FilaNumero, FilaSeleccionada As Integer
     Dim Telefonoss As String
@@ -129,8 +129,9 @@
                     DeshabilitarEdicionDatosCliente(False)
                     txtNombre.Text = DatosClientes.Rows(i).Item("nombre")
                     txtDireccion.Text = DatosClientes.Rows(i).Item("direccion")
-
-                    actualizardgvReservas()
+                    If booleanNoActualizarTabla = False Then
+                        actualizardgvReservas()
+                    End If
 
                     If DatosClientes.Rows(i).Item("telefonos").ToString.IndexOf("|") <> -1 Then 'Si el usuario tiene dos telefonos
                         MostrarOtroTelefono()
@@ -403,7 +404,9 @@
         If booleanNoCambiarSeleccion = False Then
             SaberFilaSeleccionada()
             txtCedula.Text = dgvClientes.Rows(FilaSeleccionada).Cells(0).Value
+            booleanNoActualizarTabla = True
             AutorellenarClienteSiLaCedulaCoincide()
+            booleanNoActualizarTabla = False
             vaciaryDesmarcarrbo()
 
         End If
