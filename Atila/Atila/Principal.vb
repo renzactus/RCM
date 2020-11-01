@@ -271,7 +271,7 @@ Public Class Principal
 
 
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        
+        MsgBox(String.Format("{0:N0}", 10.0))
     End Sub
 
     

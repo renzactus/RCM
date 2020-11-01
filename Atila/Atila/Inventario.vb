@@ -122,4 +122,5 @@
     Private Sub nudCantidad_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles nudCantidad.Validating
         epError.SetError(nudCantidad, "")
     End Sub
+
 End Class

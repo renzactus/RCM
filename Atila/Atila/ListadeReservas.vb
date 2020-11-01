@@ -27,16 +27,12 @@
     Private Sub ActualizarPrecio()
         consultarUltimaActualizacionDeCostos()
         If mysql.Consultado = True Then
-            If lblMostrarMotivo.Text = "Fiesta de 15" Then
+            If lblMostrarMotivo.Text = "Fiesta con Baile" Then
                 Preciototal = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-            ElseIf lblMostrarMotivo.Text = "Cumpleaño de niño" Then
-                Preciototal = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
+            ElseIf lblMostrarMotivo.Text = "Fiesta sin Baile" Then
+                Preciototal = mysql.Resultado.Rows(0).Item("c_fiesta_sin_baile")
             ElseIf lblMostrarMotivo.Text = "Parrillada" Then
-                Preciototal = mysql.Resultado.Rows(0).Item("c_otro")
-            ElseIf lblMostrarMotivo.Text = "Graduación" Then
-                Preciototal = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-            ElseIf lblMostrarMotivo.Text = "Otro" Then
-                Preciototal = mysql.Resultado.Rows(0).Item("c_otro")
+                Preciototal = mysql.Resultado.Rows(0).Item("c_Parrillada")
             End If
             Preciototal = Preciototal + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * lblMostrarPersonas.Text
             If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
@@ -78,11 +74,11 @@
     End Sub
 
     Private Sub consultarDatosDeReservaConSuClienteYPrecio(ByVal fecha As Date)
-        mysql.Consultar("select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
+        mysql.Consultar("select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,nota,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final" &
                         ",cantidad_personas,servicio,nombre,seña as s,costo,imprevisto.descripcion from reservas left join pagos on pagos.id_reserva=reservas.id_reserva" &
                         " inner join clientes on clientes.id_cliente=reservas.id_cliente left join imprevisto on imprevisto.ID_RESERVA=reservas.ID_RESERVA" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null UNION" &
-                        " select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final," &
+                        " select reservas.ID_RESERVA,reservas.ID_CLIENTE,razon_cancelacion,clientes.dinero_a_favor,motivo,nota,fecha,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final," &
                         "cantidad_personas,servicio,nombre,seña as s,costo,imprevisto.descripcion from reservas right join pagos on pagos.id_reserva=reservas.id_reserva" &
                         " inner join clientes on clientes.id_cliente=reservas.id_cliente left join imprevisto on imprevisto.ID_RESERVA=reservas.ID_RESERVA" &
                         " where fecha='" & Format(fecha, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
@@ -90,6 +86,7 @@
     End Sub
     Private Sub VaciarDatos()
         lblMostrarMotivo.Text = ""
+        lblMostrarNota.Text = ""
         lblMostrarFecha.Text = ""
         lblMostrarHora.Text = ""
         lblMostrarPersonas.Text = ""
@@ -113,6 +110,7 @@
     End Sub
     Private Sub DeshabilitarOHabilitarDatos(ByVal valor As Boolean)
         lblMotivo.Enabled = valor
+        lblNota.Enabled = valor
         lblFecha.Enabled = valor
         lblHora.Enabled = valor
         lblPersonas.Enabled = valor
@@ -133,6 +131,14 @@
 
 
             lblMostrarMotivo.Text = datosReserva.Rows(FilaNumero).Item("motivo")
+            If datosReserva.Rows(FilaNumero).Item("nota").ToString.Length > 15 Then
+                btnExpandir.Visible = True
+                lblMostrarNota.Text = datosReserva.Rows(FilaNumero).Item("nota").ToString.Substring(0, 15) & "..."
+            Else
+                btnExpandir.Visible = False
+                lblMostrarNota.Text = datosReserva.Rows(FilaNumero).Item("nota")
+            End If
+
             lblMostrarFecha.Text = datosReserva.Rows(FilaNumero).Item("fecha")
             lblMostrarHora.Text = datosReserva.Rows(FilaNumero).Item("comienzo").ToString & " - " & datosReserva.Rows(FilaNumero).Item("final").ToString
             lblMostrarPersonas.Text = datosReserva.Rows(FilaNumero).Item("cantidad_personas")
@@ -159,11 +165,11 @@
                 btnCancelarReserva.Visible = True
             End If
             If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
-                lblMostrarPagado.Text = datosReserva.Rows(FilaNumero).Item("costo")
+                lblMostrarPagado.Text = String.Format("{0:N0}", datosReserva.Rows(FilaNumero).Item("costo"))
                 lblPagado.Visible = True
                 lblPagado.Enabled = True
             ElseIf Not IsDBNull(datosReserva.Rows(FilaNumero).Item("s")) Then
-                lblMostrarSeña.Text = datosReserva.Rows(FilaNumero).Item("s")
+                lblMostrarSeña.Text = String.Format("{0:N0}", datosReserva.Rows(FilaNumero).Item("s"))
                 lblSeña.Visible = True
                 lblSeña.Enabled = True
                 pnlSiNoSePago.Visible = True
@@ -312,7 +318,6 @@
                     datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(final,'1:00:00') and '" & datosReserva.Rows(FilaNumero).Item("final") & "'>addtime(comienzo,'-1:00:00'))) and fecha_cancelacion is null and ID_RESERVA<>" & reservaInvertida.Rows(0).Item("ID_RESERVA"))
 
                 If mysql.Resultado.Rows.Count = 0 Then
-                    MsgBox("ver si esta al reves en la base de datos")
 
                     mysql.Consultar("select id_reserva from reservas where fecha='" & Format(dtpFecha.Value, "yyyy-MM-dd") & "' and (('" &
                     datosReserva.Rows(FilaNumero).Item("comienzo") & "'>addtime(comienzo,'-1:00:00')) or ('" &
@@ -403,7 +408,7 @@
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        MsgBox(mysql.Consultar("select current_date").rows(0).item("current_Date"))
+        lbl.Text = "asdas" & vbNewLine & "aa"
     End Sub
 
     
@@ -444,5 +449,9 @@
         btnEditarFecha.Visible = True
         btnCancelarFecha.Visible = False
         btnGuardarFecha.Visible = False
+    End Sub
+
+    Private Sub btnExpandir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExpandir.Click
+        MsgBox(datosReserva.Rows(FilaNumero).Item("nota"))
     End Sub
 End Class

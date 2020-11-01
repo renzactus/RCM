@@ -3,8 +3,8 @@ Public Class Reservar
     Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente, booleanNroReciboUnico, booleanSeñaMayorQuePrecioTotal, booleanDaParaPagarTodo, booleanPagoVacio As Boolean
     Dim mysql As New MySQL
     Dim telefonos, PagarModo As String
-    Dim Inventario, DatosClientes, reservaInvertida As DataTable
-    Dim ReservasEnElDiaSeleccionado, sumaCedula, PrecioTotal, FilaNumero As Integer
+    Dim Inventario, DatosClientes, reservaInvertida, datosCostos As DataTable
+    Dim ReservasEnElDiaSeleccionado, sumaCedula, PrecioTotal, PrecioTotalDefinido, FilaNumero As Integer
     Public ReservasEntreEsaHora As Integer
     Dim cuotas As String
     Dim AutoCompletarCedula As New AutoCompleteStringCollection()
@@ -198,10 +198,12 @@ Public Class Reservar
             If DatosClientes.Rows(FilaNumero).Item("dinero_a_favor") >= PrecioTotal Then
                 cboCuotas.Enabled = False
                 cboModoPagoPagado.Enabled = False
-                lblPrecioFiesta.Text = 0
+                PrecioTotalDefinido = 0
+                lblPrecioFiesta.Text = String.Format("{0:N0}", PrecioTotalDefinido)
                 booleanDaParaPagarTodo = True
             Else
-                lblPrecioFiesta.Text = PrecioTotal - DatosClientes.Rows(FilaNumero).Item("dinero_a_favor")
+                PrecioTotalDefinido = PrecioTotal - DatosClientes.Rows(FilaNumero).Item("dinero_a_favor")
+                lblPrecioFiesta.Text = String.Format("{0:N0}", PrecioTotalDefinido)
             End If
         Else
             btnEditarPrecioFiesta.Enabled = True
@@ -210,7 +212,7 @@ Public Class Reservar
             End If
             cboCuotas.Enabled = True
             cboModoPagoPagado.Enabled = True
-            lblPrecioFiesta.Text = PrecioTotal
+            lblPrecioFiesta.Text = String.Format("{0:N0}", PrecioTotal)
         End If
     End Sub
 
@@ -247,6 +249,7 @@ Public Class Reservar
                     ActualizarDatosCliente()
                     AutoCompletar()
                     ActualizarPrecio()
+                    ActualizarAgadu()
                 End If
 
 
@@ -365,27 +368,35 @@ Public Class Reservar
     End Sub
     Private Sub ActualizarPrecio()
         consultarUltimaActualizacionDeCostos()
+        PrecioTotal = 0
         If mysql.Consultado = True Then
-            If cboMotivo.Text = "Fiesta de 15" Then
-                PrecioTotal = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-            ElseIf cboMotivo.Text = "Cumpleaño de niño" Then
-                PrecioTotal = mysql.Resultado.Rows(0).Item("c_fiesta_infantil")
+            If cboMotivo.Text = "Fiesta con Baile" Then
+                PrecioTotal = datosCostos.Rows(0).Item("c_fiesta_con_baile")
+            ElseIf cboMotivo.Text = "Fiesta sin Baile" Then
+                PrecioTotal = datosCostos.Rows(0).Item("c_fiesta_sin_baile")
             ElseIf cboMotivo.Text = "Parrillada" Then
-                PrecioTotal = mysql.Resultado.Rows(0).Item("c_otro")
-            ElseIf cboMotivo.Text = "Graduación" Then
-                PrecioTotal = mysql.Resultado.Rows(0).Item("c_fiesta_con_baile")
-            ElseIf cboMotivo.Text = "Otro" Then
-                PrecioTotal = mysql.Resultado.Rows(0).Item("c_otro")
+                PrecioTotal = datosCostos.Rows(0).Item("c_parrillada")
             End If
-            PrecioTotal = PrecioTotal + mysql.Resultado.Rows(0).Item("c_precio_por_persona") * nudCantidadPersonas.Text
+            PrecioTotal = PrecioTotal + datosCostos.Rows(0).Item("c_precio_por_persona") * nudCantidadPersonas.Text
             If Calendario.SelectionRange.Start.DayOfWeek = 5 Or Calendario.SelectionRange.Start.DayOfWeek = 6 Or Calendario.SelectionRange.Start.DayOfWeek = 0 Then
-                PrecioTotal = PrecioTotal + PrecioTotal / 100 * mysql.Resultado.Rows(0).Item("porcentaje_findesemana")
+                PrecioTotal = PrecioTotal + PrecioTotal / 100 * datosCostos.Rows(0).Item("porcentaje_findesemana")
             End If
-            lblPrecioFiesta.Text = PrecioTotal
+            lblPrecioFiesta.Text = String.Format("{0:N0}", PrecioTotal)
+            PrecioTotalDefinido = PrecioTotal
         End If
     End Sub
     Private Sub consultarUltimaActualizacionDeCostos()
         mysql.Consultar("select * from costos where FECHA_ACTUALIZACION=(select max(FECHA_ACTUALIZACION) from costos)")
+        datosCostos = mysql.Resultado
+    End Sub
+    Private Sub ActualizarAgadu()
+        If cboMotivo.Text = "Fiesta con Baile" Then
+            lblAgadu.Visible = True
+            lblAgadu.Text = "Para el cliente poder realizar la fiesta, " & vbNewLine & "tendra que tener pago el impuesto AGADU" & vbNewLine &
+                "que en este caso es de " & String.Format("{0:N0}", nudCantidadPersonas.Value * datosCostos.Rows(0).Item("agadu"))
+        Else
+            lblAgadu.Visible = False
+        End If
     End Sub
 
     'Agregar datos
@@ -504,7 +515,7 @@ Public Class Reservar
 
         If optPagado.Checked = True Then
             If chkUtilizarDineroAFavor.Checked = True Then
-                If lblPrecioFiesta.Text = 0 Then
+                If PrecioTotalDefinido = 0 Then
                     mysql.InsertarDatos("update clientes set dinero_a_favor=dinero_a_favor-" & PrecioTotal &
                                         " where ID_CLIENTE=" & DatosClientes.Rows(FilaNumero).Item("ID_CLIENTE"))
                 Else
@@ -531,21 +542,21 @@ Public Class Reservar
                                 telefonos & "','" & txtDireccion.Text & "')")
     End Sub
     Private Sub insertarReservasConSeña()
-        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña) values ('" &
+        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña,nota) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
                     nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
-                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "')")
+                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "','" & txtNota.Text & "')")
     End Sub
     Private Sub insertarReservasSinSeña()
-        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO) values ('" &
+        mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,nota) values ('" &
                 cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
                 nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
-                "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'))")
+                "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "'),'" & txtNota.Text & "')")
     End Sub
     Private Sub insertarPago()
         If cboModoPagoPagado.Text = "" Then
-            If lblPrecioFiesta.Text = 0 Then
-                PagarModo = "dfu:" & DatosClientes.Rows(FilaNumero).Item("dinero_a_favor") - lblPrecioFiesta.Text
+            If PrecioTotalDefinido = 0 Then
+                PagarModo = "dfu:" & DatosClientes.Rows(FilaNumero).Item("dinero_a_favor") - PrecioTotalDefinido
             End If
         Else
             If chkUtilizarDineroAFavor.Checked = True Then
@@ -556,7 +567,7 @@ Public Class Reservar
             End If
         End If
         mysql.InsertarDatos("Insert into pagos (NRO_RECIBO,fecha_pago,cuotas,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & ",current_date," &
-                                    cuotas & "," & lblPrecioFiesta.Text & ",'" & PagarModo &
+                                    cuotas & "," & PrecioTotalDefinido & ",'" & PagarModo &
                                     "',(select id_reserva from reservas where ingresodatos=(select max(ingresodatos) from reservas where fecha_cancelacion is null)))")
     End Sub
     Private Sub insertarInventario()
@@ -800,7 +811,7 @@ Public Class Reservar
         PrecioTotal = txtPrecioFiesta.Text
         txtPrecioFiesta.Visible = False
         btnGuardarPrecioFiesta.Visible = False
-        lblPrecioFiesta.Text = PrecioTotal
+        lblPrecioFiesta.Text = String.Format("{0:N0}", PrecioTotal)
         btnAgregarDatos.Enabled = True
     End Sub
 
