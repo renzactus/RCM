@@ -35,6 +35,7 @@ Partial Class Reservar
         Me.btnAgregarTelefonos = New System.Windows.Forms.Button()
         Me.txtTelefono2 = New System.Windows.Forms.TextBox()
         Me.pnlCliente = New System.Windows.Forms.Panel()
+        Me.lblAgadu = New System.Windows.Forms.Label()
         Me.lblMostrarDineroAFavor = New System.Windows.Forms.Label()
         Me.lblDineroAFavor = New System.Windows.Forms.Label()
         Me.chkUtilizarDineroAFavor = New System.Windows.Forms.CheckBox()
@@ -94,7 +95,6 @@ Partial Class Reservar
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.lblAgadu = New System.Windows.Forms.Label()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -238,6 +238,16 @@ Partial Class Reservar
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
         '
+        'lblAgadu
+        '
+        Me.lblAgadu.AutoSize = True
+        Me.lblAgadu.Location = New System.Drawing.Point(390, 185)
+        Me.lblAgadu.Name = "lblAgadu"
+        Me.lblAgadu.Size = New System.Drawing.Size(186, 13)
+        Me.lblAgadu.TabIndex = 46
+        Me.lblAgadu.Text = "El cliente tiene que pagar a AGADU..."
+        Me.lblAgadu.Visible = False
+        '
         'lblMostrarDineroAFavor
         '
         Me.lblMostrarDineroAFavor.AutoSize = True
@@ -274,7 +284,7 @@ Partial Class Reservar
         '
         'txtPrecioFiesta
         '
-        Me.txtPrecioFiesta.Location = New System.Drawing.Point(483, 58)
+        Me.txtPrecioFiesta.Location = New System.Drawing.Point(470, 147)
         Me.txtPrecioFiesta.Name = "txtPrecioFiesta"
         Me.txtPrecioFiesta.Size = New System.Drawing.Size(51, 20)
         Me.txtPrecioFiesta.TabIndex = 41
@@ -383,7 +393,7 @@ Partial Class Reservar
         '
         Me.lblPrecioFiesta.AutoSize = True
         Me.lblPrecioFiesta.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPrecioFiesta.Location = New System.Drawing.Point(480, 58)
+        Me.lblPrecioFiesta.Location = New System.Drawing.Point(467, 147)
         Me.lblPrecioFiesta.Name = "lblPrecioFiesta"
         Me.lblPrecioFiesta.Size = New System.Drawing.Size(44, 18)
         Me.lblPrecioFiesta.TabIndex = 29
@@ -439,7 +449,7 @@ Partial Class Reservar
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(392, 62)
+        Me.Label9.Location = New System.Drawing.Point(379, 151)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(89, 13)
         Me.Label9.TabIndex = 14
@@ -448,7 +458,7 @@ Partial Class Reservar
         'btnGuardarPrecioFiesta
         '
         Me.btnGuardarPrecioFiesta.Font = New System.Drawing.Font("Microsoft Sans Serif", 5.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnGuardarPrecioFiesta.Location = New System.Drawing.Point(540, 58)
+        Me.btnGuardarPrecioFiesta.Location = New System.Drawing.Point(527, 147)
         Me.btnGuardarPrecioFiesta.Name = "btnGuardarPrecioFiesta"
         Me.btnGuardarPrecioFiesta.Size = New System.Drawing.Size(37, 20)
         Me.btnGuardarPrecioFiesta.TabIndex = 42
@@ -459,7 +469,7 @@ Partial Class Reservar
         'btnEditarPrecioFiesta
         '
         Me.btnEditarPrecioFiesta.Font = New System.Drawing.Font("Microsoft Sans Serif", 5.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEditarPrecioFiesta.Location = New System.Drawing.Point(540, 58)
+        Me.btnEditarPrecioFiesta.Location = New System.Drawing.Point(527, 147)
         Me.btnEditarPrecioFiesta.Name = "btnEditarPrecioFiesta"
         Me.btnEditarPrecioFiesta.Size = New System.Drawing.Size(37, 20)
         Me.btnEditarPrecioFiesta.TabIndex = 40
@@ -825,24 +835,14 @@ Partial Class Reservar
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'lblAgadu
-        '
-        Me.lblAgadu.AutoSize = True
-        Me.lblAgadu.Location = New System.Drawing.Point(392, 92)
-        Me.lblAgadu.Name = "lblAgadu"
-        Me.lblAgadu.Size = New System.Drawing.Size(307, 13)
-        Me.lblAgadu.TabIndex = 46
-        Me.lblAgadu.Text = "El cliente tiene que pagar a AGADU x antes de realizar la fiesta "
-        Me.lblAgadu.Visible = False
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(737, 605)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.pnlReserva)
         Me.Controls.Add(Me.pnlCliente)
+        Me.Controls.Add(Me.pnlReserva)
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)

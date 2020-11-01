@@ -1,0 +1,17 @@
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Release\Atila.exe.config
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Release\Atila.exe
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Release\Atila.pdb
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Release\Atila.xml
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Clientes.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Costos.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Ganancias.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Inventario.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.ListadeReservas.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Login.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Principal.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Resources.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.Reservar.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.vbproj.GenerateResource.Cache
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.exe
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.xml
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.pdb

@@ -237,7 +237,7 @@ Partial Class Principal
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(320, 55)
         Me.Button3.TabIndex = 20
-        Me.Button3.Text = "Configuracion"
+        Me.Button3.Text = "Costos"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button4

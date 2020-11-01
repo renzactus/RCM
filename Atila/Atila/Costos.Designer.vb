@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Configuracion
+Partial Class Costos
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -532,15 +532,15 @@ Partial Class Configuracion
         '
         Me.epError.ContainerControl = Me
         '
-        'Configuracion
+        'Costos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1315, 600)
         Me.Controls.Add(Me.pnlCostos)
         Me.Controls.Add(Me.Button1)
-        Me.Name = "Configuracion"
-        Me.Text = "Configuracion"
+        Me.Name = "Costos"
+        Me.Text = "Costos"
         Me.pnlCostos.ResumeLayout(False)
         Me.pnlCostos.PerformLayout()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()

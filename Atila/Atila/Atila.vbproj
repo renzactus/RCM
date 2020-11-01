@@ -86,10 +86,10 @@
     <Compile Include="Clientes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Configuracion.Designer.vb">
-      <DependentUpon>Configuracion.vb</DependentUpon>
+    <Compile Include="Costos.Designer.vb">
+      <DependentUpon>Costos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Configuracion.vb">
+    <Compile Include="Costos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ganancias.Designer.vb">
@@ -150,8 +150,8 @@
     <EmbeddedResource Include="Clientes.resx">
       <DependentUpon>Clientes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Configuracion.resx">
-      <DependentUpon>Configuracion.vb</DependentUpon>
+    <EmbeddedResource Include="Costos.resx">
+      <DependentUpon>Costos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ganancias.resx">
       <DependentUpon>Ganancias.vb</DependentUpon>

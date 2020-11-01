@@ -177,8 +177,8 @@ Public Class Principal
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        Dim configuracion As New Configuracion
-        configuracion.Show()
+        Dim costos As New Costos
+        costos.Show()
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click

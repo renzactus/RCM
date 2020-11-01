@@ -1,4 +1,4 @@
-﻿Public Class Configuracion
+﻿Public Class Costos
     Dim mysql As New MySQL
     Dim datosCostos As DataTable
 
@@ -7,7 +7,7 @@
         actualizarCostos()
     End Sub
     'Otros Metodos
-    
+
     'Mostrar Datos
     Private Sub actualizarCostos()
         consultarCostos()
