@@ -1,6 +1,7 @@
 ﻿
 Public Class Reservar
-    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente, booleanNroReciboUnico, booleanSeñaMayorQuePrecioTotal, booleanDaParaPagarTodo, booleanPagoVacio As Boolean
+    Dim booleanTelefonos, booleanClaseConstruida, booleanErrorEndgv, booleanClienteExistente,
+        booleanNroReciboUnico, booleanSeñaMayorQuePrecioTotal, booleanDaParaPagarTodo, booleanPagoVacio As Boolean
     Dim mysql As New MySQL
     Dim telefonos, PagarModo As String
     Dim Inventario, DatosClientes, reservaInvertida, datosCostos As DataTable
@@ -12,12 +13,13 @@ Public Class Reservar
     Dim listadereservas As ListadeReservas = New ListadeReservas
     'Constructor
     Private Sub Reservar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        EstablecerColores()
         With txtCedula
             .AutoCompleteCustomSource = AutoCompletarCedula
             .AutoCompleteMode = AutoCompleteMode.Suggest
             .AutoCompleteSource = AutoCompleteSource.CustomSource
         End With
-        Me.BackColor = Color.FromArgb(191, 128, 130)
+
         Calendario.MinDate = DateAndTime.Today
         Calendario.MaxDate = DateAdd("yyyy", 3, DateAndTime.Today)
         mysql.Consultar("select distinct fecha from reservas where fecha_cancelacion is null")
@@ -36,6 +38,15 @@ Public Class Reservar
             Next
         End If
         booleanClaseConstruida = True
+    End Sub
+    'Diseño
+    Private Sub EstablecerColores()
+        Me.BackColor = Principal.colorSecundario
+        lblFechaParaReservar.ForeColor = Principal.colorTitulos
+        lblIngresarDatos.ForeColor = Principal.colorTitulos
+        lblFiestasReservadasParaEl.ForeColor = Principal.colorTitulos
+        dgvInventario.BackgroundColor = Principal.colorTerceario
+
     End Sub
     'Otro
     Private Sub MostrarReservasDelDia()
@@ -852,11 +863,6 @@ Public Class Reservar
 
     Private Sub chkUtilizarDineroAFavor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUtilizarDineroAFavor.CheckedChanged
         chkDineroAFavorCambiovalor()
-    End Sub
-
-    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        cboMotivo.BackColor = Color.FromArgb(227, 194, 175)
-        'cboMotivo.ForeColor = Color.FromArgb(227, 194, 175)
     End Sub
 
 End Class

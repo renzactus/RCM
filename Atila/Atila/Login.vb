@@ -25,7 +25,7 @@ Public Class Login
         sumadeopacidad = 0.005 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO
         tmrCambiandoOpacidad.Enabled = True 'COMENZAMOS EL TIMER
         'Cambiando colores
-        btnLogin.BackColor = Principal.colorsecundario
+        btnLogin.BackColor = Principal.colorTerceario
         btnLogin.ForeColor = Color.FromArgb(105, 105, 105)
         LineShape1.BorderColor = Color.FromArgb(105, 105, 105)
         LineShape2.BorderColor = Color.FromArgb(105, 105, 105)

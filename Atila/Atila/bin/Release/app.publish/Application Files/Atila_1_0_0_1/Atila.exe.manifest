@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Atila.exe" version="1.0.0.1" publicKeyToken="948c246e956e465b" language="neutral" processorArchitecture="x86" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Atila" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="Atila.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si desea cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el 
+          nodo requestedExecutionLevel por alguno de los siguientes.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         Si desea usar la virtualización de archivos y del Registro para la 
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.VisualBasic.PowerPacks.Vs" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="MySql.Data" version="6.9.9.0" publicKeyToken="C5687FC88969C44D" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Atila.exe" size="331264">
+      <assemblyIdentity name="Atila" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>B1wG/Ub9xpcLVa8Tp8h7t5OyrX0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="es\Microsoft.VisualBasic.PowerPacks.Vs.resources.dll" size="47000">
+      <assemblyIdentity name="Microsoft.VisualBasic.PowerPacks.Vs.resources" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="es" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>osRl87r0GjAesSqUvkQNQIS8bk8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Atila.exe.config" size="2224">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>DRqccovwy5tOJ/owrEEY8N+YSy0=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=DESKTOP-TD7KH8A\renzo" issuerKeyHash="084c7114b6f5894e5e923a3bb3e0132d298f2f6b" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>hpySrBdnZtywT1nJyP0bUZV0VvE=</DigestValue></Reference></SignedInfo><SignatureValue>QKge51IrQ2Eicr2uu4XDNCx4o9F4Vpn/rWsmv1rnOjZCZNF+WDlrgsjCc2j2aJqX6Hb5PSH9BzQPrfbEL5UpOwUsMfvjU/mFQiWYCcqWqdcYAlJwe79ZxL4O/pw6ih0hnukrqRQBLPzCgYU/GsnUtACZ5eC904+0tzOGJFbkUTw=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>yX3hW89h7oVt4TozP8VrU9+NvhzYD0+eLKMgYOgVkCs5nMq8viFQD3w72W5OQWG8mSWDw8LsBk1j9RkIlJMcvin/YC6f/tCsL9wJca73IxSv5XfVcluRe9++YutEvaiK+BZT48yImsTM/zNLbkDipHS6Y7pYseyKg/WuZ4NkxDE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="f1567495511bfdc8c9594fb0dc666717ac929c86" Description="" Url=""><as:assemblyIdentity name="Atila.exe" version="1.0.0.1" publicKeyToken="948c246e956e465b" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-TD7KH8A\renzo</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>CEU+AqJ4RZigei0FNmeVuKEcM84=</DigestValue></Reference></SignedInfo><SignatureValue>FhzGum7T2Jv3k9S4t5nRNpwAygKlNlNrbh/hyoYxvmDIVSvxpzkGUGSJlvcIkLgLUXnOrf41Zk83zwCsFVzxxKZwxHCTE+ee+1aJCujyVyWibm1lfFQCOszVuO/fylsOSSbr5tCggsj1WSSR5gHpGYW1YJ8ugVwC2BANagpA81w=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>yX3hW89h7oVt4TozP8VrU9+NvhzYD0+eLKMgYOgVkCs5nMq8viFQD3w72W5OQWG8mSWDw8LsBk1j9RkIlJMcvin/YC6f/tCsL9wJca73IxSv5XfVcluRe9++YutEvaiK+BZT48yImsTM/zNLbkDipHS6Y7pYseyKg/WuZ4NkxDE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQOU03n0AGN5dPoM4bp+cIszANBgkqhkiG9w0BAQUFADA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAFQARAA3AEsASAA4AEEAXAByAGUAbgB6AG8wHhcNMjAxMTAxMTg1OTIxWhcNMjExMTAyMDA1OTIxWjA1MTMwMQYDVQQDHioARABFAFMASwBUAE8AUAAtAFQARAA3AEsASAA4AEEAXAByAGUAbgB6AG8wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMl94VvPYe6FbeE6Mz/Fa1Pfjb4c2A9PniyjIGDoFZArOZzKvL4hUA98O9luTkFhvJklg8PC7AZNY/UZCJSTHL4p/2Aun/7QrC/cCXGu9yMUr+V31XJbkXvfvmLrRL2oivgWU+PMiJrEzP8zS25A4qR0umO6WLHsioP1rmeDZMQxAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAouS0KN5HO2/aU6wvUHIo28L3oTIqOSEb2r3nGwaktmczN+1CgGa9PHKS5VyFpeEwZPZggXm1mqpiS77BebZy4lnPTAHZ/Ooh+kVF5tzA5jHizZu1K//B82Ozf8a5moP2BnmawwpCbC8Jz4AAjzPi1zkDpwTHcwdhfMiU81muTME=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

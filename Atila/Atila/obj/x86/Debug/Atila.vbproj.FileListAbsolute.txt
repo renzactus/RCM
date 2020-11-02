@@ -37,3 +37,7 @@ C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Ganancias.re
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Clientes.resources
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Ganancias.resources
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Costos.resources
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.exe.manifest
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.application
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.exe.manifest
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.application

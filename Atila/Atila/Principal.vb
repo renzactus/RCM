@@ -1,24 +1,70 @@
 ﻿Imports System.Runtime.InteropServices
-
 Public Class Principal
     Dim mysql As New MySQL
     Dim datosReservasNotificacion As DataTable
     Dim PaginaNotificacion As Integer = 1
-    Public colorprincipal As Color = Color.FromArgb(239, 231, 219)
-    Public colorsecundario As Color = Color.FromArgb(227, 195, 176)
     Public booleanImprevistoAlmacenado As Boolean
+    'Colores para el diseño
+    Public colorPrincipal As Color = Color.FromArgb(239, 231, 220)
+    Public colorSecundario As Color = Color.FromArgb(240, 223, 198)
+    Public colorTerceario As Color = Color.FromArgb(227, 194, 175)
+    Public colorTitulos As Color = Color.FromArgb(146, 90, 90)
 
+    Dim oFrameAMostrar As Object
+    Dim FrameAMostrar As Reservar
     'Constructor
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.BackColor = colorprincipal
-        pnlArriba.BackColor = Color.FromArgb(colorsecundario.R, colorsecundario.G, colorsecundario.B)
+        EstablecerColores()
         ActualizarNotificaciones()
+        llblPaginaSiguiente.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline
+        llblPaginaAnterior.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline
+    End Sub
+    'Diseño
+    Private Sub EstablecerColores()
+        Me.BackColor = colorSecundario
+        pnlMenu.BackColor = colorPrincipal
+        pnlArriba.BackColor = colorTerceario
+        'Notificaciones
+        pnlNotificacion1.BackColor = Color.FromArgb(251, 246, 240)
+        pnlNotificacion2.BackColor = Color.FromArgb(251, 246, 240)
+        pnlNotificacion3.BackColor = Color.FromArgb(251, 246, 240)
+        pnlCuadroNotificaciones.BackColor = Color.FromArgb(251, 246, 240)
+
+        btnNotificacion1Cancelar.ForeColor = colorTitulos
+        btnNotificacion2Cancelar.ForeColor = colorTitulos
+        btnNotificacion3Cancelar.ForeColor = colorTitulos
+        btnNotificacion1Aceptar.ForeColor = colorTitulos
+        btnNotificacion2Aceptar.ForeColor = colorTitulos
+        btnNotificacion3Aceptar.ForeColor = colorTitulos
+
+        lblNotificacion1Texto.ForeColor = colorTitulos
+        lblNotificacion2Texto.ForeColor = colorTitulos
+        lblNotificacion3Texto.ForeColor = colorTitulos
+    End Sub
+    'Menu
+    Private Sub AbrirFormEnPanel(Of Miform As {Form, New})()
+        Dim Formulario As Form
+        Formulario = pnlMostrador.Controls.OfType(Of Miform)().FirstOrDefault() 'Busca el formulario en la coleccion'
+        'Si form no fue econtrado/ no existe'
+        If Formulario Is Nothing Then
+            Formulario = New Miform()
+            Formulario.TopLevel = False
+            Formulario.FormBorderStyle = FormBorderStyle.None
+            Formulario.Dock = DockStyle.Fill
+            pnlMostrador.Controls.Add(Formulario)
+            pnlMostrador.Tag = Formulario
+            Formulario.Show()
+            Formulario.BringToFront()
+        Else
+            Formulario.BringToFront()
+        End If
     End Sub
     'Notificaciones
     Private Sub MostrarCuadroNotificaciones()
         If pnlCuadroNotificaciones.Visible = False Then
+            pnlCuadroNotificaciones.BringToFront()
             pnlCuadroNotificaciones.Visible = True
-            pnlCuadroNotificaciones.Location = New Point(718, 29)
+            pnlCuadroNotificaciones.Location = New Point(618, 29)
         Else
             pnlCuadroNotificaciones.Visible = False
         End If
@@ -56,35 +102,35 @@ Public Class Principal
         If datosReservasNotificacion.Rows.Count = 1 Or (datosReservasNotificacion.Rows.Count = 4 And pagina = 2) Or (datosReservasNotificacion.Rows.Count = 7 And pagina = 3) Then
 
             pnlNotificacion1.Visible = True
-            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo")
+            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo") & ":"
             lblNotificacion1Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("fecha")
             lblNotificacion1Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("final").ToString
 
         ElseIf datosReservasNotificacion.Rows.Count = 2 Or (datosReservasNotificacion.Rows.Count = 5 And pagina = 2) Or (datosReservasNotificacion.Rows.Count = 8 And pagina = 3) Then
 
             pnlNotificacion1.Visible = True
-            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo")
+            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo") & ":"
             lblNotificacion1Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("fecha")
             lblNotificacion1Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("final").ToString
 
             pnlNotificacion2.Visible = True
-            lblNotificacion2Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("motivo")
+            lblNotificacion2Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("motivo") & ":"
             lblNotificacion2Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("fecha")
             lblNotificacion2Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("final").ToString
 
         ElseIf datosReservasNotificacion.Rows.Count > 2 Or (datosReservasNotificacion.Rows.Count = 6 And pagina = 2) Or (datosReservasNotificacion.Rows.Count = 9 And pagina = 3) Then
             pnlNotificacion1.Visible = True
-            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo")
+            lblNotificacion1Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("motivo") & ":"
             lblNotificacion1Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("fecha")
             lblNotificacion1Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1)).Item("final").ToString
 
             pnlNotificacion2.Visible = True
-            lblNotificacion2Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("motivo")
+            lblNotificacion2Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("motivo") & ":"
             lblNotificacion2Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("fecha")
             lblNotificacion2Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1) + 1).Item("final").ToString
 
             pnlNotificacion3.Visible = True
-            lblNotificacion3Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("motivo")
+            lblNotificacion3Motivo.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("motivo") & ":"
             lblNotificacion3Fecha.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("fecha")
             lblNotificacion3Hora.Text = datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("comienzo").ToString & " - " & datosReservasNotificacion.Rows(3 * (pagina - 1) + 2).Item("final").ToString
             'dar los valores al 3
@@ -117,20 +163,78 @@ Public Class Principal
     Public Shared Sub SendMessage(ByVal hWnd As System.IntPtr, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer)
     End Sub
 
+    'Eventos Relacionados con notificaciones
+    Private Sub btnNotificaciones_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificaciones.Click
+        MostrarCuadroNotificaciones()
+        ActualizarNotificaciones()
+        PaginaNotificacion = 1
+        llblPaginaAnterior.Visible = False
+        If datosReservasNotificacion.Rows.Count > 3 Then
+            llblPaginaSiguiente.Visible = True
+        Else
+            llblPaginaSiguiente.Visible = False
+        End If
+    End Sub
+
+    Private Sub llblPaginaAnterior_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblPaginaAnterior.LinkClicked
+        PaginaNotificacion = PaginaNotificacion - 1
+        llblPaginaSiguiente.Visible = True
+        If PaginaNotificacion = 2 Then
+            rellenarNotificaciones(2)
+        ElseIf PaginaNotificacion = 1 Then
+            rellenarNotificaciones(1)
+            llblPaginaAnterior.Visible = False
+        End If
+    End Sub
+
+    Private Sub btnNotificacion1Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion1Aceptar.Click
+        actualizarAReservaSinProblema(1)
+    End Sub
+
+    Private Sub btnNotificacion2Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion2Aceptar.Click
+        actualizarAReservaSinProblema(2)
+    End Sub
+
+    Private Sub btnNotificacion3Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion3Aceptar.Click
+        actualizarAReservaSinProblema(3)
+    End Sub
+
+    Private Sub btnNotificacion1No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion1Cancelar.Click
+        actualizarAReservaConImprevisto(1)
+    End Sub
+
+    Private Sub btnNotificacion2No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion2Cancelar.Click
+        actualizarAReservaConImprevisto(2)
+    End Sub
+
+    Private Sub btnNotificacion3No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion3Cancelar.Click
+        actualizarAReservaConImprevisto(3)
+    End Sub
+
+    Private Sub llblPaginaSiguiente_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblPaginaSiguiente.LinkClicked
+        If PaginaNotificacion = 1 Then
+            rellenarNotificaciones(2)
+            PaginaNotificacion = 2
+            llblPaginaAnterior.Visible = True
+            If datosReservasNotificacion.Rows.Count < 7 Then
+                llblPaginaSiguiente.Visible = False
+            End If
+
+        ElseIf PaginaNotificacion = 2 Then
+            rellenarNotificaciones(3)
+            llblPaginaSiguiente.Visible = False
+            PaginaNotificacion = 3
+
+        End If
+    End Sub
+
     'Eventos
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRealizarunareserva.Click
-        Dim reservar As New Reservar
-        reservar.Show()
+    Private Sub btnRealizarunareserva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        AbrirFormEnPanel(Of Reservar)()
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        Dim login As New Login
-        login.Show()
-    End Sub
-
-    Private Sub btnListadereservas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnListadereservas.Click
-        Dim listadereservas As New ListadeReservas
-        listadereservas.Show()
+    Private Sub btnListadereservas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        AbrirFormEnPanel(Of ListadeReservas)()
     End Sub
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
@@ -146,142 +250,53 @@ Public Class Principal
         SendMessage(Me.Handle, &H112&, &HF012&, 0)
     End Sub
 
-    Private Sub Label1_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblPerfil.MouseEnter
+    Private Sub lblPerfil_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblPerfil.MouseEnter
         lblPerfil.Font = New Font("Sans Serif", 11, FontStyle.Underline, GraphicsUnit.Point)
     End Sub
 
-    Private Sub Label1_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblPerfil.MouseLeave
+    Private Sub lblPerfil_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblPerfil.MouseLeave
         lblPerfil.Font = New Font("Sans Serif", 11, FontStyle.Regular, GraphicsUnit.Point)
-    End Sub
-
-    Private Sub btnRestaurar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRestaurar.Click
-        Me.WindowState = FormWindowState.Normal
-        btnRestaurar.Visible = False
-        btnMaximizar.Visible = True
-    End Sub
-
-    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        If Panel1.Controls.Count > 0 Then
-            Panel1.Controls.RemoveAt(0)
-        Else
-            Dim dr As Object
-            Dim listadereservas As ListadeReservas = New ListadeReservas
-            listadereservas.ChequearSiHayMasDeUnaReservaEnElDiaYProceder("27/10/2020")
-            listadereservas.cboReservasEnElDia.SelectedIndex = 0
-            dr = listadereservas.pnlDatosReservas
-            dr.Dock = DockStyle.Fill
-            Panel1.Controls.Add(dr)
-            Panel1.Tag = dr
-            dr.Show()
-        End If
-    End Sub
-
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        Dim costos As New Costos
-        costos.Show()
-    End Sub
-
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
-        Dim inventario As New Inventario
-        inventario.Show()
     End Sub
 
     Private Sub btnAyuda_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAyuda.Click
         System.Diagnostics.Process.Start("https://github.com/renzactus/RCM")
-
-
     End Sub
 
     Private Sub btnAyuda_MouseHover(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAyuda.MouseHover
         Me.ToolTip1.SetToolTip(btnAyuda, "Ante cualquier duda llamar a 091111111")
     End Sub
 
-    'Eventos Relacionados con notificaciones
-
-    Private Sub btnNotificaciones_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificaciones.Click
-        MostrarCuadroNotificaciones()
-        ActualizarNotificaciones()
-        PaginaNotificacion = 1
-        llblPaginaAnterior.Visible = False
-        If datosReservasNotificacion.Rows.Count > 3 Then
-            llblPaginaSiguiente.Visible = True
-        Else
-            llblPaginaSiguiente.Visible = False
-        End If
+    Private Sub timer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timer.Tick
+        'Vaciar todos los datos si esta en afk
     End Sub
 
-    Private Sub llblPaginaSiguiente_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblPaginaSiguiente.LinkClicked
+    Private Sub btnReservar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReservar.Click
+        AbrirFormEnPanel(Of Reservar)()
+    End Sub
 
-        If PaginaNotificacion = 1 Then
-            rellenarNotificaciones(2)
-            PaginaNotificacion = 2
-            llblPaginaAnterior.Visible = True
-            If datosReservasNotificacion.Rows.Count < 7 Then
-                llblPaginaSiguiente.Visible = False
-            End If
+    Private Sub btnReservas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReservas.Click
+        AbrirFormEnPanel(Of ListadeReservas)()
+    End Sub
 
-        ElseIf PaginaNotificacion = 2 Then
-            rellenarNotificaciones(3)
-            llblPaginaSiguiente.Visible = False
-            PaginaNotificacion = 3
+    Private Sub btnClientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClientes.Click
+        AbrirFormEnPanel(Of Clientes)()
+    End Sub
 
-        End If
+    Private Sub btnGanancias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGanancias.Click
+        AbrirFormEnPanel(Of Ganancias)()
+    End Sub
 
+    Private Sub btnConfiguracion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfiguracion.Click
 
     End Sub
 
-    Private Sub llblPaginaAnterior_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llblPaginaAnterior.LinkClicked
-        PaginaNotificacion = PaginaNotificacion - 1
-        llblPaginaSiguiente.Visible = True
-        If PaginaNotificacion = 2 Then
-            rellenarNotificaciones(2)
-        ElseIf PaginaNotificacion = 1 Then
-            rellenarNotificaciones(1)
-            llblPaginaAnterior.Visible = False
-        End If
+    Private Sub btnCostos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCostos.Click
+        AbrirFormEnPanel(Of Costos)()
     End Sub
 
-    Private Sub btnNotificacion1Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion1Si.Click
-        actualizarAReservaSinProblema(1)
-    End Sub
-
-    Private Sub btnNotificacion2Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion2Si.Click
-        actualizarAReservaSinProblema(2)
-    End Sub
-
-    Private Sub btnNotificacion3Si_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion3Si.Click
-        actualizarAReservaSinProblema(3)
-    End Sub
-
-
-    Private Sub btnNotificacion1No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion1No.Click
-        actualizarAReservaConImprevisto(1)
-    End Sub
-
-    Private Sub btnNotificacion2No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion2No.Click
-        actualizarAReservaConImprevisto(2)
-    End Sub
-
-    Private Sub btnNotificacion3No_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificacion3No.Click
-        actualizarAReservaConImprevisto(3)
-    End Sub
-
-
-
-
-
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        MsgBox(String.Format("{0:N0}", 10.0))
+    Private Sub btnInventario_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnInventario.Click
+        AbrirFormEnPanel(Of Inventario)()
     End Sub
 
     
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        Dim clientes As New Clientes
-        clientes.Show()
-    End Sub
-
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        Dim ganancias As New Ganancias
-        ganancias.Show()
-    End Sub
 End Class

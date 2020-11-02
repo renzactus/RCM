@@ -68,8 +68,8 @@ Partial Class Reservar
         Me.nudCantidadPersonas = New System.Windows.Forms.NumericUpDown()
         Me.dtpHoraFinal = New System.Windows.Forms.DateTimePicker()
         Me.dtpHoraComienzo = New System.Windows.Forms.DateTimePicker()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
+        Me.lblIngresarDatos = New System.Windows.Forms.Label()
+        Me.lblFechaParaReservar = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblHora3 = New System.Windows.Forms.Label()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
@@ -94,7 +94,6 @@ Partial Class Reservar
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,7 +233,7 @@ Partial Class Reservar
         Me.pnlCliente.Controls.Add(Me.btnCancelarEdicion)
         Me.pnlCliente.Location = New System.Drawing.Point(1, 1)
         Me.pnlCliente.Name = "pnlCliente"
-        Me.pnlCliente.Size = New System.Drawing.Size(639, 571)
+        Me.pnlCliente.Size = New System.Drawing.Size(1221, 807)
         Me.pnlCliente.TabIndex = 15
         Me.pnlCliente.Visible = False
         '
@@ -504,8 +503,8 @@ Partial Class Reservar
         Me.pnlReserva.Controls.Add(Me.nudCantidadPersonas)
         Me.pnlReserva.Controls.Add(Me.dtpHoraFinal)
         Me.pnlReserva.Controls.Add(Me.dtpHoraComienzo)
-        Me.pnlReserva.Controls.Add(Me.Label13)
-        Me.pnlReserva.Controls.Add(Me.Label12)
+        Me.pnlReserva.Controls.Add(Me.lblIngresarDatos)
+        Me.pnlReserva.Controls.Add(Me.lblFechaParaReservar)
         Me.pnlReserva.Controls.Add(Me.Label11)
         Me.pnlReserva.Controls.Add(Me.lblHora3)
         Me.pnlReserva.Controls.Add(Me.dgvInventario)
@@ -528,7 +527,7 @@ Partial Class Reservar
         Me.pnlReserva.Controls.Add(Me.PictureBox1)
         Me.pnlReserva.Location = New System.Drawing.Point(1, 1)
         Me.pnlReserva.Name = "pnlReserva"
-        Me.pnlReserva.Size = New System.Drawing.Size(639, 592)
+        Me.pnlReserva.Size = New System.Drawing.Size(1221, 807)
         Me.pnlReserva.TabIndex = 16
         '
         'txtNota
@@ -584,25 +583,25 @@ Partial Class Reservar
         Me.dtpHoraComienzo.Size = New System.Drawing.Size(59, 20)
         Me.dtpHoraComienzo.TabIndex = 27
         '
-        'Label13
+        'lblIngresarDatos
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(413, 40)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(116, 18)
-        Me.Label13.TabIndex = 26
-        Me.Label13.Text = "Ingresar Datos:"
+        Me.lblIngresarDatos.AutoSize = True
+        Me.lblIngresarDatos.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblIngresarDatos.Location = New System.Drawing.Point(413, 40)
+        Me.lblIngresarDatos.Name = "lblIngresarDatos"
+        Me.lblIngresarDatos.Size = New System.Drawing.Size(127, 19)
+        Me.lblIngresarDatos.TabIndex = 26
+        Me.lblIngresarDatos.Text = "Ingresar Datos:"
         '
-        'Label12
+        'lblFechaParaReservar
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(32, 32)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(206, 18)
-        Me.Label12.TabIndex = 25
-        Me.Label12.Text = "Fecha para realizar reserva:"
+        Me.lblFechaParaReservar.AutoSize = True
+        Me.lblFechaParaReservar.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFechaParaReservar.Location = New System.Drawing.Point(32, 32)
+        Me.lblFechaParaReservar.Name = "lblFechaParaReservar"
+        Me.lblFechaParaReservar.Size = New System.Drawing.Size(221, 19)
+        Me.lblFechaParaReservar.TabIndex = 25
+        Me.lblFechaParaReservar.Text = "Fecha para realizar reserva:"
         '
         'Label11
         '
@@ -730,10 +729,10 @@ Partial Class Reservar
         'lblFiestasReservadasParaEl
         '
         Me.lblFiestasReservadasParaEl.AutoSize = True
-        Me.lblFiestasReservadasParaEl.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFiestasReservadasParaEl.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFiestasReservadasParaEl.Location = New System.Drawing.Point(26, 296)
         Me.lblFiestasReservadasParaEl.Name = "lblFiestasReservadasParaEl"
-        Me.lblFiestasReservadasParaEl.Size = New System.Drawing.Size(199, 18)
+        Me.lblFiestasReservadasParaEl.Size = New System.Drawing.Size(214, 19)
         Me.lblFiestasReservadasParaEl.TabIndex = 12
         Me.lblFiestasReservadasParaEl.Text = "Fiestas reservadas para el:"
         '
@@ -807,7 +806,7 @@ Partial Class Reservar
         Me.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Calendario.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Calendario.Location = New System.Drawing.Point(32, 62)
+        Me.Calendario.Location = New System.Drawing.Point(50, 72)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
         Me.Calendario.MinDate = New Date(2020, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
@@ -826,23 +825,14 @@ Partial Class Reservar
         '
         Me.epError.ContainerControl = Me
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(650, 98)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 17
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Reservar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(737, 605)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.pnlCliente)
+        Me.ClientSize = New System.Drawing.Size(1221, 807)
         Me.Controls.Add(Me.pnlReserva)
+        Me.Controls.Add(Me.pnlCliente)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Reservar"
         Me.Text = " "
         Me.pnlCliente.ResumeLayout(False)
@@ -891,8 +881,8 @@ Partial Class Reservar
     Friend WithEvents btnVolver As System.Windows.Forms.Button
     Friend WithEvents dgvInventario As System.Windows.Forms.DataGridView
     Friend WithEvents Label11 As System.Windows.Forms.Label
-    Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents lblIngresarDatos As System.Windows.Forms.Label
+    Friend WithEvents lblFechaParaReservar As System.Windows.Forms.Label
     Friend WithEvents Marcado As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -920,7 +910,6 @@ Partial Class Reservar
     Friend WithEvents btnGuardarPrecioFiesta As System.Windows.Forms.Button
     Friend WithEvents nudCantidadPersonas As System.Windows.Forms.NumericUpDown
     Friend WithEvents pnlDatosReserva As System.Windows.Forms.Panel
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents lblMostrarDineroAFavor As System.Windows.Forms.Label
     Friend WithEvents lblDineroAFavor As System.Windows.Forms.Label
     Friend WithEvents chkUtilizarDineroAFavor As System.Windows.Forms.CheckBox

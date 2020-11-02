@@ -52,6 +52,21 @@ Public Class Ganancias
         Grafica.Series(ReservasoGananciasAñoSeleccionado).Name = "x2"
         ReservasoGananciasAñoAnterior = "x1"
         ReservasoGananciasAñoSeleccionado = "x2"
+        'Actualizar Total
+        lblTotal.Visible = True
+        lblMostrarTotal.Visible = True
+        If cboSeleccionar.SelectedIndex = 0 Then
+            lblMostrarTotal.Text = mysql.Consultar("select count(*) from reservas where year(fecha)=" & cboAño.Text & " and fecha_cancelacion is null").
+                rows(0).item("count(*)")
+        ElseIf cboSeleccionar.SelectedIndex = 3 Then
+            mysql.Consultar("select sum(costo) from pagos inner join reservas on reservas.ID_RESERVA=pagos.ID_RESERVA where year(fecha)=" & cboAño.Text &
+                            " and fecha_cancelacion is null").rows(0).item("sum(costo)")
+            If IsDBNull(mysql.Resultado.Rows(0).Item("sum(costo)")) Then
+                lblMostrarTotal.Text = 0
+            Else
+                lblMostrarTotal.Text = mysql.Resultado.Rows(0).Item("sum(costo)")
+            End If
+        End If
 
         'Serie Año seleccionado 
 
@@ -114,16 +129,17 @@ Public Class Ganancias
         lblMostrarTotal.Visible = True
 
         If cboSeleccionar.SelectedIndex = 2 Then
-            lblMostrarTotal.Text = mysql.Consultar("select count(*) from reservas where year(fecha)=" & cboAño.Text & " and month(fecha)=" & cboMes.SelectedIndex + 1 & " and fecha_cancelacion is null").
-                rows(0).item("count(*)")
+            lblMostrarTotal.Text = String.Format("{0:N0}", mysql.Consultar("select count(*) from reservas where year(fecha)=" & cboAño.Text & " and month(fecha)=" & cboMes.SelectedIndex + 1 & " and fecha_cancelacion is null").
+                rows(0).item("count(*)"))
         ElseIf cboSeleccionar.SelectedIndex = 1 Then
             mysql.Consultar("select sum(costo) from pagos inner join reservas on reservas.ID_RESERVA=pagos.ID_RESERVA where year(fecha)=" &
                                                    cboAño.Text & " and month(fecha)=" & cboMes.SelectedIndex + 1 & " and fecha_cancelacion is null").rows(0).item("sum(costo)")
             If IsDBNull(mysql.Resultado.Rows(0).Item("sum(costo)")) Then
                 lblMostrarTotal.Text = 0
             Else
-                lblMostrarTotal.Text = mysql.Resultado(0).Item("sum(costo)")
+                lblMostrarTotal.Text = String.Format("{0:N0}", mysql.Resultado(0).Item("sum(costo)"))
             End If
+            
         End If
 
 

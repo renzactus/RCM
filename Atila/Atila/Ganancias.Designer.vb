@@ -48,7 +48,7 @@ Partial Class Ganancias
         Me.Grafica.Location = New System.Drawing.Point(42, 77)
         Me.Grafica.Name = "Grafica"
         Me.Grafica.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light
-        Me.Grafica.Size = New System.Drawing.Size(1103, 499)
+        Me.Grafica.Size = New System.Drawing.Size(987, 499)
         Me.Grafica.TabIndex = 0
         Me.Grafica.Text = "eqw"
         '
