@@ -27,7 +27,10 @@ Partial Class Principal
         Me.pnlArriba = New System.Windows.Forms.Panel()
         Me.btnAyuda = New System.Windows.Forms.Button()
         Me.lblCantidadDeNotificaciones = New System.Windows.Forms.Label()
+        Me.btnNotificaciones = New System.Windows.Forms.Button()
         Me.lblPerfil = New System.Windows.Forms.Label()
+        Me.btnMinimizar = New System.Windows.Forms.Button()
+        Me.btnCerrar = New System.Windows.Forms.Button()
         Me.pnlCuadroNotificaciones = New System.Windows.Forms.Panel()
         Me.llblPaginaAnterior = New System.Windows.Forms.LinkLabel()
         Me.pnlNotificacion1 = New System.Windows.Forms.Panel()
@@ -60,16 +63,13 @@ Partial Class Principal
         Me.pnlConfiguracion = New System.Windows.Forms.Panel()
         Me.btnInventario = New System.Windows.Forms.Button()
         Me.btnCostos = New System.Windows.Forms.Button()
-        Me.timer = New System.Windows.Forms.Timer(Me.components)
         Me.btnConfiguracion = New System.Windows.Forms.Button()
         Me.btnGanancias = New System.Windows.Forms.Button()
         Me.btnClientes = New System.Windows.Forms.Button()
         Me.btnReservas = New System.Windows.Forms.Button()
         Me.btnReservar = New System.Windows.Forms.Button()
         Me.pbLogoAtilaGrande = New System.Windows.Forms.PictureBox()
-        Me.btnNotificaciones = New System.Windows.Forms.Button()
-        Me.btnMinimizar = New System.Windows.Forms.Button()
-        Me.btnCerrar = New System.Windows.Forms.Button()
+        Me.timer = New System.Windows.Forms.Timer(Me.components)
         Me.pnlArriba.SuspendLayout()
         Me.pnlCuadroNotificaciones.SuspendLayout()
         Me.pnlNotificacion1.SuspendLayout()
@@ -115,6 +115,17 @@ Partial Class Principal
         Me.lblCantidadDeNotificaciones.TabIndex = 29
         Me.lblCantidadDeNotificaciones.Text = "+9"
         '
+        'btnNotificaciones
+        '
+        Me.btnNotificaciones.FlatAppearance.BorderSize = 0
+        Me.btnNotificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNotificaciones.Image = Global.Atila.My.Resources.Resources.icono_campanita_solita
+        Me.btnNotificaciones.Location = New System.Drawing.Point(1412, 0)
+        Me.btnNotificaciones.Name = "btnNotificaciones"
+        Me.btnNotificaciones.Size = New System.Drawing.Size(40, 40)
+        Me.btnNotificaciones.TabIndex = 24
+        Me.btnNotificaciones.UseVisualStyleBackColor = True
+        '
         'lblPerfil
         '
         Me.lblPerfil.AutoSize = True
@@ -124,6 +135,36 @@ Partial Class Principal
         Me.lblPerfil.Size = New System.Drawing.Size(130, 18)
         Me.lblPerfil.TabIndex = 21
         Me.lblPerfil.Text = "Ana Liz Mazzarino"
+        '
+        'btnMinimizar
+        '
+        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMinimizar.FlatAppearance.BorderSize = 0
+        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RosyBrown
+        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
+        Me.btnMinimizar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnMinimizar.Location = New System.Drawing.Point(1463, 0)
+        Me.btnMinimizar.Name = "btnMinimizar"
+        Me.btnMinimizar.Size = New System.Drawing.Size(45, 43)
+        Me.btnMinimizar.TabIndex = 19
+        Me.btnMinimizar.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCerrar.FlatAppearance.BorderSize = 0
+        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
+        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
+        Me.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnCerrar.Location = New System.Drawing.Point(1505, 0)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(45, 43)
+        Me.btnCerrar.TabIndex = 18
+        Me.btnCerrar.UseVisualStyleBackColor = True
         '
         'pnlCuadroNotificaciones
         '
@@ -499,11 +540,6 @@ Partial Class Principal
         Me.btnCostos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCostos.UseVisualStyleBackColor = True
         '
-        'timer
-        '
-        Me.timer.Enabled = True
-        Me.timer.Interval = 12000
-        '
         'btnConfiguracion
         '
         Me.btnConfiguracion.FlatAppearance.BorderSize = 0
@@ -598,46 +634,10 @@ Partial Class Principal
         Me.pbLogoAtilaGrande.TabIndex = 0
         Me.pbLogoAtilaGrande.TabStop = False
         '
-        'btnNotificaciones
+        'timer
         '
-        Me.btnNotificaciones.FlatAppearance.BorderSize = 0
-        Me.btnNotificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNotificaciones.Image = Global.Atila.My.Resources.Resources.icono_campanita_solita
-        Me.btnNotificaciones.Location = New System.Drawing.Point(1412, 0)
-        Me.btnNotificaciones.Name = "btnNotificaciones"
-        Me.btnNotificaciones.Size = New System.Drawing.Size(40, 40)
-        Me.btnNotificaciones.TabIndex = 24
-        Me.btnNotificaciones.UseVisualStyleBackColor = True
-        '
-        'btnMinimizar
-        '
-        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMinimizar.FlatAppearance.BorderSize = 0
-        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
-        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RosyBrown
-        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
-        Me.btnMinimizar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.btnMinimizar.Location = New System.Drawing.Point(1463, 0)
-        Me.btnMinimizar.Name = "btnMinimizar"
-        Me.btnMinimizar.Size = New System.Drawing.Size(45, 43)
-        Me.btnMinimizar.TabIndex = 19
-        Me.btnMinimizar.UseVisualStyleBackColor = True
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCerrar.FlatAppearance.BorderSize = 0
-        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
-        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
-        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
-        Me.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.btnCerrar.Location = New System.Drawing.Point(1505, 0)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(45, 43)
-        Me.btnCerrar.TabIndex = 18
-        Me.btnCerrar.UseVisualStyleBackColor = True
+        Me.timer.Enabled = True
+        Me.timer.Interval = 12000
         '
         'Principal
         '

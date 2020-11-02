@@ -23,6 +23,8 @@ Partial Class Reservar
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnAgregarDatos = New System.Windows.Forms.Button()
         Me.txtCedula = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -62,12 +64,17 @@ Partial Class Reservar
         Me.btnEditarCliente = New System.Windows.Forms.Button()
         Me.btnCancelarEdicion = New System.Windows.Forms.Button()
         Me.pnlReserva = New System.Windows.Forms.Panel()
+        Me.nudCantidadPersonas = New System.Windows.Forms.NumericUpDown()
+        Me.pbCantidadPersonas = New System.Windows.Forms.PictureBox()
         Me.txtNota = New System.Windows.Forms.TextBox()
+        Me.cboMotivo = New System.Windows.Forms.ComboBox()
+        Me.pbMotivo = New System.Windows.Forms.PictureBox()
+        Me.dtpHoraFinal = New System.Windows.Forms.DateTimePicker()
+        Me.pbHoraFinal = New System.Windows.Forms.PictureBox()
+        Me.dtpHoraComienzo = New System.Windows.Forms.DateTimePicker()
+        Me.pbHoraComienzo = New System.Windows.Forms.PictureBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.pnlDatosReserva = New System.Windows.Forms.Panel()
-        Me.nudCantidadPersonas = New System.Windows.Forms.NumericUpDown()
-        Me.dtpHoraFinal = New System.Windows.Forms.DateTimePicker()
-        Me.dtpHoraComienzo = New System.Windows.Forms.DateTimePicker()
         Me.lblIngresarDatos = New System.Windows.Forms.Label()
         Me.lblFechaParaReservar = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -87,17 +94,22 @@ Partial Class Reservar
         Me.chkServicio = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.cboMotivo = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.btnSiguiente = New System.Windows.Forms.Button()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
+        Me.pbNotacion = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.pnlCliente.SuspendLayout()
         Me.pnlReserva.SuspendLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbCantidadPersonas, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbMotivo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbHoraFinal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbHoraComienzo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbNotacion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -497,12 +509,17 @@ Partial Class Reservar
         '
         'pnlReserva
         '
+        Me.pnlReserva.Controls.Add(Me.nudCantidadPersonas)
+        Me.pnlReserva.Controls.Add(Me.pbCantidadPersonas)
         Me.pnlReserva.Controls.Add(Me.txtNota)
+        Me.pnlReserva.Controls.Add(Me.cboMotivo)
+        Me.pnlReserva.Controls.Add(Me.pbMotivo)
+        Me.pnlReserva.Controls.Add(Me.dtpHoraFinal)
+        Me.pnlReserva.Controls.Add(Me.pbHoraFinal)
+        Me.pnlReserva.Controls.Add(Me.dtpHoraComienzo)
+        Me.pnlReserva.Controls.Add(Me.pbHoraComienzo)
         Me.pnlReserva.Controls.Add(Me.Label8)
         Me.pnlReserva.Controls.Add(Me.pnlDatosReserva)
-        Me.pnlReserva.Controls.Add(Me.nudCantidadPersonas)
-        Me.pnlReserva.Controls.Add(Me.dtpHoraFinal)
-        Me.pnlReserva.Controls.Add(Me.dtpHoraComienzo)
         Me.pnlReserva.Controls.Add(Me.lblIngresarDatos)
         Me.pnlReserva.Controls.Add(Me.lblFechaParaReservar)
         Me.pnlReserva.Controls.Add(Me.Label11)
@@ -519,103 +536,160 @@ Partial Class Reservar
         Me.pnlReserva.Controls.Add(Me.chkServicio)
         Me.pnlReserva.Controls.Add(Me.Label7)
         Me.pnlReserva.Controls.Add(Me.Label6)
-        Me.pnlReserva.Controls.Add(Me.cboMotivo)
         Me.pnlReserva.Controls.Add(Me.Label5)
         Me.pnlReserva.Controls.Add(Me.Label4)
         Me.pnlReserva.Controls.Add(Me.btnSiguiente)
         Me.pnlReserva.Controls.Add(Me.Calendario)
+        Me.pnlReserva.Controls.Add(Me.pbNotacion)
         Me.pnlReserva.Controls.Add(Me.PictureBox1)
         Me.pnlReserva.Location = New System.Drawing.Point(1, 1)
         Me.pnlReserva.Name = "pnlReserva"
         Me.pnlReserva.Size = New System.Drawing.Size(1221, 807)
         Me.pnlReserva.TabIndex = 16
         '
+        'nudCantidadPersonas
+        '
+        Me.nudCantidadPersonas.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nudCantidadPersonas.Location = New System.Drawing.Point(768, 425)
+        Me.nudCantidadPersonas.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
+        Me.nudCantidadPersonas.Name = "nudCantidadPersonas"
+        Me.nudCantidadPersonas.Size = New System.Drawing.Size(67, 25)
+        Me.nudCantidadPersonas.TabIndex = 29
+        Me.nudCantidadPersonas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'pbCantidadPersonas
+        '
+        Me.pbCantidadPersonas.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.pbCantidadPersonas.Location = New System.Drawing.Point(766, 423)
+        Me.pbCantidadPersonas.Name = "pbCantidadPersonas"
+        Me.pbCantidadPersonas.Size = New System.Drawing.Size(71, 29)
+        Me.pbCantidadPersonas.TabIndex = 69
+        Me.pbCantidadPersonas.TabStop = False
+        '
         'txtNota
         '
-        Me.txtNota.Location = New System.Drawing.Point(404, 214)
+        Me.txtNota.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNota.Location = New System.Drawing.Point(707, 281)
+        Me.txtNota.Multiline = True
         Me.txtNota.Name = "txtNota"
-        Me.txtNota.Size = New System.Drawing.Size(138, 20)
+        Me.txtNota.Size = New System.Drawing.Size(194, 79)
         Me.txtNota.TabIndex = 58
+        '
+        'cboMotivo
+        '
+        Me.cboMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboMotivo.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboMotivo.FormattingEnabled = True
+        Me.cboMotivo.Items.AddRange(New Object() {"Fiesta con Baile", "Fiesta sin Baile", "Parrillada"})
+        Me.cboMotivo.Location = New System.Drawing.Point(722, 195)
+        Me.cboMotivo.Name = "cboMotivo"
+        Me.cboMotivo.Size = New System.Drawing.Size(142, 24)
+        Me.cboMotivo.TabIndex = 6
+        '
+        'pbMotivo
+        '
+        Me.pbMotivo.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.pbMotivo.Location = New System.Drawing.Point(720, 193)
+        Me.pbMotivo.Name = "pbMotivo"
+        Me.pbMotivo.Size = New System.Drawing.Size(146, 28)
+        Me.pbMotivo.TabIndex = 67
+        Me.pbMotivo.TabStop = False
+        '
+        'dtpHoraFinal
+        '
+        Me.dtpHoraFinal.CustomFormat = "H:mm"
+        Me.dtpHoraFinal.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpHoraFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHoraFinal.Location = New System.Drawing.Point(848, 118)
+        Me.dtpHoraFinal.Name = "dtpHoraFinal"
+        Me.dtpHoraFinal.ShowUpDown = True
+        Me.dtpHoraFinal.Size = New System.Drawing.Size(59, 22)
+        Me.dtpHoraFinal.TabIndex = 28
+        '
+        'pbHoraFinal
+        '
+        Me.pbHoraFinal.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.pbHoraFinal.Location = New System.Drawing.Point(846, 116)
+        Me.pbHoraFinal.Name = "pbHoraFinal"
+        Me.pbHoraFinal.Size = New System.Drawing.Size(63, 26)
+        Me.pbHoraFinal.TabIndex = 65
+        Me.pbHoraFinal.TabStop = False
+        '
+        'dtpHoraComienzo
+        '
+        Me.dtpHoraComienzo.CustomFormat = "H:mm"
+        Me.dtpHoraComienzo.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpHoraComienzo.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpHoraComienzo.Location = New System.Drawing.Point(678, 118)
+        Me.dtpHoraComienzo.Name = "dtpHoraComienzo"
+        Me.dtpHoraComienzo.ShowUpDown = True
+        Me.dtpHoraComienzo.Size = New System.Drawing.Size(59, 22)
+        Me.dtpHoraComienzo.TabIndex = 27
+        '
+        'pbHoraComienzo
+        '
+        Me.pbHoraComienzo.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.pbHoraComienzo.Location = New System.Drawing.Point(676, 116)
+        Me.pbHoraComienzo.Name = "pbHoraComienzo"
+        Me.pbHoraComienzo.Size = New System.Drawing.Size(63, 26)
+        Me.pbHoraComienzo.TabIndex = 64
+        Me.pbHoraComienzo.TabStop = False
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(443, 198)
+        Me.Label8.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
+        Me.Label8.Location = New System.Drawing.Point(772, 243)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(50, 13)
+        Me.Label8.Size = New System.Drawing.Size(41, 16)
         Me.Label8.TabIndex = 57
-        Me.Label8.Text = "Notacion"
+        Me.Label8.Text = "Nota:"
         '
         'pnlDatosReserva
         '
         Me.pnlDatosReserva.BackColor = System.Drawing.SystemColors.AppWorkspace
-        Me.pnlDatosReserva.Location = New System.Drawing.Point(50, 350)
+        Me.pnlDatosReserva.Location = New System.Drawing.Point(73, 567)
         Me.pnlDatosReserva.Name = "pnlDatosReserva"
         Me.pnlDatosReserva.Size = New System.Drawing.Size(225, 227)
         Me.pnlDatosReserva.TabIndex = 54
         Me.pnlDatosReserva.Visible = False
         '
-        'nudCantidadPersonas
-        '
-        Me.nudCantidadPersonas.Location = New System.Drawing.Point(449, 270)
-        Me.nudCantidadPersonas.Maximum = New Decimal(New Integer() {350, 0, 0, 0})
-        Me.nudCantidadPersonas.Name = "nudCantidadPersonas"
-        Me.nudCantidadPersonas.Size = New System.Drawing.Size(38, 20)
-        Me.nudCantidadPersonas.TabIndex = 29
-        '
-        'dtpHoraFinal
-        '
-        Me.dtpHoraFinal.CustomFormat = "H:mm"
-        Me.dtpHoraFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpHoraFinal.Location = New System.Drawing.Point(520, 131)
-        Me.dtpHoraFinal.Name = "dtpHoraFinal"
-        Me.dtpHoraFinal.ShowUpDown = True
-        Me.dtpHoraFinal.Size = New System.Drawing.Size(59, 20)
-        Me.dtpHoraFinal.TabIndex = 28
-        '
-        'dtpHoraComienzo
-        '
-        Me.dtpHoraComienzo.CustomFormat = "H:mm"
-        Me.dtpHoraComienzo.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpHoraComienzo.Location = New System.Drawing.Point(404, 121)
-        Me.dtpHoraComienzo.Name = "dtpHoraComienzo"
-        Me.dtpHoraComienzo.ShowUpDown = True
-        Me.dtpHoraComienzo.Size = New System.Drawing.Size(59, 20)
-        Me.dtpHoraComienzo.TabIndex = 27
-        '
         'lblIngresarDatos
         '
         Me.lblIngresarDatos.AutoSize = True
-        Me.lblIngresarDatos.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblIngresarDatos.Location = New System.Drawing.Point(413, 40)
+        Me.lblIngresarDatos.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblIngresarDatos.Location = New System.Drawing.Point(731, 31)
         Me.lblIngresarDatos.Name = "lblIngresarDatos"
-        Me.lblIngresarDatos.Size = New System.Drawing.Size(127, 19)
+        Me.lblIngresarDatos.Size = New System.Drawing.Size(154, 22)
         Me.lblIngresarDatos.TabIndex = 26
         Me.lblIngresarDatos.Text = "Ingresar Datos:"
         '
         'lblFechaParaReservar
         '
         Me.lblFechaParaReservar.AutoSize = True
-        Me.lblFechaParaReservar.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFechaParaReservar.Location = New System.Drawing.Point(32, 32)
+        Me.lblFechaParaReservar.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFechaParaReservar.Location = New System.Drawing.Point(131, 32)
         Me.lblFechaParaReservar.Name = "lblFechaParaReservar"
-        Me.lblFechaParaReservar.Size = New System.Drawing.Size(221, 19)
+        Me.lblFechaParaReservar.Size = New System.Drawing.Size(205, 22)
         Me.lblFechaParaReservar.TabIndex = 25
-        Me.lblFechaParaReservar.Text = "Fecha para realizar reserva:"
+        Me.lblFechaParaReservar.Text = "Fecha para reservar:"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(386, 313)
+        Me.Label11.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Black
+        Me.Label11.Location = New System.Drawing.Point(745, 480)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(95, 13)
+        Me.Label11.Size = New System.Drawing.Size(109, 16)
         Me.Label11.TabIndex = 23
-        Me.Label11.Text = "Cantidad de cosas"
+        Me.Label11.Text = "Cosas a utilizar:"
         '
         'lblHora3
         '
         Me.lblHora3.AutoSize = True
-        Me.lblHora3.Location = New System.Drawing.Point(150, 372)
+        Me.lblHora3.Location = New System.Drawing.Point(299, 457)
         Me.lblHora3.Name = "lblHora3"
         Me.lblHora3.Size = New System.Drawing.Size(45, 13)
         Me.lblHora3.TabIndex = 20
@@ -627,14 +701,35 @@ Partial Class Reservar
         Me.dgvInventario.AllowUserToDeleteRows = False
         Me.dgvInventario.AllowUserToResizeColumns = False
         Me.dgvInventario.AllowUserToResizeRows = False
+        Me.dgvInventario.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(173, Byte), Integer))
+        Me.dgvInventario.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvInventario.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvInventario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Marcado, Me.Descripcion, Me.Cantidad})
-        Me.dgvInventario.Location = New System.Drawing.Point(385, 336)
+        Me.dgvInventario.EnableHeadersVisualStyles = False
+        Me.dgvInventario.Location = New System.Drawing.Point(674, 510)
         Me.dgvInventario.MultiSelect = False
         Me.dgvInventario.Name = "dgvInventario"
+        Me.dgvInventario.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSalmon
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvInventario.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvInventario.RowHeadersVisible = False
+        Me.dgvInventario.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dgvInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvInventario.Size = New System.Drawing.Size(183, 114)
+        Me.dgvInventario.Size = New System.Drawing.Size(264, 114)
         Me.dgvInventario.TabIndex = 22
         '
         'Marcado
@@ -642,7 +737,7 @@ Partial Class Reservar
         Me.Marcado.Frozen = True
         Me.Marcado.HeaderText = "-"
         Me.Marcado.Name = "Marcado"
-        Me.Marcado.Width = 20
+        Me.Marcado.Width = 25
         '
         'Descripcion
         '
@@ -650,18 +745,19 @@ Partial Class Reservar
         Me.Descripcion.HeaderText = "Descripcion"
         Me.Descripcion.Name = "Descripcion"
         Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 150
         '
         'Cantidad
         '
         Me.Cantidad.HeaderText = "Cantidad"
         Me.Cantidad.Name = "Cantidad"
         Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 60
+        Me.Cantidad.Width = 90
         '
         'lblHora2
         '
         Me.lblHora2.AutoSize = True
-        Me.lblHora2.Location = New System.Drawing.Point(150, 350)
+        Me.lblHora2.Location = New System.Drawing.Point(299, 435)
         Me.lblHora2.Name = "lblHora2"
         Me.lblHora2.Size = New System.Drawing.Size(45, 13)
         Me.lblHora2.TabIndex = 19
@@ -670,7 +766,7 @@ Partial Class Reservar
         'lblHora1
         '
         Me.lblHora1.AutoSize = True
-        Me.lblHora1.Location = New System.Drawing.Point(150, 329)
+        Me.lblHora1.Location = New System.Drawing.Point(299, 414)
         Me.lblHora1.Name = "lblHora1"
         Me.lblHora1.Size = New System.Drawing.Size(39, 13)
         Me.lblHora1.TabIndex = 18
@@ -679,17 +775,17 @@ Partial Class Reservar
         'lblNoHayReservas
         '
         Me.lblNoHayReservas.AutoSize = True
-        Me.lblNoHayReservas.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNoHayReservas.Location = New System.Drawing.Point(47, 314)
+        Me.lblNoHayReservas.Font = New System.Drawing.Font("Arial", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNoHayReservas.Location = New System.Drawing.Point(196, 399)
         Me.lblNoHayReservas.Name = "lblNoHayReservas"
-        Me.lblNoHayReservas.Size = New System.Drawing.Size(172, 15)
+        Me.lblNoHayReservas.Size = New System.Drawing.Size(182, 15)
         Me.lblNoHayReservas.TabIndex = 17
         Me.lblNoHayReservas.Text = "No hay reservas en esta fecha"
         '
         'llblMotivoReserva3
         '
         Me.llblMotivoReserva3.AutoSize = True
-        Me.llblMotivoReserva3.Location = New System.Drawing.Point(47, 372)
+        Me.llblMotivoReserva3.Location = New System.Drawing.Point(196, 457)
         Me.llblMotivoReserva3.Name = "llblMotivoReserva3"
         Me.llblMotivoReserva3.Size = New System.Drawing.Size(59, 13)
         Me.llblMotivoReserva3.TabIndex = 16
@@ -699,7 +795,7 @@ Partial Class Reservar
         'llblMotivoReserva2
         '
         Me.llblMotivoReserva2.AutoSize = True
-        Me.llblMotivoReserva2.Location = New System.Drawing.Point(47, 350)
+        Me.llblMotivoReserva2.Location = New System.Drawing.Point(196, 435)
         Me.llblMotivoReserva2.Name = "llblMotivoReserva2"
         Me.llblMotivoReserva2.Size = New System.Drawing.Size(59, 13)
         Me.llblMotivoReserva2.TabIndex = 15
@@ -709,7 +805,7 @@ Partial Class Reservar
         'llblMotivoReserva1
         '
         Me.llblMotivoReserva1.AutoSize = True
-        Me.llblMotivoReserva1.Location = New System.Drawing.Point(47, 329)
+        Me.llblMotivoReserva1.Location = New System.Drawing.Point(196, 414)
         Me.llblMotivoReserva1.Name = "llblMotivoReserva1"
         Me.llblMotivoReserva1.Size = New System.Drawing.Size(59, 13)
         Me.llblMotivoReserva1.TabIndex = 14
@@ -721,27 +817,31 @@ Partial Class Reservar
         Me.lblFecha.AutoSize = True
         Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFecha.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.lblFecha.Location = New System.Drawing.Point(225, 296)
+        Me.lblFecha.Location = New System.Drawing.Point(366, 359)
         Me.lblFecha.Name = "lblFecha"
-        Me.lblFecha.Size = New System.Drawing.Size(0, 18)
+        Me.lblFecha.Size = New System.Drawing.Size(40, 18)
         Me.lblFecha.TabIndex = 13
+        Me.lblFecha.Text = "1/1/1"
         '
         'lblFiestasReservadasParaEl
         '
         Me.lblFiestasReservadasParaEl.AutoSize = True
-        Me.lblFiestasReservadasParaEl.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFiestasReservadasParaEl.Location = New System.Drawing.Point(26, 296)
+        Me.lblFiestasReservadasParaEl.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFiestasReservadasParaEl.Location = New System.Drawing.Point(102, 356)
         Me.lblFiestasReservadasParaEl.Name = "lblFiestasReservadasParaEl"
-        Me.lblFiestasReservadasParaEl.Size = New System.Drawing.Size(214, 19)
+        Me.lblFiestasReservadasParaEl.Size = New System.Drawing.Size(262, 22)
         Me.lblFiestasReservadasParaEl.TabIndex = 12
         Me.lblFiestasReservadasParaEl.Text = "Fiestas reservadas para el:"
         '
         'chkServicio
         '
         Me.chkServicio.AutoSize = True
-        Me.chkServicio.Location = New System.Drawing.Point(436, 466)
+        Me.chkServicio.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkServicio.ForeColor = System.Drawing.Color.Black
+        Me.chkServicio.Location = New System.Drawing.Point(762, 647)
         Me.chkServicio.Name = "chkServicio"
-        Me.chkServicio.Size = New System.Drawing.Size(64, 17)
+        Me.chkServicio.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.chkServicio.Size = New System.Drawing.Size(79, 20)
         Me.chkServicio.TabIndex = 10
         Me.chkServicio.Text = "Servicio"
         Me.chkServicio.UseVisualStyleBackColor = True
@@ -749,56 +849,57 @@ Partial Class Reservar
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(413, 254)
+        Me.Label7.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(726, 391)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(111, 13)
+        Me.Label7.Size = New System.Drawing.Size(151, 16)
         Me.Label7.TabIndex = 9
-        Me.Label7.Text = "Cantidad de Personas"
+        Me.Label7.Text = "Cantidad de Personas:"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(441, 156)
+        Me.Label6.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Black
+        Me.Label6.Location = New System.Drawing.Point(766, 160)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 13)
+        Me.Label6.Size = New System.Drawing.Size(54, 16)
         Me.Label6.TabIndex = 8
-        Me.Label6.Text = "Motivo"
-        '
-        'cboMotivo
-        '
-        Me.cboMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboMotivo.FormattingEnabled = True
-        Me.cboMotivo.Items.AddRange(New Object() {"Fiesta con Baile", "Fiesta sin Baile", "Parrillada"})
-        Me.cboMotivo.Location = New System.Drawing.Point(412, 172)
-        Me.cboMotivo.Name = "cboMotivo"
-        Me.cboMotivo.Size = New System.Drawing.Size(121, 21)
-        Me.cboMotivo.TabIndex = 6
+        Me.Label6.Text = "Motivo:"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(509, 105)
+        Me.Label5.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(843, 96)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 13)
+        Me.Label5.Size = New System.Drawing.Size(78, 16)
         Me.Label5.TabIndex = 5
-        Me.Label5.Text = "Hora Final"
+        Me.Label5.Text = "Hora Final:"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(382, 105)
+        Me.Label4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(654, 96)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(94, 13)
+        Me.Label4.Size = New System.Drawing.Size(130, 16)
         Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Hora de Comienzo"
+        Me.Label4.Text = "Hora de Comienzo:"
         '
         'btnSiguiente
         '
-        Me.btnSiguiente.Location = New System.Drawing.Point(389, 492)
+        Me.btnSiguiente.FlatAppearance.BorderSize = 0
+        Me.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSiguiente.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSiguiente.Location = New System.Drawing.Point(846, 707)
         Me.btnSiguiente.Name = "btnSiguiente"
         Me.btnSiguiente.Size = New System.Drawing.Size(155, 55)
         Me.btnSiguiente.TabIndex = 1
-        Me.btnSiguiente.Text = "Siguiente"
+        Me.btnSiguiente.Text = "Siguiente  >"
         Me.btnSiguiente.UseVisualStyleBackColor = True
         '
         'Calendario
@@ -806,19 +907,28 @@ Partial Class Reservar
         Me.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Calendario.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Calendario.Location = New System.Drawing.Point(50, 72)
+        Me.Calendario.Location = New System.Drawing.Point(118, 98)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
         Me.Calendario.MinDate = New Date(2020, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
+        'pbNotacion
+        '
+        Me.pbNotacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.pbNotacion.Location = New System.Drawing.Point(705, 279)
+        Me.pbNotacion.Name = "pbNotacion"
+        Me.pbNotacion.Size = New System.Drawing.Size(198, 83)
+        Me.pbNotacion.TabIndex = 68
+        Me.pbNotacion.TabStop = False
+        '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.Atila.My.Resources.Resources.Contornos
-        Me.PictureBox1.Location = New System.Drawing.Point(518, 130)
+        Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.PictureBox1.Location = New System.Drawing.Point(116, 96)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(62, 23)
-        Me.PictureBox1.TabIndex = 55
+        Me.PictureBox1.Size = New System.Drawing.Size(252, 166)
+        Me.PictureBox1.TabIndex = 70
         Me.PictureBox1.TabStop = False
         '
         'epError
@@ -840,7 +950,12 @@ Partial Class Reservar
         Me.pnlReserva.ResumeLayout(False)
         Me.pnlReserva.PerformLayout()
         CType(Me.nudCantidadPersonas, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbCantidadPersonas, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbMotivo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbHoraFinal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbHoraComienzo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvInventario, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbNotacion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -883,9 +998,6 @@ Partial Class Reservar
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents lblIngresarDatos As System.Windows.Forms.Label
     Friend WithEvents lblFechaParaReservar As System.Windows.Forms.Label
-    Friend WithEvents Marcado As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents txtCedula As System.Windows.Forms.TextBox
     Friend WithEvents btnEditarCliente As System.Windows.Forms.Button
     Friend WithEvents lblEditandoCliente As System.Windows.Forms.Label
@@ -900,10 +1012,8 @@ Partial Class Reservar
     Friend WithEvents optSeñar As System.Windows.Forms.RadioButton
     Friend WithEvents txtNroRecibo As System.Windows.Forms.TextBox
     Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents epError As System.Windows.Forms.ErrorProvider
     Friend WithEvents cboModoPagoSeña As System.Windows.Forms.ComboBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents dtpHoraComienzo As System.Windows.Forms.DateTimePicker
     Friend WithEvents dtpHoraFinal As System.Windows.Forms.DateTimePicker
     Friend WithEvents btnEditarPrecioFiesta As System.Windows.Forms.Button
     Friend WithEvents txtPrecioFiesta As System.Windows.Forms.TextBox
@@ -913,8 +1023,18 @@ Partial Class Reservar
     Friend WithEvents lblMostrarDineroAFavor As System.Windows.Forms.Label
     Friend WithEvents lblDineroAFavor As System.Windows.Forms.Label
     Friend WithEvents chkUtilizarDineroAFavor As System.Windows.Forms.CheckBox
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents txtNota As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents lblAgadu As System.Windows.Forms.Label
+    Friend WithEvents Marcado As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
+    Public WithEvents epError As System.Windows.Forms.ErrorProvider
+    Friend WithEvents pbHoraComienzo As System.Windows.Forms.PictureBox
+    Friend WithEvents dtpHoraComienzo As System.Windows.Forms.DateTimePicker
+    Friend WithEvents pbCantidadPersonas As System.Windows.Forms.PictureBox
+    Friend WithEvents pbMotivo As System.Windows.Forms.PictureBox
+    Friend WithEvents pbHoraFinal As System.Windows.Forms.PictureBox
+    Friend WithEvents pbNotacion As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
 End Class

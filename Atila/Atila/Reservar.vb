@@ -46,6 +46,7 @@ Public Class Reservar
         lblIngresarDatos.ForeColor = Principal.colorTitulos
         lblFiestasReservadasParaEl.ForeColor = Principal.colorTitulos
         dgvInventario.BackgroundColor = Principal.colorTerceario
+        btnSiguiente.ForeColor = Principal.colorTitulos
 
     End Sub
     'Otro
@@ -335,7 +336,6 @@ Public Class Reservar
                     dtpHoraComienzo.Text & "'>addtime(final,'1:00:00') and '" & dtpHoraFinal.Text & "'>addtime(comienzo,'-1:00:00'))) and fecha_cancelacion is null and ID_RESERVA<>" & reservaInvertida.Rows(0).Item("ID_RESERVA"))
 
                 If mysql.Resultado.Rows.Count = 0 Then
-                    MsgBox("ver si esta al reves en la base de datos")
 
                     mysql.Consultar("select id_reserva from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and (('" &
                     dtpHoraComienzo.Text & "'>addtime(comienzo,'-1:00:00')) or ('" &
