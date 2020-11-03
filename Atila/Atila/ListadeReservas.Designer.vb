@@ -44,6 +44,7 @@ Partial Class ListadeReservas
         Me.cboReservasEnElDia = New System.Windows.Forms.ComboBox()
         Me.chkMostrarServicio = New System.Windows.Forms.CheckBox()
         Me.pnlDatosReservas = New System.Windows.Forms.Panel()
+        Me.btnExpandir = New System.Windows.Forms.Button()
         Me.lblNota = New System.Windows.Forms.Label()
         Me.lblMostrarNota = New System.Windows.Forms.Label()
         Me.lblMostrarImprevisto = New System.Windows.Forms.Label()
@@ -78,7 +79,6 @@ Partial Class ListadeReservas
         Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblCosasUtilizar = New System.Windows.Forms.Label()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.btnExpandir = New System.Windows.Forms.Button()
         Me.pnlDatosReservas.SuspendLayout()
         Me.pnlPagar.SuspendLayout()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,7 +121,7 @@ Partial Class ListadeReservas
         Me.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Calendario.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Calendario.Location = New System.Drawing.Point(39, 39)
+        Me.Calendario.Location = New System.Drawing.Point(74, 514)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
         Me.Calendario.MinDate = New Date(2019, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
@@ -315,6 +315,15 @@ Partial Class ListadeReservas
         Me.pnlDatosReservas.Name = "pnlDatosReservas"
         Me.pnlDatosReservas.Size = New System.Drawing.Size(225, 242)
         Me.pnlDatosReservas.TabIndex = 52
+        '
+        'btnExpandir
+        '
+        Me.btnExpandir.Location = New System.Drawing.Point(199, 28)
+        Me.btnExpandir.Name = "btnExpandir"
+        Me.btnExpandir.Size = New System.Drawing.Size(26, 23)
+        Me.btnExpandir.TabIndex = 70
+        Me.btnExpandir.Text = "..."
+        Me.btnExpandir.UseVisualStyleBackColor = True
         '
         'lblNota
         '
@@ -648,20 +657,11 @@ Partial Class ListadeReservas
         Me.lbl.TabIndex = 69
         Me.lbl.Text = "Label1"
         '
-        'btnExpandir
-        '
-        Me.btnExpandir.Location = New System.Drawing.Point(199, 28)
-        Me.btnExpandir.Name = "btnExpandir"
-        Me.btnExpandir.Size = New System.Drawing.Size(26, 23)
-        Me.btnExpandir.TabIndex = 70
-        Me.btnExpandir.Text = "..."
-        Me.btnExpandir.UseVisualStyleBackColor = True
-        '
         'ListadeReservas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(813, 510)
+        Me.ClientSize = New System.Drawing.Size(964, 735)
         Me.Controls.Add(Me.lbl)
         Me.Controls.Add(Me.lblCosasUtilizar)
         Me.Controls.Add(Me.dgvUtiliza)

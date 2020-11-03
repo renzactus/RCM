@@ -53,7 +53,9 @@
     End Sub
     'actualizando Datos
     Private Sub ActualizarDatosCliente()
-        mysql.Consultar("select cedula,nombre,telefonos,direccion,dinero_a_favor,fecha,CLIENTES.id_cliente from clientes inner join reservas on reservas.ID_CLIENTE=clientes.ID_CLIENTE where ingresodatos=any(select max(ingresodatos) from reservas group by id_cliente);")
+        mysql.Consultar("select cedula,nombre,telefonos,direccion,dinero_a_favor,fecha,CLIENTES.id_cliente from clientes" &
+                        " inner join reservas on reservas.ID_CLIENTE=clientes.ID_CLIENTE where ingresodatos=any(select" &
+                        " max(ingresodatos) from reservas group by id_cliente);")
         If mysql.Consultado = True Then
             DatosClientes = mysql.Resultado
         End If

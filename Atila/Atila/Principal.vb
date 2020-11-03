@@ -59,6 +59,20 @@ Public Class Principal
             Formulario.BringToFront()
         End If
     End Sub
+
+    Public Sub AbrirReservasDenuevo()
+        Dim Formulario As Form
+        Formulario = pnlMostrador.Controls.OfType(Of Reservar)().FirstOrDefault()
+        Formulario = New Reservar()
+        Formulario.TopLevel = False
+        Formulario.FormBorderStyle = FormBorderStyle.None
+        Formulario.Dock = DockStyle.Fill
+        pnlMostrador.Controls.Add(Formulario)
+        pnlMostrador.Tag = Formulario
+        Formulario.Show()
+        Formulario.BringToFront()
+    End Sub
+
     'Notificaciones
     Private Sub MostrarCuadroNotificaciones()
         If pnlCuadroNotificaciones.Visible = False Then
@@ -238,7 +252,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
-        Me.Close()
+        End
     End Sub
 
     Private Sub btnMinimizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMinimizar.Click

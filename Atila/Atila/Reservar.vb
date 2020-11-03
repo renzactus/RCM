@@ -539,7 +539,8 @@ Public Class Reservar
         End If
 
         insertarInventario()
-        Me.Hide()
+        Me.Dispose()
+        Principal.AbrirReservasDenuevo()
     End Sub
     Private Sub DarFormatoAtelefonos()
         If txtTelefono2.Text <> "" Then
