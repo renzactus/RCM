@@ -313,6 +313,39 @@
   <ItemGroup>
     <None Include="bin\Debug\capas\icono_campanita_solita.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0016_Capa-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0015_Capa-21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0024_Capa-22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0014_Capa-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0022_Capa-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0021_Capa-25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0019_Capa-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0000_Capa-31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0005_Capa-31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Desplegador.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\precio_total.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

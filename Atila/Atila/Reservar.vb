@@ -47,6 +47,16 @@ Public Class Reservar
         lblFiestasReservadasParaEl.ForeColor = Principal.colorTitulos
         dgvInventario.BackgroundColor = Principal.colorTerceario
         btnSiguiente.ForeColor = Principal.colorTitulos
+        btnVolver.ForeColor = Principal.colorTitulos
+        btnAgregarDatos.ForeColor = Principal.colorTitulos
+        btnAgregarTelefonos.ForeColor = Principal.colorTitulos
+        btnEditarCliente.ForeColor = Principal.colorTitulos
+        btnGuardarCliente.ForeColor = Principal.colorTitulos
+        btnCancelarEdicion.ForeColor = Principal.colorTitulos
+        btnEditarPrecioFiesta.ForeColor = Principal.colorTitulos
+        btnGuardarPrecioFiesta.ForeColor = Principal.colorTitulos
+        lblIngreseLosDatosDelCliente.ForeColor = Principal.colorTitulos
+
 
     End Sub
     'Otro
@@ -59,7 +69,8 @@ Public Class Reservar
         lblHora1.Visible = False
         lblHora2.Visible = False
         lblHora3.Visible = False
-        mysql.Consultar("select motivo,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final from reservas where fecha='" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
+        mysql.Consultar("select motivo,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final from reservas where fecha='" &
+                        Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "' and fecha_cancelacion is null")
         If mysql.Consultado = True Then
             If mysql.Resultado.Rows.Count() = 1 Then
                 lblNoHayReservas.Visible = False
@@ -96,24 +107,28 @@ Public Class Reservar
     End Sub
     Private Sub MostrarOtroTelefono()
         txtTelefono2.Visible = True
+        pbTelefono2.Visible = True
         btnAgregarTelefonos.Text = "-"
         booleanTelefonos = True
-        txtDireccion.Location = New Point(txtDireccion.Location.X, 210)
-        lblDireccion.Location = New Point(lblDireccion.Location.X, 196)
+        txtDireccion.Location = New Point(txtDireccion.Location.X, 373)
+        lblDireccion.Location = New Point(lblDireccion.Location.X, 375)
+        pbDireccion.Location = New Point(pbDireccion.Location.X, 371)
 
-        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 235)
-        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 235)
+        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 431)
+        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 427)
     End Sub
     Private Sub OcultarOtroTelefono()
         txtTelefono2.Visible = False
+        pbTelefono2.Visible = False
         btnAgregarTelefonos.Text = "+"
         txtTelefono2.Text = ""
         booleanTelefonos = False
-        txtDireccion.Location = New Point(txtDireccion.Location.X, 183)
-        lblDireccion.Location = New Point(lblDireccion.Location.X, 169)
+        txtDireccion.Location = New Point(txtDireccion.Location.X, 333)
+        lblDireccion.Location = New Point(lblDireccion.Location.X, 336)
+        pbDireccion.Location = New Point(pbDireccion.Location.X, 331)
 
-        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 211)
-        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 211)
+        lblDineroAFavor.Location = New Point(lblDineroAFavor.Location.X, 404)
+        lblMostrarDineroAFavor.Location = New Point(lblMostrarDineroAFavor.Location.X, 400)
     End Sub
     Private Sub DeshabilitarEdicionDatosCliente(ByVal estado As Boolean)
         txtDireccion.Enabled = estado
@@ -146,11 +161,11 @@ Public Class Reservar
                     End If
                         If DatosClientes.Rows(i).Item("dinero_a_favor") <> 0 Then
                             lblDineroAFavor.Visible = True
-                            lblMostrarDineroAFavor.Visible = True
+                        lblMostrarDineroAFavor.Visible = True
                             chkUtilizarDineroAFavor.Visible = True
                             chkUtilizarDineroAFavor.Text = "Utilizar Dinero " & vbNewLine & " a Favor (" &
                                 DatosClientes.Rows(i).Item("dinero_a_favor") & ")"
-                            lblMostrarDineroAFavor.Text = DatosClientes.Rows(i).Item("dinero_a_favor")
+                        lblMostrarDineroAFavor.Text = String.Format("{0:N0}", DatosClientes.Rows(i).Item("dinero_a_favor"))
                         End If
                         AvisarSiHayDatosDeClientesVacios()
                     End If
@@ -257,6 +272,7 @@ Public Class Reservar
                 ElseIf booleanErrorEndgv = True Then
                     sonidoError()
                 ElseIf booleanErrorEndgv = False Then 'Si no hay errores
+                    pnlDatosReserva.Visible = False
                     PasarAlSiguientePanel()
                     ActualizarDatosCliente()
                     AutoCompletar()
@@ -557,7 +573,8 @@ Public Class Reservar
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,seña,formaseña,nota) values ('" &
                     cboMotivo.Text & "','" & Format(Calendario.SelectionRange.Start, "yyyy-MM-dd") & "','" & dtpHoraComienzo.Text & "','" & dtpHoraFinal.Text & "'," &
                     nudCantidadPersonas.Text & "," & Int(chkServicio.CheckState) & ",(select ID_CLIENTE from clientes where cedula='" & txtCedula.Text & "'),(select max(FECHA_ACTUALIZACION) " &
-                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text & "','" & txtNota.Text & "')")
+                    "from costos),current_timestamp,(select ID_FUNCIONARIO from funcionarios where nombre='" & Principal.lblPerfil.Text & "')," & txtSeña.Text & ",'" & cboModoPagoSeña.Text &
+                    "','" & txtNota.Text & "')")
     End Sub
     Private Sub insertarReservasSinSeña()
         mysql.InsertarDatos("insert into reservas (motivo,fecha,comienzo,final,cantidad_personas,servicio,ID_CLIENTE,FECHA_ACTUALIZACION,ingresodatos,ID_FUNCIONARIO,nota) values ('" &

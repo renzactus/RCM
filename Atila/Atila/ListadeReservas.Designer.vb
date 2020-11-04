@@ -27,14 +27,6 @@ Partial Class ListadeReservas
         Me.lblFechaSeleccionada = New System.Windows.Forms.Label()
         Me.lblFiestasReservadasParaEl = New System.Windows.Forms.Label()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.lblMotivo = New System.Windows.Forms.Label()
-        Me.lblFecha = New System.Windows.Forms.Label()
-        Me.lblHora = New System.Windows.Forms.Label()
-        Me.lblPersonas = New System.Windows.Forms.Label()
-        Me.lblServicio = New System.Windows.Forms.Label()
-        Me.lblCliente = New System.Windows.Forms.Label()
-        Me.lblSeña = New System.Windows.Forms.Label()
         Me.lblMostrarMotivo = New System.Windows.Forms.Label()
         Me.lblMostrarFecha = New System.Windows.Forms.Label()
         Me.lblMostrarHora = New System.Windows.Forms.Label()
@@ -45,13 +37,10 @@ Partial Class ListadeReservas
         Me.chkMostrarServicio = New System.Windows.Forms.CheckBox()
         Me.pnlDatosReservas = New System.Windows.Forms.Panel()
         Me.btnExpandir = New System.Windows.Forms.Button()
-        Me.lblNota = New System.Windows.Forms.Label()
         Me.lblMostrarNota = New System.Windows.Forms.Label()
         Me.lblMostrarImprevisto = New System.Windows.Forms.Label()
-        Me.lblImprevisto = New System.Windows.Forms.Label()
         Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
         Me.lblMostrarPagado = New System.Windows.Forms.Label()
-        Me.lblPagado = New System.Windows.Forms.Label()
         Me.pnlPagar = New System.Windows.Forms.Panel()
         Me.btnInsertarPago = New System.Windows.Forms.Button()
         Me.txtNroRecibo = New System.Windows.Forms.TextBox()
@@ -78,7 +67,16 @@ Partial Class ListadeReservas
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblCosasUtilizar = New System.Windows.Forms.Label()
-        Me.lbl = New System.Windows.Forms.Label()
+        Me.lblNota = New System.Windows.Forms.Label()
+        Me.lblImprevisto = New System.Windows.Forms.Label()
+        Me.lblPagado = New System.Windows.Forms.Label()
+        Me.lblMotivo = New System.Windows.Forms.Label()
+        Me.lblFecha = New System.Windows.Forms.Label()
+        Me.lblHora = New System.Windows.Forms.Label()
+        Me.lblPersonas = New System.Windows.Forms.Label()
+        Me.lblServicio = New System.Windows.Forms.Label()
+        Me.lblCliente = New System.Windows.Forms.Label()
+        Me.lblSeña = New System.Windows.Forms.Label()
         Me.pnlDatosReservas.SuspendLayout()
         Me.pnlPagar.SuspendLayout()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,148 +119,69 @@ Partial Class ListadeReservas
         Me.Calendario.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Calendario.BackColor = System.Drawing.SystemColors.HotTrack
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Calendario.Location = New System.Drawing.Point(74, 514)
+        Me.Calendario.Location = New System.Drawing.Point(649, 290)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
         Me.Calendario.MinDate = New Date(2019, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 30
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(726, 180)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 33
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'lblMotivo
-        '
-        Me.lblMotivo.AutoSize = True
-        Me.lblMotivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMotivo.Location = New System.Drawing.Point(19, 5)
-        Me.lblMotivo.Name = "lblMotivo"
-        Me.lblMotivo.Size = New System.Drawing.Size(48, 16)
-        Me.lblMotivo.TabIndex = 34
-        Me.lblMotivo.Text = "Motivo"
-        '
-        'lblFecha
-        '
-        Me.lblFecha.AutoSize = True
-        Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFecha.Location = New System.Drawing.Point(23, 71)
-        Me.lblFecha.Name = "lblFecha"
-        Me.lblFecha.Size = New System.Drawing.Size(46, 16)
-        Me.lblFecha.TabIndex = 35
-        Me.lblFecha.Text = "Fecha"
-        '
-        'lblHora
-        '
-        Me.lblHora.AutoSize = True
-        Me.lblHora.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHora.Location = New System.Drawing.Point(31, 96)
-        Me.lblHora.Name = "lblHora"
-        Me.lblHora.Size = New System.Drawing.Size(38, 16)
-        Me.lblHora.TabIndex = 36
-        Me.lblHora.Text = "Hora"
-        '
-        'lblPersonas
-        '
-        Me.lblPersonas.AutoSize = True
-        Me.lblPersonas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPersonas.Location = New System.Drawing.Point(3, 123)
-        Me.lblPersonas.Name = "lblPersonas"
-        Me.lblPersonas.Size = New System.Drawing.Size(66, 16)
-        Me.lblPersonas.TabIndex = 37
-        Me.lblPersonas.Text = "Personas"
-        '
-        'lblServicio
-        '
-        Me.lblServicio.AutoSize = True
-        Me.lblServicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblServicio.Location = New System.Drawing.Point(12, 148)
-        Me.lblServicio.Name = "lblServicio"
-        Me.lblServicio.Size = New System.Drawing.Size(57, 16)
-        Me.lblServicio.TabIndex = 39
-        Me.lblServicio.Text = "Servicio"
-        '
-        'lblCliente
-        '
-        Me.lblCliente.AutoSize = True
-        Me.lblCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCliente.Location = New System.Drawing.Point(21, 174)
-        Me.lblCliente.Name = "lblCliente"
-        Me.lblCliente.Size = New System.Drawing.Size(49, 16)
-        Me.lblCliente.TabIndex = 40
-        Me.lblCliente.Text = "Cliente"
-        '
-        'lblSeña
-        '
-        Me.lblSeña.AutoSize = True
-        Me.lblSeña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSeña.Location = New System.Drawing.Point(30, 200)
-        Me.lblSeña.Name = "lblSeña"
-        Me.lblSeña.Size = New System.Drawing.Size(40, 16)
-        Me.lblSeña.TabIndex = 41
-        Me.lblSeña.Text = "Seña"
-        '
         'lblMostrarMotivo
         '
         Me.lblMostrarMotivo.AutoSize = True
-        Me.lblMostrarMotivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarMotivo.Location = New System.Drawing.Point(87, 5)
+        Me.lblMostrarMotivo.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarMotivo.Location = New System.Drawing.Point(82, 38)
         Me.lblMostrarMotivo.Name = "lblMostrarMotivo"
-        Me.lblMostrarMotivo.Size = New System.Drawing.Size(48, 16)
+        Me.lblMostrarMotivo.Size = New System.Drawing.Size(73, 24)
         Me.lblMostrarMotivo.TabIndex = 42
         Me.lblMostrarMotivo.Text = "Motivo"
         '
         'lblMostrarFecha
         '
         Me.lblMostrarFecha.AutoSize = True
-        Me.lblMostrarFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarFecha.Location = New System.Drawing.Point(89, 71)
+        Me.lblMostrarFecha.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarFecha.Location = New System.Drawing.Point(82, 128)
         Me.lblMostrarFecha.Name = "lblMostrarFecha"
-        Me.lblMostrarFecha.Size = New System.Drawing.Size(46, 16)
+        Me.lblMostrarFecha.Size = New System.Drawing.Size(69, 24)
         Me.lblMostrarFecha.TabIndex = 43
         Me.lblMostrarFecha.Text = "Fecha"
         '
         'lblMostrarHora
         '
         Me.lblMostrarHora.AutoSize = True
-        Me.lblMostrarHora.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarHora.Location = New System.Drawing.Point(89, 96)
+        Me.lblMostrarHora.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarHora.Location = New System.Drawing.Point(75, 187)
         Me.lblMostrarHora.Name = "lblMostrarHora"
-        Me.lblMostrarHora.Size = New System.Drawing.Size(38, 16)
+        Me.lblMostrarHora.Size = New System.Drawing.Size(55, 24)
         Me.lblMostrarHora.TabIndex = 44
         Me.lblMostrarHora.Text = "Hora"
         '
         'lblMostrarPersonas
         '
         Me.lblMostrarPersonas.AutoSize = True
-        Me.lblMostrarPersonas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarPersonas.Location = New System.Drawing.Point(89, 123)
+        Me.lblMostrarPersonas.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarPersonas.Location = New System.Drawing.Point(74, 241)
         Me.lblMostrarPersonas.Name = "lblMostrarPersonas"
-        Me.lblMostrarPersonas.Size = New System.Drawing.Size(66, 16)
+        Me.lblMostrarPersonas.Size = New System.Drawing.Size(100, 24)
         Me.lblMostrarPersonas.TabIndex = 45
         Me.lblMostrarPersonas.Text = "Personas"
         '
         'lblMostrarCliente
         '
         Me.lblMostrarCliente.AutoSize = True
-        Me.lblMostrarCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarCliente.Location = New System.Drawing.Point(89, 174)
+        Me.lblMostrarCliente.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarCliente.Location = New System.Drawing.Point(75, 349)
         Me.lblMostrarCliente.Name = "lblMostrarCliente"
-        Me.lblMostrarCliente.Size = New System.Drawing.Size(49, 16)
+        Me.lblMostrarCliente.Size = New System.Drawing.Size(75, 24)
         Me.lblMostrarCliente.TabIndex = 48
         Me.lblMostrarCliente.Text = "Cliente"
         '
         'lblMostrarSeña
         '
         Me.lblMostrarSeña.AutoSize = True
-        Me.lblMostrarSeña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarSeña.Location = New System.Drawing.Point(89, 200)
+        Me.lblMostrarSeña.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarSeña.Location = New System.Drawing.Point(75, 391)
         Me.lblMostrarSeña.Name = "lblMostrarSeña"
-        Me.lblMostrarSeña.Size = New System.Drawing.Size(40, 16)
+        Me.lblMostrarSeña.Size = New System.Drawing.Size(59, 24)
         Me.lblMostrarSeña.TabIndex = 49
         Me.lblMostrarSeña.Text = "Seña"
         '
@@ -280,7 +199,7 @@ Partial Class ListadeReservas
         '
         Me.chkMostrarServicio.AutoSize = True
         Me.chkMostrarServicio.Enabled = False
-        Me.chkMostrarServicio.Location = New System.Drawing.Point(103, 150)
+        Me.chkMostrarServicio.Location = New System.Drawing.Point(97, 313)
         Me.chkMostrarServicio.Name = "chkMostrarServicio"
         Me.chkMostrarServicio.Size = New System.Drawing.Size(15, 14)
         Me.chkMostrarServicio.TabIndex = 51
@@ -311,89 +230,59 @@ Partial Class ListadeReservas
         Me.pnlDatosReservas.Controls.Add(Me.lblSeña)
         Me.pnlDatosReservas.Controls.Add(Me.lblMostrarFecha)
         Me.pnlDatosReservas.Controls.Add(Me.lblMostrarMotivo)
-        Me.pnlDatosReservas.Location = New System.Drawing.Point(339, 74)
+        Me.pnlDatosReservas.Location = New System.Drawing.Point(24, 108)
         Me.pnlDatosReservas.Name = "pnlDatosReservas"
-        Me.pnlDatosReservas.Size = New System.Drawing.Size(225, 242)
+        Me.pnlDatosReservas.Size = New System.Drawing.Size(281, 493)
         Me.pnlDatosReservas.TabIndex = 52
         '
         'btnExpandir
         '
-        Me.btnExpandir.Location = New System.Drawing.Point(199, 28)
+        Me.btnExpandir.Location = New System.Drawing.Point(243, 86)
         Me.btnExpandir.Name = "btnExpandir"
         Me.btnExpandir.Size = New System.Drawing.Size(26, 23)
         Me.btnExpandir.TabIndex = 70
         Me.btnExpandir.Text = "..."
         Me.btnExpandir.UseVisualStyleBackColor = True
         '
-        'lblNota
-        '
-        Me.lblNota.AutoSize = True
-        Me.lblNota.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNota.Location = New System.Drawing.Point(22, 31)
-        Me.lblNota.Name = "lblNota"
-        Me.lblNota.Size = New System.Drawing.Size(37, 16)
-        Me.lblNota.TabIndex = 57
-        Me.lblNota.Text = "Nota"
-        '
         'lblMostrarNota
         '
         Me.lblMostrarNota.AutoSize = True
-        Me.lblMostrarNota.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarNota.Location = New System.Drawing.Point(80, 31)
+        Me.lblMostrarNota.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarNota.Location = New System.Drawing.Point(69, 83)
         Me.lblMostrarNota.Name = "lblMostrarNota"
-        Me.lblMostrarNota.Size = New System.Drawing.Size(37, 16)
+        Me.lblMostrarNota.Size = New System.Drawing.Size(54, 24)
         Me.lblMostrarNota.TabIndex = 58
         Me.lblMostrarNota.Text = "Nota"
         '
         'lblMostrarImprevisto
         '
         Me.lblMostrarImprevisto.AutoSize = True
-        Me.lblMostrarImprevisto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarImprevisto.Location = New System.Drawing.Point(80, 220)
+        Me.lblMostrarImprevisto.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarImprevisto.Location = New System.Drawing.Point(74, 444)
         Me.lblMostrarImprevisto.Name = "lblMostrarImprevisto"
-        Me.lblMostrarImprevisto.Size = New System.Drawing.Size(70, 16)
+        Me.lblMostrarImprevisto.Size = New System.Drawing.Size(107, 24)
         Me.lblMostrarImprevisto.TabIndex = 56
         Me.lblMostrarImprevisto.Text = "Imprevisto"
         '
-        'lblImprevisto
-        '
-        Me.lblImprevisto.AutoSize = True
-        Me.lblImprevisto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblImprevisto.Location = New System.Drawing.Point(12, 220)
-        Me.lblImprevisto.Name = "lblImprevisto"
-        Me.lblImprevisto.Size = New System.Drawing.Size(70, 16)
-        Me.lblImprevisto.TabIndex = 55
-        Me.lblImprevisto.Text = "Imprevisto"
-        Me.lblImprevisto.Visible = False
-        '
         'dtpFecha
         '
+        Me.dtpFecha.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFecha.Location = New System.Drawing.Point(90, 70)
+        Me.dtpFecha.Location = New System.Drawing.Point(84, 123)
         Me.dtpFecha.Name = "dtpFecha"
-        Me.dtpFecha.Size = New System.Drawing.Size(88, 20)
+        Me.dtpFecha.Size = New System.Drawing.Size(131, 32)
         Me.dtpFecha.TabIndex = 54
         Me.dtpFecha.Visible = False
         '
         'lblMostrarPagado
         '
         Me.lblMostrarPagado.AutoSize = True
-        Me.lblMostrarPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMostrarPagado.Location = New System.Drawing.Point(89, 200)
+        Me.lblMostrarPagado.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMostrarPagado.Location = New System.Drawing.Point(75, 391)
         Me.lblMostrarPagado.Name = "lblMostrarPagado"
-        Me.lblMostrarPagado.Size = New System.Drawing.Size(57, 16)
+        Me.lblMostrarPagado.Size = New System.Drawing.Size(82, 24)
         Me.lblMostrarPagado.TabIndex = 53
         Me.lblMostrarPagado.Text = "Pagado"
-        '
-        'lblPagado
-        '
-        Me.lblPagado.AutoSize = True
-        Me.lblPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPagado.Location = New System.Drawing.Point(13, 200)
-        Me.lblPagado.Name = "lblPagado"
-        Me.lblPagado.Size = New System.Drawing.Size(57, 16)
-        Me.lblPagado.TabIndex = 52
-        Me.lblPagado.Text = "Pagado"
         '
         'pnlPagar
         '
@@ -404,7 +293,7 @@ Partial Class ListadeReservas
         Me.pnlPagar.Controls.Add(Me.cboCuotas)
         Me.pnlPagar.Controls.Add(Me.cboModoPagoPagado)
         Me.pnlPagar.Controls.Add(Me.Label15)
-        Me.pnlPagar.Location = New System.Drawing.Point(339, 74)
+        Me.pnlPagar.Location = New System.Drawing.Point(594, 1)
         Me.pnlPagar.Name = "pnlPagar"
         Me.pnlPagar.Size = New System.Drawing.Size(225, 182)
         Me.pnlPagar.TabIndex = 54
@@ -542,14 +431,14 @@ Partial Class ListadeReservas
         Me.pnlSiNoSePago.Controls.Add(Me.Label9)
         Me.pnlSiNoSePago.Controls.Add(Me.btnPagar)
         Me.pnlSiNoSePago.Controls.Add(Me.btnEditarPrecioFiesta)
-        Me.pnlSiNoSePago.Location = New System.Drawing.Point(359, 411)
+        Me.pnlSiNoSePago.Location = New System.Drawing.Point(519, 553)
         Me.pnlSiNoSePago.Name = "pnlSiNoSePago"
         Me.pnlSiNoSePago.Size = New System.Drawing.Size(212, 48)
         Me.pnlSiNoSePago.TabIndex = 60
         '
         'btnCancelarReserva
         '
-        Me.btnCancelarReserva.Location = New System.Drawing.Point(349, 463)
+        Me.btnCancelarReserva.Location = New System.Drawing.Point(509, 605)
         Me.btnCancelarReserva.Name = "btnCancelarReserva"
         Me.btnCancelarReserva.Size = New System.Drawing.Size(225, 26)
         Me.btnCancelarReserva.TabIndex = 60
@@ -559,7 +448,7 @@ Partial Class ListadeReservas
         '
         'btnSurgioImprevisto
         '
-        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(352, 408)
+        Me.btnSurgioImprevisto.Location = New System.Drawing.Point(512, 550)
         Me.btnSurgioImprevisto.Name = "btnSurgioImprevisto"
         Me.btnSurgioImprevisto.Size = New System.Drawing.Size(225, 26)
         Me.btnSurgioImprevisto.TabIndex = 61
@@ -569,7 +458,7 @@ Partial Class ListadeReservas
         '
         'btnGuardarFecha
         '
-        Me.btnGuardarFecha.Location = New System.Drawing.Point(627, 140)
+        Me.btnGuardarFecha.Location = New System.Drawing.Point(365, 241)
         Me.btnGuardarFecha.Name = "btnGuardarFecha"
         Me.btnGuardarFecha.Size = New System.Drawing.Size(57, 21)
         Me.btnGuardarFecha.TabIndex = 63
@@ -579,7 +468,7 @@ Partial Class ListadeReservas
         '
         'btnEditarFecha
         '
-        Me.btnEditarFecha.Location = New System.Drawing.Point(570, 140)
+        Me.btnEditarFecha.Location = New System.Drawing.Point(308, 241)
         Me.btnEditarFecha.Name = "btnEditarFecha"
         Me.btnEditarFecha.Size = New System.Drawing.Size(51, 21)
         Me.btnEditarFecha.TabIndex = 62
@@ -600,7 +489,7 @@ Partial Class ListadeReservas
         '
         'btnCancelarFecha
         '
-        Me.btnCancelarFecha.Location = New System.Drawing.Point(570, 140)
+        Me.btnCancelarFecha.Location = New System.Drawing.Point(308, 241)
         Me.btnCancelarFecha.Name = "btnCancelarFecha"
         Me.btnCancelarFecha.Size = New System.Drawing.Size(51, 21)
         Me.btnCancelarFecha.TabIndex = 66
@@ -616,7 +505,7 @@ Partial Class ListadeReservas
         Me.dgvUtiliza.AllowUserToResizeRows = False
         Me.dgvUtiliza.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvUtiliza.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.Cantidad})
-        Me.dgvUtiliza.Location = New System.Drawing.Point(370, 333)
+        Me.dgvUtiliza.Location = New System.Drawing.Point(530, 475)
         Me.dgvUtiliza.MultiSelect = False
         Me.dgvUtiliza.Name = "dgvUtiliza"
         Me.dgvUtiliza.RowHeadersVisible = False
@@ -642,27 +531,108 @@ Partial Class ListadeReservas
         '
         Me.lblCosasUtilizar.AutoSize = True
         Me.lblCosasUtilizar.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCosasUtilizar.Location = New System.Drawing.Point(389, 319)
+        Me.lblCosasUtilizar.Location = New System.Drawing.Point(549, 461)
         Me.lblCosasUtilizar.Name = "lblCosasUtilizar"
         Me.lblCosasUtilizar.Size = New System.Drawing.Size(116, 18)
         Me.lblCosasUtilizar.TabIndex = 68
         Me.lblCosasUtilizar.Text = "Cosas a utilizar"
         '
-        'lbl
+        'lblNota
         '
-        Me.lbl.AutoSize = True
-        Me.lbl.Location = New System.Drawing.Point(690, 212)
-        Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(39, 13)
-        Me.lbl.TabIndex = 69
-        Me.lbl.Text = "Label1"
+        Me.lblNota.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNota.Image = Global.Atila.My.Resources.Resources.icono_listar_reservas
+        Me.lblNota.Location = New System.Drawing.Point(25, 75)
+        Me.lblNota.Name = "lblNota"
+        Me.lblNota.Size = New System.Drawing.Size(36, 36)
+        Me.lblNota.TabIndex = 57
+        '
+        'lblImprevisto
+        '
+        Me.lblImprevisto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblImprevisto.Image = Global.Atila.My.Resources.Resources.icono_Imprevisto
+        Me.lblImprevisto.Location = New System.Drawing.Point(16, 436)
+        Me.lblImprevisto.Name = "lblImprevisto"
+        Me.lblImprevisto.Size = New System.Drawing.Size(48, 39)
+        Me.lblImprevisto.TabIndex = 55
+        Me.lblImprevisto.Visible = False
+        '
+        'lblPagado
+        '
+        Me.lblPagado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPagado.Image = Global.Atila.My.Resources.Resources.icono_precio
+        Me.lblPagado.Location = New System.Drawing.Point(21, 382)
+        Me.lblPagado.Name = "lblPagado"
+        Me.lblPagado.Size = New System.Drawing.Size(47, 41)
+        Me.lblPagado.TabIndex = 52
+        '
+        'lblMotivo
+        '
+        Me.lblMotivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMotivo.Image = Global.Atila.My.Resources.Resources.icono_motivo
+        Me.lblMotivo.Location = New System.Drawing.Point(17, 12)
+        Me.lblMotivo.Name = "lblMotivo"
+        Me.lblMotivo.Size = New System.Drawing.Size(54, 58)
+        Me.lblMotivo.TabIndex = 34
+        '
+        'lblFecha
+        '
+        Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFecha.Image = Global.Atila.My.Resources.Resources.icono_fecha
+        Me.lblFecha.Location = New System.Drawing.Point(17, 115)
+        Me.lblFecha.Name = "lblFecha"
+        Me.lblFecha.Size = New System.Drawing.Size(54, 50)
+        Me.lblFecha.TabIndex = 35
+        '
+        'lblHora
+        '
+        Me.lblHora.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHora.Image = Global.Atila.My.Resources.Resources.icono_hora
+        Me.lblHora.Location = New System.Drawing.Point(23, 174)
+        Me.lblHora.Name = "lblHora"
+        Me.lblHora.Size = New System.Drawing.Size(46, 49)
+        Me.lblHora.TabIndex = 36
+        '
+        'lblPersonas
+        '
+        Me.lblPersonas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPersonas.Image = Global.Atila.My.Resources.Resources.icono_personas
+        Me.lblPersonas.Location = New System.Drawing.Point(5, 226)
+        Me.lblPersonas.Name = "lblPersonas"
+        Me.lblPersonas.Size = New System.Drawing.Size(69, 53)
+        Me.lblPersonas.TabIndex = 37
+        '
+        'lblServicio
+        '
+        Me.lblServicio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblServicio.Image = Global.Atila.My.Resources.Resources.icono_servicio
+        Me.lblServicio.Location = New System.Drawing.Point(10, 284)
+        Me.lblServicio.Name = "lblServicio"
+        Me.lblServicio.Size = New System.Drawing.Size(60, 51)
+        Me.lblServicio.TabIndex = 39
+        '
+        'lblCliente
+        '
+        Me.lblCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCliente.Image = Global.Atila.My.Resources.Resources.icono_cliente
+        Me.lblCliente.Location = New System.Drawing.Point(31, 339)
+        Me.lblCliente.Name = "lblCliente"
+        Me.lblCliente.Size = New System.Drawing.Size(38, 38)
+        Me.lblCliente.TabIndex = 40
+        '
+        'lblSeña
+        '
+        Me.lblSeña.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSeña.Image = Global.Atila.My.Resources.Resources.icono_seña
+        Me.lblSeña.Location = New System.Drawing.Point(21, 382)
+        Me.lblSeña.Name = "lblSeña"
+        Me.lblSeña.Size = New System.Drawing.Size(50, 50)
+        Me.lblSeña.TabIndex = 41
         '
         'ListadeReservas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(964, 735)
-        Me.Controls.Add(Me.lbl)
         Me.Controls.Add(Me.lblCosasUtilizar)
         Me.Controls.Add(Me.dgvUtiliza)
         Me.Controls.Add(Me.lblEditandoReservas)
@@ -671,7 +641,6 @@ Partial Class ListadeReservas
         Me.Controls.Add(Me.btnCancelarReserva)
         Me.Controls.Add(Me.pnlSiNoSePago)
         Me.Controls.Add(Me.cboReservasEnElDia)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Calendario)
         Me.Controls.Add(Me.lblNoHayReservas)
         Me.Controls.Add(Me.lblFechaSeleccionada)
@@ -698,7 +667,6 @@ Partial Class ListadeReservas
     Friend WithEvents lblFechaSeleccionada As System.Windows.Forms.Label
     Friend WithEvents lblFiestasReservadasParaEl As System.Windows.Forms.Label
     Friend WithEvents Calendario As System.Windows.Forms.MonthCalendar
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents lblMotivo As System.Windows.Forms.Label
     Friend WithEvents lblFecha As System.Windows.Forms.Label
     Friend WithEvents lblHora As System.Windows.Forms.Label
@@ -748,6 +716,5 @@ Partial Class ListadeReservas
     Friend WithEvents lblImprevisto As System.Windows.Forms.Label
     Friend WithEvents lblNota As System.Windows.Forms.Label
     Friend WithEvents lblMostrarNota As System.Windows.Forms.Label
-    Friend WithEvents lbl As System.Windows.Forms.Label
     Friend WithEvents btnExpandir As System.Windows.Forms.Button
 End Class

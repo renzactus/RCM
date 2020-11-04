@@ -151,7 +151,8 @@
                 lblImprevisto.Enabled = True
             End If
 
-            mysql.Consultar("select descripcion,utiliza.cantidad from utiliza inner join inventario on utiliza.ID_INVENTARIO=inventario.ID_INVENTARIO where id_reserva=" & datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
+            mysql.Consultar("select descripcion,utiliza.cantidad from utiliza inner join inventario on utiliza.ID_INVENTARIO=inventario.ID_INVENTARIO where id_reserva=" &
+                            datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
             For i = 0 To mysql.Resultado.Rows.Count - 1
                 dgvUtiliza.Rows.Add(mysql.Resultado.Rows(i).Item("descripcion"), mysql.Resultado.Rows(i).Item("cantidad"))
             Next
@@ -406,12 +407,6 @@
     Private Sub btnSurgioImprevisto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSurgioImprevisto.Click
         AlmacenarImprevisto(datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
     End Sub
-
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        lbl.Text = "asdas" & vbNewLine & "aa"
-    End Sub
-
-    
     
     Private Sub btnGuardarFecha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardarFecha.Click
         consultarChequearSiLaHoraEstaOcupada()
@@ -454,4 +449,5 @@
     Private Sub btnExpandir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExpandir.Click
         MsgBox(datosReserva.Rows(FilaNumero).Item("nota"))
     End Sub
+
 End Class

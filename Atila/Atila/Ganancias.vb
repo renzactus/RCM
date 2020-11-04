@@ -5,11 +5,15 @@ Public Class Ganancias
     Dim booleanNoPrimeraActMensual As Boolean
     Dim ReservasoGananciasAñoAnterior, ReservasoGananciasAñoSeleccionado As String 'Año
     Private Sub Ganancias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        
         actualizarAñosConReserva()
         crearSeriesParaAnual()
         crearSeriesParaMeses()
         Grafica.ChartAreas(0).AxisX.LabelStyle.Angle = 25
         Grafica.ChartAreas(0).AxisX.LabelStyle.Font = New Font("Arial", 11)
+        cboSeleccionar.SelectedIndex = 1
+        cboAño.SelectedIndex = 0
+        cboMes.SelectedIndex = DateTime.Now.Month - 1
     End Sub
     'Otro
     Private Sub actualizarAñosConReserva()
