@@ -370,6 +370,15 @@
   <ItemGroup>
     <None Include="bin\Debug\pagar_Reserv.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Portada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\lista-de-fiestas-reservadas_0032_Capa-13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\icono_desplegador_rotado.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

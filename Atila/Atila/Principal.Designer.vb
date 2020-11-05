@@ -58,9 +58,15 @@ Partial Class Principal
         Me.pnlApartadoSeleccionado = New System.Windows.Forms.Panel()
         Me.Atila = New System.Windows.Forms.Label()
         Me.pnlConfiguracion = New System.Windows.Forms.Panel()
+        Me.btnCerrarSesion = New System.Windows.Forms.Button()
         Me.btnInventario = New System.Windows.Forms.Button()
         Me.btnCostos = New System.Windows.Forms.Button()
-        Me.timer = New System.Windows.Forms.Timer(Me.components)
+        Me.timerMostrarConfiguracion = New System.Windows.Forms.Timer(Me.components)
+        Me.timerOcultarConfiguracion = New System.Windows.Forms.Timer(Me.components)
+        Me.timerMostrarNotificacion = New System.Windows.Forms.Timer(Me.components)
+        Me.timerOcultarNotificacion = New System.Windows.Forms.Timer(Me.components)
+        Me.lblDesplegadorNormal = New System.Windows.Forms.Label()
+        Me.lblDesplegadorAbajo = New System.Windows.Forms.Label()
         Me.btnConfiguracion = New System.Windows.Forms.Button()
         Me.btnGanancias = New System.Windows.Forms.Button()
         Me.btnClientes = New System.Windows.Forms.Button()
@@ -98,10 +104,11 @@ Partial Class Principal
         'lblCantidadDeNotificaciones
         '
         Me.lblCantidadDeNotificaciones.AutoSize = True
+        Me.lblCantidadDeNotificaciones.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCantidadDeNotificaciones.ForeColor = System.Drawing.Color.Red
         Me.lblCantidadDeNotificaciones.Location = New System.Drawing.Point(1411, 7)
         Me.lblCantidadDeNotificaciones.Name = "lblCantidadDeNotificaciones"
-        Me.lblCantidadDeNotificaciones.Size = New System.Drawing.Size(19, 13)
+        Me.lblCantidadDeNotificaciones.Size = New System.Drawing.Size(19, 14)
         Me.lblCantidadDeNotificaciones.TabIndex = 29
         Me.lblCantidadDeNotificaciones.Text = "+9"
         '
@@ -109,7 +116,7 @@ Partial Class Principal
         '
         Me.lblPerfil.AutoSize = True
         Me.lblPerfil.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPerfil.Location = New System.Drawing.Point(766, 4)
+        Me.lblPerfil.Location = New System.Drawing.Point(1258, 11)
         Me.lblPerfil.Name = "lblPerfil"
         Me.lblPerfil.Size = New System.Drawing.Size(130, 18)
         Me.lblPerfil.TabIndex = 21
@@ -429,6 +436,8 @@ Partial Class Principal
         '
         'pnlMenu
         '
+        Me.pnlMenu.Controls.Add(Me.lblDesplegadorNormal)
+        Me.pnlMenu.Controls.Add(Me.lblDesplegadorAbajo)
         Me.pnlMenu.Controls.Add(Me.pnlApartadoSeleccionado)
         Me.pnlMenu.Controls.Add(Me.Atila)
         Me.pnlMenu.Controls.Add(Me.pnlConfiguracion)
@@ -464,12 +473,29 @@ Partial Class Principal
         '
         'pnlConfiguracion
         '
+        Me.pnlConfiguracion.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(207, Byte), Integer), CType(CType(197, Byte), Integer))
+        Me.pnlConfiguracion.Controls.Add(Me.btnCerrarSesion)
         Me.pnlConfiguracion.Controls.Add(Me.btnInventario)
         Me.pnlConfiguracion.Controls.Add(Me.btnCostos)
-        Me.pnlConfiguracion.Location = New System.Drawing.Point(90, 672)
+        Me.pnlConfiguracion.Location = New System.Drawing.Point(82, 671)
         Me.pnlConfiguracion.Name = "pnlConfiguracion"
-        Me.pnlConfiguracion.Size = New System.Drawing.Size(144, 51)
+        Me.pnlConfiguracion.Size = New System.Drawing.Size(248, 82)
         Me.pnlConfiguracion.TabIndex = 22
+        Me.pnlConfiguracion.Visible = False
+        '
+        'btnCerrarSesion
+        '
+        Me.btnCerrarSesion.FlatAppearance.BorderSize = 0
+        Me.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrarSesion.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.btnCerrarSesion.Location = New System.Drawing.Point(0, 51)
+        Me.btnCerrarSesion.Name = "btnCerrarSesion"
+        Me.btnCerrarSesion.Size = New System.Drawing.Size(248, 27)
+        Me.btnCerrarSesion.TabIndex = 38
+        Me.btnCerrarSesion.Text = "Cerrar sesión"
+        Me.btnCerrarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCerrarSesion.UseVisualStyleBackColor = True
         '
         'btnInventario
         '
@@ -479,7 +505,7 @@ Partial Class Principal
         Me.btnInventario.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.btnInventario.Location = New System.Drawing.Point(0, 25)
         Me.btnInventario.Name = "btnInventario"
-        Me.btnInventario.Size = New System.Drawing.Size(144, 26)
+        Me.btnInventario.Size = New System.Drawing.Size(248, 26)
         Me.btnInventario.TabIndex = 37
         Me.btnInventario.Text = "Inventario"
         Me.btnInventario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -493,16 +519,43 @@ Partial Class Principal
         Me.btnCostos.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.btnCostos.Location = New System.Drawing.Point(0, 0)
         Me.btnCostos.Name = "btnCostos"
-        Me.btnCostos.Size = New System.Drawing.Size(144, 26)
+        Me.btnCostos.Size = New System.Drawing.Size(248, 26)
         Me.btnCostos.TabIndex = 36
         Me.btnCostos.Text = "Costos"
         Me.btnCostos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCostos.UseVisualStyleBackColor = True
         '
-        'timer
+        'timerMostrarConfiguracion
         '
-        Me.timer.Enabled = True
-        Me.timer.Interval = 12000
+        Me.timerMostrarConfiguracion.Interval = 5
+        '
+        'timerOcultarConfiguracion
+        '
+        Me.timerOcultarConfiguracion.Interval = 5
+        '
+        'timerMostrarNotificacion
+        '
+        Me.timerMostrarNotificacion.Interval = 5
+        '
+        'timerOcultarNotificacion
+        '
+        Me.timerOcultarNotificacion.Interval = 5
+        '
+        'lblDesplegadorNormal
+        '
+        Me.lblDesplegadorNormal.Image = Global.Atila.My.Resources.Resources.icono_desplegador_rotado
+        Me.lblDesplegadorNormal.Location = New System.Drawing.Point(59, 636)
+        Me.lblDesplegadorNormal.Name = "lblDesplegadorNormal"
+        Me.lblDesplegadorNormal.Size = New System.Drawing.Size(23, 11)
+        Me.lblDesplegadorNormal.TabIndex = 39
+        '
+        'lblDesplegadorAbajo
+        '
+        Me.lblDesplegadorAbajo.Image = Global.Atila.My.Resources.Resources.lista_de_fiestas_reservadas_0032_Capa_13
+        Me.lblDesplegadorAbajo.Location = New System.Drawing.Point(59, 636)
+        Me.lblDesplegadorAbajo.Name = "lblDesplegadorAbajo"
+        Me.lblDesplegadorAbajo.Size = New System.Drawing.Size(23, 11)
+        Me.lblDesplegadorAbajo.TabIndex = 38
         '
         'btnConfiguracion
         '
@@ -516,7 +569,7 @@ Partial Class Principal
         Me.btnConfiguracion.Name = "btnConfiguracion"
         Me.btnConfiguracion.Size = New System.Drawing.Size(322, 60)
         Me.btnConfiguracion.TabIndex = 35
-        Me.btnConfiguracion.Text = "  Configuracion"
+        Me.btnConfiguracion.Text = "    Configuracion"
         Me.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnConfiguracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnConfiguracion.UseVisualStyleBackColor = True
@@ -714,7 +767,7 @@ Partial Class Principal
     Friend WithEvents lblCantidadDeNotificaciones As System.Windows.Forms.Label
     Friend WithEvents pnlMenu As System.Windows.Forms.Panel
     Friend WithEvents pbLogoAtilaGrande As System.Windows.Forms.PictureBox
-    Friend WithEvents timer As System.Windows.Forms.Timer
+    Friend WithEvents timerMostrarConfiguracion As System.Windows.Forms.Timer
     Friend WithEvents btnReservar As System.Windows.Forms.Button
     Friend WithEvents btnConfiguracion As System.Windows.Forms.Button
     Friend WithEvents btnGanancias As System.Windows.Forms.Button
@@ -729,5 +782,11 @@ Partial Class Principal
     Friend WithEvents lblNotificacion2Texto As System.Windows.Forms.Label
     Friend WithEvents Atila As System.Windows.Forms.Label
     Friend WithEvents pnlApartadoSeleccionado As System.Windows.Forms.Panel
+    Friend WithEvents btnCerrarSesion As System.Windows.Forms.Button
+    Friend WithEvents timerOcultarConfiguracion As System.Windows.Forms.Timer
+    Friend WithEvents timerMostrarNotificacion As System.Windows.Forms.Timer
+    Friend WithEvents timerOcultarNotificacion As System.Windows.Forms.Timer
+    Friend WithEvents lblDesplegadorAbajo As System.Windows.Forms.Label
+    Friend WithEvents lblDesplegadorNormal As System.Windows.Forms.Label
 
 End Class

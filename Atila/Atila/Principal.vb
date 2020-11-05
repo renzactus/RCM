@@ -46,7 +46,6 @@ Public Class Principal
     'Menu
     Private Sub AbrirFormEnPanel(Of Miform As {Form, New})(ByVal Boton As Button)
         Dim Formulario As Form
-        pnlApartadoSeleccionado.Location = New Point(pnlApartadoSeleccionado.Location.X, Boton.Location.Y)
         Formulario = pnlMostrador.Controls.OfType(Of Miform)().FirstOrDefault() 'Busca el formulario en la coleccion'
         'Si form no fue econtrado/ no existe'
         If Formulario Is Nothing Then
@@ -94,9 +93,13 @@ Public Class Principal
         If pnlCuadroNotificaciones.Visible = False Then
             pnlCuadroNotificaciones.BringToFront()
             pnlCuadroNotificaciones.Visible = True
+            pnlCuadroNotificaciones.Height = 1
+            btnNotificaciones.Enabled = False
+            timerMostrarNotificacion.Enabled = True
             'pnlCuadroNotificaciones.Location = New Point(618, 29)
         Else
-            pnlCuadroNotificaciones.Visible = False
+            btnNotificaciones.Enabled = False
+            timerOcultarNotificacion.Enabled = True
         End If
 
     End Sub
@@ -296,29 +299,61 @@ Public Class Principal
         Me.ToolTip1.SetToolTip(btnAyuda, "Ante cualquier duda llamar a 091111111")
     End Sub
 
-    Private Sub timer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timer.Tick
-        'Vaciar todos los datos si esta en afk
-    End Sub
+    
 
     Private Sub btnReservar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReservar.Click
         AbrirFormEnPanel(Of Reservar)(sender)
+        pnlApartadoSeleccionado.Location = New Point(pnlApartadoSeleccionado.Location.X, btnReservar.Location.Y)
     End Sub
 
     Private Sub btnReservas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReservas.Click
         AbrirFormEnPanel(Of ListadeReservas)(sender)
+        pnlApartadoSeleccionado.Location = New Point(pnlApartadoSeleccionado.Location.X, btnReservas.Location.Y)
         ReiniciarListaReservas()
     End Sub
 
     Private Sub btnClientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClientes.Click
         AbrirFormEnPanel(Of Clientes)(sender)
+        pnlApartadoSeleccionado.Location = New Point(pnlApartadoSeleccionado.Location.X, btnClientes.Location.Y)
     End Sub
 
     Private Sub btnGanancias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGanancias.Click
         AbrirFormEnPanel(Of Ganancias)(sender)
+        pnlApartadoSeleccionado.Location = New Point(pnlApartadoSeleccionado.Location.X, btnGanancias.Location.Y)
     End Sub
 
     Private Sub btnConfiguracion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfiguracion.Click
+        pnlApartadoSeleccionado.Location = New Point(pnlApartadoSeleccionado.Location.X, btnConfiguracion.Location.Y)
+        If pnlConfiguracion.Visible = False Then
+            lblDesplegadorNormal.Visible = False
+            lblDesplegadorAbajo.BackColor = Color.FromArgb(215, 207, 197)
+            pnlConfiguracion.Height = 1
+            btnConfiguracion.Enabled = False
+            timerMostrarConfiguracion.Enabled = True
+            btnConfiguracion.BackColor = Color.FromArgb(215, 207, 197)
+            pnlConfiguracion.Visible = True
+        Else
+            lblDesplegadorNormal.Visible = True
+            btnConfiguracion.Enabled = False
+            timerOcultarConfiguracion.Enabled = True
+            btnConfiguracion.BackColor = Color.FromArgb(239, 231, 220)
+        End If
+    End Sub
+    Private Sub timerMostrarConfiguracion_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerMostrarConfiguracion.Tick
+        pnlConfiguracion.Height = pnlConfiguracion.Height + 2
+        If pnlConfiguracion.Height > 82 Then
+            timerMostrarConfiguracion.Enabled = False
+            btnConfiguracion.Enabled = True
+        End If
+    End Sub
 
+    Private Sub timerOcultarConfiguracion_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerOcultarConfiguracion.Tick
+        pnlConfiguracion.Height = pnlConfiguracion.Height - 2
+        If pnlConfiguracion.Height < 3 Then
+            timerOcultarConfiguracion.Enabled = False
+            pnlConfiguracion.Visible = False
+            btnConfiguracion.Enabled = True
+        End If
     End Sub
 
     Private Sub btnCostos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCostos.Click
@@ -329,8 +364,38 @@ Public Class Principal
         AbrirFormEnPanel(Of Inventario)(sender)
     End Sub
 
-    
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub btnCerrarSesion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrarSesion.Click
+        If MsgBox("¿Seguro que quiere cerrar su sesión?", vbYesNo, "Atención!") = vbYes Then
 
+            Dim login As New Login
+            login.Show()
+            Me.Dispose()
+            Reservar.Dispose()
+            ListadeReservas.Dispose()
+            Ganancias.Dispose()
+            Clientes.Dispose()
+            Costos.Dispose()
+            Inventario.Dispose()
+
+        Else
+
+        End If
+    End Sub
+
+    Private Sub timerMostrarNotificacion_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerMostrarNotificacion.Tick
+        pnlCuadroNotificaciones.Height = pnlCuadroNotificaciones.Height + 9
+        If pnlCuadroNotificaciones.Height > 460 Then
+            timerMostrarNotificacion.Enabled = False
+            btnNotificaciones.Enabled = True
+        End If
+    End Sub
+
+    Private Sub timerOcultarNotificacion_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerOcultarNotificacion.Tick
+        pnlCuadroNotificaciones.Height = pnlCuadroNotificaciones.Height - 9
+        If pnlCuadroNotificaciones.Height < 10 Then
+            timerOcultarNotificacion.Enabled = False
+            pnlCuadroNotificaciones.Visible = False
+            btnNotificaciones.Enabled = True
+        End If
     End Sub
 End Class

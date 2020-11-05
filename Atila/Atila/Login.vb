@@ -6,6 +6,37 @@ Public Class Login
     Dim bmp As Bitmap
     Dim sumadeopacidad As Double
     Dim imagen As Image
+    
+
+    Private Sub Login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR DE LA CLASE
+        EstablecerColores()
+        timerChequearMayusculaActivada.Enabled = True
+        imagen = pibAnimacion.Image 'ASIGNAMOS A imagen LA IMAGEN QUE TRAE pibAnimacion POR DEFECTO
+        sumadeopacidad = 0.005 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO
+        tmrCambiandoOpacidad.Enabled = True 'COMENZAMOS EL TIMER
+        'Cambiando colores
+        btnLogin.BackColor = Principal.colorTerceario
+        btnCancelar.BackColor = Principal.colorTerceario
+        btnLogin.ForeColor = Color.FromArgb(105, 105, 105)
+        btnCancelar.ForeColor = Color.FromArgb(105, 105, 105)
+        'Asignando otras cosas
+        If My.Settings.Recodar = True Then
+            txtCedula.Text = My.Settings.Cedula
+            txtContraseña.Text = My.Settings.Contraseña
+            chkRecordarSesion.Checked = My.Settings.Recodar
+            txtCedula.ForeColor = Color.FromArgb(105, 105, 105)
+            txtContraseña.ForeColor = Color.FromArgb(105, 105, 105)
+            txtContraseña.PasswordChar = "•"
+        End If
+    End Sub
+    'Diseño
+    Private Sub EstablecerColores()
+        pnlBarra.BackColor = Principal.colorTerceario
+        lblnroCedula.ForeColor = Principal.colorTitulos
+        lblContraseña.ForeColor = Principal.colorTitulos
+        chkRecordarSesion.ForeColor = Principal.colorTitulos
+    End Sub
+    'Metodos
     Public Function CambiarOpacidad(ByVal img As Image, ByVal opacityvalue As Single) As Bitmap 'FUNCION PARA CAMBIAR OPACIDAD DE IMAGEN
         bmp = New Bitmap(img.Width, img.Height)
         Dim graphics__1 As Graphics = Graphics.FromImage(bmp)
@@ -18,27 +49,6 @@ Public Class Login
         graphics__1.Dispose()
         Return bmp
     End Function
-
-    Private Sub Login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 'CONSTRUCTOR DE LA CLASE
-        timerChequearMayusculaActivada.Enabled = True
-        imagen = pibAnimacion.Image 'ASIGNAMOS A imagen LA IMAGEN QUE TRAE pibAnimacion POR DEFECTO
-        sumadeopacidad = 0.005 'ASIGNAMOS UN VALOR DE OPACIDAD QUE LUEGO SE IRA INCREMENTANDO
-        tmrCambiandoOpacidad.Enabled = True 'COMENZAMOS EL TIMER
-        'Cambiando colores
-        btnLogin.BackColor = Principal.colorTerceario
-        btnLogin.ForeColor = Color.FromArgb(105, 105, 105)
-        LineShape1.BorderColor = Color.FromArgb(105, 105, 105)
-        LineShape2.BorderColor = Color.FromArgb(105, 105, 105)
-        'Asignando otras cosas
-        If My.Settings.Recodar = True Then
-            txtCedula.Text = My.Settings.Cedula
-            txtContraseña.Text = My.Settings.Contraseña
-            chkRecordarSesion.Checked = My.Settings.Recodar
-            txtCedula.ForeColor = Color.FromArgb(105, 105, 105)
-            txtContraseña.ForeColor = Color.FromArgb(105, 105, 105)
-            txtContraseña.PasswordChar = "•"
-        End If
-    End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrCambiandoOpacidad.Tick
         If sumadeopacidad < 1 Then
@@ -73,7 +83,6 @@ Public Class Login
                     End If
 
                     Principal.lblPerfil.Text = mysql.Resultado.Rows(0).Item("nombre")
-                    MessageBox.Show("Bienvenido al Sistema " & Principal.lblPerfil.Text, "Sistema")
                     Principal.Show()
                     timerChequearMayusculaActivada.Enabled = False
                     Me.Hide()
@@ -151,5 +160,14 @@ Public Class Login
 
     Private Sub btnMinimizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMinimizar.Click
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub btnCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelar.Click
+        End
+    End Sub
+
+    Private Sub pnlBarra_MouseMove(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pnlBarra.MouseMove
+        Principal.ReleaseCapture()
+        Principal.SendMessage(Me.Handle, &H112&, &HF012&, 0)
     End Sub
 End Class
