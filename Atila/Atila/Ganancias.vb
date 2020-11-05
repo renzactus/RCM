@@ -5,15 +5,22 @@ Public Class Ganancias
     Dim booleanNoPrimeraActMensual As Boolean
     Dim ReservasoGananciasAñoAnterior, ReservasoGananciasAñoSeleccionado As String 'Año
     Private Sub Ganancias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        
+        EstablecerColores()
         actualizarAñosConReserva()
         crearSeriesParaAnual()
         crearSeriesParaMeses()
         Grafica.ChartAreas(0).AxisX.LabelStyle.Angle = 25
         Grafica.ChartAreas(0).AxisX.LabelStyle.Font = New Font("Arial", 11)
-        cboSeleccionar.SelectedIndex = 1
+        cboSeleccionar.SelectedIndex = 0
         cboAño.SelectedIndex = 0
-        cboMes.SelectedIndex = DateTime.Now.Month - 1
+    End Sub
+    Private Sub EstablecerColores()
+        Me.BackColor = Principal.colorSecundario
+        Grafica.BackColor = Principal.colorSecundario
+        lblTotal.ForeColor = Principal.colorTitulos
+        lblGananciasEstadisticas.ForeColor = Principal.colorTitulos
+        btnAlternar.BackColor = Principal.colorTitulos
+        lblTotal.ForeColor = Principal.colorTitulos
     End Sub
     'Otro
     Private Sub actualizarAñosConReserva()
@@ -28,13 +35,13 @@ Public Class Ganancias
         ReservasoGananciasAñoSeleccionado = "x2"
         Grafica.Series.Add(ReservasoGananciasAñoSeleccionado)
         Grafica.Series.Add(ReservasoGananciasAñoAnterior)
-        Grafica.Series(ReservasoGananciasAñoSeleccionado).Color = Color.Maroon
-        Grafica.Series(ReservasoGananciasAñoAnterior).Color = Color.Blue
+        Grafica.Series(ReservasoGananciasAñoSeleccionado).Color = Color.FromArgb(233, 100, 67)
+        Grafica.Series(ReservasoGananciasAñoAnterior).Color = Color.FromArgb(0, 172, 234)
     End Sub
     Private Sub crearSeriesParaMeses()
         For i = 1 To 12
                 Grafica.Series.Add("xm" & i)
-            Grafica.Series("xm" & i).Color = Color.Cyan
+            Grafica.Series("xm" & i).Color = Color.FromArgb(4, 242, 122)
             Grafica.Series("xm" & i).IsVisibleInLegend = False
             Grafica.Series("xm" & i).ToolTip = MonthName(i)
         Next
@@ -66,9 +73,9 @@ Public Class Ganancias
             mysql.Consultar("select sum(costo) from pagos inner join reservas on reservas.ID_RESERVA=pagos.ID_RESERVA where year(fecha)=" & cboAño.Text &
                             " and fecha_cancelacion is null").rows(0).item("sum(costo)")
             If IsDBNull(mysql.Resultado.Rows(0).Item("sum(costo)")) Then
-                lblMostrarTotal.Text = 0
+                lblMostrarTotal.Text = "$" & 0
             Else
-                lblMostrarTotal.Text = mysql.Resultado.Rows(0).Item("sum(costo)")
+                lblMostrarTotal.Text = "$" & String.Format("{0:N0}", mysql.Resultado.Rows(0).Item("sum(costo)"))
             End If
         End If
 
@@ -139,9 +146,9 @@ Public Class Ganancias
             mysql.Consultar("select sum(costo) from pagos inner join reservas on reservas.ID_RESERVA=pagos.ID_RESERVA where year(fecha)=" &
                                                    cboAño.Text & " and month(fecha)=" & cboMes.SelectedIndex + 1 & " and fecha_cancelacion is null").rows(0).item("sum(costo)")
             If IsDBNull(mysql.Resultado.Rows(0).Item("sum(costo)")) Then
-                lblMostrarTotal.Text = 0
+                lblMostrarTotal.Text = "$" & 0
             Else
-                lblMostrarTotal.Text = String.Format("{0:N0}", mysql.Resultado(0).Item("sum(costo)"))
+                lblMostrarTotal.Text = "$" & String.Format("{0:N0}", mysql.Resultado(0).Item("sum(costo)"))
             End If
             
         End If
@@ -200,12 +207,14 @@ Public Class Ganancias
         If cboSeleccionar.SelectedIndex = 0 Or cboSeleccionar.SelectedIndex = 3 Then
             cboMes.Visible = False
             lblMes.Visible = False
+            pbMes.Visible = False
 
             lblAño.Visible = True
             cboAño.Visible = True
         ElseIf cboSeleccionar.SelectedIndex = 1 Or cboSeleccionar.SelectedIndex = 2 Then
             cboMes.Visible = True
             lblMes.Visible = True
+            pbMes.Visible = True
 
             lblAño.Visible = True
             cboAño.Visible = True

@@ -26,6 +26,11 @@
         btnEditarPrecioFiesta.ForeColor = Principal.colorTitulos
         btnSurgioImprevisto.ForeColor = Principal.colorTitulos
         btnCancelarReserva.ForeColor = Principal.colorTitulos
+        dgvUtiliza.BackgroundColor = Principal.colorTerceario
+        btnEditarFecha.ForeColor = Principal.colorTitulos
+        btnGuardarFecha.ForeColor = Principal.colorTitulos
+        btnCancelarFecha.ForeColor = Principal.colorTitulos
+        btnExpandir.ForeColor = Principal.colorTitulos
 
     End Sub
     'Metodos utilizados
