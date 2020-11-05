@@ -6,9 +6,19 @@
     Dim datosInventario As DataTable
     'Constructor
     Private Sub Inventario_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        EstablecerColores()
         MostrarInventarioEndgv()
         btnEditarCantidad.Enabled = False
         btnBorrar.Enabled = False
+    End Sub
+
+    Private Sub EstablecerColores()
+        Me.BackColor = Principal.colorSecundario
+        lblInventario.ForeColor = Principal.colorTitulos
+        btnAgregarDatos.ForeColor = Principal.colorTitulos
+        btnEditarCantidad.ForeColor = Principal.colorTitulos
+        btnBorrar.ForeColor = Principal.colorTitulos
+        dgvInventario.BackgroundColor = Principal.colorTerceario
     End Sub
     'Metodos Utilizados
     Private Sub MostrarInventarioEndgv()
@@ -108,7 +118,7 @@
     End Sub
 
     Private Sub btnBorrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBorrar.Click
-            borrarInventario()
+        borrarInventario()
     End Sub
 
     Private Sub btnBorrar_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles btnBorrar.Validating
