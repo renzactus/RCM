@@ -428,6 +428,7 @@ Partial Class Clientes
         '
         'btnCancelarDinero
         '
+        Me.btnCancelarDinero.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelarDinero.Enabled = False
         Me.btnCancelarDinero.FlatAppearance.BorderSize = 0
         Me.btnCancelarDinero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -440,6 +441,7 @@ Partial Class Clientes
         '
         'btnEditarDinero
         '
+        Me.btnEditarDinero.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEditarDinero.Enabled = False
         Me.btnEditarDinero.FlatAppearance.BorderSize = 0
         Me.btnEditarDinero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -452,6 +454,7 @@ Partial Class Clientes
         '
         'btnGuardarDinero
         '
+        Me.btnGuardarDinero.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardarDinero.Enabled = False
         Me.btnGuardarDinero.FlatAppearance.BorderSize = 0
         Me.btnGuardarDinero.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -485,7 +488,7 @@ Partial Class Clientes
         '
         'btnGuardarCliente
         '
-        Me.btnGuardarCliente.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnGuardarCliente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardarCliente.FlatAppearance.BorderSize = 0
         Me.btnGuardarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuardarCliente.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -600,7 +603,7 @@ Partial Class Clientes
         '
         'btnEditarCliente
         '
-        Me.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEditarCliente.FlatAppearance.BorderSize = 0
         Me.btnEditarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarCliente.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -614,7 +617,7 @@ Partial Class Clientes
         '
         'btnCancelarEdicion
         '
-        Me.btnCancelarEdicion.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnCancelarEdicion.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelarEdicion.FlatAppearance.BorderSize = 0
         Me.btnCancelarEdicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelarEdicion.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -765,6 +768,7 @@ Partial Class Clientes
         Me.Controls.Add(Me.pbFiltrarNombre)
         Me.Controls.Add(Me.pbFiltrarCedula)
         Me.Controls.Add(Me.pbFiltrarTelefono)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Clientes"
         Me.Text = "Clientes"

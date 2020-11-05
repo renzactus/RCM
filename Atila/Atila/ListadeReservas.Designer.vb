@@ -217,6 +217,7 @@ Partial Class ListadeReservas
         '
         'btnExpandir
         '
+        Me.btnExpandir.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnExpandir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExpandir.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExpandir.Location = New System.Drawing.Point(254, 105)
@@ -267,6 +268,7 @@ Partial Class ListadeReservas
         '
         'dtpFecha
         '
+        Me.dtpFecha.Cursor = System.Windows.Forms.Cursors.Hand
         Me.dtpFecha.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpFecha.Location = New System.Drawing.Point(91, 187)
@@ -406,6 +408,7 @@ Partial Class ListadeReservas
         '
         'btnEditarPrecioFiesta
         '
+        Me.btnEditarPrecioFiesta.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEditarPrecioFiesta.FlatAppearance.BorderSize = 0
         Me.btnEditarPrecioFiesta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarPrecioFiesta.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -431,6 +434,7 @@ Partial Class ListadeReservas
         '
         'btnPagar
         '
+        Me.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnPagar.FlatAppearance.BorderSize = 0
         Me.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPagar.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -447,6 +451,7 @@ Partial Class ListadeReservas
         '
         'btnCancelarReserva
         '
+        Me.btnCancelarReserva.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelarReserva.FlatAppearance.BorderSize = 0
         Me.btnCancelarReserva.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelarReserva.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -460,6 +465,7 @@ Partial Class ListadeReservas
         '
         'btnSurgioImprevisto
         '
+        Me.btnSurgioImprevisto.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSurgioImprevisto.FlatAppearance.BorderSize = 0
         Me.btnSurgioImprevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSurgioImprevisto.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -473,6 +479,7 @@ Partial Class ListadeReservas
         '
         'btnGuardarFecha
         '
+        Me.btnGuardarFecha.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardarFecha.FlatAppearance.BorderSize = 0
         Me.btnGuardarFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuardarFecha.Location = New System.Drawing.Point(400, 301)
@@ -485,6 +492,7 @@ Partial Class ListadeReservas
         '
         'btnEditarFecha
         '
+        Me.btnEditarFecha.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEditarFecha.FlatAppearance.BorderSize = 0
         Me.btnEditarFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarFecha.Location = New System.Drawing.Point(356, 301)
@@ -508,6 +516,7 @@ Partial Class ListadeReservas
         '
         'btnCancelarFecha
         '
+        Me.btnCancelarFecha.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelarFecha.FlatAppearance.BorderSize = 0
         Me.btnCancelarFecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelarFecha.Location = New System.Drawing.Point(356, 301)
@@ -651,6 +660,7 @@ Partial Class ListadeReservas
         Me.Controls.Add(Me.btnCancelarFecha)
         Me.Controls.Add(Me.pbCalendario)
         Me.Controls.Add(Me.pbReservasEnELDIa)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "ListadeReservas"
         Me.Text = "ListadeReservas"

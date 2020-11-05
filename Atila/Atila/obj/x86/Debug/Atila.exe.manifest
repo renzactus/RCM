@@ -52,14 +52,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Atila.exe" size="774144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Atila.exe" size="774656">
       <assemblyIdentity name="Atila" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>9SVnv91IgP5JC3uYj8ezzD0fc+c=</dsig:DigestValue>
+        <dsig:DigestValue>5pwtT4zv9NpQk+TOuNfbpOGcIiU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

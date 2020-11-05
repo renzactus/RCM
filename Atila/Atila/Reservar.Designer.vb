@@ -138,7 +138,7 @@ Partial Class Reservar
         '
         'btnAgregarDatos
         '
-        Me.btnAgregarDatos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnAgregarDatos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAgregarDatos.FlatAppearance.BorderSize = 0
         Me.btnAgregarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarDatos.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -223,7 +223,7 @@ Partial Class Reservar
         '
         'btnAgregarTelefonos
         '
-        Me.btnAgregarTelefonos.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnAgregarTelefonos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAgregarTelefonos.FlatAppearance.BorderSize = 0
         Me.btnAgregarTelefonos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarTelefonos.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -487,7 +487,7 @@ Partial Class Reservar
         '
         'btnGuardarCliente
         '
-        Me.btnGuardarCliente.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnGuardarCliente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardarCliente.FlatAppearance.BorderSize = 0
         Me.btnGuardarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuardarCliente.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -566,6 +566,7 @@ Partial Class Reservar
         '
         'btnEditarPrecioFiesta
         '
+        Me.btnEditarPrecioFiesta.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEditarPrecioFiesta.FlatAppearance.BorderSize = 0
         Me.btnEditarPrecioFiesta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarPrecioFiesta.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -578,7 +579,7 @@ Partial Class Reservar
         '
         'btnEditarCliente
         '
-        Me.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEditarCliente.FlatAppearance.BorderSize = 0
         Me.btnEditarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarCliente.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -592,7 +593,7 @@ Partial Class Reservar
         '
         'btnCancelarEdicion
         '
-        Me.btnCancelarEdicion.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnCancelarEdicion.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelarEdicion.FlatAppearance.BorderSize = 0
         Me.btnCancelarEdicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelarEdicion.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1097,6 +1098,7 @@ Partial Class Reservar
         '
         'btnSiguiente
         '
+        Me.btnSiguiente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSiguiente.FlatAppearance.BorderSize = 0
         Me.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSiguiente.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

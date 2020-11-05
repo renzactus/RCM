@@ -36,6 +36,7 @@ Partial Class PagarReserva
         'btnPagar
         '
         Me.btnPagar.BackColor = System.Drawing.Color.Transparent
+        Me.btnPagar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnPagar.FlatAppearance.BorderSize = 0
         Me.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPagar.Font = New System.Drawing.Font("Arial", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -49,6 +50,7 @@ Partial Class PagarReserva
         'btnCancelar
         '
         Me.btnCancelar.BackColor = System.Drawing.Color.Transparent
+        Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelar.FlatAppearance.BorderSize = 0
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelar.Location = New System.Drawing.Point(211, 473)

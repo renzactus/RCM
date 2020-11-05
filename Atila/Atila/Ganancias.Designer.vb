@@ -104,6 +104,7 @@ Partial Class Ganancias
         '
         'btnAlternar
         '
+        Me.btnAlternar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAlternar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAlternar.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAlternar.Location = New System.Drawing.Point(55, 177)

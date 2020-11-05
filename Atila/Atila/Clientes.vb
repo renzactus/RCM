@@ -198,17 +198,18 @@
         dgvReservas.Rows.Clear()
         Dim cancelada As Boolean
         Dim Fecha As String
-        mysql.Consultar("select ID_RESERVA,motivo,fecha,cantidad_personas,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final,fecha_cancelacion " &
+        Dim datosReservasDeCli As DataTable
+        datosReservasDeCli = mysql.Consultar("select ID_RESERVA,motivo,fecha,cantidad_personas,time_format(comienzo,'%H:%i') as comienzo,time_format(final,'%H:%i') as final,fecha_cancelacion " &
                         "from reservas where ID_CLIENTE=" & DatosClientes.Rows(FilaNumero).Item("ID_CLIENTE") & " order by fecha desc")
-        For i = 0 To mysql.Resultado.Rows.Count - 1
-            Fecha = mysql.Resultado.Rows(i).Item("fecha")
-            If IsDBNull(mysql.Resultado.Rows(i).Item("fecha_cancelacion")) Then
+        For i = 0 To datosReservasDeCli.Rows.Count - 1
+            Fecha = datosReservasDeCli.Rows(i).Item("fecha")
+            If IsDBNull(datosReservasDeCli.Rows(i).Item("fecha_cancelacion")) Then
                 cancelada = False
             Else
                 cancelada = True
             End If
-            dgvReservas.Rows.Add(mysql.Resultado.Rows(i).Item("motivo"), Fecha, mysql.Resultado.Rows(i).Item("cantidad_personas"),
-                                 mysql.Resultado.Rows(FilaNumero).Item("comienzo").ToString & " - " & mysql.Resultado.Rows(FilaNumero).Item("final").ToString, cancelada)
+            dgvReservas.Rows.Add(datosReservasDeCli.Rows(i).Item("motivo"), Fecha, datosReservasDeCli.Rows(i).Item("cantidad_personas"),
+                                 datosReservasDeCli.Rows(i).Item("comienzo").ToString & " - " & datosReservasDeCli.Rows(i).Item("final").ToString, cancelada)
         Next
     End Sub
 
@@ -373,7 +374,6 @@
             txtCedula.Text = dgvClientes.Rows(FilaSeleccionada).Cells(0).Value
             AutorellenarClienteSiLaCedulaCoincide()
             vaciaryDesmarcarrbo()
-
         End If
 
     End Sub

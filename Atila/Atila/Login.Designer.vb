@@ -32,14 +32,14 @@ Partial Class Login
         Me.timerChequearMayusculaActivada = New System.Windows.Forms.Timer(Me.components)
         Me.pnlBarra = New System.Windows.Forms.Panel()
         Me.lblInicioDeSesion = New System.Windows.Forms.Label()
+        Me.btnAyuda = New System.Windows.Forms.Button()
+        Me.btnCerrar = New System.Windows.Forms.Button()
+        Me.btnMinimizar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
         Me.lblnroCedula = New System.Windows.Forms.Label()
         Me.lblContraseña = New System.Windows.Forms.Label()
         Me.pboMayusculas = New System.Windows.Forms.PictureBox()
         Me.pibAnimacion = New System.Windows.Forms.PictureBox()
-        Me.btnAyuda = New System.Windows.Forms.Button()
-        Me.btnCerrar = New System.Windows.Forms.Button()
-        Me.btnMinimizar = New System.Windows.Forms.Button()
         Me.pboLogoAtila = New System.Windows.Forms.PictureBox()
         Me.pnlBarra.SuspendLayout()
         CType(Me.pboMayusculas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +49,7 @@ Partial Class Login
         '
         'btnLogin
         '
+        Me.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLogin.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLogin.Location = New System.Drawing.Point(84, 516)
@@ -127,8 +128,50 @@ Partial Class Login
         Me.lblInicioDeSesion.TabIndex = 25
         Me.lblInicioDeSesion.Text = "Inicio de sesión en Atila"
         '
+        'btnAyuda
+        '
+        Me.btnAyuda.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAyuda.FlatAppearance.BorderSize = 0
+        Me.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAyuda.Image = Global.Atila.My.Resources.Resources.LOGO_PEQUEÑITO
+        Me.btnAyuda.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAyuda.Location = New System.Drawing.Point(3, 3)
+        Me.btnAyuda.Name = "btnAyuda"
+        Me.btnAyuda.Size = New System.Drawing.Size(51, 36)
+        Me.btnAyuda.TabIndex = 24
+        Me.btnAyuda.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCerrar.FlatAppearance.BorderSize = 0
+        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
+        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
+        Me.btnCerrar.Location = New System.Drawing.Point(607, 0)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(49, 43)
+        Me.btnCerrar.TabIndex = 20
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
+        'btnMinimizar
+        '
+        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMinimizar.FlatAppearance.BorderSize = 0
+        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
+        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
+        Me.btnMinimizar.Location = New System.Drawing.Point(562, 0)
+        Me.btnMinimizar.Name = "btnMinimizar"
+        Me.btnMinimizar.Size = New System.Drawing.Size(45, 43)
+        Me.btnMinimizar.TabIndex = 21
+        Me.btnMinimizar.UseVisualStyleBackColor = True
+        '
         'btnCancelar
         '
+        Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelar.Font = New System.Drawing.Font("Arial", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancelar.Location = New System.Drawing.Point(345, 516)
@@ -175,46 +218,6 @@ Partial Class Login
         Me.pibAnimacion.Size = New System.Drawing.Size(656, 655)
         Me.pibAnimacion.TabIndex = 28
         Me.pibAnimacion.TabStop = False
-        '
-        'btnAyuda
-        '
-        Me.btnAyuda.FlatAppearance.BorderSize = 0
-        Me.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAyuda.Image = Global.Atila.My.Resources.Resources.LOGO_PEQUEÑITO
-        Me.btnAyuda.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAyuda.Location = New System.Drawing.Point(3, 3)
-        Me.btnAyuda.Name = "btnAyuda"
-        Me.btnAyuda.Size = New System.Drawing.Size(51, 36)
-        Me.btnAyuda.TabIndex = 24
-        Me.btnAyuda.UseVisualStyleBackColor = True
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCerrar.FlatAppearance.BorderSize = 0
-        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
-        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
-        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
-        Me.btnCerrar.Location = New System.Drawing.Point(607, 0)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(49, 43)
-        Me.btnCerrar.TabIndex = 20
-        Me.btnCerrar.UseVisualStyleBackColor = True
-        '
-        'btnMinimizar
-        '
-        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMinimizar.FlatAppearance.BorderSize = 0
-        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
-        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray
-        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
-        Me.btnMinimizar.Location = New System.Drawing.Point(562, 0)
-        Me.btnMinimizar.Name = "btnMinimizar"
-        Me.btnMinimizar.Size = New System.Drawing.Size(45, 43)
-        Me.btnMinimizar.TabIndex = 21
-        Me.btnMinimizar.UseVisualStyleBackColor = True
         '
         'pboLogoAtila
         '

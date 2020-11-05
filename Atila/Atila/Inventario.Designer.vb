@@ -27,6 +27,8 @@ Partial Class Inventario
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnEditarCantidad = New System.Windows.Forms.Button()
         Me.btnAgregarDatos = New System.Windows.Forms.Button()
         Me.txtDescripcion = New System.Windows.Forms.TextBox()
@@ -35,8 +37,6 @@ Partial Class Inventario
         Me.nudCantidad = New System.Windows.Forms.NumericUpDown()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.btnBorrar = New System.Windows.Forms.Button()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblInventario = New System.Windows.Forms.Label()
         Me.pbDescripcion = New System.Windows.Forms.PictureBox()
         Me.pbCantidad = New System.Windows.Forms.PictureBox()
@@ -93,8 +93,25 @@ Partial Class Inventario
         Me.dgvInventario.Size = New System.Drawing.Size(494, 235)
         Me.dgvInventario.TabIndex = 23
         '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 300
+        '
+        'Cantidad
+        '
+        Me.Cantidad.Frozen = True
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 150
+        '
         'btnEditarCantidad
         '
+        Me.btnEditarCantidad.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnEditarCantidad.Enabled = False
         Me.btnEditarCantidad.FlatAppearance.BorderSize = 0
         Me.btnEditarCantidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -108,6 +125,7 @@ Partial Class Inventario
         '
         'btnAgregarDatos
         '
+        Me.btnAgregarDatos.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAgregarDatos.FlatAppearance.BorderSize = 0
         Me.btnAgregarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarDatos.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -162,6 +180,7 @@ Partial Class Inventario
         '
         'btnBorrar
         '
+        Me.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnBorrar.Enabled = False
         Me.btnBorrar.FlatAppearance.BorderSize = 0
         Me.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -172,22 +191,6 @@ Partial Class Inventario
         Me.btnBorrar.TabIndex = 33
         Me.btnBorrar.Text = "Borrar Seleccionado"
         Me.btnBorrar.UseVisualStyleBackColor = True
-        '
-        'Descripcion
-        '
-        Me.Descripcion.Frozen = True
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 300
-        '
-        'Cantidad
-        '
-        Me.Cantidad.Frozen = True
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 150
         '
         'lblInventario
         '

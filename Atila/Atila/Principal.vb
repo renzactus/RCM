@@ -92,8 +92,8 @@ Public Class Principal
     Private Sub MostrarCuadroNotificaciones()
         If pnlCuadroNotificaciones.Visible = False Then
             pnlCuadroNotificaciones.BringToFront()
-            pnlCuadroNotificaciones.Visible = True
             pnlCuadroNotificaciones.Height = 1
+            pnlCuadroNotificaciones.Visible = True
             btnNotificaciones.Enabled = False
             timerMostrarNotificacion.Enabled = True
             'pnlCuadroNotificaciones.Location = New Point(618, 29)
@@ -398,4 +398,5 @@ Public Class Principal
             btnNotificaciones.Enabled = True
         End If
     End Sub
+
 End Class
