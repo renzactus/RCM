@@ -45,3 +45,4 @@ C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\bin\Debug\Atila.applicatio
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.Costos.resources
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.exe.manifest
 C:\Users\Anubis_1392\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.application
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Debug\Atila.PagarReserva.resources

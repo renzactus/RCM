@@ -127,11 +127,20 @@
   <data name="icono_campanita" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\capas\icono_campanita.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DesplegadorNuevo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\DesplegadorNuevo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icono_ganancias" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\capas\lista-de-fiestas-reservadas_0034_Capa-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icono_personas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\capas\lista-de-fiestas-reservadas_0014_Capa-23.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="precio_total" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\precio_total.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icono_pagar_verde" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\capas\icono_pagar_verde.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icono_fecha" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\capas\lista-de-fiestas-reservadas_0015_Capa-21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,8 +178,14 @@
   <data name="icono_clientes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\capas\lista-de-fiestas-reservadas_0035_Capa-10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DesplegadorNuevoNuevo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\DesplegadorNuevoNuevo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LOGO_ATILA_MENU_PRINCIPAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\LOGO_ATILA_MENU_PRINCIPAL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lista-de-fiestas-reservadas_0021_Capa-25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\capas\lista-de-fiestas-reservadas_0021_Capa-25.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LOGO_ATILA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\LOGO_ATILA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -183,6 +198,9 @@
   </data>
   <data name="icono_seña" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\capas\lista-de-fiestas-reservadas_0005_Capa-31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icono_nota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\capas\icono_nota.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icono_listar_reservas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\capas\lista-de-fiestas-reservadas_0037_Capa-8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,7 +220,7 @@
   <data name="Icono_Restaurar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Icono_Restaurar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="precio_total" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\precio_total.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pagar_Reserv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\pagar_Reserv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

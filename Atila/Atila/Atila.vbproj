@@ -150,6 +150,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="MySQL.vb" />
+    <Compile Include="PagarReserva.Designer.vb">
+      <DependentUpon>PagarReserva.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PagarReserva.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagarReserva.resx">
+      <DependentUpon>PagarReserva.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
@@ -345,6 +354,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\precio_total.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\icono_pagar_verde.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\capas\icono_nota.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\DesplegadorNuevo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\DesplegadorNuevoNuevo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\pagar_Reserv.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

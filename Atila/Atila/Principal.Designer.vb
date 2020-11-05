@@ -25,12 +25,8 @@ Partial Class Principal
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.pnlArriba = New System.Windows.Forms.Panel()
-        Me.btnAyuda = New System.Windows.Forms.Button()
         Me.lblCantidadDeNotificaciones = New System.Windows.Forms.Label()
-        Me.btnNotificaciones = New System.Windows.Forms.Button()
         Me.lblPerfil = New System.Windows.Forms.Label()
-        Me.btnMinimizar = New System.Windows.Forms.Button()
-        Me.btnCerrar = New System.Windows.Forms.Button()
         Me.pnlCuadroNotificaciones = New System.Windows.Forms.Panel()
         Me.llblPaginaAnterior = New System.Windows.Forms.LinkLabel()
         Me.pnlNotificacion1 = New System.Windows.Forms.Panel()
@@ -59,17 +55,22 @@ Partial Class Principal
         Me.pnlMostrador = New System.Windows.Forms.Panel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlMenu = New System.Windows.Forms.Panel()
+        Me.pnlApartadoSeleccionado = New System.Windows.Forms.Panel()
         Me.Atila = New System.Windows.Forms.Label()
         Me.pnlConfiguracion = New System.Windows.Forms.Panel()
         Me.btnInventario = New System.Windows.Forms.Button()
         Me.btnCostos = New System.Windows.Forms.Button()
+        Me.timer = New System.Windows.Forms.Timer(Me.components)
         Me.btnConfiguracion = New System.Windows.Forms.Button()
         Me.btnGanancias = New System.Windows.Forms.Button()
         Me.btnClientes = New System.Windows.Forms.Button()
         Me.btnReservas = New System.Windows.Forms.Button()
         Me.btnReservar = New System.Windows.Forms.Button()
         Me.pbLogoAtilaGrande = New System.Windows.Forms.PictureBox()
-        Me.timer = New System.Windows.Forms.Timer(Me.components)
+        Me.btnAyuda = New System.Windows.Forms.Button()
+        Me.btnNotificaciones = New System.Windows.Forms.Button()
+        Me.btnMinimizar = New System.Windows.Forms.Button()
+        Me.btnCerrar = New System.Windows.Forms.Button()
         Me.pnlArriba.SuspendLayout()
         Me.pnlCuadroNotificaciones.SuspendLayout()
         Me.pnlNotificacion1.SuspendLayout()
@@ -94,37 +95,15 @@ Partial Class Principal
         Me.pnlArriba.Size = New System.Drawing.Size(1550, 43)
         Me.pnlArriba.TabIndex = 17
         '
-        'btnAyuda
-        '
-        Me.btnAyuda.FlatAppearance.BorderSize = 0
-        Me.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAyuda.Image = Global.Atila.My.Resources.Resources.LOGO_PEQUEÑITO
-        Me.btnAyuda.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnAyuda.Location = New System.Drawing.Point(7, 2)
-        Me.btnAyuda.Name = "btnAyuda"
-        Me.btnAyuda.Size = New System.Drawing.Size(51, 36)
-        Me.btnAyuda.TabIndex = 23
-        Me.btnAyuda.UseVisualStyleBackColor = True
-        '
         'lblCantidadDeNotificaciones
         '
         Me.lblCantidadDeNotificaciones.AutoSize = True
+        Me.lblCantidadDeNotificaciones.ForeColor = System.Drawing.Color.Red
         Me.lblCantidadDeNotificaciones.Location = New System.Drawing.Point(1411, 7)
         Me.lblCantidadDeNotificaciones.Name = "lblCantidadDeNotificaciones"
         Me.lblCantidadDeNotificaciones.Size = New System.Drawing.Size(19, 13)
         Me.lblCantidadDeNotificaciones.TabIndex = 29
         Me.lblCantidadDeNotificaciones.Text = "+9"
-        '
-        'btnNotificaciones
-        '
-        Me.btnNotificaciones.FlatAppearance.BorderSize = 0
-        Me.btnNotificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNotificaciones.Image = Global.Atila.My.Resources.Resources.icono_campanita_solita
-        Me.btnNotificaciones.Location = New System.Drawing.Point(1412, 0)
-        Me.btnNotificaciones.Name = "btnNotificaciones"
-        Me.btnNotificaciones.Size = New System.Drawing.Size(40, 40)
-        Me.btnNotificaciones.TabIndex = 24
-        Me.btnNotificaciones.UseVisualStyleBackColor = True
         '
         'lblPerfil
         '
@@ -136,36 +115,6 @@ Partial Class Principal
         Me.lblPerfil.TabIndex = 21
         Me.lblPerfil.Text = "Ana Liz Mazzarino"
         '
-        'btnMinimizar
-        '
-        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMinimizar.FlatAppearance.BorderSize = 0
-        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
-        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RosyBrown
-        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
-        Me.btnMinimizar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.btnMinimizar.Location = New System.Drawing.Point(1463, 0)
-        Me.btnMinimizar.Name = "btnMinimizar"
-        Me.btnMinimizar.Size = New System.Drawing.Size(45, 43)
-        Me.btnMinimizar.TabIndex = 19
-        Me.btnMinimizar.UseVisualStyleBackColor = True
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCerrar.FlatAppearance.BorderSize = 0
-        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
-        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
-        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
-        Me.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.btnCerrar.Location = New System.Drawing.Point(1505, 0)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(45, 43)
-        Me.btnCerrar.TabIndex = 18
-        Me.btnCerrar.UseVisualStyleBackColor = True
-        '
         'pnlCuadroNotificaciones
         '
         Me.pnlCuadroNotificaciones.BackColor = System.Drawing.SystemColors.HighlightText
@@ -175,7 +124,7 @@ Partial Class Principal
         Me.pnlCuadroNotificaciones.Controls.Add(Me.llblPaginaSiguiente)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.pnlNotificacion2)
         Me.pnlCuadroNotificaciones.Controls.Add(Me.lblNoHayNotificaciones)
-        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(958, 31)
+        Me.pnlCuadroNotificaciones.Location = New System.Drawing.Point(1090, 36)
         Me.pnlCuadroNotificaciones.Name = "pnlCuadroNotificaciones"
         Me.pnlCuadroNotificaciones.Size = New System.Drawing.Size(366, 469)
         Me.pnlCuadroNotificaciones.TabIndex = 23
@@ -455,17 +404,18 @@ Partial Class Principal
         'lblNoHayNotificaciones
         '
         Me.lblNoHayNotificaciones.AutoSize = True
-        Me.lblNoHayNotificaciones.Location = New System.Drawing.Point(101, 95)
+        Me.lblNoHayNotificaciones.Font = New System.Drawing.Font("Arial", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNoHayNotificaciones.Location = New System.Drawing.Point(109, 90)
         Me.lblNoHayNotificaciones.Name = "lblNoHayNotificaciones"
-        Me.lblNoHayNotificaciones.Size = New System.Drawing.Size(109, 13)
+        Me.lblNoHayNotificaciones.Size = New System.Drawing.Size(171, 18)
         Me.lblNoHayNotificaciones.TabIndex = 0
         Me.lblNoHayNotificaciones.Text = "No hay notificaciones"
         '
         'pnlMostrador
         '
-        Me.pnlMostrador.Location = New System.Drawing.Point(329, 42)
+        Me.pnlMostrador.Location = New System.Drawing.Point(330, 42)
         Me.pnlMostrador.Name = "pnlMostrador"
-        Me.pnlMostrador.Size = New System.Drawing.Size(1221, 807)
+        Me.pnlMostrador.Size = New System.Drawing.Size(1220, 807)
         Me.pnlMostrador.TabIndex = 19
         '
         'ToolTip1
@@ -479,6 +429,7 @@ Partial Class Principal
         '
         'pnlMenu
         '
+        Me.pnlMenu.Controls.Add(Me.pnlApartadoSeleccionado)
         Me.pnlMenu.Controls.Add(Me.Atila)
         Me.pnlMenu.Controls.Add(Me.pnlConfiguracion)
         Me.pnlMenu.Controls.Add(Me.btnConfiguracion)
@@ -491,6 +442,14 @@ Partial Class Principal
         Me.pnlMenu.Name = "pnlMenu"
         Me.pnlMenu.Size = New System.Drawing.Size(330, 807)
         Me.pnlMenu.TabIndex = 31
+        '
+        'pnlApartadoSeleccionado
+        '
+        Me.pnlApartadoSeleccionado.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.pnlApartadoSeleccionado.Location = New System.Drawing.Point(2, 359)
+        Me.pnlApartadoSeleccionado.Name = "pnlApartadoSeleccionado"
+        Me.pnlApartadoSeleccionado.Size = New System.Drawing.Size(8, 60)
+        Me.pnlApartadoSeleccionado.TabIndex = 37
         '
         'Atila
         '
@@ -540,6 +499,11 @@ Partial Class Principal
         Me.btnCostos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCostos.UseVisualStyleBackColor = True
         '
+        'timer
+        '
+        Me.timer.Enabled = True
+        Me.timer.Interval = 12000
+        '
         'btnConfiguracion
         '
         Me.btnConfiguracion.FlatAppearance.BorderSize = 0
@@ -548,9 +512,9 @@ Partial Class Principal
         Me.btnConfiguracion.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.btnConfiguracion.Image = Global.Atila.My.Resources.Resources.icono_configuracion
         Me.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConfiguracion.Location = New System.Drawing.Point(18, 611)
+        Me.btnConfiguracion.Location = New System.Drawing.Point(8, 611)
         Me.btnConfiguracion.Name = "btnConfiguracion"
-        Me.btnConfiguracion.Size = New System.Drawing.Size(312, 60)
+        Me.btnConfiguracion.Size = New System.Drawing.Size(322, 60)
         Me.btnConfiguracion.TabIndex = 35
         Me.btnConfiguracion.Text = "  Configuracion"
         Me.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -565,9 +529,9 @@ Partial Class Principal
         Me.btnGanancias.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.btnGanancias.Image = Global.Atila.My.Resources.Resources.icono_ganancias
         Me.btnGanancias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnGanancias.Location = New System.Drawing.Point(18, 548)
+        Me.btnGanancias.Location = New System.Drawing.Point(8, 548)
         Me.btnGanancias.Name = "btnGanancias"
-        Me.btnGanancias.Size = New System.Drawing.Size(312, 60)
+        Me.btnGanancias.Size = New System.Drawing.Size(322, 60)
         Me.btnGanancias.TabIndex = 34
         Me.btnGanancias.Text = "  Estadísticas"
         Me.btnGanancias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -582,9 +546,9 @@ Partial Class Principal
         Me.btnClientes.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.btnClientes.Image = Global.Atila.My.Resources.Resources.icono_clientes
         Me.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnClientes.Location = New System.Drawing.Point(18, 485)
+        Me.btnClientes.Location = New System.Drawing.Point(8, 485)
         Me.btnClientes.Name = "btnClientes"
-        Me.btnClientes.Size = New System.Drawing.Size(312, 60)
+        Me.btnClientes.Size = New System.Drawing.Size(322, 60)
         Me.btnClientes.TabIndex = 33
         Me.btnClientes.Text = "  Clientes"
         Me.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -599,9 +563,9 @@ Partial Class Principal
         Me.btnReservas.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.btnReservas.Image = Global.Atila.My.Resources.Resources.icono_listar_reservas
         Me.btnReservas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnReservas.Location = New System.Drawing.Point(18, 422)
+        Me.btnReservas.Location = New System.Drawing.Point(8, 422)
         Me.btnReservas.Name = "btnReservas"
-        Me.btnReservas.Size = New System.Drawing.Size(312, 60)
+        Me.btnReservas.Size = New System.Drawing.Size(322, 60)
         Me.btnReservas.TabIndex = 32
         Me.btnReservas.Text = "  Listar Reservas"
         Me.btnReservas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -616,9 +580,9 @@ Partial Class Principal
         Me.btnReservar.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.btnReservar.Image = Global.Atila.My.Resources.Resources.icono_agregar_reserva
         Me.btnReservar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnReservar.Location = New System.Drawing.Point(18, 359)
+        Me.btnReservar.Location = New System.Drawing.Point(8, 359)
         Me.btnReservar.Name = "btnReservar"
-        Me.btnReservar.Size = New System.Drawing.Size(312, 60)
+        Me.btnReservar.Size = New System.Drawing.Size(322, 60)
         Me.btnReservar.TabIndex = 31
         Me.btnReservar.Text = "  Realizar una reserva"
         Me.btnReservar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -634,10 +598,58 @@ Partial Class Principal
         Me.pbLogoAtilaGrande.TabIndex = 0
         Me.pbLogoAtilaGrande.TabStop = False
         '
-        'timer
+        'btnAyuda
         '
-        Me.timer.Enabled = True
-        Me.timer.Interval = 12000
+        Me.btnAyuda.FlatAppearance.BorderSize = 0
+        Me.btnAyuda.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAyuda.Image = Global.Atila.My.Resources.Resources.LOGO_PEQUEÑITO
+        Me.btnAyuda.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btnAyuda.Location = New System.Drawing.Point(7, 2)
+        Me.btnAyuda.Name = "btnAyuda"
+        Me.btnAyuda.Size = New System.Drawing.Size(51, 36)
+        Me.btnAyuda.TabIndex = 23
+        Me.btnAyuda.UseVisualStyleBackColor = True
+        '
+        'btnNotificaciones
+        '
+        Me.btnNotificaciones.FlatAppearance.BorderSize = 0
+        Me.btnNotificaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNotificaciones.Image = Global.Atila.My.Resources.Resources.icono_campanita_solita
+        Me.btnNotificaciones.Location = New System.Drawing.Point(1412, 0)
+        Me.btnNotificaciones.Name = "btnNotificaciones"
+        Me.btnNotificaciones.Size = New System.Drawing.Size(40, 40)
+        Me.btnNotificaciones.TabIndex = 24
+        Me.btnNotificaciones.UseVisualStyleBackColor = True
+        '
+        'btnMinimizar
+        '
+        Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMinimizar.FlatAppearance.BorderSize = 0
+        Me.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
+        Me.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RosyBrown
+        Me.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnMinimizar.Image = Global.Atila.My.Resources.Resources.Icono_Minimizar
+        Me.btnMinimizar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnMinimizar.Location = New System.Drawing.Point(1463, 0)
+        Me.btnMinimizar.Name = "btnMinimizar"
+        Me.btnMinimizar.Size = New System.Drawing.Size(45, 43)
+        Me.btnMinimizar.TabIndex = 19
+        Me.btnMinimizar.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCerrar.FlatAppearance.BorderSize = 0
+        Me.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Maroon
+        Me.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
+        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrar.Image = CType(resources.GetObject("btnCerrar.Image"), System.Drawing.Image)
+        Me.btnCerrar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnCerrar.Location = New System.Drawing.Point(1505, 0)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(45, 43)
+        Me.btnCerrar.TabIndex = 18
+        Me.btnCerrar.UseVisualStyleBackColor = True
         '
         'Principal
         '
@@ -716,5 +728,6 @@ Partial Class Principal
     Friend WithEvents lblNotificacion3Texto As System.Windows.Forms.Label
     Friend WithEvents lblNotificacion2Texto As System.Windows.Forms.Label
     Friend WithEvents Atila As System.Windows.Forms.Label
+    Friend WithEvents pnlApartadoSeleccionado As System.Windows.Forms.Panel
 
 End Class

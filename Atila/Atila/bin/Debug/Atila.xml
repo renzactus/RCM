@@ -23,6 +23,14 @@ Atila
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Atila.My.Resources.Resources.DesplegadorNuevo">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Atila.My.Resources.Resources.DesplegadorNuevoNuevo">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Atila.My.Resources.Resources.icono_agregar_reserva">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -91,6 +99,14 @@ Atila
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Atila.My.Resources.Resources.icono_nota">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Atila.My.Resources.Resources.icono_pagar_verde">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Atila.My.Resources.Resources.icono_personas">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -111,6 +127,10 @@ Atila
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Atila.My.Resources.Resources.lista_de_fiestas_reservadas_0021_Capa_25">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Atila.My.Resources.Resources.LOGO_ATILA">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -124,6 +144,10 @@ Atila
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Atila.My.Resources.Resources.LOGO_PEQUEÑITO">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Atila.My.Resources.Resources.pagar_Reserv">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>

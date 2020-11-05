@@ -92,6 +92,9 @@ Partial Class Reservar
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblHora3 = New System.Windows.Forms.Label()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
+        Me.Marcado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblHora2 = New System.Windows.Forms.Label()
         Me.lblHora1 = New System.Windows.Forms.Label()
         Me.lblNoHayReservas = New System.Windows.Forms.Label()
@@ -110,9 +113,6 @@ Partial Class Reservar
         Me.pbNotacion = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Marcado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlCliente.SuspendLayout()
         CType(Me.pbCedula, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbNombre, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +142,7 @@ Partial Class Reservar
         Me.btnAgregarDatos.FlatAppearance.BorderSize = 0
         Me.btnAgregarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAgregarDatos.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAgregarDatos.Location = New System.Drawing.Point(988, 680)
+        Me.btnAgregarDatos.Location = New System.Drawing.Point(977, 680)
         Me.btnAgregarDatos.Name = "btnAgregarDatos"
         Me.btnAgregarDatos.Size = New System.Drawing.Size(179, 82)
         Me.btnAgregarDatos.TabIndex = 0
@@ -491,7 +491,7 @@ Partial Class Reservar
         Me.btnGuardarCliente.FlatAppearance.BorderSize = 0
         Me.btnGuardarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuardarCliente.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnGuardarCliente.Location = New System.Drawing.Point(504, 209)
+        Me.btnGuardarCliente.Location = New System.Drawing.Point(435, 108)
         Me.btnGuardarCliente.Name = "btnGuardarCliente"
         Me.btnGuardarCliente.Size = New System.Drawing.Size(62, 27)
         Me.btnGuardarCliente.TabIndex = 27
@@ -582,7 +582,7 @@ Partial Class Reservar
         Me.btnEditarCliente.FlatAppearance.BorderSize = 0
         Me.btnEditarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnEditarCliente.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEditarCliente.Location = New System.Drawing.Point(446, 209)
+        Me.btnEditarCliente.Location = New System.Drawing.Point(377, 108)
         Me.btnEditarCliente.Name = "btnEditarCliente"
         Me.btnEditarCliente.Size = New System.Drawing.Size(65, 27)
         Me.btnEditarCliente.TabIndex = 21
@@ -596,7 +596,7 @@ Partial Class Reservar
         Me.btnCancelarEdicion.FlatAppearance.BorderSize = 0
         Me.btnCancelarEdicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelarEdicion.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCancelarEdicion.Location = New System.Drawing.Point(446, 209)
+        Me.btnCancelarEdicion.Location = New System.Drawing.Point(377, 108)
         Me.btnCancelarEdicion.Name = "btnCancelarEdicion"
         Me.btnCancelarEdicion.Size = New System.Drawing.Size(65, 27)
         Me.btnCancelarEdicion.TabIndex = 28
@@ -837,10 +837,10 @@ Partial Class Reservar
         'pnlDatosReserva
         '
         Me.pnlDatosReserva.BackColor = System.Drawing.Color.Transparent
-        Me.pnlDatosReserva.BackgroundImage = Global.Atila.My.Resources.Resources.Desplegador
-        Me.pnlDatosReserva.Location = New System.Drawing.Point(98, 680)
+        Me.pnlDatosReserva.BackgroundImage = Global.Atila.My.Resources.Resources.DesplegadorNuevoNuevo
+        Me.pnlDatosReserva.Location = New System.Drawing.Point(84, 633)
         Me.pnlDatosReserva.Name = "pnlDatosReserva"
-        Me.pnlDatosReserva.Size = New System.Drawing.Size(281, 447)
+        Me.pnlDatosReserva.Size = New System.Drawing.Size(297, 631)
         Me.pnlDatosReserva.TabIndex = 54
         Me.pnlDatosReserva.Visible = False
         '
@@ -931,6 +931,28 @@ Partial Class Reservar
         Me.dgvInventario.Size = New System.Drawing.Size(288, 135)
         Me.dgvInventario.TabIndex = 22
         '
+        'Marcado
+        '
+        Me.Marcado.Frozen = True
+        Me.Marcado.HeaderText = "-"
+        Me.Marcado.Name = "Marcado"
+        Me.Marcado.Width = 25
+        '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 150
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 110
+        '
         'lblHora2
         '
         Me.lblHora2.AutoSize = True
@@ -997,11 +1019,11 @@ Partial Class Reservar
         'lblFecha
         '
         Me.lblFecha.AutoSize = True
-        Me.lblFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFecha.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFecha.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.lblFecha.Location = New System.Drawing.Point(346, 29)
         Me.lblFecha.Name = "lblFecha"
-        Me.lblFecha.Size = New System.Drawing.Size(50, 24)
+        Me.lblFecha.Size = New System.Drawing.Size(53, 22)
         Me.lblFecha.TabIndex = 13
         Me.lblFecha.Text = "1/1/1"
         '
@@ -1077,7 +1099,7 @@ Partial Class Reservar
         Me.btnSiguiente.FlatAppearance.BorderSize = 0
         Me.btnSiguiente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSiguiente.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSiguiente.Location = New System.Drawing.Point(880, 687)
+        Me.btnSiguiente.Location = New System.Drawing.Point(977, 680)
         Me.btnSiguiente.Name = "btnSiguiente"
         Me.btnSiguiente.Size = New System.Drawing.Size(155, 55)
         Me.btnSiguiente.TabIndex = 1
@@ -1116,28 +1138,6 @@ Partial Class Reservar
         'epError
         '
         Me.epError.ContainerControl = Me
-        '
-        'Marcado
-        '
-        Me.Marcado.Frozen = True
-        Me.Marcado.HeaderText = "-"
-        Me.Marcado.Name = "Marcado"
-        Me.Marcado.Width = 25
-        '
-        'Descripcion
-        '
-        Me.Descripcion.Frozen = True
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 150
-        '
-        'Cantidad
-        '
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 110
         '
         'Reservar
         '

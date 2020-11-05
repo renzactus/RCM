@@ -1,18 +1,35 @@
 ﻿Public Class ListadeReservas
     Dim mysql As New MySQL
-    Dim booleanNroReciboUnico As Boolean
-    Dim cuotas, Preciototal, FilaNumero As Integer
+    Public booleanNroReciboUnico As Boolean
+    Public cuotas, Preciototal, FilaNumero As Integer
     Dim razon_cancelacion, ibImprevisto As String
-    Dim datosReserva, reservaInvertida As DataTable
+    Dim reservaInvertida As DataTable
+    Public datosReserva As DataTable
 
     Private Sub ListadeReservas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        EstablecerColores()
         PonerEnNegritasDiasConReservas()
         ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
         btnCancelarReserva.Visible = False
 
     End Sub
+    'Diseño
+    Private Sub EstablecerColores()
+        Me.BackColor = Principal.colorSecundario
+        lblFiestasReservadasParaEl.ForeColor = Principal.colorTitulos
+        cboReservasEnElDia.BackColor = Principal.colorTerceario
+        lblCosasUtilizar.ForeColor = Principal.colorTitulos
+        lblSeleccioneUnaFecha.ForeColor = Principal.colorTitulos
+        btnPagar.ForeColor = Principal.colorTitulos
+        lblPrecioF.ForeColor = Principal.colorTitulos
+        btnGuardarPrecioFiesta.ForeColor = Principal.colorTitulos
+        btnEditarPrecioFiesta.ForeColor = Principal.colorTitulos
+        btnSurgioImprevisto.ForeColor = Principal.colorTitulos
+        btnCancelarReserva.ForeColor = Principal.colorTitulos
+
+    End Sub
     'Metodos utilizados
-    Private Sub PonerEnNegritasDiasConReservas()
+    Public Sub PonerEnNegritasDiasConReservas()
         Calendario.RemoveAllBoldedDates()
         mysql.Consultar("select distinct fecha from reservas where fecha_cancelacion is null")
         If mysql.Consultado = True Then
@@ -116,10 +133,22 @@
         lblPersonas.Enabled = valor
         lblServicio.Enabled = valor
         lblCliente.Enabled = valor
-        lblCosasUtilizar.Enabled = valor
 
         lblImprevisto.Enabled = False
         dgvUtiliza.Enabled = valor
+    End Sub
+    Private Sub DeshabilitarOHabilitarDatosAlEditarFecha(ByVal valor As Boolean)
+        Calendario.Enabled = valor
+        cboReservasEnElDia.Enabled = valor
+        btnPagar.Enabled = valor
+        btnExpandir.Enabled = valor
+        pnlSiNoSePago.Enabled = valor
+    End Sub
+    Private Sub DeshabilitarOHabilitarDatosAlEditarPrecio(ByVal valor As Boolean)
+        Calendario.Enabled = valor
+        cboReservasEnElDia.Enabled = valor
+        btnPagar.Enabled = valor
+        btnExpandir.Enabled = valor
     End Sub
 
     Private Sub MostrarDatosDeReserva()
@@ -166,11 +195,11 @@
                 btnCancelarReserva.Visible = True
             End If
             If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
-                lblMostrarPagado.Text = String.Format("{0:N0}", datosReserva.Rows(FilaNumero).Item("costo"))
+                lblMostrarPagado.Text = "$" & String.Format("{0:N0}", datosReserva.Rows(FilaNumero).Item("costo"))
                 lblPagado.Visible = True
                 lblPagado.Enabled = True
             ElseIf Not IsDBNull(datosReserva.Rows(FilaNumero).Item("s")) Then
-                lblMostrarSeña.Text = String.Format("{0:N0}", datosReserva.Rows(FilaNumero).Item("s"))
+                lblMostrarSeña.Text = "$" & String.Format("{0:N0}", datosReserva.Rows(FilaNumero).Item("s"))
                 lblSeña.Visible = True
                 lblSeña.Enabled = True
                 pnlSiNoSePago.Visible = True
@@ -182,34 +211,8 @@
     End Sub
 
     'Insertando Pagos
-    Private Sub ChequearSiHayCamposVaciosYProceder()
-        chequearQueNroReciboSeaUnico()
-        If txtNroRecibo.Text = "" Or cboCuotas.SelectedIndex = -1 Or cboModoPagoPagado.SelectedIndex = -1 Then
-            avisarSiEstaVacio(txtNroRecibo)
-            avisarSiEstaVacio(cboCuotas)
-            avisarSiEstaVacio(cboModoPagoPagado)
-            avisarSiEstaVacio(cboModoPagoPagado)
-            Reservar.sonidoError()
-        ElseIf booleanNroReciboUnico = False Then
-            epError.SetError(txtNroRecibo, "Ya existe un numero de recibo igual, ingrese otro")
-            Reservar.sonidoError()
-        Else
-            insertarPago()
-        End If
-    End Sub
-    Private Sub chequearQueNroReciboSeaUnico()
-        If txtNroRecibo.Text <> "" Then
-            booleanNroReciboUnico = True
-            mysql.Consultar("select nro_recibo from pagos")
-            If mysql.Consultado = True Then
-                For i = 0 To mysql.Resultado.Rows.Count - 1
-                    If mysql.Resultado.Rows(i).Item("nro_recibo") = txtNroRecibo.Text Then
-                        booleanNroReciboUnico = False
-                    End If
-                Next
-            End If
-        End If
-    End Sub
+    
+
     Private Sub avisarSiEstaVacio(ByVal componente As Object)
         If componente.Text = "" Then
             epError.SetError(componente, "Porfavor, Complete los datos de " & componente.Name.Substring(3))
@@ -217,23 +220,6 @@
             epError.SetError(componente, "")
         End If
     End Sub
-    Private Sub insertarPago()
-        If cboCuotas.Text = "Ninguna" Then
-            cuotas = 1
-        Else
-            cuotas = cboCuotas.Text
-        End If
-        mysql.InsertarDatos("insert into pagos (NRO_RECIBO,cuotas,fecha_pago,costo,forma,ID_RESERVA) values(" & txtNroRecibo.Text & "," & cuotas & ",current_date," &
-                            Preciototal + datosReserva.Rows(FilaNumero).Item("s") & ",'" & cboModoPagoPagado.Text & "'," & datosReserva.Rows(FilaNumero).Item("ID_RESERVA") & ")")
-        If mysql.Consultado = True Then
-            MsgBox("Pagado Correctamente")
-            pnlPagar.Visible = False
-            pnlDatosReservas.Visible = True
-            btnInsertarPago.Text = "Pagar"
-            ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
-        End If
-    End Sub
-
     'Actualizando datos
     Private Sub CancelarReservaSeleccionadaYAgregarDineroAFavor()
         If MsgBox("Desea cancelar la reserva del " & datosReserva.Rows(FilaNumero).Item("fecha"), vbYesNo, "Atención!") = vbYes Then
@@ -345,44 +331,19 @@
     End Sub
 
     Private Sub btnPagar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPagar.Click
-        If pnlPagar.Visible = False Then
-            btnEditarFecha.Visible = False
-            btnPagar.Text = "Cancelar"
-            pnlDatosReservas.Visible = False
-            pnlPagar.Visible = True
-            cboReservasEnElDia.Enabled = False
-        Else
-            btnEditarFecha.Visible = True
-            btnPagar.Text = "Pagar"
-            txtNroRecibo.Text = ""
-            cboCuotas.SelectedIndex = -1
-            cboModoPagoPagado.SelectedIndex = -1
-            pnlDatosReservas.Visible = True
-            pnlPagar.Visible = False
-            cboReservasEnElDia.Enabled = True
-        End If
+        Principal.Enabled = False
+        Dim pagarreserva As New PagarReserva
+        pagarreserva.Show()
+        pagarreserva.dtosReserva = datosReserva
+        pagarreserva.ptotal = Preciototal
     End Sub
 
-    Private Sub btnInsertarPago_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnInsertarPago.Click
-        ChequearSiHayCamposVaciosYProceder()
+    Private Sub btnInsertarPago_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
     End Sub
 
-    Private Sub txtNroRecibo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroRecibo.KeyPress
+    Private Sub txtNroRecibo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
-    End Sub
-
-    Private Sub txtNroRecibo_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtNroRecibo.Validating
-        avisarSiEstaVacio(txtNroRecibo)
-    End Sub
-
-    Private Sub cboCuotas_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cboCuotas.Validating
-        epError.SetError(cboCuotas, "")
-        avisarSiEstaVacio(cboCuotas)
-    End Sub
-
-    Private Sub cboModoPagoPagado_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cboModoPagoPagado.Validating
-        epError.SetError(cboModoPagoPagado, "")
-        avisarSiEstaVacio(cboCuotas)
     End Sub
 
     Private Sub btnGuardarPrecioFiesta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardarPrecioFiesta.Click
@@ -391,13 +352,15 @@
         btnGuardarPrecioFiesta.Visible = False
         lblPrecioFiesta.Text = PrecioTotal
         btnPagar.Enabled = True
+        DeshabilitarOHabilitarDatosAlEditarPrecio(True)
     End Sub
 
     Private Sub btnEditarPrecioFiesta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarPrecioFiesta.Click
         txtPrecioFiesta.Visible = True
         btnGuardarPrecioFiesta.Visible = True
-        txtPrecioFiesta.Text = PrecioTotal
-        btnPagar.Enabled = False
+        txtPrecioFiesta.Text = Preciototal
+        DeshabilitarOHabilitarDatosAlEditarPrecio(False)
+
     End Sub
 
     Private Sub btnCancelarReserva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarReserva.Click
@@ -425,6 +388,7 @@
         Else
             epError.SetError(dtpFecha, "Fecha ocupada")
         End If
+        DeshabilitarOHabilitarDatosAlEditarFecha(True)
     End Sub
 
     Private Sub btnEditarFecha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditarFecha.Click
@@ -435,6 +399,7 @@
         btnEditarFecha.Visible = False
         btnCancelarFecha.Visible = True
         btnGuardarFecha.Visible = True
+        DeshabilitarOHabilitarDatosAlEditarFecha(False)
     End Sub
 
     Private Sub btnCancelarFecha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancelarFecha.Click
@@ -444,10 +409,15 @@
         btnEditarFecha.Visible = True
         btnCancelarFecha.Visible = False
         btnGuardarFecha.Visible = False
+        DeshabilitarOHabilitarDatosAlEditarFecha(True)
     End Sub
 
     Private Sub btnExpandir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExpandir.Click
         MsgBox(datosReserva.Rows(FilaNumero).Item("nota"))
+    End Sub
+
+    Private Sub txtPrecioFiesta_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPrecioFiesta.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
 
 End Class

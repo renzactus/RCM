@@ -203,7 +203,7 @@ Public Class Reservar
             pnlDatosReserva.Controls.RemoveAt(0)
             pnlDatosReserva.Visible = False
         Else
-            pnlDatosReserva.Location = New Point(lbl.Location.X, lbl.Location.Y + 13)
+            pnlDatosReserva.Location = New Point(lbl.Location.X, lbl.Location.Y + 18)
             pnlDatosReserva.Visible = True
             ObtenerPanelDeClaseListadeReservaConLosDatos(lbl.Name.Substring(17))
         End If
@@ -453,7 +453,7 @@ Public Class Reservar
         ElseIf booleanSeñaMayorQuePrecioTotal = True Then
             epError.SetError(txtSeña, "La seña no puede ser mayor al precio total")
             sonidoError()
-        ElseIf optSeñar.Checked = True And (txtSeña.Text = "" Or cboModoPagoSeña.SelectedIndex = -1) Then 'Señar
+        ElseIf optSeñar.Checked = True And (txtSeña.Text = "" Or cboModoPagoSeña.SelectedIndex = -1) Then
             avisarSiEstaVacio(txtSeña)
             avisarSiEstaVacio(cboModoPagoSeña)
             sonidoError()
@@ -464,7 +464,7 @@ Public Class Reservar
                 avisarSiEstaVacio(cboModoPagoPagado)
             End If
             sonidoError()
-        ElseIf booleanNroReciboUnico = False And txtNroRecibo.Text <> "" Then 'Si no hay cuadros incompletos
+        ElseIf booleanNroReciboUnico = False And txtNroRecibo.Text <> "" Then
             epError.SetError(txtNroRecibo, "Ya existe un numero de recibo igual, ingrese otro")
         Else
             insertarDatos()
@@ -555,8 +555,11 @@ Public Class Reservar
         End If
 
         insertarInventario()
+        If mysql.Consultado = True Then
+            MsgBox("Se ha reservado Correctamente")
+        End If
         Me.Dispose()
-        Principal.AbrirReservasDenuevo()
+        Principal.ReiniciarReservas()
     End Sub
     Private Sub DarFormatoAtelefonos()
         If txtTelefono2.Text <> "" Then
@@ -883,4 +886,7 @@ Public Class Reservar
         chkDineroAFavorCambiovalor()
     End Sub
 
+    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Principal.ReiniciarReservas()
+    End Sub
 End Class

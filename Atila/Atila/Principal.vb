@@ -14,6 +14,8 @@ Public Class Principal
     Dim FrameAMostrar As Reservar
     'Constructor
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        AbrirFormEnPanel(Of Reservar)(btnReservar)
+
         EstablecerColores()
         ActualizarNotificaciones()
         llblPaginaSiguiente.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline
@@ -42,8 +44,9 @@ Public Class Principal
         lblNotificacion3Texto.ForeColor = colorTitulos
     End Sub
     'Menu
-    Private Sub AbrirFormEnPanel(Of Miform As {Form, New})()
+    Private Sub AbrirFormEnPanel(Of Miform As {Form, New})(ByVal Boton As Button)
         Dim Formulario As Form
+        pnlApartadoSeleccionado.Location = New Point(pnlApartadoSeleccionado.Location.X, Boton.Location.Y)
         Formulario = pnlMostrador.Controls.OfType(Of Miform)().FirstOrDefault() 'Busca el formulario en la coleccion'
         'Si form no fue econtrado/ no existe'
         If Formulario Is Nothing Then
@@ -60,10 +63,23 @@ Public Class Principal
         End If
     End Sub
 
-    Public Sub AbrirReservasDenuevo()
+    Public Sub ReiniciarReservas()
         Dim Formulario As Form
         Formulario = pnlMostrador.Controls.OfType(Of Reservar)().FirstOrDefault()
         Formulario = New Reservar()
+        Formulario.TopLevel = False
+        Formulario.FormBorderStyle = FormBorderStyle.None
+        Formulario.Dock = DockStyle.Fill
+        pnlMostrador.Controls.Add(Formulario)
+        pnlMostrador.Tag = Formulario
+        Formulario.Show()
+        Formulario.BringToFront()
+    End Sub
+
+    Public Sub ReiniciarListaReservas()
+        Dim Formulario As Form
+        Formulario = pnlMostrador.Controls.OfType(Of ListadeReservas)().FirstOrDefault()
+        Formulario = New ListadeReservas()
         Formulario.TopLevel = False
         Formulario.FormBorderStyle = FormBorderStyle.None
         Formulario.Dock = DockStyle.Fill
@@ -78,7 +94,7 @@ Public Class Principal
         If pnlCuadroNotificaciones.Visible = False Then
             pnlCuadroNotificaciones.BringToFront()
             pnlCuadroNotificaciones.Visible = True
-            pnlCuadroNotificaciones.Location = New Point(618, 29)
+            'pnlCuadroNotificaciones.Location = New Point(618, 29)
         Else
             pnlCuadroNotificaciones.Visible = False
         End If
@@ -244,11 +260,11 @@ Public Class Principal
 
     'Eventos
     Private Sub btnRealizarunareserva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        AbrirFormEnPanel(Of Reservar)()
+        AbrirFormEnPanel(Of Reservar)(sender)
     End Sub
 
     Private Sub btnListadereservas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        AbrirFormEnPanel(Of ListadeReservas)()
+        AbrirFormEnPanel(Of ListadeReservas)(sender)
     End Sub
 
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
@@ -285,19 +301,20 @@ Public Class Principal
     End Sub
 
     Private Sub btnReservar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReservar.Click
-        AbrirFormEnPanel(Of Reservar)()
+        AbrirFormEnPanel(Of Reservar)(sender)
     End Sub
 
     Private Sub btnReservas_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReservas.Click
-        AbrirFormEnPanel(Of ListadeReservas)()
+        AbrirFormEnPanel(Of ListadeReservas)(sender)
+        ReiniciarListaReservas()
     End Sub
 
     Private Sub btnClientes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClientes.Click
-        AbrirFormEnPanel(Of Clientes)()
+        AbrirFormEnPanel(Of Clientes)(sender)
     End Sub
 
     Private Sub btnGanancias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGanancias.Click
-        AbrirFormEnPanel(Of Ganancias)()
+        AbrirFormEnPanel(Of Ganancias)(sender)
     End Sub
 
     Private Sub btnConfiguracion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfiguracion.Click
@@ -305,12 +322,15 @@ Public Class Principal
     End Sub
 
     Private Sub btnCostos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCostos.Click
-        AbrirFormEnPanel(Of Costos)()
+        AbrirFormEnPanel(Of Costos)(sender)
     End Sub
 
     Private Sub btnInventario_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnInventario.Click
-        AbrirFormEnPanel(Of Inventario)()
+        AbrirFormEnPanel(Of Inventario)(sender)
     End Sub
 
     
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
 End Class
