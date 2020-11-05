@@ -179,7 +179,6 @@ Public Class Ganancias
 
     'Eventos
 
-
     Private Sub btnAlternar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAlternar.Click
         If Grafica.Series(ReservasoGananciasAñoAnterior).ChartType = SeriesChartType.Column Then
             Grafica.Series(ReservasoGananciasAñoAnterior).ChartType = SeriesChartType.SplineArea

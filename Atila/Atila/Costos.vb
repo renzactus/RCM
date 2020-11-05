@@ -4,10 +4,16 @@
 
     'Constructor
     Private Sub Configuracion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        EstablecerColores()
         actualizarCostos()
     End Sub
-    'Otros Metodos
-
+    'Diseño
+    Private Sub EstablecerColores()
+        Me.BackColor = Principal.colorSecundario
+        lblMostrarCostos.ForeColor = Principal.colorTitulos
+        lblIngresarCostos.ForeColor = Principal.colorTitulos
+        btnAgregar.ForeColor = Principal.colorTitulos
+    End Sub
     'Mostrar Datos
     Private Sub actualizarCostos()
         consultarCostos()
@@ -78,23 +84,28 @@
         End If
     End Sub
     'Eventos
-    Private Sub cboCostos_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboCostos.SelectedIndexChanged
-        rellenarDatos()
-    End Sub
-
-    Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
+    Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         chequearAntesDeAgregar()
     End Sub
 
-    Private Sub txtAgregarPorcentajeExtraFinde_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtAgregarPrecioPorPersona.Validating, txtAgregarPorcentajeExtraFinde.Validating, txtAgregarParrillada.Validating, txtAgregarIva.Validating, txtAgregarHasta2Cuotas.Validating, txtAgregarFiestaSinBaile.Validating, txtAgregarFiestaConBaile.Validating, txtAgregarEntre4Y12Cuotas.Validating, txtAgregarAgadu.Validating
+    Private Sub txtAgregarPorcentajeExtraFinde_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs)
         epError.SetError(sender, "")
     End Sub
 
-    Private Sub txtAgregarPorcentajeExtraFinde_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtAgregarPrecioPorPersona.KeyPress, txtAgregarPorcentajeExtraFinde.KeyPress, txtAgregarParrillada.KeyPress, txtAgregarIva.KeyPress, txtAgregarFiestaSinBaile.KeyPress, txtAgregarFiestaConBaile.KeyPress
+    Private Sub txtAgregarPorcentajeExtraFinde_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
 
-    Private Sub txtAgregarHasta2Cuotas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtAgregarHasta2Cuotas.KeyPress, txtAgregarEntre4Y12Cuotas.KeyPress, txtAgregarAgadu.KeyPress
+    Private Sub txtAgregarHasta2Cuotas_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsPunctuation(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
+
+    Private Sub cboCostos_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboCostos.SelectedIndexChanged
+        rellenarDatos()
+    End Sub
+
+    Private Sub txtAgregarPorcentajeExtraFinde_KeyPress_1(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtAgregarPrecioPorPersona.KeyPress, txtAgregarPorcentajeExtraFinde.KeyPress, txtAgregarParrillada.KeyPress, txtAgregarIva.KeyPress, txtAgregarHasta2Cuotas.KeyPress, txtAgregarFiestaSinBaile.KeyPress, txtAgregarFiestaConBaile.KeyPress, txtAgregarEntre4Y12Cuotas.KeyPress, txtAgregarAgadu.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsPunctuation(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+    End Sub
+
 End Class
