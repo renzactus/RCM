@@ -31,6 +31,7 @@
         btnGuardarFecha.ForeColor = Principal.colorTitulos
         btnCancelarFecha.ForeColor = Principal.colorTitulos
         btnExpandir.ForeColor = Principal.colorTitulos
+        btnExpandirImprevisto.ForeColor = Principal.colorTitulos
 
     End Sub
     'Metodos utilizados
@@ -165,13 +166,31 @@
 
 
             lblMostrarMotivo.Text = datosReserva.Rows(FilaNumero).Item("motivo")
-            If datosReserva.Rows(FilaNumero).Item("nota").ToString.Length > 15 Then
+            If datosReserva.Rows(FilaNumero).Item("nota").ToString.Length > 12 Then
                 btnExpandir.Visible = True
-                lblMostrarNota.Text = datosReserva.Rows(FilaNumero).Item("nota").ToString.Substring(0, 15) & "..."
+                lblMostrarNota.Text = datosReserva.Rows(FilaNumero).Item("nota").ToString.Substring(0, 12) & "..."
             Else
                 btnExpandir.Visible = False
                 lblMostrarNota.Text = datosReserva.Rows(FilaNumero).Item("nota")
             End If
+
+
+            If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("descripcion")) Then
+                lblImprevisto.Visible = True
+                lblImprevisto.Enabled = True
+
+
+                If datosReserva.Rows(FilaNumero).Item("descripcion").ToString.Length > 12 Then
+                    btnExpandirImprevisto.Visible = True
+                    lblMostrarImprevisto.Text = datosReserva.Rows(FilaNumero).Item("descripcion").ToString.Substring(0, 12) & "..."
+                Else
+                    btnExpandirImprevisto.Visible = False
+                    lblMostrarImprevisto.Text = datosReserva.Rows(FilaNumero).Item("descripcion")
+                End If
+
+
+            End If
+            
 
             lblMostrarFecha.Text = datosReserva.Rows(FilaNumero).Item("fecha")
             lblMostrarHora.Text = datosReserva.Rows(FilaNumero).Item("comienzo").ToString & " - " & datosReserva.Rows(FilaNumero).Item("final").ToString
@@ -179,11 +198,6 @@
             chkMostrarServicio.Visible = True
             chkMostrarServicio.Checked = datosReserva.Rows(FilaNumero).Item("servicio")
             lblMostrarCliente.Text = datosReserva.Rows(FilaNumero).Item("nombre")
-            If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("descripcion")) Then
-                lblMostrarImprevisto.Text = datosReserva.Rows(FilaNumero).Item("descripcion")
-                lblImprevisto.Visible = True
-                lblImprevisto.Enabled = True
-            End If
 
             mysql.Consultar("select descripcion,utiliza.cantidad from utiliza inner join inventario on utiliza.ID_INVENTARIO=inventario.ID_INVENTARIO where id_reserva=" &
                             datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
@@ -328,6 +342,8 @@
     'Eventos
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
         Calendario.SelectionRange = New SelectionRange(Calendario.SelectionStart, Calendario.SelectionStart)
+        btnExpandir.Visible = False
+        btnExpandirImprevisto.Visible = False
         ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)
     End Sub
 
@@ -425,4 +441,7 @@
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
 
+    Private Sub btnExpandirImprevisto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExpandirImprevisto.Click
+        MsgBox(datosReserva.Rows(FilaNumero).Item("descripcion"))
+    End Sub
 End Class

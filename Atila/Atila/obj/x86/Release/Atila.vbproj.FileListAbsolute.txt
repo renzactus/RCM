@@ -19,3 +19,4 @@ C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Release\Atila.exe.manifest
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\bin\Release\Atila.application
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.exe.manifest
 C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.application
+C:\Users\renzo\Documents\GitHub\RCM\Atila\Atila\obj\x86\Release\Atila.PagarReserva.resources
