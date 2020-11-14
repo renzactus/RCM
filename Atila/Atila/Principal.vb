@@ -399,4 +399,31 @@ Public Class Principal
         End If
     End Sub
 
+    Private Sub btnConfiguracion_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfiguracion.MouseEnter
+        lblDesplegadorNormal.BackColor = Color.FromArgb(215, 207, 197)
+        lblDesplegadorAbajo.BackColor = Color.FromArgb(193, 186, 177)
+    End Sub
+
+    Private Sub btnConfiguracion_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConfiguracion.MouseLeave
+        lblDesplegadorNormal.BackColor = Color.Transparent
+        lblDesplegadorAbajo.BackColor = Color.FromArgb(215, 207, 197)
+    End Sub
+
+    Private Sub btnConfiguracion_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnConfiguracion.MouseDown
+        lblDesplegadorNormal.BackColor = Color.FromArgb(222, 218, 214)
+        lblDesplegadorAbajo.BackColor = Color.FromArgb(211, 207, 203)
+
+    End Sub
+
+    Private Sub btnNotificaciones_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificaciones.MouseEnter
+        lblCantidadDeNotificaciones.BackColor = Color.FromArgb(204, 174, 157)
+    End Sub
+
+    Private Sub btnNotificaciones_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNotificaciones.MouseLeave
+        lblCantidadDeNotificaciones.BackColor = Color.Transparent
+    End Sub
+
+    Private Sub btnNotificaciones_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnNotificaciones.MouseDown
+        lblCantidadDeNotificaciones.BackColor = Color.FromArgb(216, 202, 194)
+    End Sub
 End Class

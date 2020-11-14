@@ -119,7 +119,7 @@ Partial Class Principal
         Me.lblCantidadDeNotificaciones.AutoSize = True
         Me.lblCantidadDeNotificaciones.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCantidadDeNotificaciones.ForeColor = System.Drawing.Color.Red
-        Me.lblCantidadDeNotificaciones.Location = New System.Drawing.Point(1411, 7)
+        Me.lblCantidadDeNotificaciones.Location = New System.Drawing.Point(1413, 7)
         Me.lblCantidadDeNotificaciones.Name = "lblCantidadDeNotificaciones"
         Me.lblCantidadDeNotificaciones.Size = New System.Drawing.Size(19, 14)
         Me.lblCantidadDeNotificaciones.TabIndex = 29
