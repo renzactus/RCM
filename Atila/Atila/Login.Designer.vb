@@ -239,6 +239,7 @@ Partial Class Login
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(656, 655)
+        Me.Controls.Add(Me.pibAnimacion)
         Me.Controls.Add(Me.lblContraseña)
         Me.Controls.Add(Me.lblnroCedula)
         Me.Controls.Add(Me.btnCancelar)
@@ -249,7 +250,6 @@ Partial Class Login
         Me.Controls.Add(Me.pnlBarra)
         Me.Controls.Add(Me.pboLogoAtila)
         Me.Controls.Add(Me.txtCedula)
-        Me.Controls.Add(Me.pibAnimacion)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
