@@ -242,14 +242,14 @@
     'Actualizando datos
     Private Sub CancelarReservaSeleccionadaYAgregarDineroAFavor()
         If MsgBox("Desea cancelar la reserva del " & datosReserva.Rows(FilaNumero).Item("fecha"), vbYesNo, "Atención!") = vbYes Then
-            'CONTINUAR CONN ESTO
-            'razon_cancelacion = InputBox("Ingrese la razon por la cual se cancelo la reserva")
+
             mysql.InsertarDatos("update reservas set fecha_cancelacion=current_timestamp, razon_cancelacion='" & razon_cancelacion & "' where ID_RESERVA=" &
                         datosReserva.Rows(FilaNumero).Item("ID_RESERVA"))
             If mysql.Consultado = True Then
 
                 If Not IsDBNull(datosReserva.Rows(FilaNumero).Item("costo")) Then
                     mysql.InsertarDatos("update clientes set dinero_a_favor=" & CInt((datosReserva.Rows(FilaNumero).Item("costo") / 100) * 70) + datosReserva.Rows(FilaNumero).Item("dinero_a_favor") & " where ID_CLIENTE=" & datosReserva.Rows(FilaNumero).Item("ID_CLIENTE"))
+                    Principal.ReiniciarClientes()
                 End If
 
                 ChequearSiHayMasDeUnaReservaEnElDiaYProceder(Calendario.SelectionRange.Start)

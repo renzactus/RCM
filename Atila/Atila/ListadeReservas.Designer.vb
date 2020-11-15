@@ -23,8 +23,8 @@ Partial Class ListadeReservas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblFiestasReservadasParaEl = New System.Windows.Forms.Label()
         Me.Calendario = New System.Windows.Forms.MonthCalendar()
         Me.lblMostrarMotivo = New System.Windows.Forms.Label()
@@ -36,6 +36,7 @@ Partial Class ListadeReservas
         Me.cboReservasEnElDia = New System.Windows.Forms.ComboBox()
         Me.chkMostrarServicio = New System.Windows.Forms.CheckBox()
         Me.pnlDatosReservas = New System.Windows.Forms.Panel()
+        Me.btnExpandirImprevisto = New System.Windows.Forms.Button()
         Me.btnExpandir = New System.Windows.Forms.Button()
         Me.lblNota = New System.Windows.Forms.Label()
         Me.lblMostrarNota = New System.Windows.Forms.Label()
@@ -74,7 +75,6 @@ Partial Class ListadeReservas
         Me.pbCalendario = New System.Windows.Forms.PictureBox()
         Me.lblSeleccioneUnaFecha = New System.Windows.Forms.Label()
         Me.lblCosasUtilizar = New System.Windows.Forms.Label()
-        Me.btnExpandirImprevisto = New System.Windows.Forms.Button()
         Me.pnlDatosReservas.SuspendLayout()
         CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlSiNoSePago.SuspendLayout()
@@ -216,6 +216,19 @@ Partial Class ListadeReservas
         Me.pnlDatosReservas.Name = "pnlDatosReservas"
         Me.pnlDatosReservas.Size = New System.Drawing.Size(289, 678)
         Me.pnlDatosReservas.TabIndex = 52
+        '
+        'btnExpandirImprevisto
+        '
+        Me.btnExpandirImprevisto.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnExpandirImprevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnExpandirImprevisto.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExpandirImprevisto.Location = New System.Drawing.Point(254, 639)
+        Me.btnExpandirImprevisto.Name = "btnExpandirImprevisto"
+        Me.btnExpandirImprevisto.Size = New System.Drawing.Size(26, 23)
+        Me.btnExpandirImprevisto.TabIndex = 71
+        Me.btnExpandirImprevisto.Text = "..."
+        Me.btnExpandirImprevisto.UseVisualStyleBackColor = True
+        Me.btnExpandirImprevisto.Visible = False
         '
         'btnExpandir
         '
@@ -538,24 +551,24 @@ Partial Class ListadeReservas
         Me.dgvUtiliza.AllowUserToResizeRows = False
         Me.dgvUtiliza.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(173, Byte), Integer))
         Me.dgvUtiliza.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvUtiliza.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvUtiliza.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvUtiliza.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvUtiliza.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Descripcion, Me.Cantidad})
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvUtiliza.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvUtiliza.DefaultCellStyle = DataGridViewCellStyle4
         Me.dgvUtiliza.EnableHeadersVisualStyles = False
         Me.dgvUtiliza.Location = New System.Drawing.Point(820, 497)
         Me.dgvUtiliza.MultiSelect = False
@@ -639,19 +652,6 @@ Partial Class ListadeReservas
         Me.lblCosasUtilizar.Size = New System.Drawing.Size(114, 19)
         Me.lblCosasUtilizar.TabIndex = 74
         Me.lblCosasUtilizar.Text = "Utiliza/Utilizo:"
-        '
-        'btnExpandirImprevisto
-        '
-        Me.btnExpandirImprevisto.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnExpandirImprevisto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnExpandirImprevisto.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExpandirImprevisto.Location = New System.Drawing.Point(254, 639)
-        Me.btnExpandirImprevisto.Name = "btnExpandirImprevisto"
-        Me.btnExpandirImprevisto.Size = New System.Drawing.Size(26, 23)
-        Me.btnExpandirImprevisto.TabIndex = 71
-        Me.btnExpandirImprevisto.Text = "..."
-        Me.btnExpandirImprevisto.UseVisualStyleBackColor = True
-        Me.btnExpandirImprevisto.Visible = False
         '
         'ListadeReservas
         '
