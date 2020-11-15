@@ -141,7 +141,7 @@ Partial Class Principal
         '
         Me.lblPerfil.AutoSize = True
         Me.lblPerfil.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPerfil.Location = New System.Drawing.Point(1309, 11)
+        Me.lblPerfil.Location = New System.Drawing.Point(1290, 11)
         Me.lblPerfil.Name = "lblPerfil"
         Me.lblPerfil.Size = New System.Drawing.Size(98, 18)
         Me.lblPerfil.TabIndex = 21
