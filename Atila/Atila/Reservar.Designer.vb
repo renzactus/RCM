@@ -23,9 +23,9 @@ Partial Class Reservar
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnAgregarDatos = New System.Windows.Forms.Button()
         Me.txtCedula = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -92,6 +92,9 @@ Partial Class Reservar
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblHora3 = New System.Windows.Forms.Label()
         Me.dgvInventario = New System.Windows.Forms.DataGridView()
+        Me.Marcado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblHora2 = New System.Windows.Forms.Label()
         Me.lblHora1 = New System.Windows.Forms.Label()
         Me.lblNoHayReservas = New System.Windows.Forms.Label()
@@ -110,9 +113,6 @@ Partial Class Reservar
         Me.pbNotacion = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Marcado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlCliente.SuspendLayout()
         CType(Me.pbCedula, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbNombre, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -894,44 +894,66 @@ Partial Class Reservar
         Me.dgvInventario.AllowUserToResizeRows = False
         Me.dgvInventario.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(173, Byte), Integer))
         Me.dgvInventario.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvInventario.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvInventario.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
         Me.dgvInventario.ColumnHeadersHeight = 30
         Me.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.dgvInventario.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Marcado, Me.Descripcion, Me.Cantidad})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvInventario.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvInventario.DefaultCellStyle = DataGridViewCellStyle14
         Me.dgvInventario.EnableHeadersVisualStyles = False
         Me.dgvInventario.Location = New System.Drawing.Point(662, 496)
         Me.dgvInventario.MultiSelect = False
         Me.dgvInventario.Name = "dgvInventario"
         Me.dgvInventario.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSalmon
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvInventario.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LightSalmon
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvInventario.RowHeadersDefaultCellStyle = DataGridViewCellStyle15
         Me.dgvInventario.RowHeadersVisible = False
         Me.dgvInventario.RowTemplate.Height = 27
         Me.dgvInventario.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dgvInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvInventario.Size = New System.Drawing.Size(272, 135)
         Me.dgvInventario.TabIndex = 22
+        '
+        'Marcado
+        '
+        Me.Marcado.Frozen = True
+        Me.Marcado.HeaderText = "-"
+        Me.Marcado.Name = "Marcado"
+        Me.Marcado.Width = 25
+        '
+        'Descripcion
+        '
+        Me.Descripcion.Frozen = True
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 150
+        '
+        'Cantidad
+        '
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 80
         '
         'lblHora2
         '
@@ -1094,7 +1116,7 @@ Partial Class Reservar
         Me.Calendario.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Calendario.Location = New System.Drawing.Point(96, 288)
         Me.Calendario.MaxDate = New Date(2035, 12, 31, 0, 0, 0, 0)
-        Me.Calendario.MinDate = New Date(2020, 1, 1, 0, 0, 0, 0)
+        Me.Calendario.MinDate = New Date(2019, 1, 1, 0, 0, 0, 0)
         Me.Calendario.Name = "Calendario"
         Me.Calendario.TabIndex = 0
         '
@@ -1119,28 +1141,6 @@ Partial Class Reservar
         'epError
         '
         Me.epError.ContainerControl = Me
-        '
-        'Marcado
-        '
-        Me.Marcado.Frozen = True
-        Me.Marcado.HeaderText = "-"
-        Me.Marcado.Name = "Marcado"
-        Me.Marcado.Width = 25
-        '
-        'Descripcion
-        '
-        Me.Descripcion.Frozen = True
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 150
-        '
-        'Cantidad
-        '
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 80
         '
         'Reservar
         '

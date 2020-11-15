@@ -134,7 +134,7 @@ Partial Class Ganancias
         Me.cboMes.Items.AddRange(New Object() {"ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"})
         Me.cboMes.Location = New System.Drawing.Point(387, 97)
         Me.cboMes.Name = "cboMes"
-        Me.cboMes.Size = New System.Drawing.Size(109, 26)
+        Me.cboMes.Size = New System.Drawing.Size(131, 26)
         Me.cboMes.TabIndex = 43
         Me.cboMes.Visible = False
         '
@@ -191,7 +191,7 @@ Partial Class Ganancias
         Me.pbMes.BackColor = System.Drawing.Color.FromArgb(CType(CType(227, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(175, Byte), Integer))
         Me.pbMes.Location = New System.Drawing.Point(385, 95)
         Me.pbMes.Name = "pbMes"
-        Me.pbMes.Size = New System.Drawing.Size(113, 30)
+        Me.pbMes.Size = New System.Drawing.Size(135, 30)
         Me.pbMes.TabIndex = 103
         Me.pbMes.TabStop = False
         Me.pbMes.Visible = False

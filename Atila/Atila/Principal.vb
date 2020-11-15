@@ -88,6 +88,19 @@ Public Class Principal
         Formulario.BringToFront()
     End Sub
 
+    Public Sub ReiniciarClientes()
+        Dim Formulario As Form
+        Formulario = pnlMostrador.Controls.OfType(Of Clientes)().FirstOrDefault()
+        Formulario = New Clientes()
+        Formulario.TopLevel = False
+        Formulario.FormBorderStyle = FormBorderStyle.None
+        Formulario.Dock = DockStyle.Fill
+        pnlMostrador.Controls.Add(Formulario)
+        pnlMostrador.Tag = Formulario
+        Formulario.Show()
+        Formulario.BringToFront()
+    End Sub
+
     'Notificaciones
     Private Sub MostrarCuadroNotificaciones()
         If pnlCuadroNotificaciones.Visible = False Then

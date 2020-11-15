@@ -20,7 +20,7 @@ Public Class Reservar
             .AutoCompleteSource = AutoCompleteSource.CustomSource
         End With
 
-        Calendario.MinDate = DateAndTime.Today
+        'Calendario.MinDate = DateAndTime.Today
         Calendario.MaxDate = DateAdd("yyyy", 3, DateAndTime.Today)
         mysql.Consultar("select distinct fecha from reservas where fecha_cancelacion is null")
         If mysql.Consultado = True Then
@@ -559,6 +559,7 @@ Public Class Reservar
             MsgBox("Se ha reservado Correctamente")
         End If
         Me.Dispose()
+        Principal.ReiniciarClientes()
         Principal.ReiniciarReservas()
     End Sub
     Private Sub DarFormatoAtelefonos()
@@ -652,10 +653,20 @@ Public Class Reservar
 
     Private Sub txtTelefono1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTelefono1.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+        If txtTelefono1.Text.Length > 8 Then
+            If txtTelefono1.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
     End Sub
 
     Private Sub txtTelefono2_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTelefono2.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+        If txtTelefono2.Text.Length > 8 Then
+            If txtTelefono2.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
     End Sub
 
     Private Sub Calendario_DateChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DateRangeEventArgs) Handles Calendario.DateChanged
@@ -847,7 +858,7 @@ Public Class Reservar
         btnAgregarDatos.Enabled = True
     End Sub
 
-    Private Sub txtPrecioFiesta_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPrecioFiesta.KeyPress
+    Private Sub txtPrecioFiesta_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsPunctuation(e.KeyChar)
     End Sub
 
@@ -862,7 +873,7 @@ Public Class Reservar
         End If
     End Sub
 
-    Private Sub txtNroRecibo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroRecibo.KeyPress
+    Private Sub txtNroRecibo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
     End Sub
 
@@ -886,8 +897,44 @@ Public Class Reservar
         chkDineroAFavorCambiovalor()
     End Sub
 
-    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Principal.ReiniciarReservas()
+    Private Sub txtNota_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNota.KeyPress
+        If txtNota.Text.Length > 99 Then
+            If txtNota.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
     End Sub
 
+    Private Sub txtNombre_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNombre.KeyPress
+        If txtNombre.Text.Length > 34 Then
+            If txtNombre.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
+    End Sub
+
+    Private Sub txtDireccion_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtDireccion.KeyPress
+        If txtDireccion.Text.Length > 49 Then
+            If txtDireccion.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
+    End Sub
+
+    Private Sub txtNroRecibo_KeyPress_1(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNroRecibo.KeyPress
+        e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS Y BORRAR 
+        If txtNroRecibo.Text.Length > 8 Then
+            If txtNroRecibo.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
+    End Sub
+
+    Private Sub txtPrecioFiesta_KeyPress_1(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtPrecioFiesta.KeyPress
+        If txtPrecioFiesta.Text.Length > 8 Then
+            If txtPrecioFiesta.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
+    End Sub
 End Class

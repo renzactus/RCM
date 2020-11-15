@@ -143,9 +143,9 @@ Partial Class Principal
         Me.lblPerfil.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPerfil.Location = New System.Drawing.Point(1309, 11)
         Me.lblPerfil.Name = "lblPerfil"
-        Me.lblPerfil.Size = New System.Drawing.Size(97, 18)
+        Me.lblPerfil.Size = New System.Drawing.Size(98, 18)
         Me.lblPerfil.TabIndex = 21
-        Me.lblPerfil.Text = "Cristian Vivas"
+        Me.lblPerfil.Text = "Modo Prueba"
         '
         'btnMinimizar
         '
