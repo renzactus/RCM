@@ -41,10 +41,12 @@ Partial Class Login
         Me.pboMayusculas = New System.Windows.Forms.PictureBox()
         Me.pibAnimacion = New System.Windows.Forms.PictureBox()
         Me.pboLogoAtila = New System.Windows.Forms.PictureBox()
+        Me.epError = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.pnlBarra.SuspendLayout()
         CType(Me.pboMayusculas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pboLogoAtila, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.epError, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnLogin
@@ -228,12 +230,15 @@ Partial Class Login
         Me.pboLogoAtila.TabIndex = 7
         Me.pboLogoAtila.TabStop = False
         '
+        'epError
+        '
+        Me.epError.ContainerControl = Me
+        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(656, 655)
-        Me.Controls.Add(Me.pibAnimacion)
         Me.Controls.Add(Me.lblContraseña)
         Me.Controls.Add(Me.lblnroCedula)
         Me.Controls.Add(Me.btnCancelar)
@@ -244,6 +249,7 @@ Partial Class Login
         Me.Controls.Add(Me.pnlBarra)
         Me.Controls.Add(Me.pboLogoAtila)
         Me.Controls.Add(Me.txtCedula)
+        Me.Controls.Add(Me.pibAnimacion)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -253,6 +259,7 @@ Partial Class Login
         CType(Me.pboMayusculas, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pibAnimacion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pboLogoAtila, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.epError, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -274,4 +281,5 @@ Partial Class Login
     Friend WithEvents lblnroCedula As System.Windows.Forms.Label
     Friend WithEvents lblContraseña As System.Windows.Forms.Label
     Friend WithEvents pibAnimacion As System.Windows.Forms.PictureBox
+    Friend WithEvents epError As System.Windows.Forms.ErrorProvider
 End Class

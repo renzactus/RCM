@@ -87,7 +87,9 @@ Public Class Login
                     timerChequearMayusculaActivada.Enabled = False
                     Me.Hide()
                 Else
-                    MessageBox.Show("datos invalidos", "Sistema")
+                    Reservar.sonidoError()
+                    epError.SetError(txtCedula, "La cedula o contraseña es inválida")
+                    epError.SetError(txtContraseña, "La cedula o contraseña es inválida")
                 End If
             End If
         End If
@@ -95,6 +97,13 @@ Public Class Login
 
     Private Sub txtCedula_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCedula.KeyPress
         e.Handled = Not IsNumeric(e.KeyChar) And Not Char.IsControl(e.KeyChar) 'SOLO DEJA ESCRIBIR NUMEROS
+        epError.SetError(txtCedula, "")
+        epError.SetError(txtContraseña, "")
+        If txtCedula.Text.Length > 7 Then
+            If txtCedula.SelectedText.Length = 0 Then
+                e.Handled = True And Not Char.IsControl(e.KeyChar)
+            End If
+        End If
     End Sub
 
     Private Sub Login_MouseMove(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles MyBase.MouseMove
@@ -169,5 +178,10 @@ Public Class Login
     Private Sub pnlBarra_MouseMove(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pnlBarra.MouseMove
         Principal.ReleaseCapture()
         Principal.SendMessage(Me.Handle, &H112&, &HF012&, 0)
+    End Sub
+
+    Private Sub txtContraseña_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtContraseña.KeyPress
+        epError.SetError(txtCedula, "")
+        epError.SetError(txtContraseña, "")
     End Sub
 End Class

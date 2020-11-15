@@ -309,7 +309,7 @@ Public Class Principal
     End Sub
 
     Private Sub btnAyuda_MouseHover(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAyuda.MouseHover
-        Me.ToolTip1.SetToolTip(btnAyuda, "Ante cualquier duda llamar a 091111111")
+        Me.ToolTip1.SetToolTip(btnAyuda, "Ante cualquier duda llamar a 098669109")
     End Sub
 
     
