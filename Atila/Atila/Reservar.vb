@@ -20,7 +20,7 @@ Public Class Reservar
             .AutoCompleteSource = AutoCompleteSource.CustomSource
         End With
 
-        'Calendario.MinDate = DateAndTime.Today
+        Calendario.MinDate = DateAndTime.Today
         Calendario.MaxDate = DateAdd("yyyy", 3, DateAndTime.Today)
         mysql.Consultar("select distinct fecha from reservas where fecha_cancelacion is null")
         If mysql.Consultado = True Then
