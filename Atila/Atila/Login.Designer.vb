@@ -251,6 +251,7 @@ Partial Class Login
         Me.Controls.Add(Me.pboLogoAtila)
         Me.Controls.Add(Me.txtCedula)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Login"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
